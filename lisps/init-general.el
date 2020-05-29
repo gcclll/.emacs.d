@@ -50,7 +50,8 @@
     ;; <o>
     "om" 'lsp-ui-imenu
     ;; <q>
-    "qr" 'restart-emacs
+    ;; <r>
+    "rt" 'instant-rename-tag
     ;; <s>
     "ss" 'swiper
     "sS" 'swiper-all

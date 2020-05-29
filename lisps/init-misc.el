@@ -1,4 +1,5 @@
 ;;; init-misc.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 ;; WinnerPac

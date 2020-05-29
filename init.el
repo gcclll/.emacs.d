@@ -6,7 +6,7 @@
 ;; Copyright (C) 2020 ZhiCheng Lee
 ;; Created: Fri May 29 2020 10:52:11 GMT+0800 (China Standard Time)
 ;; Version: 1.0.0
-;; Last-Updated: Fri May 29 21:10:15 2020 (+0800)
+;; Last-Updated: Fri May 29 22:27:27 2020 (+0800)
 ;;           By: ZhiCheng Lee
 ;; URL: https://github.com/gcclll/.emacs.d
 ;; Keywords: M-EMACS .emacs.d init
@@ -98,6 +98,7 @@
 ;; (require 'init-epaint)
 ;; (require 'init-games)
 (require 'init-general)
+(require 'init-log)
 
 (provide 'init)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
