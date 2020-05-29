@@ -78,6 +78,14 @@
   :config
   (rainbow-mode))
 
+(use-package smart-tab
+  :config
+  (progn
+    (defun @-enable-smart-tab ()
+      (smart-tab-mode))
+    (add-hook 'prog-mode-hook '@-enable-smart-tab)
+    ))
+
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-misc.el ends here

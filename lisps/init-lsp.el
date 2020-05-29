@@ -18,7 +18,7 @@
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
   :hook ((java-mode python-mode go-mode
           js-mode js2-mode typescript-mode web-mode
-          c-mode c++-mode objc-mode) . lsp))
+          c-mode c++-mode objc-mode rjsx-mode) . lsp))
 ;; -LSPPac
 
 ;; LSPUI

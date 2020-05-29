@@ -40,26 +40,9 @@
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
 ;; -UTF8Coding
 
-;; EditExp
-;; Remove useless whitespace before saving a file
-(defun delete-trailing-whitespace-except-current-line ()
-  "An alternative to `delete-trailing-whitespace'.
-The original function deletes trailing whitespace of the current line."
-  (interactive)
-  (let ((begin (line-beginning-position))
-        (end (line-end-position)))
-    (save-excursion
-      (when (< (point-min) (1- begin))
-        (save-restriction
-          (narrow-to-region (point-min) (1- begin))
-          (delete-trailing-whitespace)
-          (widen)))
-      (when (> (point-max) (+ end 2))
-        (save-restriction
-          (narrow-to-region (+ end 2) (point-max))
-          (delete-trailing-whitespace)
-          (widen))))))
-
+;;----------------------------------------------------------------------------
+;; `hook'
+;;----------------------------------------------------------------------------
 (add-hook 'before-save-hook #'delete-trailing-whitespace-except-current-line)
 (add-hook 'after-init-hook #'global-emojify-mode)
 
@@ -91,9 +74,15 @@ The original function deletes trailing whitespace of the current line."
                      "COMMIT_EDITMSG\\'")))
 
 ;; When buffer is closed, saves the cursor location
+;;----------------------------------------------------------------------------
+;; `feature-mode'
+;;----------------------------------------------------------------------------
 (save-place-mode 1)
-
+(toggle-scroll-bar -1)
 (fset 'yes-or-no-p 'y-or-n-p)
+(toggle-frame-maximized)
+;; -END
+
 
 ;; Set history-length longer
 (setq-default history-length 500)

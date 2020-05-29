@@ -2,15 +2,26 @@
 ;;; Commentary:
 ;;; Code:
 
-;; WebModePac
+;;----------------------------------------------------------------------------
+;; `web-mode'
+;;----------------------------------------------------------------------------
 (use-package web-mode
   :custom-face
   (css-selector ((t (:inherit default :foreground "#66CCFF"))))
   (font-lock-comment-face ((t (:foreground "#828282"))))
   :mode
   ("\\.phtml\\'" "\\.tpl\\.php\\'" "\\.[agj]sp\\'" "\\.as[cp]x\\'"
-   "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.[t]?html?\\'"))
-;; -WebModePac
+   "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.[t]?html?\\'")
+  :config
+  (setq web-mode-code-indent-offset 2
+        web-mode-css-indent-offset 2
+        web-mode-markup-indent-offset 2
+        web-mode-attr-indent-offset 2
+        web-mode-enable-current-element-highlight t)
+  (emmet-mode)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace))
+;; -END
+
 
 ;;----------------------------------------------------------------------------
 ;; `js2-mode'
@@ -43,11 +54,42 @@
   (setq-default typescript-indent-level 2))
 ;; -END
 
-;; EmmetPac
+;;----------------------------------------------------------------------------
+;; `css/scss/less/stylus'
+;;----------------------------------------------------------------------------
+(use-package scss-mode
+  :ensure t
+  :mode "\\.scss\\'"
+  :config
+  (setq scss-compile-at-save nil))
+
+(use-package sass-mode
+  :disabled t
+  :ensure t
+  :mode "\\.scss\\'")
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `emmet'
+;;----------------------------------------------------------------------------
 (use-package emmet-mode
-  :hook ((web-mode . emmet-mode)
-         (css-mode . emmet-mode)))
-;; -EmmetPac
+  :ensure t
+  :commands emmet-mode
+  :config
+  (add-hook 'web-mode-hook #'emmet-mode)
+  (add-hook 'rjsx-mode-hook #'emmet-mode)
+  (add-hook 'css-mode-hook #'emmet-mode)
+  (add-hook 'sgml-mode-hook #'emmet-mode)
+  (add-hook 'emmet-mode-hook (lambda()
+                              (setq emmet-indent-after-insert t))))
+
+;; rjsx-mode use className
+(use-package mode-local
+  :ensure t
+  :config
+  (setq-mode-local rjsx-mode emmet-expand-jsx-className? t)
+  (setq-mode-local web-mode emmet-expand-jsx-className? nil))
+;; -END
 
 ;; InstantRenameTagPac
 (use-package instant-rename-tag
@@ -87,6 +129,39 @@
   (add-hook 'web-mode-hook #'(lambda ()
                                (enable-minor-mode
                                 '("\\.jsx?\\'" . prettier-js-mode)))))
+;;----------------------------------------------------------------------------
+;; `rjsx-mode'
+;;----------------------------------------------------------------------------
+(use-package rjsx-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("components?\\/.*\\.js\\'" . rjsx-mode))
+  (add-to-list 'auto-mode-alist '("containers?\\/.*\\.js\\'" . rjsx-mode))
+  (add-hook 'rjsx-mode-hook #'setup-tide-mode))
+
+(use-package react-snippets
+  :ensure t)
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `tide'
+;;----------------------------------------------------------------------------
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+(defun setup-tide-mode ()
+  "Set up Tide mode."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save-mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
+;; -END
 
 (provide 'init-webdev)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

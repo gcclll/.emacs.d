@@ -29,6 +29,16 @@
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
 
 (use-package counsel-projectile
+  :config
+  (setq counsel-projectile-org-capture-templates
+        '(("pt"
+           "[${name}] Todo"
+           entry (file+headline "${root}/notes.org" "Tasks")
+           "* TODO %^{todo}\n %? \n %a")
+          ("pn"
+           "[${name}] Note"
+           entry (file+headline "${root}/notes.org" "Notes")
+           "* %^{title} %t\n %?")))
   :general
   (spcleader
     "p"     '(:ignore t :which-key "Projectile")

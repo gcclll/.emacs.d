@@ -186,14 +186,17 @@ ui + themes(doom-themes)
 
 ![](http://qiniu.ii6g.com/1590741049.png?imageMogr2/thumbnail/!100p)
 
-### init-project.el
+### init-projectile.el
 
-| k     | b                            |
-| ----- | ---------------------------- |
-| C-x g | magit-status                 |
-| C-c p | projectile-command-map       |
-| C-z p | projectile-add-known-project |
-| M-0   | treemacs-select-window       |
+need add .gitmodules
+
+| k         | b                                   |
+| --------- | ----------------------------------- |
+| SPC p f   | counsel-projectile-find-file        |
+| SPC p b   | counsel-projectile-switch-to-buffer |
+| SPC p p   | counsel-projectile-switch-project   |
+| SPC p g   | counsel-projectile-grep             |
+| SPC p SPC | open ~/projects/projects.org        |
 
 treemacs
 
@@ -322,6 +325,9 @@ dap-mode
 ### init-latex.el
 
 ### init-webdev.el
+
+1. rjsx-mode
+   [https://medium.com/@jerryhsieh/emacs-30-%E7%94%A8-emacs-%E5%AF%AB-react-a8e904c3b111](https://medium.com/@jerryhsieh/emacs-30-用-emacs-寫-react-a8e904c3b111)
 
 | k     | b                  |
 | ----- | ------------------ |
