@@ -2,7 +2,7 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'init-const))
+  (require 'init-defs))
 
 ;; SudoEditPac
 (use-package sudo-edit
@@ -90,6 +90,8 @@ The original function deletes trailing whitespace of the current line."
 
 ;; When buffer is closed, saves the cursor location
 (save-place-mode 1)
+
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Set history-length longer
 (setq-default history-length 500)
