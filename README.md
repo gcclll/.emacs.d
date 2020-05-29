@@ -79,6 +79,7 @@ https://github.com/bbatsov/crux
 3. [popup-kill-ring](https://github.com/waymondo/popup-kill-ring)
 4. [undo-tree](https://github.com/tarsiiformes/undo-tree)
 5. discover-my-major
+6. zone-choose
 
 ### init-shell.el
 
@@ -281,6 +282,91 @@ dap-mode
 [Emacs Application Framework (EAF)](https://github.com/manateelazycat/emacs-application-framework.git)
 
 可以直接打开其他软件。
+
+| k     | b                     |
+| ----- | --------------------- |
+| M-q   | nil                   |
+| C-M-s | open_link             |
+| RET   | scroll_up             |
+| DEL   | scroll_down_page      |
+| u     | scroll_down_page      |
+| d     | scroll_up_page        |
+| M->   | scroll_to_end         |
+| M-<   | scroll_to_home        |
+| q     | quit-window           |
+| C-=   | zoom_in               |
+| C--   | zoom_out              |
+| p     | take_photo            |
+| M-]   | eaf-send-key-sequence |
+
+### init-erc.el
+
+[ERC is a powerful, modular, and extensible IRC client for Emacs](https://github.com/pymander/erc)
+
+
+
+| k       | b                    |
+| ------- | -------------------- |
+| M-z i   | erc-start-or-switch  |
+| C-c C-b | erc-switch-to-buffer |
+| M-RET   | new-line             |
+
+### init-eww.el
+
+### init-mu4e.el
+
+| k     | b    |
+| ----- | ---- |
+| M-z m | mu4e |
+
+### init-tramp.el
+
+ftp tool.
+
+### init-pdf.el
+
+### init-leetcode.el
+
+https://github.com/kaiwk/leetcode.el/tree/28b78c45c86570cb1e3538f275eb4de1cf28cd04
+
+| keymap | command                                |
+| ------ | -------------------------------------- |
+| n      | cursor move down                       |
+| p      | cursor move up                         |
+| s      | filter problem by regex                |
+| t      | filter problem by tag                  |
+| /      | clear filters                          |
+| g      | refresh without fetching from LeetCode |
+| G      | refresh all data                       |
+| RET    | show current problem description       |
+
+### init-pyim.el
+
+| k    | b                            |
+| ---- | ---------------------------- |
+| M-j  | pyim-convert-string-at-point |
+
+### init-epaint.el
+
+[paint tool.](https://github.com/chuntaro/epaint)
+
+### init-games.el
+
+tetris 俄罗斯方块
+
+| k     | b                  |
+| ----- | ------------------ |
+| C-p   | tetris-rotate-prev |
+| C-n   | tetris-rotate-down |
+| C-b   | tetris-move-left   |
+| C-f   | tetris-move-right  |
+| C-SPC | tetris-move-bottom |
+
+
+
+
+
+
 
 ## Site-eslip
 

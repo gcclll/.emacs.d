@@ -1,0 +1,32 @@
+;;; init-games.el --- -*- lexical-binding: t -*-
+;;; Code:
+
+;; TetrisConfig
+(use-package tetris
+  :ensure nil
+  :commands (tetris)
+  :bind
+  (:map tetris-mode-map
+        ("C-p" . tetris-rotate-prev)
+        ("C-n" . tetris-rotate-down)
+        ("C-b" . tetris-move-left)
+        ("C-f" . tetris-move-right)
+        ("C-SPC" . tetris-move-bottom))
+  :config
+  (defadvice tetris-end-game (around zap-scores activate)
+    (save-window-excursion ad-do-it)))
+;; -TetrisConfig
+
+;; SpeedTypePac
+(use-package speed-type
+  :commands (speed-type-text))
+;; -SpeedTypePac
+
+;; 2048Pac
+(use-package 2048-game
+  :commands (2048-game))
+;; -2048Pac
+
+(provide 'init-games)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; init-games.el ends here
