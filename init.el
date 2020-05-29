@@ -59,7 +59,7 @@
 (require 'init-package)
 (require 'init-global)
 (require 'init-func)
-;; (require 'init-search)
+(require 'init-search)
 ;; (require 'init-crux)
 ;; (require 'init-avy)
 ;; (require 'init-winner)

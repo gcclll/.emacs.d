@@ -18,6 +18,9 @@
   (setq package-enable-at-startup nil)          ; To prevent initializing twice
   (package-initialize))
 
+  (when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+
 ;; set use-package-verbose to t for interpreted .emacs,
 ;; and to nil for byte-compiled .emacs.elc.
 (eval-and-compile
@@ -56,6 +59,15 @@
 ;; DimPac
 (use-package diminish)
 ;; -DimPac
+
+(use-package exec-path-from-shell
+  :ensure t
+  :if (memq window-system '(mac ns x))
+  :config
+  (setq exec-path-from-shell-variables '("PATH" "RGPATH"))
+  (setq exec-path-from-shell-check-startup-files nil) 
+  (setq exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-initialize))
 
 (provide 'init-package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
