@@ -28,6 +28,60 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 
 # packages
 
+## inits
+
+### init-pre.el
+
+configuration before anything.
+
+### init-defs.el
+
+Vars and funcs.
+
+### init-package.el
+
+Use-package.
+
+### init-global.el
+
+global configurations, tiny settings.
+
+### init-func.el
+
+func def after use-package.
+
+### init-search.el
+
+ivy, search(rg, color-rg, ...)
+
+### init-crux.el
+
+https://github.com/bbatsov/crux
+
+| k       | d                           |
+| ------- | --------------------------- |
+| C-a     | crux-move-beginning-of-line |
+| C-x 4 t | crux-transpose-windows      |
+| C-x K   | crux-kill-other-buffers     |
+| C-k     | crux-smart-kill-line        |
+
+### init-ivy.el
+
+| k     | d                   |
+| ----- | ------------------- |
+| C-z c | Avy-goto-char-timer |
+| C-z l | Avy-goto-line       |
+
+### init-misc.el
+
+1. winner
+2. [which-key](https://github.com/justbur/emacs-which-key)
+3. [popup-kill-ring](https://github.com/waymondo/popup-kill-ring)
+4. [undo-tree](https://github.com/tarsiiformes/undo-tree)
+5. discover-my-major
+
+### init-shell.el
+
 ## Site-eslip
 
 ### snails
@@ -58,7 +112,7 @@ https://github.com/manateelazycat/snails/tree/11700b398813f35b4602d5e95391f28efe
 | C-g         | Quit snails               |
 | ESC ESC ESC | Quit snails               |
 | M-h         | Quit snails               |
-|             |                           |
+| C-a`        |                           |
 
 ### color-rg(搜索)
 
@@ -130,33 +184,29 @@ https://github.com/manateelazycat/color-rg/tree/22b050fc0b9b8d13f10c5fbd4cf14980
 | `C-~`     | counsel-goto-local-home      |
 | `C-M-s`   | color-rg-search-input        |
 
-
-
-# Self-funcs
-
-| name                 | Keybinding | desc          |
-| -------------------- | ---------- | ------------- |
-| resize-window-width  | C-z w      | resize width  |
-| resize-window-height | C-z h      | resize height |
-
-
-
 # bindings
 ## global bindings
-| name      | Function              |
-| --------- | --------------------- |
-| `C-x C-l` | toggle-truncate-lines |
-| `C-+`     | text-scale-increase   |
-| `C--`     | text-scale-decrease   |
-| `M-n`     | forward-paragraph     |
-| `M-p`     | backward-paragraph    |
-| `M-W =`   | Bigger width          |
-| `M-W M-+` | Bigger width          |
-| `M-W -`   | smaller width         |
-| `M-W M-_` | smaller width         |
-| `M-H =`   | Bigger height         |
-| `M-H M-+` | bigger height         |
-| `M-H -`   | smaller height        |
-| `M-H M-_` | smaller height        |
-| C-z o     | ffip                  |
+| name      | Function                      |
+| --------- | ----------------------------- |
+| `C-x C-l` | toggle-truncate-lines         |
+| `C-+`     | text-scale-increase           |
+| `C--`     | text-scale-decrease           |
+| `C-z w`   | resize width                  |
+| `C-z h`   | resize height                 |
+| `M-n`     | forward-paragraph             |
+| `M-p`     | backward-paragraph            |
+| `M-W =`   | Bigger width                  |
+| `M-W M-+` | Bigger width                  |
+| `M-W -`   | smaller width                 |
+| `M-W M-_` | smaller width                 |
+| `M-H =`   | Bigger height                 |
+| `M-H M-+` | bigger height                 |
+| `M-H -`   | smaller height                |
+| `M-H M-_` | smaller height                |
+| C-z o     | ffip                          |
+| `C-h C-m` | discover-my-major             |
+| `C-x C-o` | ace-window                    |
+| `M-~`     | shell-here                    |
+| `M-#`     | aweshell-dedicated-close/open |
+| `M-$`     | multi-term, fullscreen        |
 
