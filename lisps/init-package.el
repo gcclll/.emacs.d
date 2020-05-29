@@ -56,16 +56,15 @@
   (auto-package-update-maybe))
 ;; -AutoPackageUpdate
 
-;; DimPac
 (use-package diminish)
-;; -DimPac
+(use-package all-the-icons)
 
 (use-package exec-path-from-shell
   :ensure t
   :if (memq window-system '(mac ns x))
   :config
   (setq exec-path-from-shell-variables '("PATH" "RGPATH"))
-  (setq exec-path-from-shell-check-startup-files nil) 
+  (setq exec-path-from-shell-check-startup-files nil)
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))
 

@@ -1,4 +1,5 @@
 ;;; init-ui.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
