@@ -1,4 +1,5 @@
 ;;; init-shell.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile

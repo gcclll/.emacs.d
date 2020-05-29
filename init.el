@@ -6,7 +6,7 @@
 ;; Copyright (C) 2020 ZhiCheng Lee
 ;; Created: Fri May 29 2020 10:52:11 GMT+0800 (China Standard Time)
 ;; Version: 1.0.0
-;; Last-Updated: Sat May 30 00:42:34 2020 (+0800)
+;; Last-Updated: Sat May 30 02:09:26 2020 (+0800)
 ;;           By: ZhiCheng Lee
 ;; URL: https://github.com/gcclll/.emacs.d
 ;; Keywords: M-EMACS .emacs.d init
@@ -87,6 +87,7 @@
 (require 'init-lsp)
 (require 'init-company)
 (require 'init-eyeb)
+;; (require 'init-ediff)
 
 (require 'init-cc)
 (require 'init-python)

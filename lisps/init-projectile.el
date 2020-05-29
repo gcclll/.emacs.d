@@ -16,7 +16,6 @@
 ;;----------------------------------------------------------------------------
 ;; `projectile'
 ;;----------------------------------------------------------------------------
-;; ProjPac
 (use-package projectile
   :bind
   ("C-c p" . projectile-command-map)
@@ -28,7 +27,16 @@
   (when (and *sys/win32* *tr*)
     (setq projectile-indexing-method 'alien))
   (add-to-list 'projectile-globally-ignored-directories "node_modules"))
-;; -ProjPac
+
+(use-package counsel-projectile
+  :general
+  (spcleader
+    "p"     '(:ignore t :which-key "Projectile")
+    "pf"    'counsel-projectile-find-file
+    "pb"    'counsel-projectile-switch-to-buffer
+    "pp"    'counsel-projectile-switch-project
+    "pg"    'counsel-projectile-grep
+    "p SPC" '(lambda () (interactive) (find-file "~/projects/projects.org"))))
 
 ;;----------------------------------------------------------------------------
 ;; `treemacs'

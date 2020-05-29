@@ -5,39 +5,10 @@
   (require 'init-defs)
   (require 'init-global))
 
-(use-package general
- :commands general-override-states
- :init
- (setq general-override-states '(insert
-                                 emacs
-                                 hybrid
-                                 normal
-                                 visual
-                                 motion
-                                 operator
-                                 replacea))
- :config
- (general-evil-setup t))
-
-;;----------------------------------------------------------------------------
-;; `SPC local Leader'
-;;----------------------------------------------------------------------------
-(general-create-definer my-local-space-leader-def
-  :prefix "SPC m"
-  :states 'normal
-
-  (my-local-space-leader-def
-   :keymaps 'eshell-mode-map
-   "a#" 'aweshell-dedicated-close))
-
 ;;----------------------------------------------------------------------------
 ;; `SPC Leader'
 ;;----------------------------------------------------------------------------
- (general-create-definer my-space-leader-def
-  :prefix "SPC"
-  :states '(normal visual))
-
-  (my-space-leader-def
+(spcleader
     "SPC" 'counsel-M-x
     ;; <a>
     "a~" 'shell-here
@@ -95,24 +66,11 @@
     )
 ;; -END
 
-;;----------------------------------------------------------------------------
-;; `JavaScript Leader'
-;;----------------------------------------------------------------------------
-(general-create-definer my-javascript-leader-def
-  :prefix "SPC"
-  :non-normal-prefix "M-SPC"
-  :states '(normal motion insert emacs)
-  :keymaps 'js2-mode-map)
-;; -END
 
 ;;----------------------------------------------------------------------------
 ;; `Comma Leader'
 ;;----------------------------------------------------------------------------
-(general-create-definer my-comma-leader-def
-  :prefix ","
-  :states '(normal visual))
-
-(my-comma-leader-def
+(comaleader
   "go" 'dumb-jump-go-other-window
   "gj" 'dumb-jump-go
   "gb" 'dumb-jump-back
@@ -129,9 +87,7 @@
 ;;----------------------------------------------------------------------------
 ;; `Semicolon Leader'
 ;;----------------------------------------------------------------------------
-(general-create-definer my-semicolon-leader-def
-  :prefix ";"
-  :states '(normal visual))
+(semileader)
 ;; -END
 
 (provide 'init-general)

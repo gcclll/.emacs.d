@@ -68,6 +68,21 @@
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))
 
+(use-package general
+ :commands general-override-states
+ :config
+ (general-evil-setup t))
+
+(general-create-definer spcleader
+  :prefix "SPC"
+  :states '(normal visual))
+(general-create-definer comaleader
+  :prefix ","
+  :states '(normal visual))
+(general-create-definer semileader
+  :prefix ";"
+  :states '(normal visual))
+
 (provide 'init-package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-package.el ends here

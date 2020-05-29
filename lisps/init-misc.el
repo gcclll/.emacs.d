@@ -73,6 +73,11 @@
       (zone))))
 ;; -ZonePac
 
+(use-package rainbow-mode
+  :demand
+  :config
+  (rainbow-mode))
+
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-winner.el ends here
+;;; init-misc.el ends here

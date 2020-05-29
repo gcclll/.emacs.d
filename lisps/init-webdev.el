@@ -36,10 +36,11 @@
 ;;----------------------------------------------------------------------------
 ;; `typescript-mode'
 ;;----------------------------------------------------------------------------
-;; TypeScriptPac
 (use-package typescript-mode
   :mode "\\.ts\\'"
-  :commands (typescript-mode))
+  :commands (typescript-mode)
+  :config
+  (setq-default typescript-indent-level 2))
 ;; -END
 
 ;; EmmetPac
