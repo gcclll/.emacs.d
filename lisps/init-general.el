@@ -62,7 +62,7 @@
     "ff" 'counsel-find-file
     "fp" 'ffip
     "fR" 'gcl/rename-this-file-and-buffer
-    "fn" 'cp-filename-of-current-buffer
+    "fd" 'gcl/delete-this-file
     ;; <g>
     "gg" 'magit-status
     ;; <o>

@@ -58,6 +58,64 @@ global configurations, tiny settings.
 
 func def after use-package.
 
+### init-gcl.el
+
+my functions.
+
+1. delete current file and buffer, and backup to /tmp
+
+   ```lisp
+   
+   (defun gcl/delete-this-file-make-backup (&optional @no-backup-p)
+     "Delete current file, makes a backup~, closes the buffer."
+     (interactive "P")
+     (let* (
+            ($fname (buffer-file-name))
+            ($buffer-is-file-p $fname)
+            ($backup-suffix (concat "~" (format-time-string "%Y%m%dT%H%M%S") "~")))
+       (if $buffer-is-file-p
+           (progn
+             (save-buffer $fname)
+             (when (not @no-backup-p)
+               (copy-file
+                $fname
+                (concat "/tmp/" (file-name-nondirectory $fname) $backup-suffix)
+                t))
+             (delete-file $fname)
+             (message "Deleted. Backup created at 「%s」." (concat "/tmp/" (file-name-nondirectory $fname) $backup-suffix)))
+         (when (not @no-backup-p)
+           (widen)
+           (write-region (point-min) (point-max) (concat "xx" $backup-suffix))
+           (message "Backup created at 「%s」." (concat "xx" $backup-suffix))))
+       (kill-buffer (current-buffer))))
+   
+   (defun gcl/delete-this-file (&optional @no-backup-p)
+     "Delete current file or directory of dired, arg."
+     (interactive "P")
+     (if (eq major-mode 'dired-mode)
+         (progn
+           (message "you in dired. nothing's done."))
+       (let (($bstr (buffer-string)))
+         (when (> (length $bstr) 0)
+           (if (< (point-max) 1000000)
+               (kill-new $bstr)
+             (message "Content not copied. buffer size is greater than 1 megabytes.")))
+         (if (buffer-file-name)
+             (gcl/delete-this-file-make-backup @no-backup-p)
+           (when (buffer-file-name)
+             (when (file-exists-p (buffer-file-name))
+               (progn
+                 (delete-file (buffer-file-name))
+                 (message "Deleted file: 「%s」." (buffer-file-name)))))
+           (let ((buffer-offer-save nil))
+             (set-buffer-modified-p nil)
+             (kill-buffer (current-buffer)))))))
+   
+   
+   ```
+
+   
+
 ### init-search.el
 
 ivy, search(rg, color-rg, ...)

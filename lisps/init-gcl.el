@@ -47,17 +47,50 @@ PROMPT sets the `read-string' prompt."
      (interactive)
      (gcl/search ,search-engine-url ,search-engine-prompt)))
 
-
-(defun gcl/cp-filename-of-current-buffer (&optional n)
-  "Copy file name (NOT full path) into the yank ring and OS clipboard.
-If N is not nil, copy file name and line number."
+(defun gcl/delete-this-file-make-backup (&optional @no-backup-p)
+  "Delete current file, makes a backup~, closes the buffer."
   (interactive "P")
-  (when buffer-file-name
-    (let* ((filename (file-name-nondirectory buffer-file-name))
-           (s (if n (format "%s:%s" filename (line-number-at-pos)) filename)))
-      (copy-yank-str s)
-      (message "%s => clipboard&kill-ring" s))))
+  (let* (
+         ($fname (buffer-file-name))
+         ($buffer-is-file-p $fname)
+         ($backup-suffix (concat "~" (format-time-string "%Y%m%dT%H%M%S") "~")))
+    (if $buffer-is-file-p
+        (progn
+          (save-buffer $fname)
+          (when (not @no-backup-p)
+            (copy-file
+             $fname
+             (concat "/tmp/" (file-name-nondirectory $fname) $backup-suffix)
+             t))
+          (delete-file $fname)
+          (message "Deleted. Backup created at 「%s」." (concat "/tmp/" (file-name-nondirectory $fname) $backup-suffix)))
+      (when (not @no-backup-p)
+        (widen)
+        (write-region (point-min) (point-max) (concat "xx" $backup-suffix))
+        (message "Backup created at 「%s」." (concat "xx" $backup-suffix))))
+    (kill-buffer (current-buffer))))
 
+(defun gcl/delete-this-file (&optional @no-backup-p)
+  "Delete current file or directory of dired, arg."
+  (interactive "P")
+  (if (eq major-mode 'dired-mode)
+      (progn
+        (message "you in dired. nothing's done."))
+    (let (($bstr (buffer-string)))
+      (when (> (length $bstr) 0)
+        (if (< (point-max) 1000000)
+            (kill-new $bstr)
+          (message "Content not copied. buffer size is greater than 1 megabytes.")))
+      (if (buffer-file-name)
+          (gcl/delete-this-file-make-backup @no-backup-p)
+        (when (buffer-file-name)
+          (when (file-exists-p (buffer-file-name))
+            (progn
+              (delete-file (buffer-file-name))
+              (message "Deleted file: 「%s」." (buffer-file-name)))))
+        (let ((buffer-offer-save nil))
+          (set-buffer-modified-p nil)
+          (kill-buffer (current-buffer)))))))
 
 (gcl/install-search-engine "google" "http://www.google.com/search?q=" "Google: ")
 (gcl/install-search-engine "youtube" "http://www.youtube.com/results?search_query=" "Search YouTuBe: ")
