@@ -1,4 +1,5 @@
 ;;; init-dev.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 ;; DumbJump
@@ -35,8 +36,20 @@
 (use-package eglot
   :commands (eglot eglot-ensure)
   :hook ((c-mode . eglot-ensure)
-         (c++-mode . eglot-ensure)))
+         (c++-mode . eglot-ensure)
+         (typescript-mode . eglot-ensure)
+         (js2-mode . eglot-ensure)
+         (python-mode . eglot-ensure)))
 ;; -Eglot
+
+;;----------------------------------------------------------------------------
+;; `tiny mode'
+;;----------------------------------------------------------------------------
+(use-package yaml-mode
+  :commands (yaml-mode)
+  :mode (("\\.yaml\\'" . yaml-mode)
+         ("\\.yml\\'" . yaml-mode)))
+
 
 ;;----------------------------------------------------------------------------
 ;; `dev languages'

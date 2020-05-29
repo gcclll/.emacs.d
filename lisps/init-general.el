@@ -20,6 +20,17 @@
  (general-evil-setup t))
 
 ;;----------------------------------------------------------------------------
+;; `SPC local Leader'
+;;----------------------------------------------------------------------------
+(general-create-definer my-local-space-leader-def
+  :prefix "SPC m"
+  :states 'normal
+
+  (my-local-space-leader-def
+   :keymaps 'eshell-mode-map
+   "a#" 'aweshell-dedicated-close))
+
+;;----------------------------------------------------------------------------
 ;; `SPC Leader'
 ;;----------------------------------------------------------------------------
  (general-create-definer my-space-leader-def
@@ -28,6 +39,11 @@
 
   (my-space-leader-def
     "SPC" 'counsel-M-x
+    ;; <a>
+    "a~" 'shell-here
+    "a3" 'aweshell-dedicated-open
+    "a#" 'aweshell-dedicated-close
+    "a$" 'multi-term
     ;; <b>
     "bb" 'counsel-switch-buffer
     "bd" 'kill-this-buffer
