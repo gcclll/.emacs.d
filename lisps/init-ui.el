@@ -60,9 +60,9 @@
   :config
   (add-hook 'org-mode-hook (lambda ()
                              "Beautify Org CheckBox Symbol"
-                              (push '("[ ]" .  "☐") prettify-symbols-alist)
-                              (push '("[X]" . "☑" ) prettify-symbols-alist)
-                              (push '("[-]" . "❍" ) prettify-symbols-alist)
+                              ;; (push '("[ ]" .  "") prettify-symbols-alist)
+                              ;; (push '("[X]" . "☑" ) prettify-symbols-alist)
+                              ;; (push '("[-]" . "" ) prettify-symbols-alist)
                               (prettify-symbols-mode))))
 
 ;;----------------------------------------------------------------------------
@@ -77,7 +77,7 @@
   (doom-themes-visual-bell-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config)
-  (load-theme 'doom-one t))
+  (load-theme 'doom-Iosvkem t))
 ;; -DoomThemes
 
 ;; DoomModeline
@@ -98,7 +98,7 @@
 ;;----------------------------------------------------------------------------
 ;; FontsList
 ;; Input Mono, Monaco Style, Line Height 1.3 download from http://input.fontbureau.com/
-(defvar font-list '(("Input" . 11) ("SF Mono" . 12) ("Consolas" . 12) ("Love LetterTW" . 12.5))
+(defvar font-list '(("Input" . 12) ("SF Mono" . 13) ("Consolas" . 12) ("Love LetterTW" . 12.5))
   "List of fonts and sizes.  The first one available will be used.")
 ;; -FontsList
 

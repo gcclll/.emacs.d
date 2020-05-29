@@ -44,6 +44,7 @@
     "a3" 'aweshell-dedicated-open
     "a#" 'aweshell-dedicated-close
     "a$" 'multi-term
+    ;; <c>
     ;; <b>
     "bb" 'counsel-switch-buffer
     "bd" 'kill-this-buffer
@@ -61,6 +62,7 @@
     "ff" 'counsel-find-file
     "fp" 'ffip
     "fR" 'gcl/rename-this-file-and-buffer
+    "fn" 'cp-filename-of-current-buffer
     ;; <g>
     "gg" 'magit-status
     ;; <o>

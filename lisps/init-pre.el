@@ -1,6 +1,14 @@
 ;;; init-pre.el --- -*- lexical-binding: t -*-
-
+;;; Commentary:
+;;; Code:
 ;; CheckVer
+
+;; BetterGC
+(defvar better-gc-cons-threshold 67108864 ; 64mb
+  "The default value to use for `gc-cons-threshold'.
+If you experience freezing, decrease this.  If you experience stuttering, increase this.")
+
+;; check version
 (cond ((version< emacs-version "26.1")
        (warn "M-EMACS requires Emacs 26.1 and above!"))
       ((let* ((early-init-f (expand-file-name "early-init.el" user-emacs-directory))
@@ -13,17 +21,11 @@
          (copy-file early-init-f early-init-do-not-edit-f t t t t)
          (add-to-list 'load-path early-init-do-not-edit-d)
          (require 'early-init))))
-;; -CheckVer
-
-;; BetterGC
-(defvar better-gc-cons-threshold 67108864 ; 64mb
-  "The default value to use for `gc-cons-threshold'.
-If you experience freezing, decrease this.  If you experience stuttering, increase this.")
 
 (add-hook 'emacs-startup-hook
           (lambda ()
             (setq gc-cons-threshold better-gc-cons-threshold)
-            (setq file-name-handler-alist file-name-handler-alist-original)
+            ;; (setq file-name-handler-alist file-name-handler-alist-original)
             (makunbound 'file-name-handler-alist-original)))
 ;; -BetterGC
 
@@ -49,4 +51,4 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 
 (provide 'init-pre)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init.el ends her
+;;; init-pre.el ends here

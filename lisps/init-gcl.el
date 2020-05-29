@@ -48,6 +48,17 @@ PROMPT sets the `read-string' prompt."
      (gcl/search ,search-engine-url ,search-engine-prompt)))
 
 
+(defun gcl/cp-filename-of-current-buffer (&optional n)
+  "Copy file name (NOT full path) into the yank ring and OS clipboard.
+If N is not nil, copy file name and line number."
+  (interactive "P")
+  (when buffer-file-name
+    (let* ((filename (file-name-nondirectory buffer-file-name))
+           (s (if n (format "%s:%s" filename (line-number-at-pos)) filename)))
+      (copy-yank-str s)
+      (message "%s => clipboard&kill-ring" s))))
+
+
 (gcl/install-search-engine "google" "http://www.google.com/search?q=" "Google: ")
 (gcl/install-search-engine "youtube" "http://www.youtube.com/results?search_query=" "Search YouTuBe: ")
 (gcl/install-search-engine "github" "https://github.com/search?q=" "Search GitHub: ")

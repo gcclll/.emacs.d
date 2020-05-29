@@ -143,6 +143,24 @@ FACE defaults to inheriting from default and highlight."
   (message (kill-new (if (buffer-file-name) (buffer-file-name) (buffer-name)))))
 ;; -WhereAmI
 
+(defun my-pclip (str-val)
+  "Put STR-VAL into clipboard."
+  (let* ((win64-clip-program (executable-find "clip.exe")))
+    (cond
+     ;; Windows
+     ((fboundp 'w32-set-clipboard-data)
+      (w32-set-clipboard-data str-val))
+
+     ;; Windows 10
+     ((and win64-clip-program)
+      (with-temp-buffer
+        (insert str-val)
+        (call-process-region (point-min) (point-max) win64-clip-program)))
+
+     ;; xclip can handle
+     (t
+      (xclip-set-selection 'clipboard str-val)))))
+
 
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

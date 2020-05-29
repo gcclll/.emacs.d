@@ -32,6 +32,10 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 
 1. [restclient](https://github.com/pashky/restclient.el)
 
+## others
+
+### all-the-icons
+
 ## inits
 
 ### init-pre.el
