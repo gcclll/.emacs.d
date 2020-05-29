@@ -6,7 +6,7 @@
 ;; Copyright (C) 2020 ZhiCheng Lee
 ;; Created: Fri May 29 2020 10:52:11 GMT+0800 (China Standard Time)
 ;; Version: 1.0.0
-;; Last-Updated: Fri May 29 2020 10:52:11 GMT+0800 (China Standard Time)
+;; Last-Updated: Fri May 29 21:10:15 2020 (+0800)
 ;;           By: ZhiCheng Lee
 ;; URL: https://github.com/gcclll/.emacs.d
 ;; Keywords: M-EMACS .emacs.d init
@@ -59,6 +59,8 @@
 (require 'init-package)
 (require 'init-global)
 (require 'init-func)
+(require 'init-gcl)
+(require 'init-evil)
 (require 'init-search)
 (require 'init-crux)
 (require 'init-avy)
@@ -77,6 +79,7 @@
 (require 'init-edit)
 (require 'init-lsp)
 (require 'init-company)
+(require 'init-eyeb)
 
 (require 'init-cc)
 (require 'init-python)
@@ -85,15 +88,16 @@
 ;; Miscellaneous
 (require 'init-org)
 (require 'init-eaf)
-(require 'init-erc)
-(require 'init-eww)
+;; (require 'init-erc)
+;; (require 'init-eww)
 ;; (require 'init-mu4e)
 (require 'init-tramp)
 (require 'init-pdf)
 (require 'init-leetcode)
 (require 'init-pyim)
-(require 'init-epaint)
+;; (require 'init-epaint)
 ;; (require 'init-games)
+(require 'init-general)
 
 (provide 'init)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

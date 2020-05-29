@@ -17,6 +17,20 @@
   (avy-lead-face ((t (:background "#51afef" :foreground "#870000" :weight bold)))));
 ;; -AvyPac
 
+(use-package ace-window
+  :ensure t
+  :defer t
+  :config
+  (set-face-attribute
+    'aw-leading-char-face nil
+    :foreground "deep sky blue"
+    :weight 'bold
+    :height 3.0)
+  (set-face-attribute
+    'aw-mode-line-face nil
+    :inherit 'mode-line-buffer-id
+    :foreground "lawn green"))
+
 (provide 'init-avy)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-avy.el ends here

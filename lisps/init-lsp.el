@@ -1,4 +1,5 @@
 ;;; init-lsp.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
@@ -30,9 +31,7 @@
   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
   :bind (:map lsp-ui-mode-map
               ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-              ([remap xref-find-references] . lsp-ui-peek-find-references)
-              ("C-c u" . lsp-ui-imenu)
-              ("M-i" . lsp-ui-doc-focus-frame))
+              ([remap xref-find-references] . lsp-ui-peek-find-references))
   :custom
   (lsp-ui-doc-header t)
   (lsp-ui-doc-include-signature t)

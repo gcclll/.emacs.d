@@ -3,11 +3,6 @@
 
 ;; DumbJump
 (use-package dumb-jump
-  :bind
-  (:map prog-mode-map
-        (("C-c C-o" . dumb-jump-go-other-window)
-         ("C-c C-j" . dumb-jump-go)
-         ("C-c C-i" . dumb-jump-go-prompt)))
   :custom (dumb-jump-selector 'ivy))
 ;; -DumbJump
 
@@ -35,6 +30,13 @@
   :disabled
   :defer t)
 ;; -EINPac
+
+;; Eglot
+(use-package eglot
+  :commands (eglot eglot-ensure)
+  :hook ((c-mode . eglot-ensure)
+         (c++-mode . eglot-ensure)))
+;; -Eglot
 
 ;;----------------------------------------------------------------------------
 ;; `dev languages'

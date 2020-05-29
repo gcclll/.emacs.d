@@ -1,4 +1,4 @@
-# .emacs.d
+.emacs.d
 
 all copy from https://github.com/MatthewZMD/.emacs.d
 
@@ -27,6 +27,10 @@ all copy from https://github.com/MatthewZMD/.emacs.d
    
 
 # packages
+
+## <font color="red">TODOs</font>
+
+1. [restclient](https://github.com/pashky/restclient.el)
 
 ## inits
 
@@ -150,12 +154,6 @@ treemacs
 programmer development.
 
 1. dumb-jump
-
-   | k       | b                         |
-   | ------- | ------------------------- |
-   | C-c C-o | dumb-jump-go-other-window |
-   | C-c C-j | dumb-jump-go              |
-   | C-c C-i | dumb-jump-go-prompt       |
 
 2. quickrun
 
@@ -362,11 +360,17 @@ tetris 俄罗斯方块
 | C-f   | tetris-move-right  |
 | C-SPC | tetris-move-bottom |
 
+### init-general.el
 
+[define keybinds.](https://github.com/noctuid/general.el)
 
+**my-space-leader-def**
 
+**my-javascript-leader-def**
 
+**my-comma-leader-def**
 
+**my-semicolon-leader-def**
 
 ## Site-eslip
 
@@ -471,6 +475,16 @@ https://github.com/manateelazycat/color-rg/tree/22b050fc0b9b8d13f10c5fbd4cf14980
 | `C-M-s`   | color-rg-search-input        |
 
 # bindings
+
+## evil
+
+| name | Function           |
+| ---- | ------------------ |
+| C-]  | evil-jump-to-tag   |
+| C-o  | evil-jump-backward |
+
+
+
 ## global bindings
 | name      | Function                      |
 | --------- | ----------------------------- |

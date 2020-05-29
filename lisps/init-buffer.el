@@ -1,4 +1,5 @@
 ;;; init-buffer.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 ;; IBufferPac

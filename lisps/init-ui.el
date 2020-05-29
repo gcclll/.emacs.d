@@ -53,6 +53,17 @@
 (display-battery-mode 1)
 ;; -DisTimeBat
 
+(use-package pretty-mode
+  :init
+  ;; (global-pretty-mode t)
+  :config
+  (add-hook 'org-mode-hook (lambda ()
+                             "Beautify Org CheckBox Symbol"
+                              (push '("[ ]" .  "☐") prettify-symbols-alist)
+                              (push '("[X]" . "☑" ) prettify-symbols-alist)
+                              (push '("[-]" . "❍" ) prettify-symbols-alist)
+                              (prettify-symbols-mode))))
+
 ;;----------------------------------------------------------------------------
 ;; `themes'
 ;;----------------------------------------------------------------------------

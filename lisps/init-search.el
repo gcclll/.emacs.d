@@ -44,11 +44,32 @@
   :bind ("C-M-s" . color-rg-search-input))
 ;; -ColorRGPac
 
+(use-package anzu
+  :init
+  :config
+  (global-anzu-mode +1)
+  (set-face-attribute 'anzu-mode-line nil
+                      :foreground "yellow" :weight 'bold)
+  (global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+  (global-set-key [remap query-replace] 'anzu-query-replace))
+
+(use-package fzf
+  :commands fzf/start
+  :bind (("C-c f" . fzf)
+         ("C-c D" . gcl/lcd)))
+
 ;; FFIPPac
 (use-package find-file-in-project
-  :if *find*
-  :bind ("C-z o" . ffip))
+  :if *find*)
 ;; -FFIPPac
+
+;; https://blog.burntsushi.net/ripgrep/
+(use-package rg
+  :init
+  (rg-enable-default-bindings)
+  :config
+  (setq rg-executable "/opt/local/bin/rg"))
+
 
 ;; SnailsPac
 ;; (use-package snails

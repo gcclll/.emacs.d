@@ -3,6 +3,22 @@
 (eval-when-compile
   (require 'init-global))
 
+;; ExpandRegion
+(use-package expand-region
+ :bind ("C-=" . er/expand-region))
+;; -ExpandRegion
+
+;; SmartRegion
+(use-package smart-region
+ :hook (after-init . smart-region-on))
+;; -SmartRegion
+
+;; HungryDeletePac
+(use-package hungry-delete
+  :init
+  (global-hungry-delete-mode))
+;; -HungryDeletePac
+
 ;; IEditPac
 (use-package iedit
   :bind ("C-z ," . iedit-mode)

@@ -3,6 +3,9 @@ request/
 pyim/
 anaconda-mode/
 .wg-file.el
+.lsp-session-v1
+.DS_Store
+/.cache
 /url/cache
 /.emacs.desktop
 /auto-save-list
