@@ -51,6 +51,7 @@
     "bi" 'ibuffer
     "bf" 'gcl/open-in-finder
     "bK" 'crux-kill-other-buffers
+    "bo" 'gcl/open-in-external-app
     "bp" 'previous-buffer
     "bn" 'next-buffer
     "br" 'counsel-buffer-or-recentf
@@ -63,6 +64,7 @@
     "fp" 'ffip
     "fR" 'gcl/rename-this-file-and-buffer
     "fd" 'gcl/delete-this-file
+    "fo" 'gcl/open-in-external-app
     ;; <g>
     "gg" 'magit-status
     ;; <o>
