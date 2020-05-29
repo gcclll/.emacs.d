@@ -1,4 +1,5 @@
 ;;; init-global.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
@@ -60,6 +61,7 @@ The original function deletes trailing whitespace of the current line."
           (widen))))))
 
 (add-hook 'before-save-hook #'delete-trailing-whitespace-except-current-line)
+(add-hook 'after-init-hook #'global-emojify-mode)
 
 ;; Replace selection on insert
 (delete-selection-mode 1)
