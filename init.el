@@ -65,11 +65,9 @@
 (require 'init-misc)
 (require 'init-shell)
 (require 'init-dired)
-;; (require 'init-buffer)
-;; User Interface Enhancements
-;; (require 'init-ui-config)
-;; (require 'init-theme)
-;; (require 'init-dashboard)
+(require 'init-buffer)
+(require 'init-ui)
+(require 'init-dashboard)
 ;; (require 'init-fonts)
 ;; (require 'init-scroll)
 ;; General Programming

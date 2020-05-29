@@ -82,6 +82,42 @@ https://github.com/bbatsov/crux
 
 ### init-shell.el
 
+### init-dired.el
+
+| k       | d                       |
+| ------- | ----------------------- |
+| C-x C-j | dired-jump              |
+| C-x j   | dired-jump-other-window |
+| C-x C-s |                         |
+| C-x C-s | save-all-buffers        |
+
+### init-buffer.el
+
+| k       | d       |
+| ------- | ------- |
+| C-x C-b | ibuffer |
+
+all buffer list.
+
+### init-ui.el
+
+ui + themes(doom-themes)
+
+1. [unicode symbols](https://unicodelookup.com)
+2. [doom-themes](https://github.com/hlissner/emacs-doom-themes)
+
+### init-dashboard.el
+
+| k     | d                          |
+| ----- | -------------------------- |
+| C-z d | open-dashboard             |
+| n     | dashboard-next-line        |
+| p     | dashboard-previous-line    |
+| N     | dashboard-next-section     |
+| F     | dashboard-previous-section |
+
+![](http://qiniu.ii6g.com/1590741049.png?imageMogr2/thumbnail/!100p)
+
 ## Site-eslip
 
 ### snails
