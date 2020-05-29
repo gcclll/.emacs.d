@@ -105,6 +105,7 @@ ui + themes(doom-themes)
 
 1. [unicode symbols](https://unicodelookup.com)
 2. [doom-themes](https://github.com/hlissner/emacs-doom-themes)
+3. header2
 
 ### init-dashboard.el
 
@@ -117,6 +118,151 @@ ui + themes(doom-themes)
 | F     | dashboard-previous-section |
 
 ![](http://qiniu.ii6g.com/1590741049.png?imageMogr2/thumbnail/!100p)
+
+### init-project.el
+
+| k     | b                            |
+| ----- | ---------------------------- |
+| C-x g | magit-status                 |
+| C-c p | projectile-command-map       |
+| C-z p | projectile-add-known-project |
+| M-0   | treemacs-select-window       |
+
+treemacs
+
+| k         | b                             |
+| --------- | ----------------------------- |
+| M-0       | treemacs-select-window        |
+| C-x t 1   | treemacs-delete-other-windows |
+| C-x t t   | treemacs                      |
+| C-x t B   | treemacs-bookmark             |
+| C-x t C-t | treemacs-find-file            |
+| C-x t M-t | treemacs-find-tag             |
+| C-p       | treemacs-previous-line        |
+
+### init-yasnippet.el
+
+### init-flycheck.el
+
+### init-dev.el
+
+programmer development.
+
+1. dumb-jump
+
+   | k       | b                         |
+   | ------- | ------------------------- |
+   | C-c C-o | dumb-jump-go-other-window |
+   | C-c C-j | dumb-jump-go              |
+   | C-c C-i | dumb-jump-go-prompt       |
+
+2. quickrun
+
+   | k    | b              |
+   | ---- | -------------- |
+   | f5   | quickrun       |
+   | M-f5 | quickrun-shell |
+
+3. [format-all](https://github.com/emacsmirror/format-all)
+   q: [postframe not found](https://github.com/flycheck/flycheck/issues/963)
+
+   >Hi [@fjs2097](https://github.com/fjs2097)
+   >Try running `package-refresh-contents` before running `package-install`.
+   >Or install `flycheck` from the packages list after running `package-list-packages`.
+
+   | k       | b                 |
+   | ------- | ----------------- |
+   | C-c C-f | format-all-buffer |
+
+4. evil-nerd-commenter
+
+   | k       | b                                 |
+   | ------- | --------------------------------- |
+   | C-c M-; | c-toggle-comment-style            |
+   | M-;     | evilnc-comment-or-uncomment-lines |
+
+5. [ein(Emacs IPython Notebook)](https://melpa.org/#/ein)
+
+### init-parens.el
+
+| k                 | b                               |
+| ----------------- | ------------------------------- |
+| "C-M-f"           | sp-forward-sexp                 |
+| "C-M-b"           | sp-backward-sexp                |
+| "C-M-a"           | sp-backward-down-sexp           |
+| "C-M-e"           | sp-up-sexp                      |
+| "C-M-w"           | p-copy-sexp                     |
+| "C-M-k"           | sp-change-enclosing             |
+| "M-k"             | sp-kill-sexp                    |
+| `C-M-<backspace>` | sp-splice-sexp-killing-backward |
+| `C-S-<backspace>` | sp-splice-sexp-killing-around   |
+| "C-]"             | sp-select-next-thing-exchange   |
+
+### init-indent.el
+
+### init-edit.el
+
+| k     | b                 |
+| ----- | ----------------- |
+| C-z , | iedit-mode        |
+| M-D   | awesome-pair-kill |
+
+1. awesome-pair
+
+   | k    | b                       |
+   | ---- | ----------------------- |
+   | M-D  | awesome-pair-kill       |
+   | SPC  | awesome-pair-space      |
+   | =    | awesome-pair-equal      |
+   | M-F  | awesome-pair-jump-right |
+   | M-B  | awesome-pair-jump-left  |
+
+2. conf-mode
+
+3. delete-block
+
+   | k               | b                     |
+   | --------------- | --------------------- |
+   | M-d             | delete-block-forward  |
+   | `C-<backspace>` | delete-block-backward |
+   | `M-<backspace>` | delete-block-backward |
+   | M-DEL           | delete-block-backward |
+
+### init-lsp.el
+
+| k       | b                      |
+| ------- | ---------------------- |
+| C-c C-f | lsp-format-buffer      |
+| C-c u   | lsp-ui-imenu           |
+| M-i     | lsp-ui-doc-focus-frame |
+
+dap-mode
+
+| k       | b                     |
+| ------- | --------------------- |
+| f12     | dap-debug             |
+| f8      | dap-continue          |
+| f9      | dap-next              |
+| M-f11   | dap-step-in           |
+| C-M-f11 | dap-step-out          |
+| f7      | dap-breakpoint-toggle |
+
+### init-company.el
+
+| k     | b                     |
+| ----- | --------------------- |
+| M-q   | company-other-backend |
+| C-z t | company-tabnine       |
+
+### init-cc.el
+
+### init-python.el
+
+### init-latex.el
+
+### init-webdev.el
+
+
 
 ## Site-eslip
 
