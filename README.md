@@ -262,7 +262,25 @@ dap-mode
 
 ### init-webdev.el
 
+| k     | b                  |
+| ----- | ------------------ |
+| C-z < | instant-rename-tag |
 
+### init-org.el
+
+| k       | b                          |
+| ------- | -------------------------- |
+| C-c l   | org-store-link             |
+| C-c a   | org-agenda                 |
+| C-c c   | org-capture                |
+| C-c b   | org-switch                 |
+| C-c C-p | org-export-as-pdf-and-open |
+
+### init-eaf.el
+
+[Emacs Application Framework (EAF)](https://github.com/manateelazycat/emacs-application-framework.git)
+
+可以直接打开其他软件。
 
 ## Site-eslip
 

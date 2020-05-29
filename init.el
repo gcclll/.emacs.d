@@ -1,5 +1,5 @@
 ;;; init.el --- -*- lexical-binding: t -*-
-;;
+;; clone from https://github.com/MatthewZMD/.emacs.d
 ;; Filename: init.el
 ;; Description: Initialize M-EMACS
 ;; Author: ZhiCheng Lee
@@ -83,7 +83,7 @@
 (require 'init-latex)
 (require 'init-webdev)
 ;; Miscellaneous
-;; (require 'init-org)
+(require 'init-org)
 ;; (require 'init-eaf)
 ;; (require 'init-erc)
 ;; (require 'init-eww)
