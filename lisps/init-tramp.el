@@ -1,7 +1,10 @@
 ;;; init-tramp.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
-;; TrampPac
+;;----------------------------------------------------------------------------
+;; `tramp'
+;;----------------------------------------------------------------------------
 (use-package tramp
   :ensure nil
   :defer 1
@@ -19,7 +22,7 @@
                                               ("-o" "UserKnownHostsFile=/dev/null")
                                               ("-o" "StrictHostKeyChecking=no")))
                  (tramp-default-port         22))))
-;; -TrampPac
+;; -END
 
 (provide 'init-tramp)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

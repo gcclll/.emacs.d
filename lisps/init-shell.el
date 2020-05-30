@@ -5,24 +5,30 @@
 (eval-when-compile
   (require 'init-defs))
 
-;; AweshellPac
+;;----------------------------------------------------------------------------
+;; `aweshell'
+;;----------------------------------------------------------------------------
 (use-package aweshell
   :load-path (lambda () (expand-file-name "site-elisp/aweshell" user-emacs-directory))
   :commands (aweshell-new aweshell-dedicated-open)
   :bind
   (("M-#" . aweshell-dedicated-open)
    (:map eshell-mode-map ("M-#" . aweshell-dedicated-close))))
-;; -AweshellPac
+;; -END
 
-;; ShellHerePac
+;;----------------------------------------------------------------------------
+;; `shell-here'
+;;----------------------------------------------------------------------------
 (use-package shell-here
   :bind ("M-~" . shell-here)
   :config
   (when *sys/linux*
     (setq explicit-shell-file-name "/bin/zsh")))
-;; -ShellHerePac
+;; -END
 
-;; MultiTermPac
+;;----------------------------------------------------------------------------
+;; `multi-term'
+;;----------------------------------------------------------------------------
 (use-package multi-term
   :load-path (lambda () (expand-file-name "site-elisp/multi-term" user-emacs-directory))
   :commands (multi-term)
@@ -51,13 +57,15 @@
      ("M-d" . term-send-delete-word)
      ("M-," . term-send-raw)
      ("M-." . comint-dynamic-complete))))
-;; -MultiTermPac
+;; -END
 
-;; TermKeysPac
+;;----------------------------------------------------------------------------
+;; `term-keys'
+;;----------------------------------------------------------------------------
 (use-package term-keys
   :if (not *sys/gui*)
   :config (term-keys-mode t))
-;; -TermKeysPac
+;; -END
 
 (provide 'init-shell)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

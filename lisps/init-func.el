@@ -190,6 +190,23 @@ The original function deletes trailing whitespace of the current line."
           (widen))))))
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `add-pretty-lambda'
+;;----------------------------------------------------------------------------
+(defun add-pretty-lambda ()
+  "Make some word or string show as pretty Unicode symbols.  See https://unicodelookup.com for more."
+  (setq prettify-symbols-alist
+        '(
+          ("lambda" . 955)
+          ("delta" . 120517)
+          ("epsilon" . 120518)
+          ("->" . 8594)
+          ("<=" . 8804)
+          (">=" . 8805)
+          )))
+;; -END
+
+
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-func.el ends here

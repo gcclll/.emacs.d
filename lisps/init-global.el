@@ -57,6 +57,12 @@
 (add-hook 'before-save-hook #'save-and-update-includes)
 (add-hook 'mouse-leave-buffer-hook 'abort-minibuffer-using-mouse)
 (add-hook 'post-command-hook #'smart-electric-indent-mode)
+(add-hook 'prog-mode-hook 'add-pretty-lambda)
+(add-hook 'org-mode-hook 'add-pretty-lambda)
+(if (version< emacs-version "26")
+    (global-linum-mode)
+  (add-hook 'text-mode-hook #'display-line-numbers-mode)
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -83,6 +89,9 @@
 (setq mouse-wheel-progressive-speed nil)
 (setq hscroll-step 1)
 (setq hscroll-margin 1)
+(setq inhibit-startup-screen t)
+(setq initial-major-mode 'text-mode)
+(setq initial-scratch-message "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。\n")
 
 (setq-default create-lockfiles nil)
 (setq-default history-length 500)
@@ -95,12 +104,17 @@
 (setq-default tab-width 2)
 (setq-default c-basic-offset 4)
 (setq-default js-switch-indent-offset 2)
+(setq-default frame-title-format '("M-EMACS - " user-login-name "@" system-name " - %b"))
 ;; -END
 
 ;;----------------------------------------------------------------------------
 ;; `feature-mode'
 ;;----------------------------------------------------------------------------
+(global-prettify-symbols-mode 1)
+(column-number-mode 1)
 (delete-selection-mode 1)
+(display-time-mode 1)
+(display-battery-mode 1)
 (save-place-mode 1)
 (toggle-scroll-bar -1)
 (fset 'yes-or-no-p 'y-or-n-p)

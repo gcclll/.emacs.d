@@ -1,7 +1,10 @@
 ;;; init-yasnippet.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
-;; YASnippetPac
+;;----------------------------------------------------------------------------
+;; `yasnippet'
+;;----------------------------------------------------------------------------
 (use-package yasnippet
   :diminish yas-minor-mode
   :init
@@ -23,7 +26,7 @@
       (when (and (eq old-point (point))
                  (eq old-tick (buffer-chars-modified-tick)))
         (ignore-errors (yas-next-field))))))
-;; -YASnippetPac
+;; -END
 
 (provide 'init-yasnippet)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
