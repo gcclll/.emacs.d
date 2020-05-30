@@ -17,7 +17,7 @@
     ("F" . dashboard-previous-section)))
   :custom
   (dashboard-banner-logo-title "Close the world. Open the nExt.")
-  (dashboard-startup-banner (expand-file-name "images/baby.jpg" user-emacs-directory))
+  (dashboard-startup-banner (expand-file-name "images/baby.png" user-emacs-directory))
   (dashboard-items '((recents  . 7)
                      (bookmarks . 7)
                      (agenda . 5)))

@@ -51,7 +51,8 @@
   (doom-modeline-icon t)
   (doom-modeline-major-mode-color-icon t)
   (doom-modeline-height 15)
-  :config
+ ;; -YASnippetPac
+ :config
   (doom-modeline-mode))
 ;; -DoomModeline
 

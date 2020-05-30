@@ -123,6 +123,26 @@
     ))
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `zoom'
+;;----------------------------------------------------------------------------
+(defun size-callback ()
+  "Zoom."
+  (cond ((> (frame-pixel-width) 1280) '(0.75 . 0.75))
+        (t                            '(0.5 . 0.5))))
+(defun my/fix-imenu-size ()
+  "Fix imenu size."
+  (with-selected-window (get-buffer-window "*Ilist*")
+    (setq window-size-fixed t)
+    (window-resize (selected-window) (- 30 (window-total-width)) t t)))
+
+(use-package zoom
+  :config
+  (zoom-mode t)
+  (setq zoom-size 'size-callback)
+  (add-hook 'imenu-list-update-hook 'my/fix-imenu-size))
+;; -END
+
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
