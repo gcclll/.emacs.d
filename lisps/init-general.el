@@ -93,8 +93,10 @@
 ;; `Semicolon Leader'
 ;;----------------------------------------------------------------------------
 (semileader
-  "jc" 'ace-jump-char-mode
-  "jw" 'ace-jump-word-mode)
+  "1" 'avy-goto-word-0
+  "2" 'avy-goto-word-1
+  "3" 'avy-goto-line
+  "`" 'avy-next)
 ;; -END
 
 (provide 'init-general)

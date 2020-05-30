@@ -303,15 +303,35 @@ https://github.com/bbatsov/crux
 ### init-misc.el
 
 1. winner
+
 2. [which-key](https://github.com/justbur/emacs-which-key)
+
 3. [popup-kill-ring](https://github.com/waymondo/popup-kill-ring)
+
 4. [undo-tree](https://github.com/tarsiiformes/undo-tree)
+
 5. discover-my-major
+
 6. zone-choose
+
 7. zoom-mode
+
 8. init-shell.el
+
 9. windmove
+
 10. ace-jump-mode
+
+11. [**<font color="red">avy</font>**](https://github.com/abo-abo/avy)
+
+    | k    | d               |
+    | ---- | --------------- |
+    | `;1` | avy-goto-word-0 |
+    | `;2` | avy-goto-word-1 |
+    | `;3` | avy-goto-line   |
+    | \`   | avy-next        |
+
+    
 
 ### init-dired.el
 
