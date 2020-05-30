@@ -32,6 +32,168 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 
 1. [restclient](https://github.com/pashky/restclient.el)
 
+# [ranger](https://github.com/ralesi/ranger.el)
+
+## keybinds
+
+### **Basic Commands**
+
+| Key Binding | Description                           |
+| ----------- | ------------------------------------- |
+| `?`         | show basic commands in the minibuffer |
+| `du`        | show selected files, file size        |
+| `q` / `ZZ`  | close tab or disable (quit) ranger    |
+| `Q` / `ZQ`  | disable (quit) ranger                 |
+| `C-r`       | refresh ranger buffer                 |
+
+### **Navigation**
+
+| Key Binding       | Description                         |
+| ----------------- | ----------------------------------- |
+| `k`/`up`          | up                                  |
+| `j`/`down`        | down                                |
+| `h`/`-`/`left`    | to parent directory                 |
+| `l`/`RET`/`right` | to selected directory / open file   |
+| `gg`              | to top                              |
+| `G`               | to bottom                           |
+| `<`               | to previous directory               |
+| `>`               | to next directory                   |
+| `gh`              | to home directory                   |
+| `C-b`             | scroll ranger window full page up   |
+| `C-f`             | scroll ranger window full page down |
+| `K`/`C-u`         | scroll ranger window half page up   |
+| `J`/`C-d`         | scroll ranger window half page down |
+| `C-k`             | scroll preview window up            |
+| `C-j`             | scroll preview window down          |
+| `[`               | previous parent directory           |
+| `]`               | next parent directory               |
+| `;M-{`            | previous marked file / directory    |
+| `;M-}`            | next marked file / directory        |
+
+### **Search for a File / Directory**
+
+| Key Binding | Description                 |
+| ----------- | --------------------------- |
+| `f`         | search for file / directory |
+
+### **Copy, Rename/Move or Delete**
+
+| Key Binding | Description                                         |
+| ----------- | --------------------------------------------------- |
+| `;C`        | copy the current/marked file(s) / dir(s)            |
+| `R`         | rename/move the current/marked file(s) / dir(s)     |
+| `D`         | delete the current/marked file(s) / dir(s)          |
+| `;d`        | flag current file/dir for deletion, and select next |
+| `;x`        | delete flagged file(s) / dir(s)                     |
+
+### **Subdirectories**
+
+| Key Binding | Description                              |
+| ----------- | ---------------------------------------- |
+| `I`         | insert subdirectory from selected folder |
+| `gk`        | move to prev subdirectory                |
+| `gj`        | move to next subdirectory                |
+
+### **Marking**
+
+| Key Binding        | Description                                |
+| ------------------ | ------------------------------------------ |
+| `t`                | toggle mark on current file / directory    |
+| `;m`/`C-SPC`/`TAB` | mark current file / dir, and select next   |
+| `;u`               | unmark current file / dir, and select next |
+| `;U`               | unmark all files                           |
+| `v`                | invert all marks                           |
+| `"`                | mark files (regexp)                        |
+
+### **Sorting**
+
+| Key Binding | Description                    |
+| ----------- | ------------------------------ |
+| `on`        | name                           |
+| `oN`        | name (reverse)                 |
+| `oe`        | extension                      |
+| `oE`        | extension (reverse)            |
+| `os`        | size                           |
+| `oS`        | size (reverse)                 |
+| `ot`        | modified date/time             |
+| `oT`        | modified date/time (reverse)   |
+| `oc`        | created date/time              |
+| `oC`        | created date/time (reverse)    |
+| `zd`        | sort directories first or last |
+
+### **Toggles / Settings**
+
+| Key Binding | Description                            |
+| ----------- | -------------------------------------- |
+| `i`         | toggle the preview window              |
+| `zh`        | toggle hidden files (e.g. dotfiles)    |
+| `zi`        | toggle literal / full-text previews    |
+| `zf`        | toggle image full-size / fit to window |
+| `zP`        | toggle between full ranger / deer-mode |
+| `zp`        | toggle file details in deer-mode       |
+| `z-`        | reduce number of parent windows        |
+| `z+`        | increase number of parent windows      |
+
+### **Shell**
+
+| Key Binding | Description                     |
+| ----------- | ------------------------------- |
+| `!`         | run shell command on file       |
+| `;&`        | run async shell command on file |
+| `S`         | eshell popup window             |
+
+### **Other**
+
+| Key Binding | Description                               |
+| ----------- | ----------------------------------------- |
+| `;+`/`+`    | create directory                          |
+| `;=`/`=`    | diff: current file and asks for 2nd file  |
+| `;g`        | revert current buffer, with file on disk  |
+| `;k`        | kill (hide) marked lines, `C-r` to unhide |
+
+### **Bookmark Navigation**
+
+| Key Binding | Description               |
+| ----------- | ------------------------- |
+| ```/`'`     | go to bookmark            |
+| `m`         | set bookmark              |
+| `um`        | delete bookmark           |
+| `B`         | show the bookmarks prompt |
+
+### **Tab and History Usage**
+
+| Key Binding | Description                 |
+| ----------- | --------------------------- |
+| `gn`        | create a new tab            |
+| `gT`        | go to previous tab          |
+| `gt`        | go to next tab              |
+| `gc`        | close current tab           |
+| `uq`        | restore the last closed tab |
+| `zz`        | search through history      |
+| `H`         | history back                |
+| `L`         | history next                |
+
+### **Copy and Paste Functionality**
+
+| Key Binding | Description                                     |
+| ----------- | ----------------------------------------------- |
+| `yy`        | mark files to copy                              |
+| `dd`        | mark files to move                              |
+| `pp`        | paste files in copy ring                        |
+| `po`        | paste files in copy ring and overwrite existing |
+| `p?`        | show the copy contents                          |
+
+### **Selected File Actions**
+
+| Key Binding | Description                                            |
+| ----------- | ------------------------------------------------------ |
+| `ws`        | exit ranger and open selected file in horizontal split |
+| `wv`        | exit ranger and open selected file in vertical split   |
+| `wf`        | exit ranger and open selected file in new frame        |
+| `we`        | open the selected file in external app                 |
+
+### 
+
 ## others
 
 ### all-the-icons
@@ -146,8 +308,8 @@ https://github.com/bbatsov/crux
 4. [undo-tree](https://github.com/tarsiiformes/undo-tree)
 5. discover-my-major
 6. zone-choose
-
-### init-shell.el
+7. zoom-mode
+8. init-shell.el
 
 ### init-dired.el
 
@@ -439,6 +601,10 @@ tetris 俄罗斯方块
 **my-comma-leader-def**
 
 **my-semicolon-leader-def**
+
+# init-dydra.el
+
+[use-package-hydra](https://gitlab.com/to1ne/use-package-hydra)
 
 ## Site-eslip
 

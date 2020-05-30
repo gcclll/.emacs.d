@@ -15,6 +15,7 @@
     "a3" 'aweshell-dedicated-open
     "a#" 'aweshell-dedicated-close
     "a$" 'multi-term
+    "ar" 'ranger
     ;; <c>
     ;; <b>
     "bb" 'counsel-switch-buffer

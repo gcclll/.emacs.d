@@ -30,6 +30,10 @@
 (global-set-key (kbd "M-H -") (lambda () (interactive) (resize-window nil -5)))
 (global-set-key (kbd "M-H M-_") (lambda () (interactive) (resize-window nil -5)))
 (global-set-key (kbd "C-z e") #'edit-configs)
+(global-set-key [s-left] #'windmove-left)
+(global-set-key [s-right] #'windmove-right)
+(global-set-key [s-up] #'windmove-up)
+(global-set-key [s-down] #'windmove-down)
 
 ;; -END
 
