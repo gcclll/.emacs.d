@@ -92,7 +92,9 @@
 ;;----------------------------------------------------------------------------
 ;; `Semicolon Leader'
 ;;----------------------------------------------------------------------------
-(semileader)
+(semileader
+  "jc" 'ace-jump-char-mode
+  "jw" 'ace-jump-word-mode)
 ;; -END
 
 (provide 'init-general)

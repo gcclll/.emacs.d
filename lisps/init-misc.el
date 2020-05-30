@@ -79,9 +79,6 @@
 (use-package discover-my-major
   :bind ("C-h C-m" . discover-my-major))
 
-(use-package ace-window
-  :bind ("C-x C-o" . ace-window))
-
 (use-package popup-kill-ring
   :bind ("M-y" . popup-kill-ring))
 
@@ -142,6 +139,12 @@
   (setq zoom-size 'size-callback)
   (setq zoom-ignored-major-modes '(dired-mode markdown-mode))
   (add-hook 'imenu-list-update-hook 'my/fix-imenu-size))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `ace-jump-mode'
+;;----------------------------------------------------------------------------
+(use-package ace-jump-mode)
 ;; -END
 
 ;;----------------------------------------------------------------------------

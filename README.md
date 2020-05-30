@@ -310,6 +310,8 @@ https://github.com/bbatsov/crux
 6. zone-choose
 7. zoom-mode
 8. init-shell.el
+9. windmove
+10. ace-jump-mode
 
 ### init-dired.el
 
