@@ -1,4 +1,5 @@
 ;;; init-evil.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (use-package evil
@@ -52,4 +53,4 @@
 
 (provide 'init-evil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-evil.el ends her
+;;; init-evil.el ends here

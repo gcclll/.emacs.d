@@ -1,10 +1,13 @@
 ;;; init-eaf.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
   (require 'init-defs))
 
-;; EAFPac
+;;----------------------------------------------------------------------------
+;; `eaf'
+;;----------------------------------------------------------------------------
 (use-package eaf
   :load-path (lambda () (expand-file-name "site-elisp/emacs-application-framework" user-emacs-directory))
   :if *eaf-env*
@@ -31,8 +34,7 @@
   (eaf-bind-key zoom_out "C--" eaf-pdf-viewer-keybinding)
   (eaf-bind-key take_photo "p" eaf-camera-keybinding)
   (eaf-bind-key eaf-send-key-sequence "M-]" eaf-terminal-keybinding))
-;; -EAFPac
-
+;; -END
 
 (provide 'init-eaf)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

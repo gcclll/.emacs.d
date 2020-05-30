@@ -2,10 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-;; IBufferPac
+;;----------------------------------------------------------------------------
+;; `ibuffer'
+;;----------------------------------------------------------------------------
 (use-package ibuffer
   :ensure nil
-  :bind ("C-x C-b" . ibuffer)
   :init
   (use-package ibuffer-vc
     :commands (ibuffer-vc-set-filter-groups-by-vc-root)
@@ -23,7 +24,7 @@
      (mark " "
            (name 16 -1)
            " " filename))))
-;; -IBufferPac
+;; -END
 
 (provide 'init-buffer)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

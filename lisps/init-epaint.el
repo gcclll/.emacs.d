@@ -1,10 +1,13 @@
 ;;; init-epaint.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
   (require 'init-defs))
 
-;; EPaintPac
+;;----------------------------------------------------------------------------
+;; `epaint'
+;;----------------------------------------------------------------------------
 (use-package epaint
   :if *sys/gui*
   :load-path (lambda () (expand-file-name "site-elisp/epaint" user-emacs-directory))
@@ -15,7 +18,7 @@
       (defvar cl-struct-epaint-drawable (quote epaint-drawable)))
     (unless (boundp (quote cl-struct-epaint-gc))
       (defvar cl-struct-epaint-gc (quote epaint-gc)))))
-;; -EPaintPac
+;; -END
 
 (provide 'init-epaint)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

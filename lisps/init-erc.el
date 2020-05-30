@@ -1,11 +1,14 @@
 ;;; init-erc.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
   (require 'init-global)
   (require 'init-func))
 
-;; ERCPac
+;;----------------------------------------------------------------------------
+;; `erc'
+;;----------------------------------------------------------------------------
 (use-package erc
   :ensure nil
   :init
@@ -100,7 +103,7 @@
          ("M-RET" . newline)))
   :hook
   (ercn-notify . erc-notify))
-;; -ERCPac
+;; -END
 
 (provide 'init-erc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

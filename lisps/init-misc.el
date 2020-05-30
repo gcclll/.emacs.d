@@ -2,7 +2,32 @@
 ;;; Commentary:
 ;;; Code:
 
-;; WinnerPac
+;;----------------------------------------------------------------------------
+;; `recentf'
+;;----------------------------------------------------------------------------
+(use-package recentf
+  :ensure nil
+  :hook (after-init . recentf-mode)
+  :custom
+  (recentf-auto-cleanup "05:00am")
+  (recentf-max-saved-items 200)
+  (recentf-exclude '((expand-file-name package-user-dir)
+                     ".cache"
+                     ".cask"
+                     ".elfeed"
+                     "bookmarks"
+                     "cache"
+                     "ido.*"
+                     "persp-confs"
+                     "recentf"
+                     "undo-tree-hist"
+                     "url"
+                     "COMMIT_EDITMSG\\'")))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `winner'
+;;----------------------------------------------------------------------------
 (use-package winner
   :ensure nil
   :custom
@@ -19,9 +44,11 @@
      "*esh command on file*"))
   :config
   (winner-mode 1))
-;; -WinnerPac
+;; -END
 
-;; WhichKeyPac
+;;----------------------------------------------------------------------------
+;; `which-key'
+;;----------------------------------------------------------------------------
 (use-package which-key
   :diminish
   :custom
@@ -29,14 +56,11 @@
   (which-key-prefix-prefix "+")
   :config
   (which-key-mode))
-;; -WhichKeyPac
+;; -END
 
-;; PopKillRing
-(use-package popup-kill-ring
-  :bind ("M-y" . popup-kill-ring))
-;; -PopKillRing
-
-;; UndoTreePac
+;;----------------------------------------------------------------------------
+;; `undo-tree'
+;;----------------------------------------------------------------------------
 (use-package undo-tree
   :defer t
   :diminish undo-tree-mode
@@ -44,19 +68,32 @@
   :custom
   (undo-tree-visualizer-diff t)
   (undo-tree-visualizer-timestamps t))
-;; -UndoTreePac
+;; -END
 
-;; DiscMyMajor
+;;----------------------------------------------------------------------------
+;; `two'
+;;----------------------------------------------------------------------------
+(use-package sudo-edit
+  :commands (sudo-edit))
+
 (use-package discover-my-major
   :bind ("C-h C-m" . discover-my-major))
-;; -DiscMyMajor
 
-;; AceWindowPac
 (use-package ace-window
   :bind ("C-x C-o" . ace-window))
-;; -AceWindowPac
 
-;; ZonePac
+(use-package popup-kill-ring
+  :bind ("M-y" . popup-kill-ring))
+
+(use-package rainbow-mode
+  :demand
+  :config
+  (rainbow-mode))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `zone'
+;;----------------------------------------------------------------------------
 (use-package zone
   :ensure nil
   :defer 5
@@ -71,13 +108,12 @@
        (mapcar 'symbol-name zone-programs))))
     (let ((zone-programs (list (intern pgm))))
       (zone))))
-;; -ZonePac
+;; -END
 
-(use-package rainbow-mode
-  :demand
-  :config
-  (rainbow-mode))
 
+;;----------------------------------------------------------------------------
+;; `smart-tab'
+;;----------------------------------------------------------------------------
 (use-package smart-tab
   :config
   (progn
@@ -85,6 +121,8 @@
       (smart-tab-mode))
     (add-hook 'prog-mode-hook '@-enable-smart-tab)
     ))
+;; -END
+
 
 (provide 'init-misc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

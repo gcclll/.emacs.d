@@ -1,10 +1,13 @@
 ;;; init-avy.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
   (require 'init-global))
 
-;; AvyPac
+;;----------------------------------------------------------------------------
+;; `avy'
+;;----------------------------------------------------------------------------
 (use-package avy
   :defer t
   :bind
@@ -14,9 +17,12 @@
   (avy-timeout-seconds 0.3)
   (avy-style 'pre)
   :custom-face
-  (avy-lead-face ((t (:background "#51afef" :foreground "#870000" :weight bold)))));
-;; -AvyPac
+  (avy-lead-face ((t (:background "#51afef" :foreground "#870000" :weight bold)))))
+;; -END
 
+;;----------------------------------------------------------------------------
+;; `ace-window'
+;;----------------------------------------------------------------------------
 (use-package ace-window
   :ensure t
   :defer t
@@ -30,6 +36,8 @@
     'aw-mode-line-face nil
     :inherit 'mode-line-buffer-id
     :foreground "lawn green"))
+;; -END
+
 
 (provide 'init-avy)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,10 +1,13 @@
 ;;; init-cc.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
   (require 'init-defs))
 
-;; CCLSPac
+;;----------------------------------------------------------------------------
+;; `ccls'
+;;----------------------------------------------------------------------------
 (use-package ccls
   :defer t
   :if (not *sys/win32*)
@@ -27,19 +30,20 @@
             ("$ccls/publishSemanticHighlight" #'ccls--publish-semantic-highlight))
     :initialization-options (lambda () ccls-initialization-options)
     :library-folders-fn nil)))
-;; -CCLSPac
 
-;; CPPFontLockPac
 (use-package modern-cpp-font-lock
   :diminish t
   :init (modern-c++-font-lock-global-mode t))
-;; -CPPFontLockPac
+;; -END
 
-;; GoPac
+;;----------------------------------------------------------------------------
+;; `golang'
+;;----------------------------------------------------------------------------
 (use-package go-mode
   :mode "\\.go\\'"
   :hook (before-save . gofmt-before-save))
-;; -GoPac
+;; -END
+
 
 (provide 'init-cc)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,4 +1,5 @@
 ;;; init-latex.el --- -*- lexical-binding: t -*-
+;;; Commentary
 ;;; Code:
 
 (eval-when-compile
@@ -6,7 +7,9 @@
   (require 'init-global)
   (require 'init-func))
 
-;; AUCTeXPac
+;;----------------------------------------------------------------------------
+;; `tex'
+;;----------------------------------------------------------------------------
 (use-package tex
   :ensure auctex
   :defer t
@@ -30,13 +33,16 @@
   :config
   (when (version< emacs-version "26")
     (add-hook LaTeX-mode-hook #'display-line-numbers-mode)))
-;; -AUCTeXPac
+;; -END
 
-;; OrgLatexPac
+
+;;----------------------------------------------------------------------------
+;; `org-edit-latex'
+;;----------------------------------------------------------------------------
 (use-package org-edit-latex
   :defer t
   :after org)
-;; -OrgLatexPac
+;; -END
 
 (provide 'init-latex)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

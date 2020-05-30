@@ -1,4 +1,5 @@
 ;;; init-package.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 ;; Select the folder to store packages

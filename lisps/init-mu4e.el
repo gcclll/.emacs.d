@@ -1,8 +1,11 @@
 ;;; init-mu4e.el --- -*- lexical-binding: t -*-
-;;
+;;; Commentary:
 ;;; Code:
 
-;; Mu4ePac
+
+;;----------------------------------------------------------------------------
+;; `mu4e'
+;;----------------------------------------------------------------------------
 (use-package mu4e
   :ensure nil
   :commands (mu4e)
@@ -118,7 +121,7 @@
       (browse-url url)))
   (add-to-list 'mu4e-view-actions '("find in mailing-list" . mu4e-action-find-in-mailing-list))
   (add-to-list 'mu4e-headers-actions '("find in mailing-list" . mu4e-action-find-in-mailing-list)))
-;; -Mu4ePac
+;; -END
 
 (provide 'init-mu4e)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

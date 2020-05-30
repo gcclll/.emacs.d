@@ -5,28 +5,37 @@
 (eval-when-compile
   (require 'init-defs))
 
-;; SudoEditPac
-(use-package sudo-edit
-  :commands (sudo-edit))
-;; -SudoEditPac
-
-;; DefBindings
-;; Unbind unneeded keys
+;;----------------------------------------------------------------------------
+;; `global-set-key'
+;;----------------------------------------------------------------------------
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "M-z") nil)
 (global-set-key (kbd "C-x C-z") nil)
 (global-set-key (kbd "M-/") nil)
-;; Truncate lines
 (global-set-key (kbd "C-x C-l") #'toggle-truncate-lines)
-;; Adjust font size like web browsers
 (global-set-key (kbd "C-+") #'text-scale-increase)
 (global-set-key (kbd "C--") #'text-scale-decrease)
-;; Move up/down paragraph
 (global-set-key (kbd "M-n") #'forward-paragraph)
 (global-set-key (kbd "M-p") #'backward-paragraph)
-;; -DefBindings
+(global-set-key (kbd "C-x C-s") nil)
+(global-set-key (kbd "C-x C-s") #'save-all-buffers)
+(global-set-key (kbd "C-z w") #'resize-window-width)
+(global-set-key (kbd "C-z h") #'resize-window-height)
+(global-set-key (kbd "M-W =") (lambda () (interactive) (resize-window t 5)))
+(global-set-key (kbd "M-W M-+") (lambda () (interactive) (resize-window t 5)))
+(global-set-key (kbd "M-W -") (lambda () (interactive) (resize-window t -5)))
+(global-set-key (kbd "M-W M-_") (lambda () (interactive) (resize-window t -5)))
+(global-set-key (kbd "M-H =") (lambda () (interactive) (resize-window nil 5)))
+(global-set-key (kbd "M-H M-+") (lambda () (interactive) (resize-window nil 5)))
+(global-set-key (kbd "M-H -") (lambda () (interactive) (resize-window nil -5)))
+(global-set-key (kbd "M-H M-_") (lambda () (interactive) (resize-window nil -5)))
+(global-set-key (kbd "C-z e") #'edit-configs)
 
-;; UTF8Coding
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `encoding'
+;;----------------------------------------------------------------------------
 (unless *sys/win32*
   (set-selection-coding-system 'utf-8)
   (prefer-coding-system 'utf-8)
@@ -38,98 +47,31 @@
 ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
 (when *sys/gui*
   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
-;; -UTF8Coding
+;; -END
 
 ;;----------------------------------------------------------------------------
 ;; `hook'
 ;;----------------------------------------------------------------------------
 (add-hook 'before-save-hook #'delete-trailing-whitespace-except-current-line)
 (add-hook 'after-init-hook #'global-emojify-mode)
-
-;; Replace selection on insert
-(delete-selection-mode 1)
-
-;; Map Alt key to Meta
-(setq x-alt-keysym 'meta)
-;; -EditExp
-
-;; History
-(use-package recentf
-  :ensure nil
-  :hook (after-init . recentf-mode)
-  :custom
-  (recentf-auto-cleanup "05:00am")
-  (recentf-max-saved-items 200)
-  (recentf-exclude '((expand-file-name package-user-dir)
-                     ".cache"
-                     ".cask"
-                     ".elfeed"
-                     "bookmarks"
-                     "cache"
-                     "ido.*"
-                     "persp-confs"
-                     "recentf"
-                     "undo-tree-hist"
-                     "url"
-                     "COMMIT_EDITMSG\\'")))
-
-;; When buffer is closed, saves the cursor location
-;;----------------------------------------------------------------------------
-;; `feature-mode'
-;;----------------------------------------------------------------------------
-(save-place-mode 1)
-(toggle-scroll-bar -1)
-(fset 'yes-or-no-p 'y-or-n-p)
-(toggle-frame-maximized)
+(add-hook 'before-save-hook #'save-and-update-includes)
+(add-hook 'mouse-leave-buffer-hook 'abort-minibuffer-using-mouse)
+(add-hook 'post-command-hook #'smart-electric-indent-mode)
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `setq'
+;;----------------------------------------------------------------------------
 
-;; Set history-length longer
-(setq-default history-length 500)
-;; -History
-
-;; SmallConfigs
-;; Turn Off Cursor Alarms
+(setq user-full-name "ZhiCheng Lee")
+(setq user-mail-address "gccll.love@gmail.com")
+(setq x-alt-keysym 'meta)
 (setq ring-bell-function 'ignore)
-
-;; Show Keystrokes in Progress Instantly
 (setq echo-keystrokes 0.1)
-
-;; Don't Lock Files
-(setq-default create-lockfiles nil)
-
-;; Better Compilation
-(setq-default compilation-always-kill t) ; kill compilation process before starting another
-
-(setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
-
-(setq-default compilation-scroll-output t)
-
-;; ad-handle-definition warnings are generated when functions are redefined with `defadvice',
-;; they are not helpful.
 (setq ad-redefinition-action 'accept)
-
-;; Move Custom-Set-Variables to Different File
 (setq custom-file (concat user-emacs-directory "custom-set-variables.el"))
-(load custom-file 'noerror)
-
-;; So Long mitigates slowness due to extremely long lines.
-;; Currently available in Emacs master branch *only*!
-(when (fboundp 'global-so-long-mode)
-  (global-so-long-mode))
-
 ;; Add a newline automatically at the end of the file upon save.
 (setq require-final-newline t)
-
-;; Default .args, .in, .out files to text-mode
-(add-to-list 'auto-mode-alist '("\\.in\\'" . text-mode))
-(add-to-list 'auto-mode-alist '("\\.out\\'" . text-mode))
-(add-to-list 'auto-mode-alist '("\\.args\\'" . text-mode))
-;; -SmallConfigs
-
-;;----------------------------------------------------------------------------
-;; `scroll'
-;;----------------------------------------------------------------------------
 (setq scroll-step 1)
 (setq scroll-margin 1)
 (setq scroll-conservatively 101)
@@ -139,11 +81,56 @@
 (setq fast-but-imprecise-scrolling nil)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
-;; Horizontal Scroll
 (setq hscroll-step 1)
 (setq hscroll-margin 1)
-;; -SmoothScroll
+
+(setq-default create-lockfiles nil)
+(setq-default history-length 500)
+(setq-default compilation-always-kill t) ; kill compilation process before starting another
+(setq-default compilation-ask-about-save nil) ; save all buffers on `compile'
+(setq-default compilation-scroll-output t)
+(setq-default minibuffer-prompt-properties '(read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt))
+(setq-default indent-tabs-mode nil)
+(setq-default indent-line-function 'insert-tab)
+(setq-default tab-width 2)
+(setq-default c-basic-offset 4)
+(setq-default js-switch-indent-offset 2)
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `feature-mode'
+;;----------------------------------------------------------------------------
+(delete-selection-mode 1)
+(save-place-mode 1)
+(toggle-scroll-bar -1)
+(fset 'yes-or-no-p 'y-or-n-p)
+(toggle-frame-maximized)
+(load custom-file 'noerror)
+(c-set-offset 'comment-intro 0)
+(c-set-offset 'innamespace 0)
+(c-set-offset 'case-label '+)
+(c-set-offset 'access-label 0)
+(c-set-offset (quote cpp-macro) 0 nil)
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `cond'
+;;----------------------------------------------------------------------------
+;; So Long mitigates slowness due to extremely long lines.
+;; Currently available in Emacs master branch *only*!
+(when (fboundp 'global-so-long-mode)
+  (global-so-long-mode))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `add-to-list'
+;;----------------------------------------------------------------------------
+;; Default .args, .in, .out files to text-mode
+(add-to-list 'auto-mode-alist '("\\.in\\'" . text-mode))
+(add-to-list 'auto-mode-alist '("\\.out\\'" . text-mode))
+(add-to-list 'auto-mode-alist '("\\.args\\'" . text-mode))
+;; -END
 
 (provide 'init-global)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-global.el ends her
+;;; init-global.el ends here

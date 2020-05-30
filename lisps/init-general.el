@@ -33,6 +33,7 @@
     ;; <f>
     "ff" 'counsel-find-file
     "fp" 'ffip
+    "fr" 'rename-file-and-buffer
     "fR" 'gcl/rename-this-file-and-buffer
     "fd" 'gcl/delete-this-file
     "fo" 'gcl/open-in-external-app
@@ -47,6 +48,7 @@
     "ss" 'swiper
     "sS" 'swiper-all
     "sr" 'counsel-rg
+    "si" 'swiper-isearch
     "sg" 'counsel-git-grep
     "sp" 'rg-project
     "sq" 'query-replace
@@ -55,6 +57,8 @@
     "wv" 'split-window-horizontally
     "w-" 'split-window-vertically
     "wl" 'evil-window-right
+    "wL" 'crux-transpose-windows
+    "wH" 'crux-transpose-windows
     "wh" 'evil-window-left
     "wk" 'evil-window-up
     "wj" 'evil-window-down

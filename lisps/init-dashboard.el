@@ -1,7 +1,10 @@
 ;;; init-dashboard.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
-;; DashboardPac
+;;----------------------------------------------------------------------------
+;; `dashboard'
+;;----------------------------------------------------------------------------
 (use-package dashboard
   :demand
   :diminish (dashboard-mode page-break-lines-mode)
@@ -50,13 +53,15 @@
     (switch-to-buffer dashboard-buffer-name)
     (goto-char (point-min))
     (delete-other-windows)))
-;; -DashboardPac
+;; -END
 
-;; PBLPac
+;;----------------------------------------------------------------------------
+;; `page-break-lines'
+;;----------------------------------------------------------------------------
 (use-package page-break-lines
   :diminish
   :init (global-page-break-lines-mode))
-;; -PBLPac
+;; -END
 
 (provide 'init-dashboard)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

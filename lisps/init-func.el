@@ -5,8 +5,9 @@
 (eval-when-compile
   (require 'init-global))
 
-;; ResizeWidthHeight
-;; Resizes the window width based on the input
+;;----------------------------------------------------------------------------
+;; `resize-window-width'
+;;----------------------------------------------------------------------------
 (defun resize-window-width (w)
   "Resizes the window width based on W."
   (interactive (list (if (> (count-windows) 1)
@@ -14,8 +15,11 @@
                        (error "You need more than 1 window to execute this function!"))))
   (message "%s" w)
   (window-resize nil (- (truncate (* (/ w 10.0) (frame-width))) (window-total-width)) t))
+;; -END
 
-;; Resizes the window height based on the input
+;;----------------------------------------------------------------------------
+;; `resize-window-height'
+;;----------------------------------------------------------------------------
 (defun resize-window-height (h)
   "Resizes the window height based on H."
   (interactive (list (if (> (count-windows) 1)
@@ -23,39 +27,32 @@
                        (error "You need more than 1 window to execute this function!"))))
   (message "%s" h)
   (window-resize nil (- (truncate (* (/ h 10.0) (frame-height))) (window-total-height)) nil))
+;; -END
 
-;; Setup shorcuts for window resize width and height
-(global-set-key (kbd "C-z w") #'resize-window-width)
-(global-set-key (kbd "C-z h") #'resize-window-height)
 
+;;----------------------------------------------------------------------------
+;; `resize-window'
+;;----------------------------------------------------------------------------
 (defun resize-window (width delta)
   "Resize the current window's size.  If WIDTH is non-nil, resize width by some DELTA."
   (if (> (count-windows) 1)
       (window-resize nil delta width)
     (error "You need more than 1 window to execute this function!")))
+;; -END
 
-;; Setup shorcuts for window resize width and height
-(global-set-key (kbd "M-W =") (lambda () (interactive) (resize-window t 5)))
-(global-set-key (kbd "M-W M-+") (lambda () (interactive) (resize-window t 5)))
-(global-set-key (kbd "M-W -") (lambda () (interactive) (resize-window t -5)))
-(global-set-key (kbd "M-W M-_") (lambda () (interactive) (resize-window t -5)))
 
-(global-set-key (kbd "M-H =") (lambda () (interactive) (resize-window nil 5)))
-(global-set-key (kbd "M-H M-+") (lambda () (interactive) (resize-window nil 5)))
-(global-set-key (kbd "M-H -") (lambda () (interactive) (resize-window nil -5)))
-(global-set-key (kbd "M-H M-_") (lambda () (interactive) (resize-window nil -5)))
-;; -ResizeWidthheight
-
-;; EditConfig
+;;----------------------------------------------------------------------------
+;; `edit-configs'
+;;----------------------------------------------------------------------------
 (defun edit-configs ()
   "Opens the README.org file."
   (interactive)
   (find-file "~/.emacs.d/init.org"))
+;; -END
 
-(global-set-key (kbd "C-z e") #'edit-configs)
-;; -EditConfig
-
-;; OrgIncludeAuto
+;;----------------------------------------------------------------------------
+;; `save-and-update-includes'
+;;----------------------------------------------------------------------------
 (defun save-and-update-includes ()
   "Update the line numbers of #+INCLUDE:s in current buffer.
 Only looks at INCLUDEs that have either :range-begin or :range-end.
@@ -81,9 +78,12 @@ add it to `before-save-hook'."
                 (replace-match lines :fixedcase :literal nil 1)
               (goto-char (line-end-position))
               (insert " :lines \"" lines "\""))))))))
+;; -END
+;; OrgIncludeAuto
 
-(add-hook 'before-save-hook #'save-and-update-includes)
-
+;;----------------------------------------------------------------------------
+;; `decide-line-range'
+;;----------------------------------------------------------------------------
 (defun decide-line-range (file begin end)
   "Visit FILE and decide which lines to include.
 BEGIN and END are regexps which define the line range to use."
@@ -100,22 +100,21 @@ BEGIN and END are regexps which define the line range to use."
             (setq r "")
           (search-forward-regexp end)
           (setq r (1+ (line-number-at-pos (match-end 0)))))
-        (format "%s-%s" (+ l 1) (- r 1)))))) ;; Exclude wrapper
-;; -OrgIncludeAuto
+        (format "%s-%s" (+ l 1) (- r 1))))))
+;; -END
 
-;; BetterMiniBuffer
+;;----------------------------------------------------------------------------
+;; `abort-minibuffer-using-mouse'
+;;----------------------------------------------------------------------------
 (defun abort-minibuffer-using-mouse ()
   "Abort the minibuffer when using the mouse."
   (when (and (>= (recursion-depth) 1) (active-minibuffer-window))
     (abort-recursive-edit)))
+;; -END
 
-(add-hook 'mouse-leave-buffer-hook 'abort-minibuffer-using-mouse)
-
-;; keep the point out of the minibuffer
-(setq-default minibuffer-prompt-properties '(read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt))
-;; -BetterMiniBuffer
-
-;; DisplayLineOverlay
+;;----------------------------------------------------------------------------
+;; `display-line-overlay+'
+;;----------------------------------------------------------------------------
 (defun display-line-overlay+ (pos str &optional face)
   "Display line at POS as STR with FACE.
 FACE defaults to inheriting from default and highlight."
@@ -127,22 +126,29 @@ FACE defaults to inheriting from default and highlight."
     (overlay-put ol 'face
                  (or face '(:background null :inherit highlight)))
     ol))
-;; -DisplayLineOverlay
+;; -END
 
-;; ReadLines
+;;----------------------------------------------------------------------------
+;; `read-lines'
+;;----------------------------------------------------------------------------
 (defun read-lines (file-path)
   "Return a list of lines of a file at FILE-PATH."
   (with-temp-buffer (insert-file-contents file-path)
                     (split-string (buffer-string) "\n" t)))
-;; -ReadLines
+;; -END
 
-;; WhereAmI
+;;----------------------------------------------------------------------------
+;; `where-am-i'
+;;----------------------------------------------------------------------------
 (defun where-am-i ()
   "An interactive function showing function `buffer-file-name' or `buffer-name'."
   (interactive)
   (message (kill-new (if (buffer-file-name) (buffer-file-name) (buffer-name)))))
-;; -WhereAmI
+;; -END
 
+;;----------------------------------------------------------------------------
+;; `my-pclip'
+;;----------------------------------------------------------------------------
 (defun my-pclip (str-val)
   "Put STR-VAL into clipboard."
   (let* ((win64-clip-program (executable-find "clip.exe")))
@@ -160,8 +166,11 @@ FACE defaults to inheriting from default and highlight."
      ;; xclip can handle
      (t
       (xclip-set-selection 'clipboard str-val)))))
+;; -END
 
-;; Remove useless whitespace before saving a file
+;;----------------------------------------------------------------------------
+;; `delete-trailing-whitespace-except-current-line'
+;;----------------------------------------------------------------------------
 (defun delete-trailing-whitespace-except-current-line ()
   "An alternative to `delete-trailing-whitespace'.
 The original function deletes trailing whitespace of the current line."
@@ -179,6 +188,7 @@ The original function deletes trailing whitespace of the current line."
           (narrow-to-region (+ end 2) (point-max))
           (delete-trailing-whitespace)
           (widen))))))
+;; -END
 
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

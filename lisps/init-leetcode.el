@@ -1,10 +1,13 @@
 ;;; init-leetcode.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
   (require 'init-defs))
 
-;; LeetCodePac
+;;----------------------------------------------------------------------------
+;; `leetcode'
+;;----------------------------------------------------------------------------
 (use-package leetcode
   :load-path (lambda () (expand-file-name "site-elisp/leetcode.el" user-emacs-directory))
   :commands (leetcode)
@@ -14,7 +17,7 @@
   :custom
   (url-debug t)
   (leetcode-prefer-language "python3"))
-;; -LeetCodePac
+;; -END
 
 (provide 'init-leetcode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

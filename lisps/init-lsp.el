@@ -5,7 +5,9 @@
 (eval-when-compile
   (require 'init-defs))
 
-;; LSPPac
+;;----------------------------------------------------------------------------
+;; `lsp-mode'
+;;----------------------------------------------------------------------------
 (use-package lsp-mode
   :defer t
   :commands lsp
@@ -19,9 +21,11 @@
   :hook ((java-mode python-mode go-mode
           js-mode js2-mode typescript-mode web-mode
           c-mode c++-mode objc-mode rjsx-mode) . lsp))
-;; -LSPPac
+;; -END
 
-;; LSPUI
+;;----------------------------------------------------------------------------
+;; `lsp-ui'
+;;----------------------------------------------------------------------------
 (use-package lsp-ui
   :after lsp-mode
   :diminish
@@ -47,9 +51,11 @@
   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
     (setq mode-line-format nil)))
-;; -LSPUI
+;; -END
 
-;; DAPPac
+;;----------------------------------------------------------------------------
+;; `dap-mode'
+;;----------------------------------------------------------------------------
 (use-package dap-mode
   :diminish
   :bind
@@ -60,7 +66,7 @@
          ("<M-f11>" . dap-step-in)
          ("C-M-<f11>" . dap-step-out)
          ("<f7>" . dap-breakpoint-toggle))))
-;; -DAPPac
+;; -END
 
 (provide 'init-lsp)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

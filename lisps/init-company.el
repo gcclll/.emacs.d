@@ -1,10 +1,13 @@
 ;;; init-company.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
   (require 'init-defs))
 
-;; ComPac
+;;----------------------------------------------------------------------------
+;; `company'
+;;----------------------------------------------------------------------------
 (use-package company
   :diminish company-mode
   :hook ((prog-mode LaTeX-mode latex-mode ess-r-mode) . company-mode)
@@ -41,15 +44,15 @@ If failed try to complete the common part with `company-complete-common'"
                        (eq old-tick (buffer-chars-modified-tick)))
               (company-complete-common))))
       (company-complete-common))))
-;; -ComPac
 
-;; CompanyLSPPac
 (use-package company-lsp
   :defer t
   :custom (company-lsp-cache-candidates 'auto))
-;; -CompanyLSPPac
+;; -END
 
-;; CompanyTabNinePac
+;;----------------------------------------------------------------------------
+;; `company-tabnine'
+;;----------------------------------------------------------------------------
 (use-package company-tabnine
   :defer 1
   :custom
@@ -86,9 +89,11 @@ If failed try to complete the common part with `company-complete-common'"
         (setq candidates-tabnine (nreverse candidates-tabnine))
         (nconc (seq-take candidates-tabnine 3)
                (seq-take candidates-lsp 6))))))
-;; -CompanyTabNinePac
+;; -END
 
-;; CompanyBoxPac
+;;----------------------------------------------------------------------------
+;; `company-box'
+;;----------------------------------------------------------------------------
 (use-package company-box
   :diminish
   :functions (my-company-box--make-line
@@ -179,7 +184,7 @@ If failed try to complete the common part with `company-complete-common'"
             (TypeParameter . ,(all-the-icons-faicon "arrows" :height 0.8 :v-adjust -0.05))
             (Template . ,(all-the-icons-material "format_align_center" :height 0.85 :v-adjust -0.2)))
           company-box-icons-alist 'company-box-icons-all-the-icons)))
-;; -CompanyBoxPac
+;; -END
 
 (provide 'init-company)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

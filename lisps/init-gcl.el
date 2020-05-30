@@ -2,12 +2,19 @@
 ;;; Commentary:
 ;;; Code:
 
+;;----------------------------------------------------------------------------
+;; `gcl/lcd'
+;;----------------------------------------------------------------------------
 (defun gcl/lcd ()
   "Fzf lcd."
   (interactive)
   (fzf/start default-directory
              (fzf/grep-cmd "lcd" "-l %s")))
+;; -END
 
+;;----------------------------------------------------------------------------
+;; `gcl/open-in-finder'
+;;----------------------------------------------------------------------------
 (defun gcl/open-in-finder ()
   "Opens file directory in Finder."
   (interactive)
@@ -16,7 +23,11 @@
         (shell-command
          (format "%s %s" (executable-find "open") (file-name-directory file)))
       (error "Buffer is not attached to any file!"))))
+;; -END
 
+;;----------------------------------------------------------------------------
+;; `gcl/rename-this-file-and-buffer'
+;;----------------------------------------------------------------------------
 (defun gcl/rename-this-file-and-buffer (new-name)
   "Rename both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
@@ -29,7 +40,11 @@
         (rename-file filename new-name 1))
       (set-visited-file-name new-name)
       (rename-buffer new-name))))
+;; -END
 
+;;----------------------------------------------------------------------------
+;; `gcl/search'
+;;----------------------------------------------------------------------------
 (defun gcl/search (query-url prompt)
   "Open the search url constructed with tht QUERY-URL.
 PROMPT sets the `read-string' prompt."
@@ -39,16 +54,24 @@ PROMPT sets the `read-string' prompt."
             (if mark-active
                 (buffer-substring (region-beginning) (region-end))
               (read-string prompt))))))
+;; -END
 
+;;----------------------------------------------------------------------------
+;; `gcl/install-search-engine'
+;;----------------------------------------------------------------------------
 (defmacro gcl/install-search-engine (search-engine-name search-engine-url search-engine-prompt)
   "Given some information regarding a search engine, install the interactive command to search through them, args: SEARCH-ENGINE-NAME, SEARCH-ENGINE-URL, SEARCH-ENGINE-PROMPT."
   `(defun ,(intern (format "gcl-%s" search-engine-name)) ()
      ,(format "Search %s with a query or region if any." search-engine-name)
      (interactive)
      (gcl/search ,search-engine-url ,search-engine-prompt)))
+;; -END
 
+;;----------------------------------------------------------------------------
+;; `gcl/delete-this-file-make-backup'
+;;----------------------------------------------------------------------------
 (defun gcl/delete-this-file-make-backup (&optional @no-backup-p)
-  "Delete current file, makes a backup~, closes the buffer."
+  "Delete current file, makes a backup~, closes the buffer, args @NO-BACKUP-P."
   (interactive "P")
   (let* (
          ($fname (buffer-file-name))
@@ -69,7 +92,12 @@ PROMPT sets the `read-string' prompt."
         (write-region (point-min) (point-max) (concat "xx" $backup-suffix))
         (message "Backup created at 「%s」." (concat "xx" $backup-suffix))))
     (kill-buffer (current-buffer))))
+;; -END
 
+
+;;----------------------------------------------------------------------------
+;; `gcl/delete-this-file'
+;;----------------------------------------------------------------------------
 (defun gcl/delete-this-file (&optional @no-backup-p)
   "Delete current file or directory of dired, arg."
   (interactive "P")
@@ -91,7 +119,11 @@ PROMPT sets the `read-string' prompt."
         (let ((buffer-offer-save nil))
           (set-buffer-modified-p nil)
           (kill-buffer (current-buffer)))))))
+;; -END
 
+;;----------------------------------------------------------------------------
+;; `gcl/open-in-external-app'
+;;----------------------------------------------------------------------------
 (defun gcl/open-in-external-app (&optional @fname)
   "Open the current file or dired marked files in external app.
 The app is chosen from your OS's preference.
@@ -124,6 +156,8 @@ Version 2019-11-04"
         (mapc
          (lambda ($fpath) (let ((process-connection-type nil))
                             (start-process "" nil "xdg-open" $fpath))) $file-list))))))
+;; -END
+
 
 (gcl/install-search-engine "google" "http://www.google.com/search?q=" "Google: ")
 (gcl/install-search-engine "youtube" "http://www.youtube.com/results?search_query=" "Search YouTuBe: ")

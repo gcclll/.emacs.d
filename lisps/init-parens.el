@@ -1,10 +1,13 @@
 ;;; init-parens.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
   (require 'init-global))
 
-;; SmartParensPac
+;;----------------------------------------------------------------------------
+;; `smartparens-mode'
+;;----------------------------------------------------------------------------
 (use-package smartparens
   :hook (prog-mode . smartparens-mode)
   :diminish smartparens-mode
@@ -26,7 +29,7 @@
   ;; Stop pairing single quotes in elisp
   (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
   (sp-local-pair 'org-mode "[" nil :actions nil))
-;; -SmartParensPac
+;; -END
 
 ;; MatchParens
 ;; Show matching parenthesis

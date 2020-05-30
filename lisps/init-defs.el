@@ -1,12 +1,10 @@
 ;;; init-defs.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
-;; UserInfo
-(setq user-full-name "ZhiCheng Lee")
-(setq user-mail-address "gccll.love@gmail.com")
-;; -UserInfo
-
-;; Consts
+;;----------------------------------------------------------------------------
+;; `defconst'
+;;----------------------------------------------------------------------------
 (defconst *sys/gui*
   (display-graphic-p)
   "Are we running on a GUI Emacs?")
@@ -76,8 +74,17 @@
   (and *sys/linux* *sys/gui* *python* *pip*
        (not (equal (shell-command-to-string "pip freeze | grep '^PyQt\\|PyQtWebEngine'") "")))
   "Check basic requirements for EAF to run.")
-;; -Consts
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `defun'
+;;----------------------------------------------------------------------------
+(defun save-all-buffers ()
+  "Instead of `save-buffer', save all opened buffers by calling `save-some-buffers' with ARG t."
+  (interactive)
+  (save-some-buffers t))
+;; -END
 
 (provide 'init-defs)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-const.el ends here
+;;; init-defs.el ends here

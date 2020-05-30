@@ -1,7 +1,10 @@
 ;;; init-games.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
-;; TetrisConfig
+;;----------------------------------------------------------------------------
+;; `tetris'
+;;----------------------------------------------------------------------------
 (use-package tetris
   :ensure nil
   :commands (tetris)
@@ -15,17 +18,21 @@
   :config
   (defadvice tetris-end-game (around zap-scores activate)
     (save-window-excursion ad-do-it)))
-;; -TetrisConfig
+;; -END
 
-;; SpeedTypePac
+;;----------------------------------------------------------------------------
+;; `speed-type'
+;;----------------------------------------------------------------------------
 (use-package speed-type
   :commands (speed-type-text))
-;; -SpeedTypePac
+;; -END
 
-;; 2048Pac
+;;----------------------------------------------------------------------------
+;; `2048-game'
+;;----------------------------------------------------------------------------
 (use-package 2048-game
   :commands (2048-game))
-;; -2048Pac
+;; -END
 
 (provide 'init-games)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

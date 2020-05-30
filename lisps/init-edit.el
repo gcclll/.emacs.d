@@ -1,31 +1,31 @@
 ;;; init-edit.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 (eval-when-compile
   (require 'init-global))
 
-;; ExpandRegion
+;;----------------------------------------------------------------------------
+;; `pkgs'
+;;----------------------------------------------------------------------------
 (use-package expand-region
  :bind ("C-=" . er/expand-region))
-;; -ExpandRegion
 
-;; SmartRegion
 (use-package smart-region
  :hook (after-init . smart-region-on))
-;; -SmartRegion
 
-;; HungryDeletePac
 (use-package hungry-delete
   :init
   (global-hungry-delete-mode))
-;; -HungryDeletePac
 
-;; IEditPac
 (use-package iedit
   :bind ("C-z ," . iedit-mode)
   :diminish)
-;; -IEditPac
+;; -END
 
 ;; AwesomePairPac
+;;----------------------------------------------------------------------------
+;; `pair'
+;;----------------------------------------------------------------------------
 (use-package awesome-pair
   :load-path (lambda () (expand-file-name "site-elisp/awesome-pair" user-emacs-directory))
   :bind
@@ -36,9 +36,7 @@
          ("M-F" . awesome-pair-jump-right)
          ("M-B" . awesome-pair-jump-left)))
   :hook (prog-mode . awesome-pair-mode))
-;; -AwesomePairPac
 
-;; ConfModePac
 (use-package conf-mode
   :ensure nil
   :bind
@@ -48,9 +46,12 @@
          ("=" . awesome-pair-equal)
          ("M-F" . awesome-pair-jump-right)
          ("M-B" . awesome-pair-jump-left))))
-;; -ConfModePac
+;; -END
 
-;; DeleteBlockPac
+
+;;----------------------------------------------------------------------------
+;; `delete-block'
+;;----------------------------------------------------------------------------
 (use-package delete-block
   :load-path (lambda () (expand-file-name "site-elisp/delete-block" user-emacs-directory))
   :bind
@@ -58,7 +59,7 @@
    ("C-<backspace>" . delete-block-backward)
    ("M-<backspace>" . delete-block-backward)
    ("M-DEL" . delete-block-backward)))
-;; -DeleteBlockPac
+;; -END
 
 (provide 'init-edit)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

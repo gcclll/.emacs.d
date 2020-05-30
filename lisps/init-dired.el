@@ -1,7 +1,10 @@
 ;;; init-dired.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
-;; DiredPackage
+;;----------------------------------------------------------------------------
+;; `dired'
+;;----------------------------------------------------------------------------
 (use-package dired
   :ensure nil
   :bind
@@ -34,14 +37,14 @@
                   (local-set-key (kbd "RET") #'dired-find-alternate-file)
                   (local-set-key (kbd "^")
                                  (lambda () (interactive) (find-alternate-file ".."))))))
-;; -DiredPackage
+;; -END
 
-;; DiskUsage
+;;----------------------------------------------------------------------------
+;; `disk-usage'
+;;----------------------------------------------------------------------------
 (use-package disk-usage
   :commands (disk-usage))
-;; -DiskUsage
 
-;; SuperSave
 (use-package super-save
   :diminish
   :custom
@@ -50,16 +53,7 @@
   (make-backup-files nil)
   :config
   (super-save-mode 1))
-;; -SuperSave
-
-;; SaveAllBuffers
-(defun save-all-buffers ()
-  "Instead of `save-buffer', save all opened buffers by calling `save-some-buffers' with ARG t."
-  (interactive)
-  (save-some-buffers t))
-(global-set-key (kbd "C-x C-s") nil)
-(global-set-key (kbd "C-x C-s") #'save-all-buffers)
-;; -SaveAllBuffers
+;; -END
 
 (provide 'init-dired)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
