@@ -1,6 +1,12 @@
-.emacs.d
+# .emacs.d
 
 all copy from https://github.com/MatthewZMD/.emacs.d
+
+# base operations
+
+## Rectangle Commands
+
+### kill-rectangle
 
 ## issues
 
@@ -322,7 +328,9 @@ https://github.com/bbatsov/crux
 
 10. ace-jump-mode
 
-11. [**<font color="red">avy</font>**](https://github.com/abo-abo/avy)
+11. [restart-emacs](https://github.com/iqbalansari/restart-emacs)
+
+12. [**<font color="red">avy</font>**](https://github.com/abo-abo/avy)
 
     | k    | d               |
     | ---- | --------------- |
@@ -360,13 +368,19 @@ ui + themes(doom-themes)
 
 ### init-dashboard.el
 
-| k     | d                          |
-| ----- | -------------------------- |
-| C-z d | open-dashboard             |
-| n     | dashboard-next-line        |
-| p     | dashboard-previous-line    |
-| N     | dashboard-next-section     |
-| F     | dashboard-previous-section |
+| Shortcut                   | Function         |
+| -------------------------- | ---------------- |
+| Tab Or C-i                 | Next Item        |
+| Shift-Tab                  | Previous Item    |
+| Return / Mouse Click / C-m | Open             |
+| r                          | Recent files     |
+| m                          | Bookmarks        |
+| p                          | Projects         |
+| a                          | Org-Mode Agenda  |
+| e                          | Registers        |
+| g                          | Refresh contents |
+| {                          | Previous section |
+| }                          |                  |
 
 ![](http://qiniu.ii6g.com/1590741049.png?imageMogr2/thumbnail/!100p)
 

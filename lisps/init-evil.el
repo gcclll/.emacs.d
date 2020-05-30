@@ -8,6 +8,7 @@
   :config
   (setq evil-default-state 'normal)
   ;; 不希望使用 evil mode 的内容放在这
+  (evil-set-initial-state 'dashboard-mode 'emacs)
   (evil-set-initial-state 'dired-mode 'emacs)
   (evil-set-initial-state 'deft-mode 'emacs)
   (evil-set-initial-state 'elfeed-search-mode 'emacs)

@@ -40,9 +40,12 @@
     "fo" 'gcl/open-in-external-app
     ;; <g>
     "gg" 'magit-status
+    ;; <i>
+    "ie" 'emojify-insert-emoji
     ;; <o>
     "om" 'lsp-ui-imenu
     ;; <q>
+    "qr" 'restart-emacs
     ;; <r>
     "rt" 'instant-rename-tag
     ;; <s>

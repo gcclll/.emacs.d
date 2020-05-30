@@ -34,6 +34,10 @@
 (global-set-key [s-right] #'windmove-right)
 (global-set-key [s-up] #'windmove-up)
 (global-set-key [s-down] #'windmove-down)
+(global-set-key (kbd "<C-S-up>")     'buf-move-up)
+(global-set-key (kbd "<C-S-down>")   'buf-move-down)
+(global-set-key (kbd "<C-S-left>")   'buf-move-left)
+(global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
 ;; -END
 
@@ -67,6 +71,7 @@
     (global-linum-mode)
   (add-hook 'text-mode-hook #'display-line-numbers-mode)
   (add-hook 'prog-mode-hook #'display-line-numbers-mode))
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -108,7 +113,7 @@
 (setq-default tab-width 2)
 (setq-default c-basic-offset 4)
 (setq-default js-switch-indent-offset 2)
-(setq-default frame-title-format '("M-EMACS - " user-login-name "@" system-name " - %b"))
+(setq-default frame-title-format '("李志诚❤范婷婷 - " user-login-name "@" system-name " - %b"))
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -122,7 +127,6 @@
 (save-place-mode 1)
 (toggle-scroll-bar -1)
 (fset 'yes-or-no-p 'y-or-n-p)
-(toggle-frame-maximized)
 (load custom-file 'noerror)
 (c-set-offset 'comment-intro 0)
 (c-set-offset 'innamespace 0)
