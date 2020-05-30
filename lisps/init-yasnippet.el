@@ -6,12 +6,14 @@
 ;; `yasnippet'
 ;;----------------------------------------------------------------------------
 (use-package yasnippet
+  :after hydra
   :diminish yas-minor-mode
   :init
   (use-package yasnippet-snippets :after yasnippet)
   :hook ((prog-mode LaTeX-mode org-mode) . yas-minor-mode)
   :bind
-  (:map yas-minor-mode-map ("C-c C-n" . yas-expand-from-trigger-key))
+  (:map yas-minor-mode-map (("C-c C-n" . yas-expand-from-trigger-key)
+                            ("<f2>" . hydra-yas/body)))
   (:map yas-keymap
         (("TAB" . smarter-yas-expand-next-field)
          ([(tab)] . smarter-yas-expand-next-field)))

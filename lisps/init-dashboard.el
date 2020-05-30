@@ -9,8 +9,7 @@
   :demand
   :diminish (dashboard-mode page-break-lines-mode)
   :bind
-  (("C-z d" . open-dashboard)
-   :map dashboard-mode-map
+  (:map dashboard-mode-map
    (("n" . dashboard-next-line)
     ("p" . dashboard-previous-line)
     ("N" . dashboard-next-section)

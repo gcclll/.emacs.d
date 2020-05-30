@@ -2,9 +2,31 @@
 
 all copy from https://github.com/MatthewZMD/.emacs.d
 
-# base operations
+# Apps
+
+## mu4e
+
+[Installation](https://www.djcbsoftware.nl/code/mu/mu4e/Installation.html)
+
+[Github](https://github.com/djcb/mu)
+
+[Configuration](https://www.djcbsoftware.nl/code/mu/mu4e/Minimal-configuration.html)
+
+Needs: xapian, gmime
+
+# Configurations
+
+**maximize frame when startup**
+
+`(add-hook 'window-setup-hook 'toggle-frame-maximized t)`
+
+
+
+# Operations
 
 ## Rectangle Commands
+
+http://ergoemacs.org/emacs/emacs_string-rectangle_ascii-art.html
 
 ### kill-rectangle
 
@@ -32,13 +54,15 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 
    
 
-# packages
+# Packages
 
 ## <font color="red">TODOs</font>
 
 1. [restclient](https://github.com/pashky/restclient.el)
 
 # [ranger](https://github.com/ralesi/ranger.el)
+
+
 
 ## keybinds
 
@@ -86,7 +110,7 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 
 | Key Binding | Description                                         |
 | ----------- | --------------------------------------------------- |
-| `;C`        | copy the current/marked file(s) / dir(s)            |
+| `;C`        | copy the current/marked file(s) / dir(s)k           |
 | `R`         | rename/move the current/marked file(s) / dir(s)     |
 | `D`         | delete the current/marked file(s) / dir(s)          |
 | `;d`        | flag current file/dir for deletion, and select next |
@@ -330,7 +354,10 @@ https://github.com/bbatsov/crux
 
 11. [restart-emacs](https://github.com/iqbalansari/restart-emacs)
 
-12. [**<font color="red">avy</font>**](https://github.com/abo-abo/avy)
+12. [dash-at-point](https://github.com/stanaka/dash-at-point.git)
+    Install failed, install dash-at-point by package-install
+
+13. [**<font color="red">avy</font>**](https://github.com/abo-abo/avy)
 
     | k    | d               |
     | ---- | --------------- |
@@ -641,6 +668,15 @@ tetris 俄罗斯方块
 # init-dydra.el
 
 [use-package-hydra](https://gitlab.com/to1ne/use-package-hydra)
+
+[hydra wiki](https://github.com/abo-abo/hydra/wiki)
+
+[hydra examples](https://github.com/abo-abo/hydra/blob/master/hydra-examples.el)
+
+
+
+1. Buffer-menu-mode
+2. [hydra-rectangle](https://github.com/abo-abo/hydra/wiki/Rectangle-Operations)
 
 ## Site-eslip
 

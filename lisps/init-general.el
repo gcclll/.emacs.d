@@ -29,8 +29,10 @@
     "br" 'counsel-buffer-or-recentf
     "bs" 'save-buffer
     "bS" 'save-all-buffers
+    "bm" 'buffer-menu
     ;; <d>
-    ;; "dd" 'dash-at-piont
+    "do" 'open-dashboard
+    "dd" 'dash-at-point
     ;; <f>
     "ff" 'counsel-find-file
     "fp" 'ffip
@@ -40,6 +42,10 @@
     "fo" 'gcl/open-in-external-app
     ;; <g>
     "gg" 'magit-status
+    ;; <h>
+    "hr" 'hydra-rectangle/body
+    "hm" 'hydra-multiple-cursors/body
+    "ho" 'hydra-org-agenda/body
     ;; <i>
     "ie" 'emojify-insert-emoji
     ;; <o>

@@ -18,8 +18,9 @@
   (global-hungry-delete-mode))
 
 (use-package iedit
-  :bind ("C-z ," . iedit-mode)
   :diminish)
+
+(use-package multiple-cursors)
 ;; -END
 
 ;; AwesomePairPac

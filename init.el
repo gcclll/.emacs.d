@@ -6,7 +6,7 @@
 ;; Copyright (C) 2020 ZhiCheng Lee
 ;; Created: Fri May 29 2020 10:52:11 GMT+0800 (China Standard Time)
 ;; Version: 1.0.0
-;; Last-Updated: Sat May 30 17:18:07 2020 (+0800)
+;; Last-Updated: Sat May 30 22:01:41 2020 (+0800)
 ;;           By: ZhiCheng Lee
 ;; URL: https://github.com/gcclll/.emacs.d
 ;; Keywords: M-EMACS .emacs.d init
@@ -68,6 +68,7 @@
 (require 'init-global)
 (require 'init-gcl)
 (require 'init-evil)
+(require 'init-hydra)
 (require 'init-search)
 (require 'init-crux)
 (require 'init-avy)
@@ -105,7 +106,6 @@
 (require 'init-pyim)
 ;; (require 'init-epaint)
 ;; (require 'init-games)
-;; (require 'init-hydra)
 (require 'init-general)
 (require 'init-log)
 
