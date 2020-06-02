@@ -26,6 +26,8 @@
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 (global-set-key (kbd "C-k") 'crux-smart-kill-line)
+(global-set-key (kbd "<M-up>") 'move-text-up)
+(global-set-key (kbd "<M-down>") 'move-text-down)
 
 ;; -END
 

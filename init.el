@@ -6,7 +6,7 @@
 ;; Copyright (C) 2020 ZhiCheng Lee
 ;; Created: Fri May 29 2020 10:52:11 GMT+0800 (China Standard Time)
 ;; Version: 1.0.0
-;; Last-Updated: Sat May 30 22:01:41 2020 (+0800)
+;; Last-Updated: Tue Jun  2 11:34:29 2020 (+0800)
 ;;           By: ZhiCheng Lee
 ;; URL: https://github.com/gcclll/.emacs.d
 ;; Keywords: M-EMACS .emacs.d init
@@ -65,7 +65,6 @@
 (require 'init-defs)
 (require 'init-func)
 (require 'init-package)
-(require 'init-global)
 (require 'init-gcl)
 (require 'init-evil)
 (require 'init-hydra)
@@ -103,11 +102,12 @@
 (require 'init-tramp)
 (require 'init-pdf)
 (require 'init-leetcode)
-(require 'init-pyim)
+;; (require 'init-pyim)
 ;; (require 'init-epaint)
 ;; (require 'init-games)
 (require 'init-general)
 (require 'init-log)
+(require 'init-global)
 
 
 

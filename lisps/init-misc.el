@@ -153,6 +153,8 @@
 (use-package highlight-parentheses
   :config
   (global-highlight-parentheses-mode t))
+(use-package move-text)
+
 ;; -END
 
 (provide 'init-misc)

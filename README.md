@@ -6,19 +6,22 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 
 **C**
 
-| key  | function            |
-| ---- | ------------------- |
-| `+`  | text-scale-increase |
-| `-`  | text-scale-decrease |
+| key  | function             |
+| ---- | -------------------- |
+| `+`  | text-scale-increase  |
+| `-`  | text-scale-decrease  |
+| `k`  | crux-smart-kill-line |
 
 ### **M**
 
-| key   | function             |
-| ----- | -------------------- |
-| `M-u` | uppercase            |
-| `M-l` | lowercase            |
-| `M-c` | capitalize           |
-| `M-k` | crux-smart-kill-line |
+| key      | function       |
+| -------- | -------------- |
+| `M-u`    | uppercase      |
+| `M-l`    | lowercase      |
+| `M-c`    | capitalize     |
+| `M-k`    | sp-kill-sexp   |
+| `M-up`   | move-text-up   |
+| `M-down` | move-text-down |
 
 ### **SPC**
 
@@ -504,40 +507,21 @@ https://github.com/bbatsov/crux
 ### init-misc.el
 
 1. winner
-
 2. [which-key](https://github.com/justbur/emacs-which-key)
-
 3. [popup-kill-ring](https://github.com/waymondo/popup-kill-ring)
-
 4. [undo-tree](https://github.com/tarsiiformes/undo-tree)
-
 5. discover-my-major
-
 6. zone-choose
-
 7. zoom-mode
-
 8. init-shell.el
-
 9. windmove
-
 10. ace-jump-mode
-
 11. [restart-emacs](https://github.com/iqbalansari/restart-emacs)
-
 12. [dash-at-point](https://github.com/stanaka/dash-at-point.git)
     Install failed, install dash-at-point by package-install
-
 13. [**<font color="red">avy</font>**](https://github.com/abo-abo/avy)
-
-    | k    | d               |
-    | ---- | --------------- |
-    | `;1` | avy-goto-word-0 |
-    | `;2` | avy-goto-word-1 |
-    | `;3` | avy-goto-line   |
-    | \`   | avy-next        |
-
-    
+14. [crux](https://github.com/bbatsov/crux)
+15. [move-text](https://github.com/emacsfodder/move-text)
 
 ### init-dired.el
 
