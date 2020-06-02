@@ -4,15 +4,16 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 
 ## My keybindings
 
-**C**
+### **C**(Control)
 
 | key  | function             |
 | ---- | -------------------- |
 | `+`  | text-scale-increase  |
 | `-`  | text-scale-decrease  |
 | `k`  | crux-smart-kill-line |
+| `e`  | evil-end-of-line     |
 
-### **M**
+### **M**(alt, option)
 
 | key      | function       |
 | -------- | -------------- |

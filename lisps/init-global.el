@@ -62,6 +62,7 @@
   (add-hook 'text-mode-hook #'display-line-numbers-mode)
   (add-hook 'prog-mode-hook #'display-line-numbers-mode))
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -141,6 +142,13 @@
 (add-to-list 'auto-mode-alist '("\\.in\\'" . text-mode))
 (add-to-list 'auto-mode-alist '("\\.out\\'" . text-mode))
 (add-to-list 'auto-mode-alist '("\\.args\\'" . text-mode))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `remap'
+;;----------------------------------------------------------------------------
+(with-eval-after-load 'evil-maps
+  (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line))
 ;; -END
 
 (provide 'init-global)
