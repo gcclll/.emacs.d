@@ -23,7 +23,7 @@
     "bi" 'ibuffer
     "bf" 'gcl/open-in-finder
     "bK" 'crux-kill-other-buffers
-    "bo" 'gcl/open-in-external-app
+    "bo" 'crux-open-with
     "bp" 'previous-buffer
     "bn" 'next-buffer
     "br" 'counsel-buffer-or-recentf
@@ -36,10 +36,9 @@
     ;; <f>
     "ff" 'counsel-find-file
     "fp" 'ffip
-    "fr" 'rename-file-and-buffer
-    "fR" 'gcl/rename-this-file-and-buffer
-    "fd" 'gcl/delete-this-file
-    "fo" 'gcl/open-in-external-app
+    "fr" 'crux-recentf-find-file
+    "fR" 'crux-rename-file-and-buffer
+    "fd" 'crux-delete-file-and-buffer
     ;; <g>
     "gg" 'magit-status
     ;; <h>

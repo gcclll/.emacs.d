@@ -150,6 +150,9 @@
 (use-package windmove)
 (use-package buffer-move)
 (use-package restart-emacs)
+(use-package highlight-parentheses
+  :config
+  (global-highlight-parentheses-mode t))
 ;; -END
 
 (provide 'init-misc)

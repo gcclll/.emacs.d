@@ -2,6 +2,177 @@
 
 all copy from https://github.com/MatthewZMD/.emacs.d
 
+## My keybindings
+
+**C**
+
+| key  | function            |
+| ---- | ------------------- |
+| `+`  | text-scale-increase |
+| `-`  | text-scale-decrease |
+
+### **M**
+
+| key   | function             |
+| ----- | -------------------- |
+| `M-u` | uppercase            |
+| `M-l` | lowercase            |
+| `M-c` | capitalize           |
+| `M-k` | crux-smart-kill-line |
+
+### **SPC**
+
+| key   | function    |
+| ----- | ----------- |
+| `SPC` | counsel-M-x |
+
+**a**
+
+| key  | function                 |
+| ---- | ------------------------ |
+| `a~` | shell-here               |
+| `a3` | aweshell-dedicated-open  |
+| `a#` | aweshell-dedicated-close |
+| `a$` | multi-term               |
+| `ar` | ranger                   |
+
+**b**
+
+| key   | function                  |
+| ----- | ------------------------- |
+| `bb`  | counsel-switch-buffer     |
+| `bd`  | kill-this-buffer          |
+| `bi`  | ibuffer                   |
+| `bf`  | gcl/open-in-finder        |
+| `bK`  | crux-kill-other-buffers   |
+| `bo`  | crux-open-with            |
+| ` bp` | previous-buffer           |
+| `bn`  | next-buffer               |
+| `br`  | counsel-buffer-or-recentf |
+| `bs`  | save-buffer               |
+| `bS`  | save-all-buffers          |
+| `bm`  | buffer-menu               |
+
+**d**
+
+| key  | function         |
+| ---- | ---------------- |
+| `do` | `open-dashboard` |
+| `dd` | dash-at-point    |
+
+**f**
+
+| key  | function                    |
+| ---- | --------------------------- |
+| `ff` | counsel-find-file           |
+| `fp` | ffip                        |
+| `fr` | crux-recentf-find-file      |
+| `fR` | crux-rename-file-and-buffer |
+| `fd` | crux-delete-file-and-buffer |
+
+**g**
+
+| key  | function     |
+| ---- | ------------ |
+| `gg` | magit-status |
+
+**h**
+
+| key  | function                    |
+| ---- | --------------------------- |
+| `hr` | hydra-rectangle/body        |
+| `hm` | hydra-multiple-cursors/body |
+| `ho` | hydra-org-agenda/body       |
+
+**i**
+
+| key  | function             |
+| ---- | -------------------- |
+| `ie` | emojify-insert-emoji |
+
+**o**
+
+| key  | function     |
+| ---- | ------------ |
+| `om` | lsp-ui-imenu |
+
+**q**
+
+| key  | function      |
+| ---- | ------------- |
+| `qr` | restart-emacs |
+
+**r**
+
+| key  | function           |
+| ---- | ------------------ |
+| `rt` | instant-rename-tag |
+
+**s**
+
+| key  | function             |
+| ---- | -------------------- |
+| `ss` | swiper               |
+| `sS` | swiper-all           |
+| `sr` | counsel-rg           |
+| `si` | swiper-isearch       |
+| `sg` | counsel-git-grep     |
+| `sp` | rg-project           |
+| `sq` | query-replace        |
+| `sQ` | query-replace-regexp |
+
+**w**
+
+| key  | function                  |
+| ---- | ------------------------- |
+| `wv` | split-window-horizontally |
+| `w-` | split-window-vertically   |
+| `wl` | evil-window-right         |
+| `wL` | crux-transpose-windows    |
+| `wH` | crux-transpose-windows    |
+| `wh` | evil-window-left          |
+| `wk` | evil-window-up            |
+| `wj` | evil-window-down          |
+| `wd` | delete-window             |
+| `wm` | delete-other-windows      |
+
+**y**
+
+| key  | function           |
+| ---- | ------------------ |
+| `yi` | yas-insert-snippet |
+| `yn` | yas-new-snippet    |
+
+### ,(comma)
+
+**g**
+
+| key  | function                                  |
+| ---- | ----------------------------------------- |
+| `go` | dumb-jump-go-other-window                 |
+| `gj` | dumb-jump-go                              |
+| `gb` | dumb-jump-back                            |
+| `gi` | dumb-jump-go-prompt                       |
+| `gx` | dumb-jump-go-prefer-external              |
+| `gz` | dumb-jump-go-prefer-external-other-window |
+| `sb` | gcl-baidu                                 |
+| `sg` | gcl-google                                |
+| `sh` | gcl-github                                |
+| `sy` | gcl-youtebe                               |
+
+### ;(semicolon)
+
+**symbols**
+
+| key  | function        |
+| ---- | --------------- |
+| `1`  | avy-goto-word-0 |
+| `2`  | avy-goto-word-1 |
+| `3`  | avy-goto-line   |
+| `    | avy-next        |
+
+
+
 # Apps
 
 ## mu4e

@@ -17,19 +17,6 @@
 (global-set-key (kbd "C--") #'text-scale-decrease)
 (global-set-key (kbd "M-n") #'forward-paragraph)
 (global-set-key (kbd "M-p") #'backward-paragraph)
-(global-set-key (kbd "C-x C-s") nil)
-(global-set-key (kbd "C-x C-s") #'save-all-buffers)
-(global-set-key (kbd "C-z w") #'resize-window-width)
-(global-set-key (kbd "C-z h") #'resize-window-height)
-(global-set-key (kbd "M-W =") (lambda () (interactive) (resize-window t 5)))
-(global-set-key (kbd "M-W M-+") (lambda () (interactive) (resize-window t 5)))
-(global-set-key (kbd "M-W -") (lambda () (interactive) (resize-window t -5)))
-(global-set-key (kbd "M-W M-_") (lambda () (interactive) (resize-window t -5)))
-(global-set-key (kbd "M-H =") (lambda () (interactive) (resize-window nil 5)))
-(global-set-key (kbd "M-H M-+") (lambda () (interactive) (resize-window nil 5)))
-(global-set-key (kbd "M-H -") (lambda () (interactive) (resize-window nil -5)))
-(global-set-key (kbd "M-H M-_") (lambda () (interactive) (resize-window nil -5)))
-(global-set-key (kbd "C-z e") #'edit-configs)
 (global-set-key [s-left] #'windmove-left)
 (global-set-key [s-right] #'windmove-right)
 (global-set-key [s-up] #'windmove-up)
@@ -38,6 +25,7 @@
 (global-set-key (kbd "<C-S-down>")   'buf-move-down)
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
+(global-set-key (kbd "C-k") 'crux-smart-kill-line)
 
 ;; -END
 

@@ -202,8 +202,8 @@ C-current, M-marked, F-flagged file/dir(s), R-reverse, T-toggle
   ("pl" ranger-paste-as-symlink)
   ("pL" ranger-paste-as-relative-symlink)
   ("`" ranger-goto-mark)
-  ("q" nil :color red)
-  )
+  ("q" nil :color red))
+
 ;; -END
 
 ;;----------------------------------------------------------------------------
