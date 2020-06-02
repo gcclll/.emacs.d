@@ -154,9 +154,6 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 | key  | function                                  |
 | ---- | ----------------------------------------- |
 | `go` | dumb-jump-go-other-window                 |
-| `gj` | dumb-jump-go                              |
-| `gb` | dumb-jump-back                            |
-| `gi` | dumb-jump-go-prompt                       |
 | `gx` | dumb-jump-go-prefer-external              |
 | `gz` | dumb-jump-go-prefer-external-other-window |
 | `sb` | gcl-baidu                                 |
@@ -177,6 +174,8 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 
 ### `(backquote)
 
+used for single key bindings.
+
 | key  | function            |
 | ---- | ------------------- |
 | `    | evil-goto-mark      |
@@ -185,6 +184,26 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 | `j`  | dumb-jump-go-prompt |
 
 
+
+# Languages
+
+## Python
+
+### lint configuration
+
+```
+(add-hook 'after-init-hook #'global-flycheck-mode)
+```
+
+`pip install pylint`
+
+`npm install eslint`
+
+### code format
+
+[black](https://github.com/psf/black)
+
+[configuration reference](https://github.com/wbolster/emacs-python-black/issues/5)
 
 # Apps
 
@@ -429,6 +448,8 @@ Use-package.
 ### init-global.el
 
 global configurations, tiny settings.
+
+`(setq flycheck-flake8rc "~/.emacs.d/rcs/.flake8")`
 
 ### init-func.el
 
@@ -718,6 +739,17 @@ dap-mode
 
 1. rjsx-mode
    [https://medium.com/@jerryhsieh/emacs-30-%E7%94%A8-emacs-%E5%AF%AB-react-a8e904c3b111](https://medium.com/@jerryhsieh/emacs-30-用-emacs-寫-react-a8e904c3b111)
+   
+2. [elpy](https://github.com/jorgenschaefer/elpy), mode for python
+
+   | key       | function                         |
+   | --------- | -------------------------------- |
+   | `C-c C-c` | elpy-shell-send-region-or-buffer |
+   | `C-RET`   |                                  |
+   | `C-c C-z` |                                  |
+   | `C-c C-d` |                                  |
+
+   
 
 | k     | b                  |
 | ----- | ------------------ |

@@ -164,6 +164,31 @@
   (company-mode +1))
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `python'
+;;----------------------------------------------------------------------------
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
+  :config
+  (use-package lsp-python-ms
+    :init (require 'lsp-python-ms))
+  (use-package py-isort)
+  (use-package python-black)
+  ;; (use-package py-yapf)
+  :hook (
+         (python-mode . lsp-deferred)
+         (python-mode . py-isort-enable-on-save)
+         (python-mode . python-black-on-save-mode)
+         )
+  )
+;; -END
+
 (provide 'init-webdev)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-webdev.el ends here

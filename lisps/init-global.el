@@ -151,6 +151,12 @@
   (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line))
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `flycheck-rc'
+;;----------------------------------------------------------------------------
+(setq flycheck-flake8rc "~/.emacs.d/rcs/.flake8")
+;; -END
+
 (provide 'init-global)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-global.el ends here
