@@ -175,6 +175,15 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 | `3`  | avy-goto-line   |
 | `    | avy-next        |
 
+### `(backquote)
+
+| key  | function            |
+| ---- | ------------------- |
+| `    | evil-goto-mark      |
+| `b`  | dumb-jump-back      |
+| `g`  | dumb-jump-go        |
+| `j`  | dumb-jump-go-prompt |
+
 
 
 # Apps

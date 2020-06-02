@@ -87,9 +87,6 @@
 ;;----------------------------------------------------------------------------
 (comaleader
   "go" 'dumb-jump-go-other-window
-  "gj" 'dumb-jump-go
-  "gb" 'dumb-jump-back
-  "gi" 'dumb-jump-go-prompt
   "gx" 'dumb-jump-go-prefer-external
   "gz" 'dumb-jump-go-prefer-external-other-window
   "sb" 'gcl-baidu
@@ -107,6 +104,17 @@
   "2" 'avy-goto-word-1
   "3" 'avy-goto-line
   "`" 'avy-next)
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `backquote Leader'
+;;----------------------------------------------------------------------------
+(bqleader
+  "`" 'evil-goto-mark
+  "b" 'dumb-jump-back
+  "g" 'dumb-jump-go
+  "j" 'dumb-jump-go-prompt
+  )
 ;; -END
 
 (provide 'init-general)

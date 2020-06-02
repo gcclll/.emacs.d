@@ -83,6 +83,9 @@
 (general-create-definer semileader
   :prefix ";"
   :states '(normal visual))
+(general-create-definer bqleader
+  :prefix "`"
+  :states '(normal visual))
 
 (provide 'init-package)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
