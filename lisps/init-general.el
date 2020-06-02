@@ -30,6 +30,8 @@
     "bs" 'save-buffer
     "bS" 'save-all-buffers
     "bm" 'buffer-menu
+    ;; <c>
+    "cp" 'crux-duplicate-current-line-or-region
     ;; <d>
     "do" 'open-dashboard
     "dd" 'dash-at-point
