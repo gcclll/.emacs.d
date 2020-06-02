@@ -205,6 +205,14 @@ used for single key bindings.
 
 [configuration reference](https://github.com/wbolster/emacs-python-black/issues/5)
 
+### Jupyter
+
+[TODO](https://realpython.com/emacs-the-best-python-editor/)
+
+[jupyter](https://realpython.com/jupyter-notebook-introduction/)
+
+` pip3 install jupyter`
+
 # Apps
 
 ## mu4e
