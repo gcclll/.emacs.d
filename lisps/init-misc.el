@@ -129,7 +129,7 @@
         (t                            '(0.5 . 0.5))))
 (defun my/fix-imenu-size ()
   "Fix imenu size."
-  (with-selected-window (get-buffer-window "*Ilist*")
+  (with-selected-window (get-buffer-window "*lsp-ui-imenu*") ;; Ilist
     (setq window-size-fixed t)
     (window-resize (selected-window) (- 30 (window-total-width)) t t)))
 

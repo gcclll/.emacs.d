@@ -1,4 +1,5 @@
 ;;; init-search.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
@@ -52,6 +53,7 @@
 ;; `anzu'
 ;;----------------------------------------------------------------------------
 (use-package anzu
+  :diminish
   :init
   :config
   (global-anzu-mode +1)
