@@ -713,6 +713,8 @@ programmer development.
 
 ### init-lsp.el
 
+**[lsp-ui](https://emacs-lsp.github.io/lsp-ui/)**
+
 | k       | b                      |
 | ------- | ---------------------- |
 | C-c C-f | lsp-format-buffer      |

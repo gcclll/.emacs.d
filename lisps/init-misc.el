@@ -137,7 +137,7 @@
   :config
   (zoom-mode t)
   (setq zoom-size 'size-callback)
-  (setq zoom-ignored-major-modes '(dired-mode markdown-mode))
+  (setq zoom-ignored-major-modes '(dired-mode markdown-mode lsp-ui-imenu-mode imenu-mode))
   (add-hook 'imenu-list-update-hook 'my/fix-imenu-size))
 ;; -END
 

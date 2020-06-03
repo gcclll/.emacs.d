@@ -1,4 +1,5 @@
 ;;; init-flycheck.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
@@ -33,7 +34,9 @@
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
       [16 48 112 240 112 48 16] nil nil 'center))
-  (flycheck-add-mode 'javascript-eslint 'js-mode)
+  (setq flycheck-flake8rc "~/.emacs.d/rcs/.flake8")
+  (setq flycheck-eslint-rules-directories "~/.emacs.d/rcs/")
+  (flycheck-add-mode 'javascript-eslint 'js2-mode)
   (flycheck-add-mode 'typescript-tslint 'rjsx-mode))
 ;; -FlyCheckPac
 

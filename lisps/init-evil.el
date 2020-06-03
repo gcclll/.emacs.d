@@ -17,6 +17,7 @@
   (evil-ex-define-cmd "W" 'evil-write-all)
 
   ;; evil normal state keybinds
+  (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
   (define-key evil-normal-state-map "Y" (kbd "y$")))
 
 ;; gcc comments out a line
