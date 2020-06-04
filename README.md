@@ -837,7 +837,9 @@ related functions:
 
 [ERC is a powerful, modular, and extensible IRC client for Emacs](https://github.com/pymander/erc)
 
+https://freenode.net/
 
+https://blog.csdn.net/houyp520/article/details/9034127
 
 | k       | b                    |
 | ------- | -------------------- |

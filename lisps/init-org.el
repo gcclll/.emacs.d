@@ -63,8 +63,8 @@
         org-refile-use-outline-path 'full-file-path
         org-outline-path-complete-in-steps nil)
 
-  (setq org-show-notification-handler
-      (lambda (msg) (timed-notification nil msg)))
+  ;; (setq org-show-notification-handler
+  ;;     (lambda (msg) (timed-notification nil msg)))
 
   ;; Capture templates
   (setq org-capture-templates
@@ -142,38 +142,38 @@
 
   ;; Normal keybindings
   (:keymaps  'org-mode-map
-   :states   'normal
-   "gt"      'org-mark-ring-goto
-   "tt"      'org-todo
-   "tc"      'org-toggle-checkbox
-   "U"       'undo-tree-redo
-   "<tab>"   'org-cycle
-   "S-<tab>" 'org-global-cycle
-   "M-s"     'org-metadown
-   "M-d"     'org-metaup
-   "M-r"     'org-metaright
-   "M-t"     'org-metaleft
-   "M-S"     'org-shiftmetadown
-   "M-D"     'org-shiftmetaup
-   "M-R"     'org-shiftmetaright
-   "M-T"     'org-shiftmetaleft
-   "C-s"     'org-shiftdown
-   "C-d"     'org-shiftup
-   "C-r"     'org-shiftright
-   "C-t"     'org-shiftleft
-   "©"       'org-babel-next-src-block
-   "ſ"       'org-babel-previous-src-block)
+             :states   'normal
+             "gt"      'org-mark-ring-goto
+             "tt"      'org-todo
+             "tc"      'org-toggle-checkbox
+             "U"       'undo-tree-redo
+             "<tab>"   'org-cycle
+             "S-<tab>" 'org-global-cycle
+             "M-s"     'org-metadown
+             "M-d"     'org-metaup
+             "M-r"     'org-metaright
+             "M-t"     'org-metaleft
+             "M-S"     'org-shiftmetadown
+             "M-D"     'org-shiftmetaup
+             "M-R"     'org-shiftmetaright
+             "M-T"     'org-shiftmetaleft
+             "C-s"     'org-shiftdown
+             "C-d"     'org-shiftup
+             "C-r"     'org-shiftright
+             "C-t"     'org-shiftleft
+             "©"       'org-babel-next-src-block
+             "ſ"       'org-babel-previous-src-block)
 
   ;; Insert keybindings
   (:keymaps 'org-mode-map
-   :states  '(normal insert)
-   "Þ"      'outline-up-heading
-   "Ð"      'outline-backward-same-level
-   "ẞ"      'outline-forward-same-level
-   "þ"      'outshine-kbd-M-<left>
-   "®"      'outshine-kbd-M-<right>
-   "ð"      'org-previous-visible-heading
-   "ß"      'org-next-visible-heading)
+            :states  '(normal insert)
+            "Þ"      'outline-up-heading
+            "Ð"      'outline-backward-same-level
+            "ẞ"      'outline-forward-same-level
+            "þ"      'outshine-kbd-M-<left>
+            "®"      'outshine-kbd-M-<right>
+            "ð"      'org-previous-visible-heading
+            "ß"      'org-next-visible-heading)
 
   ;; Pretty checkboxes
   :hook (org-mode . (lambda ()
@@ -228,18 +228,18 @@
   ;; Agenda keybindings
   :general
   (:keymaps 'org-agenda-mode-map
-   :states  '(normal)
-   "q"      'org-agenda-quit
-   "C-d"    'org-agenda-priority-up
-   "C-s"    'org-agenda-priority-down
-   "i"      'org-agenda-diary-entry
-   "T"      'org-agenda-todo
-   "ß"      'org-agenda-next-item
-   "ð"      'org-agenda-previous-item
-   "RET"    'org-agenda-goto
-   "®"      'org-agenda-goto
-   "_"      'org-agenda-cycle-show
-   "C"      'org-agenda-columns))
+            :states  '(normal)
+            "q"      'org-agenda-quit
+            "C-d"    'org-agenda-priority-up
+            "C-s"    'org-agenda-priority-down
+            "i"      'org-agenda-diary-entry
+            "T"      'org-agenda-todo
+            "ß"      'org-agenda-next-item
+            "ð"      'org-agenda-previous-item
+            "RET"    'org-agenda-goto
+            "®"      'org-agenda-goto
+            "_"      'org-agenda-cycle-show
+            "C"      'org-agenda-columns))
 ;; -END
 
 

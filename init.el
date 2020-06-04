@@ -6,7 +6,7 @@
 ;; Copyright (C) 2020 ZhiCheng Lee
 ;; Created: Fri May 29 2020 10:52:11 GMT+0800 (China Standard Time)
 ;; Version: 1.0.0
-;; Last-Updated: Thu Jun  4 16:42:36 2020 (+0800)
+;; Last-Updated: Thu Jun  4 17:29:57 2020 (+0800)
 ;;           By: ZhiCheng Lee
 ;; URL: https://github.com/gcclll/.emacs.d
 ;; Keywords: M-EMACS .emacs.d init
@@ -95,7 +95,6 @@
 (require 'init-webdev)
 ;; Miscellaneous
 (require 'init-org)
-(require 'init-eaf)
 ;; (require 'init-erc)
 ;; (require 'init-eww)
 ;; (require 'init-mu4e)
