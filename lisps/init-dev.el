@@ -65,6 +65,23 @@
 (use-package docker)
 (use-package dockerfile-mode :defer t)
 (use-package groovy-mode :defer t)
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `shell-script'
+;;----------------------------------------------------------------------------
+(use-package sh-script
+  :ensure nil
+  :hook (after-save . executable-make-buffer-file-executable-if-script-p))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `sql'
+;;----------------------------------------------------------------------------
+(use-package sql-indent
+  :after (:any sql sql-interactive-mode)
+  :delight sql-mode "Σ ")
+;; -END
 
 (provide 'init-dev)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

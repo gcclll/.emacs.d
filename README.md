@@ -5,17 +5,25 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 ## TODOs
 
 1. **TODO** restclient configurations
+2. https://github.com/rememberYou/.emacs.d/blob/master/config.org
+3. https://github.com/qutebrowser/qutebrowser/blob/master/doc/install.asciidoc
 
 ## My keybindings
 
 ### **C**(Control)
 
-| key  | function             |
-| ---- | -------------------- |
-| `+`  | text-scale-increase  |
-| `-`  | text-scale-decrease  |
-| `k`  | crux-smart-kill-line |
-| `e`  | evil-end-of-line     |
+| key     | function                    |
+| ------- | --------------------------- |
+| `+`     | text-scale-increase         |
+| `-`     | text-scale-decrease         |
+| `k`     | crux-smart-kill-line        |
+| `e`     | evil-end-of-line            |
+| `c h r` | hydra-rectangle/body        |
+| `c h b` | hydra-buffer-menu/body      |
+| `c h c` | hydra-multiple-cursors/body |
+| `c h g` | hydra-ranger/body           |
+| `c h o` | hydra-org-agenda/body       |
+| `c h q` | hydra-query/body            |
 
 ### **M**(alt, option)
 
@@ -191,6 +199,45 @@ used for single key bindings.
 
 # Languages
 
+## Dart
+
+```lisp
+(use-package dart-mode
+  :defer 0.72
+  :custom
+  (dart-format-on-save t)
+  (dart-sdk-path "/opt/dart-sdk/bin/")
+  :config
+  (add-to-list 'projectile-project-root-files-bottom-up "pubspec.yaml")
+  (add-to-list 'projectile-project-root-files-bottom-up "BUILD"))
+
+(use-package flutter
+  :after dart-mode
+  :bind (:map dart-mode-map
+              ("C-c C-c" . flutter-run-or-hot-reload))
+  :custom (flutter-sdk-path "/opt/flutter/bin/"))
+
+(use-package flutter-l10n-flycheck
+  :after flutter
+  :config (flutter-l10n-flycheck-setup))
+
+```
+
+
+
+
+
+## Vue
+
+https://azzamsa.com/blog/vue-emacs/
+
+http://quanweili.com/2018/03/01/emacs-lsp-vue.html
+
+[Error: Cannot find module 'vscode-css-languageservice/lib/umd/data/browsers'](https://github.com/neoclide/coc-vetur/issues/28)
+
+1. lsp-mode
+2. install: `npm install -g vue-language-server`
+
 ## Python
 
 ### lint configuration
@@ -218,6 +265,12 @@ used for single key bindings.
 ` pip3 install jupyter`
 
 # Apps
+
+## trizen
+
+https://github.com/trizen/trizen
+
+## browser([qutebrowser](https://github.com/qutebrowser/qutebrowser/blob/master/doc/install.asciidoc))
 
 ## mu4e
 
@@ -271,6 +324,15 @@ http://ergoemacs.org/emacs/emacs_string-rectangle_ascii-art.html
      (setq exec-path-from-shell-check-startup-files nil) 
      (setq exec-path-from-shell-arguments '("-l"))
      (exec-path-from-shell-initialize))
+   ```
+
+2. dbus
+
+   ```shell
+   $ brew edit emacs
+   # make the changes you want
+   $ brew install -s emacs
+   # source: https://ftp.gnu.org/gnu/emacs/emacs-26.1.tar.gz
    ```
 
    
@@ -571,6 +633,7 @@ https://github.com/bbatsov/crux
 13. [**<font color="red">avy</font>**](https://github.com/abo-abo/avy)
 14. [crux](https://github.com/bbatsov/crux)
 15. [move-text](https://github.com/emacsfodder/move-text)
+16. [electric-operator](https://github.com/rememberYou/.emacs.d/blob/master/config.org),  is an emacs minor-mode to automatically add spacing around operators
 
 ### init-dired.el
 
@@ -778,6 +841,21 @@ dap-mode
 
    [install by composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 
+5. js2-refactor
+
+   ```lisp
+   (use-package js2-refactor
+     :bind (:map js2-mode-map
+                 ("C-k" . js2r-kill)
+                 ("M-." . nil))
+     :hook ((js2-mode . js2-refactor-mode)
+            (js2-mode . (lambda ()
+                          (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
+     :config (js2r-add-keybindings-with-prefix "C-c C-r"))
+   ```
+
+   
+
 ### init-org.el
 
 | k       | b                          |
@@ -840,6 +918,10 @@ related functions:
 https://freenode.net/
 
 https://blog.csdn.net/houyp520/article/details/9034127
+
+`/msg NickServ VERIFY REGISTER zhicheng lerdusxgfryg`
+
+https://github.com/rememberYou/.emacs.d/blob/master/config.org
 
 | k       | b                    |
 | ------- | -------------------- |

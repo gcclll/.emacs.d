@@ -3,6 +3,25 @@
 ;;; Code:
 
 ;;----------------------------------------------------------------------------
+;; `vue-mode'
+;;----------------------------------------------------------------------------
+;; https://github.com/azzamsa/emacs.d/blob/5a0b22ff575957cf18bd11ab42f7ae28904838be/modules/aza-web.el
+(use-package vue-mode
+  :delight "V "
+  :mode "\\.vue\\'"
+  :hook (vue-mode . prettier-js-mode)
+  :custom
+  (mmm-submode-decoration-level 0)
+  :config
+  (add-hook 'vue-mode-hook #'lsp)
+  (setq prettier-js-args '("--parser vue"))
+  (add-hook 'vue-mode-hook
+            (lambda ()
+              (emmet-mode +1)
+              (subword-mode +1))))
+;; -END
+
+;;----------------------------------------------------------------------------
 ;; `web-mode'
 ;;----------------------------------------------------------------------------
 (use-package web-mode
@@ -14,6 +33,7 @@
    "\\.erb\\'" "\\.mustache\\'" "\\.djhtml\\'" "\\.[t]?html?\\'")
   :config
   (setq web-mode-code-indent-offset 2
+        web-mode-block-padding 2
         web-mode-css-indent-offset 2
         web-mode-markup-indent-offset 2
         web-mode-attr-indent-offset 2
@@ -42,6 +62,17 @@
     :config
     (add-hook 'typescript-mode-hook 'add-node-modules-path)
     (add-hook 'js2-mode-hook 'add-node-modules-path)))
+
+(use-package js2-refactor
+  :bind (:map js2-mode-map
+              ("C-k" . js2r-kill)
+              ("M-." . nil))
+  :hook ((js2-mode . js2-refactor-mode)
+         (js2-mode . (lambda ()
+                       (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t))))
+  :config (js2r-add-keybindings-with-prefix "C-c C-r"))
+
+(use-package xref-js2 :defer 5)
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -55,9 +86,32 @@
 ;; -END
 
 ;;----------------------------------------------------------------------------
+;; `tide'
+;;----------------------------------------------------------------------------
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+(defun setup-tide-mode ()
+  "Set up Tide mode."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save-mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
+;; -END
+
+;;----------------------------------------------------------------------------
 ;; `css/scss/less/stylus'
 ;;----------------------------------------------------------------------------
 (use-package rainbow-mode)
+(use-package less-css-mode
+  :mode "\\.less\\'")
+
 (use-package scss-mode
   :ensure t
   :mode "\\.scss\\'"
@@ -74,6 +128,7 @@
 ;; `emmet'
 ;;----------------------------------------------------------------------------
 (use-package emmet-mode
+  :diminish
   :ensure t
   :commands emmet-mode
   :config
@@ -142,26 +197,6 @@
 
 (use-package react-snippets
   :ensure t)
-;; -END
-
-;;----------------------------------------------------------------------------
-;; `tide'
-;;----------------------------------------------------------------------------
-(use-package tide
-  :ensure t
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
-(defun setup-tide-mode ()
-  "Set up Tide mode."
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save-mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
 ;; -END
 
 ;;----------------------------------------------------------------------------

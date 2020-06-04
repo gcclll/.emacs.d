@@ -20,7 +20,7 @@
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
   :hook ((java-mode python-mode go-mode
           js-mode js2-mode typescript-mode web-mode
-          c-mode c++-mode objc-mode rjsx-mode php-mode) . lsp))
+          c-mode c++-mode objc-mode rjsx-mode php-mode vue-mode) . lsp))
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -67,6 +67,12 @@
          ("<M-f11>" . dap-step-in)
          ("C-M-<f11>" . dap-step-out)
          ("<f7>" . dap-breakpoint-toggle))))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `lsp-vue'
+;;----------------------------------------------------------------------------
+;; (use-package lsp-vue :ensure)
 ;; -END
 
 (provide 'init-lsp)

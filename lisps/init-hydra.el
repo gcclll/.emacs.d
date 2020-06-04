@@ -13,6 +13,12 @@
     ("-" text-scale-decrease)
     ("/" (text-scale-adjust 0) "Reset"))
 
+  :bind (("C-c h r" . hydra-rectangle/body)
+         ("C-c h b" . hydra-buffer-menu/body)
+         ("C-c h c" . hydra-multiple-cursors/body)
+         ("C-c h g" . hydra-ranger/body)
+         ("C-c h q" . hydra-query/body)
+         ("C-c h o" . hydra-org-agenda/body))
   :general
   (:states 'normal
    "C-+" 'hydra-zoom/text-scale-increase
@@ -20,6 +26,29 @@
    "C-/" '(lambda () (interactive) (text-scale-adjust 0)))
   (:states '(normal emacs)
    "é" 'hydra-launcher/body))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `major-mode-hydra'
+;;----------------------------------------------------------------------------
+(use-package major-mode-hydra
+  :after hydra
+  :preface
+  (defun with-alltheicon (icon str &optional height v-adjust)
+    "Displays an icon from all-the-icon."
+    (s-concat (all-the-icons-alltheicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str))
+
+  (defun with-faicon (icon str &optional height v-adjust)
+    "Displays an icon from Font Awesome icon."
+    (s-concat (all-the-icons-faicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str))
+
+  (defun with-fileicon (icon str &optional height v-adjust)
+    "Displays an icon from the Atom File Icons package."
+    (s-concat (all-the-icons-fileicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str))
+
+  (defun with-octicon (icon str &optional height v-adjust)
+    "Displays an icon from the GitHub Octicons."
+    (s-concat (all-the-icons-octicon icon :v-adjust (or v-adjust 0) :height (or height 1)) " " str)))
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -53,7 +82,6 @@ _~_: modified
   ("v" Buffer-menu-select "select" :color blue)
   ("o" Buffer-menu-other-window "other-window" :color blue)
   ("q" quit-window "quit" :color blue))
-  (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -288,6 +316,22 @@ _vr_ reset      ^^                       ^^                 ^^
   ("gd" org-agenda-goto-date)
   ("." org-agenda-goto-today)
   ("gr" org-agenda-redo))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `hydra-query'
+;;----------------------------------------------------------------------------
+(defhydra hydra-query
+    (:hint nil :color teal :quit-key "q" :title (with-faicon "search" "Engine-Mode" 1 -0.05))
+    ("Query"
+     (("a" engine/search-amazon "amazon")
+      ("d" engine/search-duckduckgo "duckduckgo")
+      ("g" engine/search-github "github")
+      ("i" engine/search-google-images "google images")
+      ("m" engine/search-google-maps "google maps")
+      ("s" engine/search-stack-overflow "stack overflow")
+      ("w" engine/search-wikipedia "wikipedia")
+      ("y" engine/search-youtube "youtube"))))
 ;; -END
 
 (provide 'init-hydra)

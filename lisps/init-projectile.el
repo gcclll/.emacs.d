@@ -1,4 +1,5 @@
 ;;; init-projectile.el --- -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (eval-when-compile
@@ -17,6 +18,7 @@
 ;; `projectile'
 ;;----------------------------------------------------------------------------
 (use-package projectile
+  :diminish
   :bind
   ("C-c p" . projectile-command-map)
   ("C-z p" . projectile-add-known-project)

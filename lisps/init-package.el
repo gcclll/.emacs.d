@@ -57,8 +57,11 @@
   (auto-package-update-maybe))
 ;; -AutoPackageUpdate
 
+(use-package use-package-ensure-system-package
+  :ensure t)
+
 (use-package diminish)
-(use-package all-the-icons)
+(use-package all-the-icons :defer 0.5)
 
 (use-package exec-path-from-shell
   :ensure t
@@ -73,6 +76,7 @@
  :commands general-override-states
  :config
  (general-evil-setup t))
+
 
 (general-create-definer spcleader
   :prefix "SPC"

@@ -47,7 +47,9 @@ If failed try to complete the common part with `company-complete-common'"
 
 (use-package company-lsp
   :defer t
-  :custom (company-lsp-cache-candidates 'auto))
+  :custom (company-lsp-cache-candidates 'auto)
+  :config
+  (setq company-lsp-enable-snippet t))
 ;; -END
 
 ;;----------------------------------------------------------------------------
