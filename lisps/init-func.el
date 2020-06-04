@@ -206,6 +206,25 @@ The original function deletes trailing whitespace of the current line."
           )))
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `terminal-notifier' fix: Emacs not compiled with dbus support
+;;----------------------------------------------------------------------------
+(defvar terminal-notifier-command (executable-find "terminal-notifier") "The path to terminal-notifier.")
+(defun terminal-notifier-notify (title message)
+  "Show a MESSAGE with terminal-notifier-command, title: TITLE."
+  (start-process "terminal-notifier"
+                 "terminal-notifier"
+                 terminal-notifier-command
+                 "-title" title
+                 "-message" message
+                 "-activate" "org.gnu.Emacs"))
+
+(defun timed-notification (time msg)
+  "Time notification, args: TIME, MSG."
+  (interactive "sNotification when (e.g: 2 minutes, 60 seconds, 3 days): \nsMessage: ")
+  (run-at-time time nil (lambda (msg) (terminal-notifier-notify "Emacs" msg)) msg))
+;; -END
+
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-func.el ends here

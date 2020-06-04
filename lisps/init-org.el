@@ -61,8 +61,10 @@
         org-refile-targets '((nil :maxlevel . 9)
                              (org-agenda-files :maxlevel . 9))
         org-refile-use-outline-path 'full-file-path
-        org-outline-path-complete-in-steps nil
-        )
+        org-outline-path-complete-in-steps nil)
+
+  (setq org-show-notification-handler
+      (lambda (msg) (timed-notification nil msg)))
 
   ;; Capture templates
   (setq org-capture-templates
