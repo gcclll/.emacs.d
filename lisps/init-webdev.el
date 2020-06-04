@@ -82,7 +82,7 @@
   (add-hook 'css-mode-hook #'emmet-mode)
   (add-hook 'sgml-mode-hook #'emmet-mode)
   (add-hook 'emmet-mode-hook (lambda()
-                              (setq emmet-indent-after-insert t))))
+                               (setq emmet-indent-after-insert t))))
 
 ;; rjsx-mode use className
 (use-package mode-local
@@ -195,7 +195,7 @@
 (use-package restclient
   :mode (("\\.http\\'" . restclient-mode))
   :bind (:map restclient-mode-map
-	      ("C-c C-f" . json-mode-beautify)))
+              ("C-c C-f" . json-mode-beautify)))
 ;; -END
 
 ;;----------------------------------------------------------------------------
