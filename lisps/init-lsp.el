@@ -20,7 +20,7 @@
   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
   :hook ((java-mode python-mode go-mode
           js-mode js2-mode typescript-mode web-mode
-          c-mode c++-mode objc-mode rjsx-mode) . lsp))
+          c-mode c++-mode objc-mode rjsx-mode php-mode) . lsp))
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -50,7 +50,8 @@
   ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
-    (setq mode-line-format nil)))
+    (setq mode-line-format nil))
+  )
 ;; -END
 
 ;;----------------------------------------------------------------------------

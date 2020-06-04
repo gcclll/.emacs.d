@@ -16,6 +16,8 @@
   (browse-url-browser-function 'eaf-open-browser) ;; Make EAF Browser my default browser
   :config
   (defalias 'browse-web #'eaf-open-browser)
+  (setq eaf-proxy-type "socks5")
+  (setq eaf-grip-token "43697da598407cbfec5eaa32bf4b2a4790652df6")
   (eaf-setq eaf-browser-default-zoom "1.25")
   (eaf-setq eaf-browser-dark-mode "false")
   ;; I already bind "RET", "<mouse-2>", "^" to `dired-find-alternate-file' in `init-dired.el'.

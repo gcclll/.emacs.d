@@ -2,6 +2,10 @@
 
 all copy from https://github.com/MatthewZMD/.emacs.d
 
+## TODOs
+
+1. **TODO** restclient configurations
+
 ## My keybindings
 
 ### **C**(Control)
@@ -759,11 +763,14 @@ dap-mode
    | `C-c C-z` |                                  |
    | `C-c C-d` |                                  |
 
-   
+3. [resetclient.el](https://github.com/pashky/restclient.el)
+   [Usage](https://erick.navarro.io/blog/testing-an-api-with-emacs-and-restclient/)
 
-| k     | b                  |
-| ----- | ------------------ |
-| C-z < | instant-rename-tag |
+4. php-mode
+
+   [php-language-server](https://github.com/felixfbecker/php-language-server)
+
+   [install by composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
 
 ### init-org.el
 
@@ -778,6 +785,29 @@ dap-mode
 ### init-eaf.el
 
 [Emacs Application Framework (EAF)](https://github.com/manateelazycat/emacs-application-framework.git)
+
+related functions:
+
+| Application Name    | Launch                                                       |
+| ------------------- | ------------------------------------------------------------ |
+| Browser             | `M-x eaf-open-browser` Search or Goto URL                    |
+|                     | `M-x eaf-open-browser-with-history` Search or Goto URL or Goto History |
+| HTML Email Renderer | `M-x eaf-open-mail-as-html` in `gnus`, `mu4e`, `notmuch` HTMl Mail |
+| PDF Viewer          | `M-x eaf-open` PDF File                                      |
+| Video Player        | `M-x eaf-open` Video File                                    |
+| Image Viewer        | `M-x eaf-open` Image File                                    |
+| Markdown Previewer  | `M-x eaf-open` Markdown File                                 |
+| Org Previewer       | `M-x eaf-open` Org File                                      |
+| Camera              | `M-x eaf-open-camera`                                        |
+| Terminal            | `M-x eaf-open-terminal`                                      |
+| File Sender         | `M-x eaf-file-sender-qrcode` or `eaf-file-sender-qrcode-in-dired` |
+| File Browser        | `M-x eaf-file-browser-qrcode`                                |
+| Airshare            | `M-x eaf-open-airshare`                                      |
+| RSS Reader          | `M-x eaf-open-rss-reader`                                    |
+| Mindmap             | `M-x eaf-create-mindmap` or `M-x eaf-open-mindmap`           |
+| Doc Viewer          | `M-x eaf-open-office`                                        |
+| Mermaid             | `M-x eaf-open` Mermaid file (*.mmd)                          |
+| Demo                | `M-x eaf-open-demo` to verify basic functionality            |
 
 可以直接打开其他软件。
 
