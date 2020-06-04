@@ -229,6 +229,12 @@ used for single key bindings.
 
 Needs: xapian, gmime
 
+`mu init -m ~/Maildir --my-address gccll.love@gmail.com`
+
+### install 
+
+1. [mbsync](https://rakhim.org/2020/01/fastmail-setup-with-emacs-mu4e-and-mbsync-on-macos/)
+
 # Configurations
 
 **maximize frame when startup**
