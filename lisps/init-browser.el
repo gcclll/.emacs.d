@@ -73,14 +73,16 @@
     :keybinding "w"
     :docstring "Searchin' the wikis.")
 
-  (defengine books-lisp-zh
-    "file:///Users/simon/github/documents/books/lisp-zh.pdf"
-    :keybinding "1l"
-    :docstring "Search books local.")
+  (defengine books
+    "file:///Users/simon/github/documents/books/"
+    :keybinding "B"
+    :docstring "Display books dir.")
+
   (engine-mode t))
 ;; -END
 
 
 (provide 'init-browser)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;; init-browser.el ends here
