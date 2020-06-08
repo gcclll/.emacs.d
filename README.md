@@ -235,6 +235,8 @@ http://quanweili.com/2018/03/01/emacs-lsp-vue.html
 
 [Error: Cannot find module 'vscode-css-languageservice/lib/umd/data/browsers'](https://github.com/neoclide/coc-vetur/issues/28)
 
+
+
 1. lsp-mode
 2. install: `npm install -g vue-language-server`
 
@@ -279,6 +281,18 @@ https://mozilla.github.io/pdf.js/getting_started/#download
 download pdfjs into `/Users/simon/Library/Application Support/qutebrowser` 
 
 then rename `pdfjs-2.4.456-dist` to `pdfjs`.
+
+### configuration
+
+>http://claude-ray.com/2020/01/01/from-vimium-to-qutebrowser/
+>
+>qutebrowser 的配置管理十分方便，支持通过修改文件自定配置。
+>
+>不仅可以用 yml 文件做基础定义，还能使用 python 满足更多的定制需要。因而更推崇直接使用 config.py 做配置管理，Linux 平台在 `~/.config/qutebrowser/config.py`，Mac `~/.qutebrowser/config.py`， Windows 是 `%APPDATA%/qutebrowser/config/config.py`。
+>
+>如果一开始配置文件不存在，可执行 `:config-write-py` 初始化。另有可选参数 `--force`，强制用当前配置覆写磁盘文件。
+
+
 
 ## mu4e
 

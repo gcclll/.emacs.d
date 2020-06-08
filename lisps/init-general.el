@@ -37,6 +37,7 @@
     "dd" 'dash-at-point
     ;; <f>
     "ff" 'counsel-find-file
+    "fe" 'crux-find-user-init-file
     "fp" 'ffip
     "fr" 'crux-recentf-find-file
     "fR" 'crux-rename-file-and-buffer

@@ -75,7 +75,7 @@
 
   (defengine books
     "file:///Users/simon/github/documents/books/"
-    :keybinding "B"
+    :keybinding "z"
     :docstring "Display books dir.")
 
   (engine-mode t))

@@ -6,11 +6,14 @@
 ;; Comment / Uncomment to use desired sites
 (setq package-user-dir (expand-file-name "elpa" user-emacs-directory)
       package-archives
-      '(("gnu"   . "https://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")
+      '(
+        ;; ("gnu"   . "http://elpa.emacs-china.org/gnu/")
+        ;; ("melpa" . "http://elpa.emacs-china.org/melpa/")
+        ;; ("gnu"   . "https://elpa.gnu.org/packages/")
+        ;; ("melpa" . "https://melpa.org/packages/")
+        ("melpa-cn" . "http://mirrors.cloud.tencent.com/elpa/melpa/")
+        ("gnu-cn"   . "http://mirrors.cloud.tencent.com/elpa/gnu/")
         ("cselpa" . "https://elpa.thecybershadow.net/packages/")
-        ;; ("melpa-cn" . "http://mirrors.cloud.tencent.com/elpa/melpa/")
-        ;; ("gnu-cn"   . "http://mirrors.cloud.tencent.com/elpa/gnu/")
         ))
 ;; -MelpaPackages
 
@@ -18,9 +21,6 @@
 (unless (bound-and-true-p package--initialized)
   (setq package-enable-at-startup nil)          ; To prevent initializing twice
   (package-initialize))
-
-  (when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
 
 ;; set use-package-verbose to t for interpreted .emacs,
 ;; and to nil for byte-compiled .emacs.elc.
