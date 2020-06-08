@@ -89,10 +89,20 @@
   "go" 'dumb-jump-go-other-window
   "gx" 'dumb-jump-go-prefer-external
   "gz" 'dumb-jump-go-prefer-external-other-window
-  "sb" 'gcl-baidu
-  "sg" 'gcl-google
-  "sh" 'gcl-github
-  "sy" 'gcl-youtebe
+  "ss" 'engine/search-amazon
+  "sb" 'engine/search-baidu
+  "sd" 'engine/search-duckduckgo
+  "sg" 'engine/search-github
+  "sG" 'engine/search-google
+  "si" 'engine/search-google-images
+  "sm" 'engine/search-google-maps
+  "sM" 'engine/search-melpa
+  "sr" 'engine/search-rfcs
+  "ss" 'engine/search-stack-overflow
+  "st" 'engine/search-twitter
+  "sy" 'engine/search-youtube
+  "sw" 'engine/search-wikipedia
+  "s1l" 'engine/search-books-lisp-zh
   )
 ;; -END
 

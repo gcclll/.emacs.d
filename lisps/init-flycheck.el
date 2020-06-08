@@ -16,6 +16,9 @@
          diff-mode shell-mode eshell-mode term-mode))
   (flycheck-emacs-lisp-load-path 'inherit)
   (flycheck-indication-mode 'right-fringe)
+  (flycheck-flake8rc "~/.emacs.d/rcs/.flake8")
+  (flycheck-stylelintrc "~/.emacs.d/rcs/.stylelintrc.json")
+  (flycheck-eslint-rules-directories "~/.emacs.d/rcs/")
   :init
   (use-package flycheck-grammarly :defer t)
   (if *sys/gui*
@@ -34,9 +37,9 @@
   (when (fboundp 'define-fringe-bitmap)
     (define-fringe-bitmap 'flycheck-fringe-bitmap-double-arrow
       [16 48 112 240 112 48 16] nil nil 'center))
-  (setq flycheck-flake8rc "~/.emacs.d/rcs/.flake8")
-  (setq flycheck-eslint-rules-directories "~/.emacs.d/rcs/")
   (flycheck-add-mode 'javascript-eslint 'js2-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
   (flycheck-add-mode 'typescript-tslint 'rjsx-mode))
 ;; -FlyCheckPac
 

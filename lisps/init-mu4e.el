@@ -6,121 +6,79 @@
 ;;----------------------------------------------------------------------------
 ;; `mu4e'
 ;;----------------------------------------------------------------------------
+(defvar xdg-config (getenv "XDG_CONFIG_HOME"))
 (use-package mu4e
   :ensure nil
-  :commands (mu4e)
-  :init
-  (use-package mu4e-alert
-    :defer t
-    :config
-    (when (executable-find "notify-send")
-      (mu4e-alert-set-default-style 'libnotify))
-    :hook
-    ((after-init . mu4e-alert-enable-notifications)
-     (after-init . mu4e-alert-enable-mode-line-display)))
-  (use-package mu4e-overview :defer t)
-  :bind ("M-z m" . mu4e)
+  :ensure-system-package mu
   :custom
-  (mu4e-maildir (expand-file-name "~/Maildir"))
-  (mu4e-get-mail-command "mbsync -c ~/.emacs.d/mu4e/.mbsyncrc -a")
-  (mu4e-view-prefer-html t)
-  (mu4e-update-interval 180)
-  (mu4e-headers-auto-update t)
-  (mu4e-compose-format-flowed t)
-  (mu4e-view-show-images t)
-  (mu4e-change-filenames-when-moving t) ; work better for mbsync
   (mu4e-attachment-dir "~/Downloads")
-  (message-kill-buffer-on-exit t)
-  (mu4e-compose-dont-reply-to-self t)
-  (mu4e-view-show-addresses t)
+  (mu4e-change-filenames-when-moving t)
   (mu4e-confirm-quit nil)
+  (mu4e-completing-read-function 'ivy-completing-read)
+  (mu4e-compose-dont-reply-to-self t)
+  (mu4e-compose-signature-auto-include nil)
+  (mu4e-drafts-folder "/Drafts")
+  (mu4e-get-mail-command (format "mbsync -c '%s/isync/mbsyncrc' -a" xdg-config))
+  (mu4e-html2text-command "iconv -c -t utf-8 | pandoc -f html -t plain")
+  (mu4e-maildir "~/Maildir/gmail")
+  (mu4e-maildir-shortcuts
+   '(("/INBOX" . ?i)
+     ("/All Mail" . ?a)
+     ("/Drafts" . ?D)
+     ("/Sent" . ?s)
+     ("/Starred" . ?S)
+     ("/Trash" . ?T)))
+  (mu4e-org-contacts-file "~/github/documents/personal/contacts.org")
+  (mu4e-refile-folder "/Archive")
+  (mu4e-sent-folder "/Sent")
+  (mu4e-sent-messages-behavior 'delete)
+  (mu4e-trash-folder "/Trash")
+  (mu4e-update-interval 60)
   (mu4e-use-fancy-chars t)
-  :hook
-  ((mu4e-view-mode . visual-line-mode)
-   (mu4e-compose-mode . (lambda ()
-                          (visual-line-mode)
-                          (use-hard-newlines -1)
-                          (flyspell-mode)))
-   (mu4e-view-mode . (lambda() ;; try to emulate some of the eww key-bindings
-                       (local-set-key (kbd "<tab>") 'shr-next-link)
-                       (local-set-key (kbd "<backtab>") 'shr-previous-link)))
-   (mu4e-headers-mode . (lambda ()
-                          (interactive)
-                          (setq mu4e-headers-fields
-                                `((:human-date . 25) ;; alternatively, use :date
-                                  (:flags . 6)
-                                  (:from . 22)
-                                  (:thread-subject . ,(- (window-body-width) 70)) ;; alternatively, use :subject
-                                  (:size . 7))))))
+  (mu4e-view-show-addresses t)
+  (mu4e-view-show-images t)
   :config
-  (defalias 'mu4e-add-attachment 'mail-add-attachment
-    "I prefer the add-attachment function to begin wih mu4e so I can find it easily.")
-  (setq mail-user-agent (mu4e-user-agent))
-  (add-to-list 'mu4e-view-actions
-               '("ViewInBrowser" . mu4e-action-view-in-browser) t)
-  (setq mu4e-contexts
-        (list
-         (make-mu4e-context
-          :name "gmail"
-          :enter-func (lambda () (mu4e-message "Entering context gmail"))
-          :leave-func (lambda () (mu4e-message "Leaving context gmail"))
-          :match-func
-          (lambda (msg)
-            (when msg
-              (string-match "gmail" (mu4e-message-field msg :maildir))))
-          :vars '((mu4e-sent-folder . "/gmail/[email].Sent Mail")
-                  (mu4e-drafts-folder . "/gmail/[email].Drafts")
-                  (mu4e-trash-folder . "/gmail/[email].Trash")
-                  (mu4e-sent-messages-behavior . sent)
-                  (mu4e-compose-signature . user-full-name)
-                  (user-mail-address . user-mail-address) ; Prerequisite: Set this to your email
-                  (mu4e-compose-format-flowed . t)
-                  (smtpmail-queue-dir . "~/Maildir/gmail/queue/cur")
-                  (message-send-mail-function . smtpmail-send-it)
-                  (smtpmail-smtp-user . "matthewzmd") ; Set to your username
-                  (smtpmail-starttls-credentials . (("smtp.gmail.com" 587 nil nil)))
-                  (smtpmail-auth-credentials . (expand-file-name "~/.authinfo.gpg"))
-                  (smtpmail-default-smtp-server . "smtp.gmail.com")
-                  (smtpmail-smtp-server . "smtp.gmail.com")
-                  (smtpmail-smtp-service . 587)
-                  (smtpmail-debug-info . t)
-                  (smtpmail-debug-verbose . t)
-                  (mu4e-maildir-shortcuts . ( ("/gmail/INBOX"            . ?i)
-                                              ("/gmail/[email].Sent Mail" . ?s)
-                                              ("/gmail/[email].Trash"       . ?t)
-                                              ("/gmail/[email].All Mail"  . ?a)
-                                              ("/gmail/[email].Starred"   . ?r)
-                                              ("/gmail/[email].Drafts"    . ?d)))))))
-  (defun mu4e-action-find-in-mailing-list (msg)
-    "Find message in mailing-list archives"
-    (interactive)
-    (let* ((mlist (mu4e-message-field msg :mailing-list))
-           (msg-id (mu4e-message-field msg :message-id))
-           (url
-            (pcase mlist
-              ;; gnu.org
-              ((pred (lambda (x) (string-suffix-p "gnu.org" x)))
-               (concat
-                "https://lists.gnu.org/archive/cgi-bin/namazu.cgi?query="
-                (concat
-                 (url-hexify-string
-                  (concat
-                   "+message-id:<"
-                   msg-id
-                   ">"))
-                 "&submit=" (url-hexify-string "Search!")
-                 "&idxname="
-                 (replace-regexp-in-string "\.gnu\.org" "" mlist))))
-              ;; google.groups
-              ((pred (lambda (x) (string-suffix-p "googlegroups.com" x)))
-               (concat
-                "https://groups.google.com/forum/#!topicsearchin/"
-                (replace-regexp-in-string "\.googlegroups\.com" "" mlist)
-                "/messageid$3A"
-                (url-hexify-string (concat "\"" msg-id "\"")))))))
-      (browse-url url)))
-  (add-to-list 'mu4e-view-actions '("find in mailing-list" . mu4e-action-find-in-mailing-list))
-  (add-to-list 'mu4e-headers-actions '("find in mailing-list" . mu4e-action-find-in-mailing-list)))
+  (add-to-list 'mu4e-headers-actions '("org-contact-add" . mu4e-action-add-org-contact) t)
+  (add-to-list 'mu4e-view-actions '("org-contact-add" . mu4e-action-add-org-contact) t))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `org-mu4e'
+;;----------------------------------------------------------------------------
+(use-package org-mu4e
+  :ensure nil
+  :custom
+  (org-mu4e-convert-to-html t))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `mu4e-alert'
+;;----------------------------------------------------------------------------
+(use-package mu4e-alert
+  :after mu4e
+  :hook ((after-init . mu4e-alert-enable-mode-line-display)
+         (after-init . mu4e-alert-enable-notifications))
+  :config (mu4e-alert-set-default-style 'libnotify))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `message'
+;;----------------------------------------------------------------------------
+(use-package message
+  :ensure nil
+  :custom (send-mail-function 'smtpmail-send-it))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `smtpmail'
+;;----------------------------------------------------------------------------
+(use-package smtpmail
+  :ensure nil
+  :custom
+  (smtpmail-smtp-server "smtp.gmail.com")
+  (smtpmail-smtp-service 587)
+  (smtpmail-smtp-user "gccll.love")
+  (smtpmail-stream-type 'starttls))
 ;; -END
 
 (provide 'init-mu4e)

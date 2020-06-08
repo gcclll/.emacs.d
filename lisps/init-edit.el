@@ -14,7 +14,7 @@
  :hook (after-init . smart-region-on))
 
 (use-package hungry-delete
-  :init
+  :config
   (global-hungry-delete-mode))
 
 (use-package iedit

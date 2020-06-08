@@ -272,6 +272,14 @@ https://github.com/trizen/trizen
 
 ## browser([qutebrowser](https://github.com/qutebrowser/qutebrowser/blob/master/doc/install.asciidoc))
 
+[pdf.js](https://github.com/mozilla/pdf.js/)
+
+https://mozilla.github.io/pdf.js/getting_started/#download
+
+download pdfjs into `/Users/simon/Library/Application Support/qutebrowser` 
+
+then rename `pdfjs-2.4.456-dist` to `pdfjs`.
+
 ## mu4e
 
 [Installation](https://www.djcbsoftware.nl/code/mu/mu4e/Installation.html)
