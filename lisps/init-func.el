@@ -225,6 +225,7 @@ The original function deletes trailing whitespace of the current line."
   (run-at-time time nil (lambda (msg) (terminal-notifier-notify "Emacs" msg)) msg))
 ;; -END
 
+
 (provide 'init-func)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-func.el ends here

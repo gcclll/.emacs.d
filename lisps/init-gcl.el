@@ -159,12 +159,19 @@ Version 2019-11-04"
 ;; -END
 
 
-;; use engine-mode in init-browser.el
-;; (gcl/install-search-engine "google" "http://www.google.com/search?q=" "Google: ")
-;; (gcl/install-search-engine "youtube" "http://www.youtube.com/results?search_query=" "Search YouTuBe: ")
-;; (gcl/install-search-engine "github" "https://github.com/search?q=" "Search GitHub: ")
-;; (gcl/install-search-engine "duckduckgo" "https://duckduckgo.com?t=lm&q=" "Search DuckDuckGo: ")
-;; (gcl/install-search-engine "baidu" "https://www.baidu.com/s?wd=" "Search BaiDu: ")
+;;----------------------------------------------------------------------------
+;; `run-python'
+;;----------------------------------------------------------------------------
+(defun gcl/bakup ()
+  "Execute the `~/.gclrc/run.py`."
+  (interactive)
+    (let* ((command (or (and (boundp 'executable-command) executable-command)
+                        (concat "python3 " "~/.gclrc/run.py")))
+           (compilation-ask-about-save nil))
+      (executable-interpret (read-shell-command "Run: " command))))
+;; -END
+
+
 
 (provide 'init-gcl)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

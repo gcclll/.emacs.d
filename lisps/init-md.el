@@ -8,7 +8,7 @@
 (use-package markdown-mode
   :delight "μ "
   :mode ("\\.markdown\\'" "\\.md\\'")
-  :custom (markdown-command "/usr/bin/pandoc"))
+  :custom (markdown-command "/usr/local/bin/pandoc"))
 ;; -END
 
 ;;----------------------------------------------------------------------------
