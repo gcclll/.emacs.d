@@ -8,6 +8,14 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 2. https://github.com/rememberYou/.emacs.d/blob/master/config.org
 3. https://github.com/qutebrowser/qutebrowser/blob/master/doc/install.asciidoc
 
+# My Functions
+
+| function    | description                                       |
+| ----------- | ------------------------------------------------- |
+| `gcl/bakup` | execute `~/.gclrc/run.py` to bakup files on MacOS |
+
+
+
 ## My keybindings
 
 ### **C**(Control)
