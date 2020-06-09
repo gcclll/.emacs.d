@@ -14,7 +14,9 @@
    ("M-<f5>" . quickrun-shell)))
 
 (use-package format-all
-  :bind ("C-c C-f" . format-all-buffer))
+  :bind ("C-c C-f" . format-all-buffer)
+  :config
+  (format-all-mode t))
 
 (use-package evil-nerd-commenter
   :bind

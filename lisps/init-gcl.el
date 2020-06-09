@@ -157,16 +157,43 @@ Version 2019-11-04"
          (lambda ($fpath) (let ((process-connection-type nil))
                             (start-process "" nil "xdg-open" $fpath))) $file-list))))))
 ;; -END
+;;----------------------------------------------------------------------------
+;; `gcl/run-command'
+;;----------------------------------------------------------------------------
+(defun gcl/exec-command (cmd)
+  "Execute the command: `CMD` with description ARGS."
+  (interactive)
+  (let* ((command (or (and (boundp 'executable-command) executable-command) cmd))
+           (compilation-ask-about-save nil))
+      (executable-interpret (read-shell-command "Run: " command))))
+;; -END
 
 
 ;;----------------------------------------------------------------------------
 ;; `run-python'
 ;;----------------------------------------------------------------------------
-(defun gcl/bakup ()
-  "Execute the `~/.gclrc/run.py`."
+(defun gcl/bakup2 ()
+  "Execute the command."
   (interactive)
-    (let* ((command (or (and (boundp 'executable-command) executable-command)
-                        (concat "python3 " "~/.gclrc/run.py")))
+  (gcl/exec-command "pythone3 ~/.gclrc/run.py"))
+
+(defun gcl/bakup ()
+  "Execute the command."
+  (interactive)
+  (let* ((command (or (and (boundp 'executable-command) executable-command) "python3 ~/.gclrc/run.py"))
+           (compilation-ask-about-save nil))
+      (executable-interpret (read-shell-command "Run: " command))))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `run-shell'
+;;----------------------------------------------------------------------------
+(defun gcl/git-push ()
+  "Execute the command."
+  (interactive)
+  (let* ((command (or (and (boundp 'executable-command)
+                           executable-command)
+                      (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name))))
            (compilation-ask-about-save nil))
       (executable-interpret (read-shell-command "Run: " command))))
 ;; -END
