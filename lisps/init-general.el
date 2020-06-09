@@ -44,6 +44,8 @@
     "fd" 'crux-delete-file-and-buffer
     ;; <g>
     "gg" 'magit-status
+    "gb" 'gcl/bakup
+    "gp" 'gcl/git-push
     ;; <h>
     "hr" 'hydra-rectangle/body
     "hm" 'hydra-multiple-cursors/body
@@ -90,20 +92,20 @@
   "go" 'dumb-jump-go-other-window
   "gx" 'dumb-jump-go-prefer-external
   "gz" 'dumb-jump-go-prefer-external-other-window
-  "ss" 'engine/search-amazon
   "sb" 'engine/search-baidu
   "sd" 'engine/search-duckduckgo
   "sg" 'engine/search-github
-  "sG" 'engine/search-google
   "si" 'engine/search-google-images
   "sm" 'engine/search-google-maps
-  "sM" 'engine/search-melpa
   "sr" 'engine/search-rfcs
-  "ss" 'engine/search-stack-overflow
+  "ss" 'engine/search-amazon
   "st" 'engine/search-twitter
   "sy" 'engine/search-youtube
   "sw" 'engine/search-wikipedia
-  "s1l" 'engine/search-books-lisp-zh
+  "sB" 'engine/search-books
+  "sG" 'engine/search-google
+  "sM" 'engine/search-melpa
+  "sS" 'engine/search-stack-overflow
   )
 ;; -END
 
@@ -114,7 +116,9 @@
   "1" 'avy-goto-word-0
   "2" 'avy-goto-word-1
   "3" 'avy-goto-line
-  "`" 'avy-next)
+  "`" 'avy-next
+  )
+
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -126,6 +130,11 @@
   "g" 'dumb-jump-go
   "j" 'dumb-jump-go-prompt
   )
+
+(bqleader
+  :keymaps 'dashboard-mode-map
+  "n" 'dashboard-next-section
+  "p" 'dashboard-previous-section)
 ;; -END
 
 (provide 'init-general)
