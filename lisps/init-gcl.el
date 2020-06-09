@@ -172,17 +172,10 @@ Version 2019-11-04"
 ;;----------------------------------------------------------------------------
 ;; `run-python'
 ;;----------------------------------------------------------------------------
-(defun gcl/bakup2 ()
-  "Execute the command."
-  (interactive)
-  (gcl/exec-command "pythone3 ~/.gclrc/run.py"))
-
 (defun gcl/bakup ()
   "Execute the command."
   (interactive)
-  (let* ((command (or (and (boundp 'executable-command) executable-command) "python3 ~/.gclrc/run.py"))
-           (compilation-ask-about-save nil))
-      (executable-interpret (read-shell-command "Run: " command))))
+  (gcl/exec-command "pythone3 ~/.gclrc/run.py"))
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -191,11 +184,7 @@ Version 2019-11-04"
 (defun gcl/git-push ()
   "Execute the command."
   (interactive)
-  (let* ((command (or (and (boundp 'executable-command)
-                           executable-command)
-                      (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name))))
-           (compilation-ask-about-save nil))
-      (executable-interpret (read-shell-command "Run: " command))))
+  (gcl/exec-command (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name))))
 ;; -END
 
 
