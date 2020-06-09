@@ -77,6 +77,14 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 | `bS`  | save-all-buffers          |
 | `bm`  | buffer-menu               |
 
+**c**
+
+| key  | function                              |
+| ---- | ------------------------------------- |
+| `cp` | crux-duplicate-current-line-or-region |
+
+
+
 **d**
 
 | key  | function         |
@@ -99,6 +107,8 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 | key  | function     |
 | ---- | ------------ |
 | `gg` | magit-status |
+| `gb` | gcl/bakup    |
+| `gp` | gcl/git-push |
 
 **h**
 
@@ -176,10 +186,20 @@ all copy from https://github.com/MatthewZMD/.emacs.d
 | `go` | dumb-jump-go-other-window                 |
 | `gx` | dumb-jump-go-prefer-external              |
 | `gz` | dumb-jump-go-prefer-external-other-window |
-| `sb` | gcl-baidu                                 |
-| `sg` | gcl-google                                |
-| `sh` | gcl-github                                |
-| `sy` | gcl-youtebe                               |
+| `sb` | engine/search-baidu                       |
+| `sd` | engine/search-duckduckgo                  |
+| `sg` | engine/search-github                      |
+| `si` | engine/search-google-images               |
+| `sm` | engine/search-google-maps                 |
+| `sr` | engine/search-rfcs                        |
+| `ss` | engine/search-amazon                      |
+| `st` | engine/search-twitter                     |
+| `sy` | engine/search-youtube                     |
+| `sw` | engine/search-wikipedia                   |
+| `sB` | engine/search-books                       |
+| `sG` | engine/search-google                      |
+| `sM` | engine/search-melpa                       |
+| `sS` | engine/search-stack-overflow              |
 
 ### ;(semicolon)
 
