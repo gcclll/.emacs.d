@@ -7,6 +7,7 @@
 ;;----------------------------------------------------------------------------
 ;; https://github.com/azzamsa/emacs.d/blob/5a0b22ff575957cf18bd11ab42f7ae28904838be/modules/aza-web.el
 (use-package vue-mode
+  :disabled
   :delight "V "
   :mode "\\.vue\\'"
   :hook (vue-mode . prettier-js-mode)
@@ -15,13 +16,15 @@
   :config
   (add-hook 'vue-mode-hook #'lsp)
   (setq prettier-js-args '("--parser vue"))
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
   (add-hook 'vue-mode-hook
             (lambda ()
               (emmet-mode +1)
-              (subword-mode +1))))
+              (subword-mode +1)
+              (rainbow-mode +1))))
 ;; -END
 
-;;----------------------------------------------------------------------------
+;; ----------------------------------------------------------------------------
 ;; `web-mode'
 ;;----------------------------------------------------------------------------
 (use-package web-mode
@@ -75,9 +78,9 @@
 (use-package xref-js2 :defer 5)
 ;; -END
 
-;;----------------------------------------------------------------------------
-;; `typescript-mode'
-;;----------------------------------------------------------------------------
+;; ;;----------------------------------------------------------------------------
+;; ;; `typescript-mode'
+;; ;;----------------------------------------------------------------------------
 (use-package typescript-mode
   :mode "\\.ts\\'"
   :commands (typescript-mode)
@@ -85,9 +88,9 @@
   (setq-default typescript-indent-level 2))
 ;; -END
 
-;;----------------------------------------------------------------------------
-;; `tide'
-;;----------------------------------------------------------------------------
+;; ;;----------------------------------------------------------------------------
+;; ;; `tide'
+;; ;;----------------------------------------------------------------------------
 (use-package tide
   :ensure t
   :after (typescript-mode company flycheck)
@@ -105,12 +108,15 @@
   (company-mode +1))
 ;; -END
 
-;;----------------------------------------------------------------------------
-;; `css/scss/less/stylus'
-;;----------------------------------------------------------------------------
+;; ;;----------------------------------------------------------------------------
+;; ;; `css/scss/less/stylus'
+;; ;;----------------------------------------------------------------------------
 (use-package rainbow-mode)
 (use-package less-css-mode
-  :mode "\\.less\\'")
+  :mode "\\.less\\'"
+  ;; :hook ((before-save . format-all-buffer))
+  :config
+  (setq css-indent-offset 2))
 
 (use-package scss-mode
   :ensure t
@@ -124,9 +130,9 @@
   :mode "\\.scss\\'")
 ;; -END
 
-;;----------------------------------------------------------------------------
-;; `emmet'
-;;----------------------------------------------------------------------------
+;; ;;----------------------------------------------------------------------------
+;; ;; `emmet'
+;; ;;----------------------------------------------------------------------------
 (use-package emmet-mode
   :diminish
   :ensure t
@@ -167,7 +173,7 @@
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'web-mode-hook 'prettier-js-mode)
   (add-hook 'typescript-mode-hook 'prettier-js-mode)
-  ;; (add-hook 'vue-mode-hook 'prettier-js-mode)
+  (add-hook 'vue-mode-hook 'prettier-js-mode)
   :config
   (setq prettier-target-mode "js2-mode")
   (setq prettier-js-args '(
@@ -231,6 +237,16 @@
   :mode (("\\.http\\'" . restclient-mode))
   :bind (:map restclient-mode-map
               ("C-c C-f" . json-mode-beautify)))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `skewer-mode'
+;;----------------------------------------------------------------------------
+(use-package skewer-mode
+  :disabled
+  :ensure t
+  :init
+  (skewer-setup))
 ;; -END
 
 ;;----------------------------------------------------------------------------

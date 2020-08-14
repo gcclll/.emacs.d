@@ -16,7 +16,10 @@
   (use-package aio :defer t)
   :custom
   (url-debug t)
-  (leetcode-prefer-language "python3"))
+  (leetcode-prefer-language "python3")
+  :config
+  (setq leetcode-save-solutions t)
+  (setq leetcode-directory "~/leetcode"))
 ;; -END
 
 (provide 'init-leetcode)

@@ -18,7 +18,11 @@
 
   ;; evil normal state keybinds
   (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
-  (define-key evil-normal-state-map "Y" (kbd "y$")))
+  (define-key evil-normal-state-map "Y" (kbd "y$"))
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (setq evil-shift-width 2)))
+  )
 
 ;; gcc comments out a line
 ;; gc comments out the target of motion

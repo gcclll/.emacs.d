@@ -9,79 +9,80 @@
 ;; `SPC Leader'
 ;;----------------------------------------------------------------------------
 (spcleader
-    "SPC" 'counsel-M-x
-    ;; <a>
-    "a~" 'shell-here
-    "a3" 'aweshell-dedicated-open
-    "a#" 'aweshell-dedicated-close
-    "a$" 'multi-term
-    "ar" 'ranger
-    ;; <c>
-    ;; <b>
-    "bb" 'counsel-switch-buffer
-    "bd" 'kill-this-buffer
-    "bi" 'ibuffer
-    "bf" 'gcl/open-in-finder
-    "bK" 'crux-kill-other-buffers
-    "bo" 'crux-open-with
-    "bp" 'previous-buffer
-    "bn" 'next-buffer
-    "br" 'counsel-buffer-or-recentf
-    "bs" 'save-buffer
-    "bS" 'save-all-buffers
-    "bm" 'buffer-menu
-    ;; <c>
-    "cp" 'crux-duplicate-current-line-or-region
-    ;; <d>
-    "do" 'open-dashboard
-    "dd" 'dash-at-point
-    ;; <f>
-    "ff" 'counsel-find-file
-    "fe" 'crux-find-user-init-file
-    "fp" 'ffip
-    "fr" 'crux-recentf-find-file
-    "fR" 'crux-rename-file-and-buffer
-    "fd" 'crux-delete-file-and-buffer
-    ;; <g>
-    "gg" 'magit-status
-    "gb" 'gcl/bakup
-    "gp" 'gcl/git-push
-    ;; <h>
-    "hr" 'hydra-rectangle/body
-    "hm" 'hydra-multiple-cursors/body
-    "ho" 'hydra-org-agenda/body
-    ;; <i>
-    "ie" 'emojify-insert-emoji
-    ;; <o>
-    "om" 'lsp-ui-imenu
-    ;; <q>
-    "qr" 'restart-emacs
-    ;; <r>
-    "rt" 'instant-rename-tag
-    ;; <s>
-    "ss" 'swiper
-    "sS" 'swiper-all
-    "sr" 'counsel-rg
-    "si" 'swiper-isearch
-    "sg" 'counsel-git-grep
-    "sp" 'rg-project
-    "sq" 'query-replace
-    "sQ" 'query-replace-regexp
-    ;; <w>
-    "wv" 'split-window-horizontally
-    "w-" 'split-window-vertically
-    "wl" 'evil-window-right
-    "wL" 'crux-transpose-windows
-    "wH" 'crux-transpose-windows
-    "wh" 'evil-window-left
-    "wk" 'evil-window-up
-    "wj" 'evil-window-down
-    "wd" 'delete-window
-    "wm" 'delete-other-windows
-    ;; <y>
-    "yi" 'yas-insert-snippet
-    "yn" 'yas-new-snippet
-    )
+  "SPC" 'counsel-M-x
+  ;; <a>
+  "a~" 'shell-here
+  "a3" 'aweshell-dedicated-open
+  "a#" 'aweshell-dedicated-close
+  "a$" 'multi-term
+  "ar" 'ranger
+  ;; <c>
+  ;; <b>
+  "bb" 'counsel-switch-buffer
+  "bd" 'kill-this-buffer
+  "bi" 'ibuffer
+  "bf" 'gcl/open-in-finder
+  "bK" 'crux-kill-other-buffers
+  "bo" 'crux-open-with
+  "bp" 'previous-buffer
+  "bn" 'next-buffer
+  "br" 'counsel-buffer-or-recentf
+  "bs" 'save-buffer
+  "bS" 'save-all-buffers
+  "bm" 'buffer-menu
+  ;; <c>
+  "cp" 'crux-duplicate-current-line-or-region
+  ;; <d>
+  "do" 'open-dashboard
+  "dd" 'dash-at-point
+  ;; <f>
+  "ff" 'counsel-find-file
+  "fe" 'crux-find-user-init-file
+  "fp" 'ffip
+  "fr" 'crux-recentf-find-file
+  "fR" 'crux-rename-file-and-buffer
+  "fd" 'crux-delete-file-and-buffer
+  ;; <g>
+  "gg" 'magit-status
+  "gb" 'gcl/bakup
+  "gp" 'gcl/git-push
+  ;; <h>
+  "hr" 'hydra-rectangle/body
+  "hm" 'hydra-multiple-cursors/body
+  "ho" 'hydra-org-agenda/body
+  ;; <i>
+  "ie" 'emojify-insert-emoji
+  "im" 'imenu
+  ;; <o>
+  "om" 'lsp-ui-imenu
+  ;; <q>
+  "qr" 'restart-emacs
+  ;; <r>
+  "rt" 'instant-rename-tag
+  ;; <s>
+  "ss" 'swiper
+  "sS" 'swiper-all
+  "sr" 'counsel-rg
+  "si" 'swiper-isearch
+  "sg" 'counsel-git-grep
+  "sp" 'rg-project
+  "sq" 'query-replace
+  "sQ" 'query-replace-regexp
+  ;; <w>
+  "wv" 'split-window-horizontally
+  "w-" 'split-window-vertically
+  "wl" 'evil-window-right
+  "wL" 'crux-transpose-windows
+  "wH" 'crux-transpose-windows
+  "wh" 'evil-window-left
+  "wk" 'evil-window-up
+  "wj" 'evil-window-down
+  "wd" 'delete-window
+  "wm" 'delete-other-windows
+  ;; <y>
+  "yi" 'yas-insert-snippet
+  "yn" 'yas-new-snippet
+  )
 ;; -END
 
 
@@ -106,6 +107,17 @@
   "sG" 'engine/search-google
   "sM" 'engine/search-melpa
   "sS" 'engine/search-stack-overflow
+  ;; restclient
+  "rc" 'restclient-http-send-current
+  "rr" 'restclient-http-send-current-raw
+  "rv" 'restclient-http-send-current-stay-in-window
+  "rn" 'restclient-jump-next
+  "rp" 'restclient-jump-previous
+  "r." 'restclient-mark-current
+  "rC" 'restclient-copy-curl-command
+  "rN" 'restclient-narrow-to-current
+  "ra" 'restclient-toggle-body-visibility
+  "ri" 'restclient-show-info
   )
 ;; -END
 
@@ -129,6 +141,7 @@
   "b" 'dumb-jump-back
   "g" 'dumb-jump-go
   "j" 'dumb-jump-go-prompt
+  "TAB" 'indent-rigidly
   )
 
 (bqleader

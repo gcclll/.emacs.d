@@ -16,10 +16,6 @@
          diff-mode shell-mode eshell-mode term-mode))
   (flycheck-emacs-lisp-load-path 'inherit)
   (flycheck-indication-mode 'right-fringe)
-  (flycheck-flake8rc "~/.emacs.d/rcs/.flake8")
-  (flycheck-stylelintrc "~/.emacs.d/rcs/.stylelintrc.json")
-  (flycheck-eslintrc "~/.emacs.d/rcs/.eslintrc.json")
-  (flycheck-eslint-rules-directories "~/.emacs.d/rcs/")
   :init
   (use-package flycheck-grammarly :defer t)
   (if *sys/gui*

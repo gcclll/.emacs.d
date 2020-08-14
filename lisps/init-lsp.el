@@ -9,6 +9,7 @@
 ;; `lsp-mode'
 ;;----------------------------------------------------------------------------
 (use-package lsp-mode
+  :disabled t
   :defer t
   :commands lsp
   :custom
@@ -28,6 +29,7 @@
 ;; `lsp-ui'
 ;;----------------------------------------------------------------------------
 (use-package lsp-ui
+  :disabled t
   :after lsp-mode
   :diminish
   :commands lsp-ui-mode

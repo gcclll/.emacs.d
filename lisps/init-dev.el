@@ -29,11 +29,13 @@
 
 (use-package eglot
   :commands (eglot eglot-ensure)
-  :hook ((c-mode . eglot-ensure)
-         (c++-mode . eglot-ensure)
-         (typescript-mode . eglot-ensure)
-         (js2-mode . eglot-ensure)
-         (python-mode . eglot-ensure)))
+  ;; :hook (
+  ;; (c-mode . eglot-ensure)
+  ;; (c++-mode . eglot-ensure)
+  ;; (typescript-mode . eglot-ensure)
+  ;; (js2-mode . eglot-ensure)
+  ;; (python-mode . eglot-ensure))
+  )
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -83,6 +85,21 @@
 (use-package sql-indent
   :after (:any sql sql-interactive-mode)
   :delight sql-mode "Σ ")
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `js-doc'
+;;----------------------------------------------------------------------------
+(use-package js-doc
+  :config
+  (setq js-doc-mail-address user-mail-address
+        js-doc-author (format "%s <%s>" user-full-name js-doc-mail-address)
+        js-doc-url user-blog-url
+        js-doc-license "<MIT>")
+  (add-hook 'js2-mode-hook
+            #'(lambda ()
+                (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
+                (define-key js2-mode-map "@" 'js-doc-insert-tag))))
 ;; -END
 
 (provide 'init-dev)

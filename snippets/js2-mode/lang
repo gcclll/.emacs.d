@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: lang
+# key: lang
+# --
+import lang from '@commons/langs/t'

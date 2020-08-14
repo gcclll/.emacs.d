@@ -70,6 +70,7 @@
 ;;----------------------------------------------------------------------------
 
 (setq user-full-name "ZhiCheng Lee")
+(setq user-blog-url "https://blog.ii6g.com")
 (setq user-mail-address "gccll.love@gmail.com")
 (setq x-alt-keysym 'meta)
 (setq ring-bell-function 'ignore)
