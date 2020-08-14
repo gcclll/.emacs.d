@@ -6,6 +6,7 @@
 ;; `recentf'
 ;;----------------------------------------------------------------------------
 (use-package recentf
+  :diminish
   :ensure nil
   :hook (after-init . recentf-mode)
   :custom
@@ -29,6 +30,7 @@
 ;; `winner'
 ;;----------------------------------------------------------------------------
 (use-package winner
+  :diminish
   :ensure nil
   :custom
   (winner-boring-buffers
@@ -62,6 +64,7 @@
 ;; `undo-tree'
 ;;----------------------------------------------------------------------------
 (use-package undo-tree
+  :diminish
   :defer t
   :diminish undo-tree-mode
   :init (global-undo-tree-mode)
@@ -74,6 +77,7 @@
 ;; `two'
 ;;----------------------------------------------------------------------------
 (use-package sudo-edit
+  :diminish
   :commands (sudo-edit))
 
 (use-package discover-my-major
@@ -83,6 +87,7 @@
   :bind ("M-y" . popup-kill-ring))
 
 (use-package rainbow-mode
+  :diminish
   :demand
   :config
   (rainbow-mode))
@@ -92,6 +97,7 @@
 ;; `zone'
 ;;----------------------------------------------------------------------------
 (use-package zone
+  :diminish
   :ensure nil
   :defer 5
   :config
@@ -112,6 +118,7 @@
 ;; `smart-tab'
 ;;----------------------------------------------------------------------------
 (use-package smart-tab
+  :diminish
   :config
   (progn
     (defun @-enable-smart-tab ()
@@ -154,6 +161,7 @@
 ;; `electric-operator'
 ;;----------------------------------------------------------------------------
 (use-package electric-operator
+  :diminish
   :delight
   :hook (python-mode . electric-operator-mode))
 ;; -END
@@ -162,6 +170,7 @@
 ;; `simple'
 ;;----------------------------------------------------------------------------
 (use-package simple
+  :diminish
   :ensure nil
   :delight (auto-fill-function)
   :bind ("C-x p" . pop-to-mark-command)
