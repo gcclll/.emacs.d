@@ -5,88 +5,107 @@
 ;;----------------------------------------------------------------------------
 ;; `SPC Leader'
 ;;----------------------------------------------------------------------------
-;; (spcleader
-;;   "SPC" 'counsel-M-x
-;;   ;; <a>
-;;   "a~" 'shell-here
-;;   "a3" 'aweshell-dedicated-open
-;;   "a#" 'aweshell-dedicated-close
-;;   "a$" 'multi-term
-;;   "ar" 'ranger
-;;   ;; <c>
-;;   ;; <b>
-;;   "bb" 'counsel-switch-buffer
-;;   "bd" 'kill-this-buffer
-;;   "bi" 'ibuffer
-;;   "bf" 'gcl/open-in-finder
-;;   "bK" 'crux-kill-other-buffers
-;;   "bo" 'crux-open-with
-;;   "bp" 'previous-buffer
-;;   "bn" 'next-buffer
-;;   "br" 'counsel-buffer-or-recentf
-;;   "bs" 'save-buffer
-;;   "bS" 'save-all-buffers
-;;   "bm" 'buffer-menu
-;;   ;; <c>
-;;   "cp" 'crux-duplicate-current-line-or-region
-;;   ;; <d>
-;;   "do" 'open-dashboard
-;;   "dd" 'dash-at-point
-;;   ;; <f>
-;;   "ff" 'counsel-find-file
-;;   "fe" 'crux-find-user-init-file
-;;   "fp" 'ffip
-;;   "fr" 'crux-recentf-find-file
-;;   "fR" 'crux-rename-file-and-buffer
-;;   "fd" 'crux-delete-file-and-buffer
-;;   ;; <g>
-;;   "gg" 'magit-status
-;;   "gb" 'gcl/bakup
-;;   "gp" 'gcl/git-push
-;;   ;; <h>
-;;   "hr" 'hydra-rectangle/body
-;;   "hm" 'hydra-multiple-cursors/body
-;;   "ho" 'hydra-org-agenda/body
-;;   ;; <i>
-;;   "ie" 'emojify-insert-emoji
-;;   "im" 'imenu
-;;   ;; <o>
-;;   "om" 'lsp-ui-imenu
-;;   ;; <q>
-;;   "qr" 'restart-emacs
-;;   ;; <r>
-;;   "rt" 'instant-rename-tag
-;;   ;; <s>
-;;   "ss" 'swiper
-;;   "sS" 'swiper-all
-;;   "sr" 'counsel-rg
-;;   "si" 'swiper-isearch
-;;   "sg" 'counsel-git-grep
-;;   "sp" 'rg-project
-;;   "sq" 'query-replace
-;;   "sQ" 'query-replace-regexp
-;;   ;; <w>
-;;   "wv" 'split-window-horizontally
-;;   "w-" 'split-window-vertically
-;;   "wl" 'evil-window-right
-;;   "wL" 'crux-transpose-windows
-;;   "wH" 'crux-transpose-windows
-;;   "wh" 'evil-window-left
-;;   "wk" 'evil-window-up
-;;   "wj" 'evil-window-down
-;;   "wd" 'delete-window
-;;   "wm" 'delete-other-windows
-;;   ;; <y>
-;;   "yi" 'yas-insert-snippet
-;;   "yn" 'yas-new-snippet
-;;   )
-;; ;; -END
+(spcleader
+  "SPC" 'counsel-M-x
+  ;;   ;; <a>
+  ;;   "a~" 'shell-here
+  ;;   "a3" 'aweshell-dedicated-open
+  ;;   "a#" 'aweshell-dedicated-close
+  ;;   "a$" 'multi-term
+  ;;   "ar" 'ranger
+  ;;   ;; <c>
+  ;;   ;; <b>
+  "bb" 'counsel-switch-buffer
+  "bd" 'kill-this-buffer
+  "bi" 'ibuffer
+  ;;   "bf" 'gcl/open-in-finder
+  ;;   "bK" 'crux-kill-other-buffers
+  ;;   "bo" 'crux-open-with
+  "bp" 'previous-buffer
+  "bn" 'next-buffer
+  "br" 'counsel-buffer-or-recentf
+  "bm" 'buffer-menu
+  ;; <c>
+  "cw" 'counsel-colors-web
+  ;;   "cp" 'crux-duplicate-current-line-or-region
+  ;;   ;; <d>
+  ;;   "do" 'open-dashboard
+  ;;   "dd" 'dash-at-point
+  ;;   ;; <f>
+  "ff" 'counsel-find-file
+  ;;   "fe" 'crux-find-user-init-file
+  ;;   "fp" 'ffip
+  ;;   "fr" 'crux-recentf-find-file
+  ;;   "fR" 'crux-rename-file-and-buffer
+  ;;   "fd" 'crux-delete-file-and-buffer
+;; <g>
+
+  ;;   "gg" 'magit-status
+  ;;   "gb" 'gcl/bakup
+  ;;   "gp" 'gcl/git-push
+  ;;   ;; <i>
+  ;;   "ie" 'emojify-insert-emoji
+  ;;   "im" 'imenu
+  ;; <l>, load
+  "la" 'counsel-osx-app
+  "lc" 'counsel-world-clock
+  "ls" 'counsel-tramp ; ssh list
+  "lC" 'counsel-colors-web
+  ;; <m>, mode
+  "mi" 'iedit-mode
+  "mI" 'iedit-rectangle-mode
+  ;;   ;; <o>
+  ;;   "om" 'lsp-ui-imenu
+  ;;   ;; <q>
+  "qr" 'restart-emacs
+  ;;   ;; <r>
+  ;;   "rt" 'instant-rename-tag
+  ;; <s>
+  "sa" 'swiper-all
+  "sb" 'swiper-isearch-backward
+  "si" 'swiper-isearch
+  "sg" 'counsel-git-grep
+  "ss" 'swiper
+  "sp" 'rg-project
+  "sq" 'query-replace
+  "sQ" 'query-replace-regexp
+  "sr" 'ivy-resume
+  "sR" 'counsel-rg
+  "sz" 'counsel-fzf
+  ;; <w>
+  "wv" 'split-window-horizontally
+  "w-" 'split-window-vertically
+  "wl" 'evil-window-right
+  ;;   "wL" 'crux-transpose-windows
+  ;;   "wH" 'crux-transpose-windows
+  "wh" 'evil-window-left
+  "wk" 'evil-window-up
+  "wj" 'evil-window-down
+  "wd" 'delete-window
+  "wm" 'delete-other-windows
+  ;; <y>
+  "yi" 'yas-insert-snippet
+  "yn" 'yas-new-snippet
+  ;;   <u>
+  "u." 'browse-url-at-point
+  "ub" 'browse-url-of-buffer
+  "uc" 'counsel-unicode-char
+  "ur" 'browse-url-of-region
+  "uu" 'browse-url
+  "ue" 'browse-url-emacs
+  "uf" 'browse-url-of-file
+  ;; <v>
+  "vp" 'ivy-push-view
+  "vo" 'ivy-pop-view
+  "v." 'ivy-switch-view
+  )
+;; -END
 
 
 ;; ;;----------------------------------------------------------------------------
 ;; ;; `Comma Leader'
 ;; ;;----------------------------------------------------------------------------
-;; (comaleader
+(comaleader
 ;;   "go" 'dumb-jump-go-other-window
 ;;   "gx" 'dumb-jump-go-prefer-external
 ;;   "gz" 'dumb-jump-go-prefer-external-other-window
@@ -115,31 +134,36 @@
 ;;   "rN" 'restclient-narrow-to-current
 ;;   "ra" 'restclient-toggle-body-visibility
 ;;   "ri" 'restclient-show-info
-;;   )
-;; ;; -END
+  )
+;; -END
 
 ;; ;;----------------------------------------------------------------------------
 ;; ;; `Semicolon Leader'
 ;; ;;----------------------------------------------------------------------------
-;; (semileader
-;;   "1" 'avy-goto-word-0
-;;   "2" 'avy-goto-word-1
-;;   "3" 'avy-goto-line
-;;   "`" 'avy-next
-;;   )
+(semileader
+  ";" 'avy-goto-char
+  "'" 'avy-goto-char-2
+  "l" 'avy-goto-line
+  "0" 'avy-goto-word-0
+  "1" 'avy-goto-word-1
+  "," 'avy-next
+  "d" 'avy-zap-to-char-dwim
+  "D" 'avy-zap-up-to-char-dwim
+  "o" 'ace-link-addr
+  )
 
 ;; ;; -END
 
 ;; ;;----------------------------------------------------------------------------
 ;; ;; `backquote Leader'
 ;; ;;----------------------------------------------------------------------------
-;; (bqleader
+(bqleader
 ;;   "`" 'evil-goto-mark
 ;;   "b" 'dumb-jump-back
 ;;   "g" 'dumb-jump-go
 ;;   "j" 'dumb-jump-go-prompt
 ;;   "TAB" 'indent-rigidly
-;;   )
+  )
 
 ;; (bqleader
 ;;   :keymaps 'dashboard-mode-map

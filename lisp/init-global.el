@@ -26,7 +26,7 @@
     ;; (global-linum-mode)
 ;;   (add-hook 'text-mode-hook #'display-line-numbers-mode)
 ;;   (add-hook 'prog-mode-hook #'display-line-numbers-mode))
-;; (add-hook 'window-setup-hook 'toggle-frame-maximized t)
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 ;; (add-hook 'prog-mode-hook #'hs-minor-mode)
 ;; -END
 

@@ -69,6 +69,8 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-hydra)
 
 (require 'init-ui)
+(require 'init-edit)
+(require 'init-ivy)
 
 (require 'init-keybinds)
 
