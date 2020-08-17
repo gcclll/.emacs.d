@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: fetch
-# key:  fetch
-# --
-import fetch from '@commons/fetch'
