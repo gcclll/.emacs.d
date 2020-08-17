@@ -68,6 +68,8 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-global)
 (require 'init-hydra)
 
+(require 'init-ui)
+
 (require 'init-keybinds)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

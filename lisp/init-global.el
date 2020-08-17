@@ -59,7 +59,6 @@
 ;; (setq inhibit-startup-screen t)
 ;; (setq initial-major-mode 'text-mode)
 (setq initial-scratch-message "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。\n")
-
 ;; (setq-default create-lockfiles nil)
 ;; (setq-default history-length 500)
 ;; (setq-default compilation-always-kill t) ; kill compilation process before starting another
