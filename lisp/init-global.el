@@ -16,14 +16,14 @@
 ;; `hook'
 ;;----------------------------------------------------------------------------
 ;; (add-hook 'before-save-hook #'delete-trailing-whitespace-except-current-line)
-;; (add-hook 'after-init-hook #'global-emojify-mode)
+(add-hook 'after-init-hook #'global-emojify-mode)
 ;; (add-hook 'before-save-hook #'save-and-update-includes)
 ;; (add-hook 'mouse-leave-buffer-hook 'abort-minibuffer-using-mouse)
 ;; (add-hook 'post-command-hook #'smart-electric-indent-mode)
 ;; (add-hook 'prog-mode-hook 'add-pretty-lambda)
 ;; (add-hook 'org-mode-hook 'add-pretty-lambda)
 ;; (if (version< emacs-version "26")
-    ;; (global-linum-mode)
+;; (global-linum-mode)
 ;;   (add-hook 'text-mode-hook #'display-line-numbers-mode)
 ;;   (add-hook 'prog-mode-hook #'display-line-numbers-mode))
 (add-hook 'window-setup-hook 'toggle-frame-maximized t)

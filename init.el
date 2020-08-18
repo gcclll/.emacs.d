@@ -92,6 +92,7 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-docker)
 (require 'init-which-key)
 (require 'init-utils)
+(require 'init-eyeb)
 
 ;; Programming
 (require 'init-vcs)

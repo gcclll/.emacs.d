@@ -189,7 +189,44 @@
 					 ("q" . kill-buffer-and-window))
     :hook (howdoyou-mode . read-only-mode)))
 
-;; Misc
+;;----------------------------------------------------------------------------
+;; `crux'
+;;----------------------------------------------------------------------------
+(use-package crux
+  ;; :bind
+  ;; (("C-a" . crux-move-beginning-of-line)
+  ;; ("C-k" . crux-smart-kill-line))
+  :config
+  (crux-with-region-or-buffer indent-region)
+  (crux-with-region-or-buffer untabify)
+  (crux-with-region-or-point-to-eol kill-ring-save)
+  (defalias 'rename-file-and-buffer #'crux-rename-file-and-buffer))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `zoom'
+;;----------------------------------------------------------------------------
+(defun size-callback ()
+  "Zoom."
+  (cond ((> (frame-pixel-width) 1280) '(0.75 . 0.75))
+        (t                            '(0.5 . 0.5))))
+(defun my/fix-imenu-size ()
+  "Fix imenu size."
+  (with-selected-window (get-buffer-window "*lsp-ui-imenu*") ;; Ilist
+    (setq window-size-fixed t)
+    (window-resize (selected-window) (- 30 (window-total-width)) t t)))
+
+(use-package zoom
+  :config
+  (zoom-mode t)
+  (setq zoom-size 'size-callback)
+  (setq zoom-ignored-major-modes '(dired-mode markdown-mode lsp-ui-imenu-mode imenu-mode))
+  (add-hook 'imenu-list-update-hook 'my/fix-imenu-size))
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `misc'
+;;----------------------------------------------------------------------------
 (use-package copyit)                    ; copy path, url, etc.
 (use-package diffview)                  ; side-by-side diff view
 (use-package esup)                      ; Emacs startup profiler
@@ -199,6 +236,10 @@
 (unless sys/win32p
   (use-package daemons)                 ; system services/daemons
   (use-package tldr))
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+;; -END
+
 
 (provide 'init-utils)
 
