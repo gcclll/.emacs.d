@@ -240,7 +240,7 @@ Save to `custom-file' if NO-SAVE is nil."
   (centaur-set-variable 'centaur-package-archives archives no-save)
 
   ;; Refresh if need
-  ;; (and refresh (package-refresh-contents async))
+  (and refresh (package-refresh-contents async))
 
   (message "Set package archives to `%s'" archives))
 (defalias 'centaur-set-package-archives #'set-package-archives)

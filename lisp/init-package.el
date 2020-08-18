@@ -75,7 +75,7 @@
     (setq package-selected-packages value)))
 (advice-add 'package--save-selected-packages :override #'my-save-selected-packages)
 
-;; Set ELPA packages
+Set ELPA packages
 (set-package-archives centaur-package-archives nil nil t)
 
 ;; Initialize packages
