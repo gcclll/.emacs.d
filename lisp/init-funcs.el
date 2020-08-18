@@ -240,7 +240,7 @@ Save to `custom-file' if NO-SAVE is nil."
   (centaur-set-variable 'centaur-package-archives archives no-save)
 
   ;; Refresh if need
-  (and refresh (package-refresh-contents async))
+  ;; (and refresh (package-refresh-contents async))
 
   (message "Set package archives to `%s'" archives))
 (defalias 'centaur-set-package-archives #'set-package-archives)
@@ -702,7 +702,7 @@ Version 2019-11-04"
 
 (defun git-push-delete-window ()
 	(progn
-		(message "Git push should done.")
+		(message "Git push should done or running in background.")
 		(delete-window)))
 
 (defun gcl/git-push ()
@@ -711,7 +711,7 @@ Version 2019-11-04"
 	(progn
 		(gcl/exec-command (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name)))
 		;; second, repeat, func, message
-		(run-at-time "3 sec" nil 'git-push-delete-window)))
+		(run-at-time "1 sec" nil 'git-push-delete-window)))
 ;; -END
 
 (provide 'init-funcs)
