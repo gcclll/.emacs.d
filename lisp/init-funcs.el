@@ -702,7 +702,9 @@ Version 2019-11-04"
 (defun gcl/git-push ()
   "Execute the command."
   (interactive)
-  (gcl/exec-command (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name))))
+	(progn
+		(gcl/exec-command (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name)))
+		(delete-window)))
 ;; -END
 
 (provide 'init-funcs)
