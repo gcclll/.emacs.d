@@ -444,3 +444,11 @@
 lsp-vue configuration helps
 
 1. https://medium.com/kloeckner-i/til-language-server-setup-for-elixir-and-vue-with-emacs-33a38be0672f
+
+
+
+# Elisp
+
+## functions
+
+1. `(run-at-time "5 sec" REPEAT FUNC &REST)`
