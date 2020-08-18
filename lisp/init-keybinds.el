@@ -12,15 +12,15 @@
   ;;   "a3" 'aweshell-dedicated-open
   ;;   "a#" 'aweshell-dedicated-close
   ;;   "a$" 'multi-term
-  ;;   "ar" 'ranger
+  "ar" 'ranger
   ;;   ;; <c>
   ;;   ;; <b>
   "bb" 'counsel-switch-buffer
   "bd" 'kill-this-buffer
   "bi" 'ibuffer
-  ;;   "bf" 'gcl/open-in-finder
-  ;;   "bK" 'crux-kill-other-buffers
-  ;;   "bo" 'crux-open-with
+  "bf" 'gcl/open-in-finder
+  "bK" 'crux-kill-other-buffers
+  "bo" 'crux-open-with
   "bp" 'previous-buffer
   "bn" 'next-buffer
   "br" 'counsel-buffer-or-recentf
@@ -30,22 +30,21 @@
   ;;   "cp" 'crux-duplicate-current-line-or-region
   ;;   ;; <d>
   ;;   "do" 'open-dashboard
-  ;;   "dd" 'dash-at-point
+  "dd" 'dash-at-point
   ;;   ;; <f>
   "ff" 'counsel-find-file
-  ;;   "fe" 'crux-find-user-init-file
-  ;;   "fp" 'ffip
-  ;;   "fr" 'crux-recentf-find-file
-  ;;   "fR" 'crux-rename-file-and-buffer
-  ;;   "fd" 'crux-delete-file-and-buffer
-;; <g>
-
-  ;;   "gg" 'magit-status
-  ;;   "gb" 'gcl/bakup
-  ;;   "gp" 'gcl/git-push
+  "fe" 'crux-find-user-init-file
+  "fp" 'ffip
+  "fr" 'crux-recentf-find-file
+  "fR" 'crux-rename-file-and-buffer
+  "fd" 'crux-delete-file-and-buffer
+  ;; <g>
+  "gg" 'magit-status
+  "gb" 'gcl/bakup
+  "gp" 'gcl/git-push
   ;;   ;; <i>
-  ;;   "ie" 'emojify-insert-emoji
-  ;;   "im" 'imenu
+  "ie" 'emojify-insert-emoji
+  "im" 'imenu
   ;; <l>, load
   "la" 'counsel-osx-app
   "lc" 'counsel-world-clock
@@ -54,8 +53,11 @@
   ;; <m>, mode
   "mi" 'iedit-mode
   "mI" 'iedit-rectangle-mode
+  "ms" 'bookmark-set
   ;;   ;; <o>
   ;;   "om" 'lsp-ui-imenu
+  ;; <p>
+  "pp" 'projectile-switch-project
   ;;   ;; <q>
   "qr" 'restart-emacs
   ;;   ;; <r>
@@ -65,25 +67,33 @@
   "sb" 'swiper-isearch-backward
   "si" 'swiper-isearch
   "sg" 'counsel-git-grep
-  "ss" 'swiper
   "sp" 'rg-project
   "sq" 'query-replace
   "sQ" 'query-replace-regexp
   "sr" 'ivy-resume
   "sR" 'counsel-rg
+  "ss" 'swiper
   "sz" 'counsel-fzf
+  ;; <t>
+  "tb" 'treemacs-bookmark
+  "tf" 'treemacs-find-file
+  "tt" 'treemacs
+  "tT" 'treemacs-find-tag
   ;; <w>
   "wv" 'split-window-horizontally
   "w-" 'split-window-vertically
   "wl" 'evil-window-right
-  ;;   "wL" 'crux-transpose-windows
-  ;;   "wH" 'crux-transpose-windows
+  "wL" 'crux-transpose-windows
+  "wH" 'crux-transpose-windows
   "wh" 'evil-window-left
   "wk" 'evil-window-up
   "wj" 'evil-window-down
   "wd" 'delete-window
   "wm" 'delete-other-windows
   ;; <y>
+  ;; "yd" 'my-you
+  "yd" 'youdao-dictionary-search-at-point+
+  "yD" 'my-youdao-dictionary-search-at-point
   "yi" 'yas-insert-snippet
   "yn" 'yas-new-snippet
   ;;   <u>
@@ -150,6 +160,10 @@
   "d" 'avy-zap-to-char-dwim
   "D" 'avy-zap-up-to-char-dwim
   "o" 'ace-link-addr
+  "z" 'zap-to-char
+  "Z" 'zap-up-to-char
+  "w" 'mark-word
+  "W" 'mark-sexp
   )
 
 ;; ;; -END
@@ -158,11 +172,11 @@
 ;; ;; `backquote Leader'
 ;; ;;----------------------------------------------------------------------------
 (bqleader
-;;   "`" 'evil-goto-mark
-;;   "b" 'dumb-jump-back
-;;   "g" 'dumb-jump-go
-;;   "j" 'dumb-jump-go-prompt
-;;   "TAB" 'indent-rigidly
+  ;;   "`" 'evil-goto-mark
+  ;;   "b" 'dumb-jump-back
+  ;;   "g" 'dumb-jump-go
+  ;;   "j" 'dumb-jump-go-prompt
+  ;;   "TAB" 'indent-rigidly
   )
 
 ;; (bqleader

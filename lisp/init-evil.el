@@ -13,7 +13,7 @@
   (evil-set-initial-state 'deft-mode 'emacs)
   (evil-set-initial-state 'elfeed-search-mode 'emacs)
   (evil-set-initial-state 'elfeed-show-mode 'emacs)
-  (evil-set-initial-state 'dashboard-mode 'emacs)
+  ;; (evil-set-initial-state 'dashboard-mode 'emacs)
   ;; evil ex command `:W' to save all buffers
   (evil-ex-define-cmd "W" 'evil-write-all)
 

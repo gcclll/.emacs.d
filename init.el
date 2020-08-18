@@ -71,6 +71,30 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-ui)
 (require 'init-edit)
 (require 'init-ivy)
+(require 'init-company)
+(require 'init-yasnippet)
+(require 'init-calendar)
+;; (require 'init-dashboard)
+(require 'init-dired)
+(require 'init-highlight)
+(require 'init-ibuffer)
+(require 'init-kill-ring)
+
+;; Preferences
+;; (require 'init-persp)
+(require 'init-window)
+(require 'init-treemacs)
+(require 'init-eshell)
+(require 'init-shell)
+(require 'init-markdown)
+(require 'init-org)
+(require 'init-reader)
+(require 'init-docker)
+(require 'init-which-key)
+(require 'init-utils)
+
+;; Programming
+(require 'init-vcs)
 
 (require 'init-keybinds)
 

@@ -154,11 +154,12 @@
   (setq exec-path-from-shell-check-startup-files nil)
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))
+(exec-path-from-shell-initialize)
 
 (use-package general
- :commands general-override-states
- :config
- (general-evil-setup t))
+  :commands general-override-states
+  :config
+  (general-evil-setup t))
 
 
 (general-create-definer spcleader
