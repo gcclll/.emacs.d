@@ -704,7 +704,7 @@ Version 2019-11-04"
   (interactive)
 	(progn
 		(gcl/exec-command (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name)))
-		(delete-window)))
+		(run-at-time "3 sec" nil #'delete-window "Git push should done.")))
 ;; -END
 
 (provide 'init-funcs)
