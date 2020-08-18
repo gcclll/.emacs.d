@@ -586,6 +586,34 @@ PROMPT sets the `read-string' prompt."
      (gcl/search ,search-engine-url ,search-engine-prompt)))
 ;; -END
 
+
+;;----------------------------------------------------------------------------
+;; `gcl/delete-this-file-make-backup'
+;;----------------------------------------------------------------------------
+(defun gcl/delete-this-file-make-backup (&optional @no-backup-p)
+  "Delete current file, makes a backup~, closes the buffer, args @NO-BACKUP-P."
+  (interactive "P")
+  (let* (
+         ($fname (buffer-file-name))
+         ($buffer-is-file-p $fname)
+         ($backup-suffix (concat "~" (format-time-string "%Y%m%dT%H%M%S") "~")))
+    (if $buffer-is-file-p
+        (progn
+          (save-buffer $fname)
+          (when (not @no-backup-p)
+            (copy-file
+             $fname
+             (concat "/tmp/" (file-name-nondirectory $fname) $backup-suffix)
+             t))
+          (delete-file $fname)
+          (message "Deleted. Backup created at 「%s」." (concat "/tmp/" (file-name-nondirectory $fname) $backup-suffix)))
+      (when (not @no-backup-p)
+        (widen)
+        (write-region (point-min) (point-max) (concat "xx" $backup-suffix))
+        (message "Backup created at 「%s」." (concat "xx" $backup-suffix))))
+    (kill-buffer (current-buffer))))
+;; -END
+
 ;;----------------------------------------------------------------------------
 ;; `gcl/delete-this-file'
 ;;----------------------------------------------------------------------------

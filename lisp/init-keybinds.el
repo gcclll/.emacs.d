@@ -32,8 +32,11 @@
   ;;   "do" 'open-dashboard
   "dd" 'dash-at-point
   ;;   ;; <f>
+  "fb" 'gcl/open-in-finder
   "ff" 'counsel-find-file
+  "fD" 'gcl/delete-this-file
   "fe" 'crux-find-user-init-file
+  "fo" 'gcl/open-in-external-app
   "fp" 'ffip
   "fr" 'crux-recentf-find-file
   "fR" 'crux-rename-file-and-buffer
@@ -58,6 +61,7 @@
   ;;   "om" 'lsp-ui-imenu
   ;; <p>
   "pp" 'projectile-switch-project
+  "pf" 'projectile-find-file
   ;;   ;; <q>
   "qr" 'restart-emacs
   ;;   ;; <r>

@@ -265,8 +265,11 @@
 
 | key       | function                    |
 | --------- | --------------------------- |
+| `SPC f b` | gcl/open-in-finder          |
+| `SPC f D` | gcl/delete-this-file        |
 | `SPC f f` | counsel-find-file           |
 | `SPC f e` | crux-find-user-init-file    |
+| `SPC f o` | gcl/open-in-externel-app    |
 | `SPC f p` | ffip                        |
 | `SPC f r` | crux-recentf-find-file      |
 | `SPC f R` | crux-rename-file-and-buffer |
@@ -305,6 +308,13 @@
 | key       | function             |
 | --------- | -------------------- |
 | `SPC m i` | iedit-rectangle-mode |
+
+### p(projectile, ...)
+
+| key       | function                  |
+| --------- | ------------------------- |
+| `SPC p f` | projectile-find-file      |
+| `SPC p p` | projectile-switch-project |
 
 
 
