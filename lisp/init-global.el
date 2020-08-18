@@ -67,9 +67,9 @@
 ;; (setq-default minibuffer-prompt-properties '(read-only t point-entered minibuffer-avoid-prompt face minibuffer-prompt))
 ;; (setq-default indent-tabs-mode nil)
 ;; (setq-default indent-line-function 'insert-tab)
-;; (setq-default tab-width 2)
-;; (setq-default c-basic-offset 4)
-;; (setq-default js-switch-indent-offset 2)
+(setq-default tab-width 2)
+(setq-default c-basic-offset 4)
+(setq-default js-switch-indent-offset 2)
 (setq-default frame-title-format '("李志诚❤范婷婷 - " user-login-name "@" system-name " - %b"))
 ;; -END
 

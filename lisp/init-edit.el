@@ -298,6 +298,7 @@
 
 ;; On-the-fly spell checker
 (use-package flyspell
+	:disabled
   :ensure nil
   :diminish
   :if (executable-find "aspell")

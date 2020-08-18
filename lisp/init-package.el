@@ -150,7 +150,7 @@
   :ensure t
   :if (memq window-system '(mac ns x))
   :config
-  (setq exec-path-from-shell-variables '("PATH" "RGPATH" "MANPATH" "XDG_CONFIG_HOME" "QUTEBROWSER"))
+  (setq exec-path-from-shell-variables '("PATH" "RGPATH" "MANPATH" "XDG_CONFIG_HOME" "QUTEBROWSER" "PYTHONPATH"))
   (setq exec-path-from-shell-check-startup-files nil)
   (setq exec-path-from-shell-arguments '("-l"))
   (exec-path-from-shell-initialize))

@@ -64,7 +64,8 @@
   "pf" 'projectile-find-file
   ;;   ;; <q>
   "qr" 'restart-emacs
-  ;;   ;; <r>
+  ;; <r>
+  "rr" 'quickrun
   ;;   "rt" 'instant-rename-tag
   ;; <s>
   "sa" 'swiper-all
@@ -120,34 +121,40 @@
 ;; ;; `Comma Leader'
 ;; ;;----------------------------------------------------------------------------
 (comaleader
-;;   "go" 'dumb-jump-go-other-window
-;;   "gx" 'dumb-jump-go-prefer-external
-;;   "gz" 'dumb-jump-go-prefer-external-other-window
-;;   "sb" 'engine/search-baidu
-;;   "sd" 'engine/search-duckduckgo
-;;   "sg" 'engine/search-github
-;;   "si" 'engine/search-google-images
-;;   "sm" 'engine/search-google-maps
-;;   "sr" 'engine/search-rfcs
-;;   "ss" 'engine/search-amazon
-;;   "st" 'engine/search-twitter
-;;   "sy" 'engine/search-youtube
-;;   "sw" 'engine/search-wikipedia
-;;   "sB" 'engine/search-books
-;;   "sG" 'engine/search-google
-;;   "sM" 'engine/search-melpa
-;;   "sS" 'engine/search-stack-overflow
-;;   ;; restclient
-;;   "rc" 'restclient-http-send-current
-;;   "rr" 'restclient-http-send-current-raw
-;;   "rv" 'restclient-http-send-current-stay-in-window
-;;   "rn" 'restclient-jump-next
-;;   "rp" 'restclient-jump-previous
-;;   "r." 'restclient-mark-current
-;;   "rC" 'restclient-copy-curl-command
-;;   "rN" 'restclient-narrow-to-current
-;;   "ra" 'restclient-toggle-body-visibility
-;;   "ri" 'restclient-show-info
+  ;; <g>, jump
+  "gb" 'dumb-jump-back
+  "gi" 'dumb-jump-go-prompt
+  "gj" 'dumb-jump-go 
+  "go" 'dumb-jump-go-other-window
+  "gx" 'dumb-jump-go-prefer-external
+  "gz" 'dumb-jump-go-prefer-external-other-window
+  ;; <l>, lsp
+  "li" 'lsp-ui-imenu
+  ;;   "sb" 'engine/search-baidu
+  ;;   "sd" 'engine/search-duckduckgo
+  ;;   "sg" 'engine/search-github
+  ;;   "si" 'engine/search-google-images
+  ;;   "sm" 'engine/search-google-maps
+  ;;   "sr" 'engine/search-rfcs
+  ;;   "ss" 'engine/search-amazon
+  ;;   "st" 'engine/search-twitter
+  ;;   "sy" 'engine/search-youtube
+  ;;   "sw" 'engine/search-wikipedia
+  ;;   "sB" 'engine/search-books
+  ;;   "sG" 'engine/search-google
+  ;;   "sM" 'engine/search-melpa
+  ;;   "sS" 'engine/search-stack-overflow
+  ;;   ;; restclient
+  ;;   "rc" 'restclient-http-send-current
+  ;;   "rr" 'restclient-http-send-current-raw
+  ;;   "rv" 'restclient-http-send-current-stay-in-window
+  ;;   "rn" 'restclient-jump-next
+  ;;   "rp" 'restclient-jump-previous
+  ;;   "r." 'restclient-mark-current
+  ;;   "rC" 'restclient-copy-curl-command
+  ;;   "rN" 'restclient-narrow-to-current
+  ;;   "ra" 'restclient-toggle-body-visibility
+  ;;   "ri" 'restclient-show-info
   )
 ;; -END
 

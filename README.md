@@ -11,6 +11,7 @@
 | key       | function                                  |
 | --------- | ----------------------------------------- |
 | `<f6>`    | `toggles-hydra/body`，打开 hydra 快捷界面 |
+| `<M-f6>`  | lsp-ui-hydra/body                         |
 | `<f8>`    | treemacs                                  |
 | `<M-f3>`  | symbol-overlay-remove-all                 |
 | `<C-f9>`  | bongo，音乐播放器                         |
@@ -20,6 +21,28 @@
 ## 
 
 ## modes(模式分类按键)
+
+### prog-mode(程序员模式)
+
+| key     | function                                  |
+| ------- | ----------------------------------------- |
+| `, g o` | dumb-jump-go-other-window                 |
+| `, g j` | dumb-jump-go                              |
+| `, g i` | dumb-jump-go-prompt                       |
+| `, g x` | dumb-jump-go-prefer-external              |
+| `, g z` | dumb-jump-go-prefer-external-other-window |
+
+
+
+### lsp-mode(开发必备)
+
+| key      | function                           |
+| -------- | ---------------------------------- |
+| `C-c u`  | lsp-ui-imenu                       |
+| `<M-f6>` | lsp-ui-hydra/body                  |
+| `M-RET`  | lsp-ui-sideline-apply-code-actions |
+
+
 
 ### howdoyou(搜索 stackover及其姐妹网站)
 
@@ -153,12 +176,13 @@
 | key     | function                     |
 | ------- | ---------------------------- |
 | `C-c B` | counsel-bookmarked-directory |
+| `C-c f` | counsel-find-library         |
+| `C-c g` | counsel-grep                 |
 | `C-c L` | counsel-load-library         |
 | `C-c O` | counsel-find-file-extern     |
 | `C-c P` | counsel-package              |
 | `C-c R` | counsel-list-processes       |
-| `C-c f` | counsel-find-library         |
-| `C-c g` | counsel-grep                 |
+| `C-c u` | lsp-ui-imenu                 |
 
 ### C-c n(org-roam)
 
@@ -203,6 +227,26 @@
 | `C-s-=` | text scale increase |
 | `C-s--` | text scale decrease |
 | `C-s-0` | text scale reset    |
+
+## M-(Command按键)
+
+| key     | function                           |
+| ------- | ---------------------------------- |
+| `M-RET` | lsp-ui-sideline-apply-code-actions |
+
+## ,(Coma，分号)
+
+| key     | function                                  |
+| ------- | ----------------------------------------- |
+| `, g o` | dumb-jump-go-other-window                 |
+| `, g j` | dumb-jump-go                              |
+| `, g i` | dumb-jump-go-prompt                       |
+| `, g x` | dumb-jump-go-prefer-external              |
+| `, g z` | dumb-jump-go-prefer-external-other-window |
+| `, l i` | lsp-ui-imenu                              |
+| `, l h` | lsp-ui-hydra                              |
+
+
 
 ## ;(Semicolon,分号)
 
@@ -315,6 +359,12 @@
 | --------- | ------------------------- |
 | `SPC p f` | projectile-find-file      |
 | `SPC p p` | projectile-switch-project |
+
+### r(run, ...)
+
+| key       | function |
+| --------- | -------- |
+| `SPC r r` | quickrun |
 
 
 

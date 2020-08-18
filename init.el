@@ -92,11 +92,22 @@ decrease this. If you experience stuttering, increase this.")
 (require 'init-docker)
 (require 'init-which-key)
 (require 'init-utils)
-(require 'init-flycheck)
-(require 'init-projectile)
 
 ;; Programming
 (require 'init-vcs)
+(require 'init-lsp)
+(require 'init-flycheck)
+(require 'init-projectile)
+(require 'init-prog)
+(require 'init-elisp)
+(require 'init-c)
+(require 'init-go) 
+;; (require 'init-rust)
+(require 'init-python)
+;; (require 'init-ruby)
+;; (require 'init-dart)
+(require 'init-web)
+
 
 (require 'init-keybinds)
 
