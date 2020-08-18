@@ -439,3 +439,8 @@
 | `SPC y i` | yas-insert-snippet |
 | `SPC y n` | yas-new-snippet    |
 
+# For vue
+
+lsp-vue configuration helps
+
+1. https://medium.com/kloeckner-i/til-language-server-setup-for-elixir-and-vue-with-emacs-33a38be0672f

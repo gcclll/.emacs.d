@@ -43,9 +43,6 @@
 
 ;; Jump to definition
 (use-package dumb-jump
-  :pretty-hydra
-  (:title (pretty-hydra-title "Dump Jump" 'faicon "anchor")
-	  :color blue :quit-key "q")
   :init
   (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
   (setq dumb-jump-prefer-searcher 'rg
