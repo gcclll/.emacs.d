@@ -186,7 +186,7 @@
 (when emacs/>=26p
   (use-package howdoyou
     :bind (:map howdoyou-mode-map
-		("q" . kill-buffer-and-window))
+					 ("q" . kill-buffer-and-window))
     :hook (howdoyou-mode . read-only-mode)))
 
 ;; Misc

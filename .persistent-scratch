@@ -1,2 +1,3 @@
 (["*scratch*" "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。
-" (28 . 28) lisp-interaction-mode nil nil])
+:sep
+" (33 . 28) lisp-interaction-mode nil nil])

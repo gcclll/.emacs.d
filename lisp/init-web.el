@@ -125,6 +125,21 @@
       :defines company-backends
       :init (add-to-list 'company-backends 'company-restclient))))
 
+;;----------------------------------------------------------------------------
+;; `js-doc'
+;;----------------------------------------------------------------------------
+(use-package js-doc
+  :config
+  (setq js-doc-mail-address user-mail-address
+        js-doc-author (format "%s <%s>" user-full-name js-doc-mail-address)
+        js-doc-url user-blog-url
+        js-doc-license "<MIT>")
+  (add-hook 'js2-mode-hook
+            #'(lambda ()
+                ;; (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
+                (define-key js2-mode-map "@" 'js-doc-insert-tag))))
+;; -END
+
 (provide 'init-web)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
