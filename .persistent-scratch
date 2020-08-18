@@ -1,3 +1,30 @@
 (["*scratch*" "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。
-:sep
-:smile:" (39 . 39) lisp-interaction-mode nil nil])
+(progn (message \"hello\") (message \"world\"))
+\"world\"
+
+
+;; (let (run-delete-window lambda () (progn (message \"111\") (delete-window))) 
+;; (run-at-time \"3 sec\" nil 'run-delete-window))
+
+(let ((n 3.14)) (message \"hello %.2f\" n))
+\"hello 3.14\"
+
+(defun run-delete-window ()
+	(progn
+		(message \"111\")
+		(message \"222\")))
+run-delete-window
+
+(run-at-time \"3 sec\" nil 'run-delete-window)
+[nil 24379 65335 630659 nil run-delete-window nil nil 0]
+
+[nil 24379 65298 573965 nil run-delete-window nil nil 0]
+
+[nil 24379 65160 709400 nil run-delete-window nil nil 0]
+
+
+
+
+
+
+" (267 . 553) lisp-interaction-mode nil nil])

@@ -699,15 +699,19 @@ Version 2019-11-04"
 ;;----------------------------------------------------------------------------
 ;; `run-shell'
 ;;----------------------------------------------------------------------------
+
+(defun git-push-delete-window ()
+	(progn
+		(message "Git push should done.")
+		(delete-window)))
+
 (defun gcl/git-push ()
   "Execute the command."
   (interactive)
 	(progn
 		(gcl/exec-command (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name)))
 		;; second, repeat, func, message
-		(run-at-time "3 sec" nil (progn
-															 (message "Git push process should done.")
-															 (delete-window)))))
+		(run-at-time "3 sec" nil 'git-push-delete-window)))
 ;; -END
 
 (provide 'init-funcs)
