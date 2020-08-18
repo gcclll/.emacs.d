@@ -91,14 +91,16 @@
   :mode "\\.\\(phtml\\|php|[gj]sp\\|as[cp]x\\|erb\\|djhtml\\|html?\\|hbs\\|ejs\\|jade\\|swig\\|tm?pl\\|vue\\)$"
   :config
   (setq web-mode-markup-indent-offset 2
-	web-mode-css-indent-offset 2
-	web-mode-code-indent-offset 2
-	web-mode-block-padding 2
-	web-mode-attr-indent-offset 2
-	web-mode-enable-current-element-highlight t
-	)
+				web-mode-css-indent-offset 2
+				web-mode-code-indent-offset 2
+				web-mode-block-padding 2
+				web-mode-attr-indent-offset 2
+				web-mode-enable-current-element-highlight t
+				)
   (emmet-mode)
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
+	(add-hook 'web-mode-hook 'company-mode)
+	(add-hook 'web-mode-hook 'lsp-vue-enable)
   )
 
 ;; Format HTML, CSS and JavaScript/JSON
@@ -139,6 +141,37 @@
                 ;; (define-key js2-mode-map "\C-ci" 'js-doc-insert-function-doc)
                 (define-key js2-mode-map "@" 'js-doc-insert-tag))))
 ;; -END
+
+;;----------------------------------------------------------------------------
+;; `vue'
+;;----------------------------------------------------------------------------
+(use-package lsp-vue :ensure)
+;; -END
+
+;; ;;----------------------------------------------------------------------------
+;; ;; `emmet'
+;; ;;----------------------------------------------------------------------------
+(use-package emmet-mode
+  :diminish
+  :ensure t
+  :commands emmet-mode
+  :config
+  (add-hook 'web-mode-hook #'emmet-mode)
+  (add-hook 'rjsx-mode-hook #'emmet-mode)
+  (add-hook 'css-mode-hook #'emmet-mode)
+  (add-hook 'sgml-mode-hook #'emmet-mode)
+  (add-hook 'emmet-mode-hook (lambda()
+                               (setq emmet-indent-after-insert t))))
+
+;; rjsx-mode use className
+(use-package mode-local
+  :ensure t
+  :config
+  (setq-mode-local rjsx-mode emmet-expand-jsx-className? t)
+  (setq-mode-local web-mode emmet-expand-jsx-className? nil))
+;; -END
+
+
 
 (provide 'init-web)
 

@@ -33,6 +33,11 @@
 (require 'init-custom)
 (require 'init-funcs)
 
+(use-package company-lsp
+	:ensure
+	:config
+	(setq company-lsp-enable-snippet t))
+
 (use-package company
   :diminish
   :defines (company-dabbrev-ignore-case company-dabbrev-downcase)
