@@ -40,6 +40,9 @@
   :hook ((js2-mode . js2-imenu-extras-mode)
          (js2-mode . js2-highlight-unused-variables-mode))
   :config
+	(setq-default js-switch-indent-offset 2
+								js-indent-level 2
+								js2-basic-offset 2)
   ;; Use default keybindings for lsp
   (when centaur-lsp
     (unbind-key "M-." js2-mode-map))
@@ -57,7 +60,12 @@
   (use-package js2-refactor
     :diminish
     :hook (js2-mode . js2-refactor-mode)
-    :config (js2r-add-keybindings-with-prefix "C-c C-m")))
+    :config (js2r-add-keybindings-with-prefix "C-c C-m"))
+	(use-package add-node-modules-path
+    :after typescript-mode js2-mode
+    :config
+    (add-hook 'typescript-mode-hook 'add-node-modules-path)
+    (add-hook 'js2-mode-hook 'add-node-modules-path)))
 
 ;; Live browser JavaScript, CSS, and HTML interaction
 (use-package skewer-mode
@@ -171,6 +179,40 @@
   (setq-mode-local web-mode emmet-expand-jsx-className? nil))
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `tide'
+;;----------------------------------------------------------------------------
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+(defun setup-tide-mode ()
+  "Set up Tide mode."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save-mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
+;; -END
+
+
+;;----------------------------------------------------------------------------
+;; `rjsx-mode'
+;;----------------------------------------------------------------------------
+(use-package rjsx-mode
+  :ensure t
+  :init
+  (add-to-list 'auto-mode-alist '("components?\\/.*\\.js\\'" . rjsx-mode))
+  (add-to-list 'auto-mode-alist '("containers?\\/.*\\.js\\'" . rjsx-mode))
+  (add-hook 'rjsx-mode-hook #'setup-tide-mode))
+
+(use-package react-snippets
+  :ensure t)
+;; -END
 
 
 (provide 'init-web)
