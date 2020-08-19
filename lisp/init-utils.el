@@ -217,6 +217,7 @@
     (window-resize (selected-window) (- 30 (window-total-width)) t t)))
 
 (use-package zoom
+	:disabled
   :config
   (zoom-mode t)
   (setq zoom-size 'size-callback)

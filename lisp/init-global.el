@@ -76,7 +76,7 @@
 ;;----------------------------------------------------------------------------
 ;; `feature-mode'
 ;;----------------------------------------------------------------------------
-(desktop-save-mode 1)
+;; (desktop-save-mode 1)
 ;; (global-prettify-symbols-mode 1)
 ;; (column-mode 1)
 ;; (delete-selection-mode 1)
