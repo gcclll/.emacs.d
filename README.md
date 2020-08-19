@@ -234,31 +234,33 @@
 
 ## ,(Coma，分号)
 
-| key     | function                                  |
-| ------- | ----------------------------------------- |
-| `, g o` | dumb-jump-go-other-window                 |
-| `, g j` | dumb-jump-go                              |
-| `, g i` | dumb-jump-go-prompt                       |
-| `, g x` | dumb-jump-go-prefer-external              |
-| `, g z` | dumb-jump-go-prefer-external-other-window |
-| `, l i` | lsp-ui-imenu                              |
-| `, l h` | lsp-ui-hydra                              |
-
-
+| key             | function              |
+| --------------- | --------------------- |
+| `, g b` / `; b` | xref-pop-marker-stack |
+| `, g i` / `; i` | dumb-jump-go-prompt   |
+| `, g j` / `; j` | xref-find-definitions |
+| `, l i`         | lsp-ui-imenu          |
 
 ## ;(Semicolon,分号)
 
 | key  | function                                              |
 | ---- | ----------------------------------------------------- |
+| `0`  | avy-goto-word-0                                       |
+| `1`  | avy-goto-word-1                                       |
+| `2`  | avy-goto-line                                         |
 | `;`  | avy-goto-char                                         |
 | `'`  | avy-gooto-char-2                                      |
 | `,`  | avy-next                                              |
+| `b`  | xref-pop-marker-stack                                 |
 | `d`  | avy-zap-to-char-dwim，删除光标位置到指定位置的内容    |
 | `D`  | avy-zap-up-to-char-dwim，删除光标位置到指定位置的内容 |
-| `l`  | avy-goto-line                                         |
+| `i`  | dumb-jump-go-prompt                                   |
+| `j`  | xref-find-definitions                                 |
 | `o`  | ace-link-addr，打开视图中的 url                       |
-| `0`  | avy-goto-word-0                                       |
-| `1`  | avy-goto-word-1                                       |
+| `z`  | zap-to-char                                           |
+| `Z`  | zap-up-to-char                                        |
+| `w`  | mark-word                                             |
+| `W`  | mark-sexp                                             |
 
 
 
