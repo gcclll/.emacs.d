@@ -122,12 +122,12 @@
 ;; ;;----------------------------------------------------------------------------
 (comaleader
   ;; <g>, jump
-  "gb" 'dumb-jump-back
+  "gb" 'xref-pop-marker-stack
   "gi" 'dumb-jump-go-prompt
-  "gj" 'dumb-jump-go 
-  "go" 'dumb-jump-go-other-window
-  "gx" 'dumb-jump-go-prefer-external
-  "gz" 'dumb-jump-go-prefer-external-other-window
+  "gj" 'xref-find-definitions
+  ;; "go" 'dumb-jump-go-other-window
+  ;; "gx" 'dumb-jump-go-prefer-external
+  ;; "gz" 'dumb-jump-go-prefer-external-other-window
   ;; <l>, lsp
   "li" 'lsp-ui-imenu
   ;;   "sb" 'engine/search-baidu
@@ -162,14 +162,20 @@
 ;; ;; `Semicolon Leader'
 ;; ;;----------------------------------------------------------------------------
 (semileader
-  ";" 'avy-goto-char
-  "'" 'avy-goto-char-2
-  "l" 'avy-goto-line
+	;; nums
   "0" 'avy-goto-word-0
   "1" 'avy-goto-word-1
+	;; sign
+  ";" 'avy-goto-char
+  "'" 'avy-goto-char-2
   "," 'avy-next
+	;; a-z, A-Z
+	"b" 'xref-pop-marker-stack
   "d" 'avy-zap-to-char-dwim
   "D" 'avy-zap-up-to-char-dwim
+	"i" 'dumb-jump-go-prompt
+	"j" 'xref-find-definitions
+  "l" 'avy-goto-line
   "o" 'ace-link-addr
   "z" 'zap-to-char
   "Z" 'zap-up-to-char

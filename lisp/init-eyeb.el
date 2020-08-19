@@ -16,6 +16,7 @@
             (define-key eyebrowse-mode-map (kbd "s-9") 'eyebrowse-switch-to-window-config-9)
             (eyebrowse-mode t)
             (setq eyebrowse-new-workspace t)))
+(eyebrowse-mode t)
 (provide 'init-eyeb)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-eyeb.el ends here

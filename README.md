@@ -24,13 +24,11 @@
 
 ### prog-mode(程序员模式)
 
-| key     | function                                  |
-| ------- | ----------------------------------------- |
-| `, g o` | dumb-jump-go-other-window                 |
-| `, g j` | dumb-jump-go                              |
-| `, g i` | dumb-jump-go-prompt                       |
-| `, g x` | dumb-jump-go-prefer-external              |
-| `, g z` | dumb-jump-go-prefer-external-other-window |
+| key             | function              |
+| --------------- | --------------------- |
+| `, g b` / `; b` | xref-pop-marker-stack |
+| `, g i` / `; i` | dumb-jump-go-prompt   |
+| `, g j` / `; j` | xref-find-definitions |
 
 
 
