@@ -238,6 +238,13 @@
   (use-package tldr))
 (use-package emojify
   :hook (after-init . global-emojify-mode))
+(use-package ranger)
+(use-package restart-emacs)
+(use-package move-text)
+(use-package highlight-parentheses
+  :config
+  (global-highlight-parentheses-mode t))
+(use-package helm-dash)
 ;; -END
 
 

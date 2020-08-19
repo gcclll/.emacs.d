@@ -76,14 +76,15 @@
 ;;----------------------------------------------------------------------------
 ;; `feature-mode'
 ;;----------------------------------------------------------------------------
+(desktop-save-mode 1)
 ;; (global-prettify-symbols-mode 1)
-;; (column-number-mode 1)
+;; (column-mode 1)
 ;; (delete-selection-mode 1)
 ;; (display-time-mode 1)
 ;; (display-battery-mode 1)
 ;; (save-place-mode 1)
 ;; (toggle-scroll-bar -1)
-;; (fset 'yes-or-no-p 'y-or-n-p)
+(fset 'yes-or-no-p 'y-or-n-p)
 ;; (load custom-file 'noerror)
 ;; (c-set-offset 'comment-intro 0)
 ;; (c-set-offset 'innamespace 0)
