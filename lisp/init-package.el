@@ -174,6 +174,10 @@
 (general-create-definer bqleader
   :prefix "`"
   :states '(normal visual))
+(general-create-definer zleader
+  :prefix "z"
+  :states '(normal visual))
+
 
 
 (provide 'init-package)

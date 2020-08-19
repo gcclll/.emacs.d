@@ -194,6 +194,20 @@
 
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `backquote Leader'
+;;----------------------------------------------------------------------------
+(zleader
+ "(" 'sp-wrap-round ; wrap with ()
+ "[" 'sp-wrap-square ; wrap with []
+ "{" 'sp-wrap-curly ; wrap with {}
+ "-" 'sp-splice-sexp ; unwrap
+ )
+
+;; -END
+
+
+
 (provide 'init-keybinds)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-keybinds.el ends here

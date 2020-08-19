@@ -31,7 +31,9 @@
 
 ## modes(模式分类按键)
 
-## smartparens(精明括号模式)
+### smartparens(精明括号模式)
+
+<span id="mode-sp"></span>
 
 | key   | function                           |
 | ----- | ---------------------------------- |
@@ -39,7 +41,11 @@
 | `C-(` | sp-backward-slurp-sexp，左括号左移 |
 | `M-)` | sp-forward-barf-sexp，右括号左移   |
 | `M-(` | sp-backward-barf-sexp，左括号右移  |
-|       | sp-splice-sexp，去掉括号           |
+| `C--` | sp-splice-sexp，去掉括号           |
+| `z-(` | sp-wrap-round，()括起来            |
+| `z-{` | sp-wrap-curly，{}括起来            |
+| `z-[` | sp-wrap-square，[]括起来           |
+| `z--` | sp-splice-sexp，去掉括号           |
 
 
 
@@ -282,6 +288,17 @@
 | `Z`  | zap-up-to-char                                        |
 | `w`  | mark-word                                             |
 | `W`  | mark-sexp                                             |
+
+## z(括号操作,...)
+
+例如：[smartparen](#mode-sp)
+
+| key   | function                 |
+| ----- | ------------------------ |
+| `z-(` | sp-wrap-round，()括起来  |
+| `z-{` | sp-wrap-curly，{}括起来  |
+| `z-[` | sp-wrap-square，[]括起来 |
+| `z--` | sp-splice-sexp，去掉括号 |
 
 
 
