@@ -18,9 +18,30 @@
 | `<C-f12>` | open-calendar                             |
 | `<s-f12>` | pomidor, 酷炫的计时器                     |
 
-## 
+## 重写默认按键(evil)
+
+| key  | old                          | new                                                    |
+| ---- | ---------------------------- | ------------------------------------------------------ |
+| `(`  | evil-backward-sentence-begin | evil-previous-open-paren，定位到上一个配对的小括号(左) |
+| `)`  | evil-forward-sentence-begin  | evil-next-close-paren，定位到下一个配对的小括号(右)    |
+| `{`  | evil-backward-paragraph      | evil-previous-open-brace，定位到上一个配对的大括号(左) |
+| `}`  | evil-forward-paragraph       | evil-next-close-paren，定位到下一个配对的大括号(右)    |
+
+
 
 ## modes(模式分类按键)
+
+## smartparens(精明括号模式)
+
+| key   | function                           |
+| ----- | ---------------------------------- |
+| `C-)` | sp-forward-slurp-sexp，右括号右移  |
+| `C-(` | sp-backward-slurp-sexp，左括号左移 |
+| `M-)` | sp-forward-barf-sexp，右括号左移   |
+| `M-(` | sp-backward-barf-sexp，左括号右移  |
+|       | sp-splice-sexp，去掉括号           |
+
+
 
 ### prog-mode(程序员模式)
 
@@ -321,11 +342,11 @@
 
 ### g(git, ...)
 
-| key        | function                   |
-| ---------- | -------------------------- |
-| `SPC g g`  | magit-status               |
-| `SPC g b`  | gcl/bakup, 备份一些文件    |
-| `SPC g p ` | gcl/git-push，提交当前仓库 |
+| key        | function                                          |
+| ---------- | ------------------------------------------------- |
+| `SPC g g`  | magit-status                                      |
+| `SPC g b`  | gcl/bakup, 备份一些文件                           |
+| `SPC g p ` | gcl/git-push，提交当前仓库，1秒后自动关闭输出窗口 |
 
 ### i(insert, emoji, ...)
 
