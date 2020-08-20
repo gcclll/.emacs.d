@@ -6,4 +6,5 @@
 
 
 
-" (70 . 70) lisp-interaction-mode nil nil])
+(a + b + c)
+((()))" (82 . 82) lisp-interaction-mode nil nil])

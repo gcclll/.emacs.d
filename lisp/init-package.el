@@ -59,12 +59,12 @@
 
 ;; Load custom-post file
 (defun load-custom-post-file ()
-"Load custom-post file."
-(cond ((file-exists-p centaur-custom-post-org-file)
-       (and (fboundp 'org-babel-load-file)
-            (org-babel-load-file centaur-custom-post-org-file)))
-      ((file-exists-p centaur-custom-post-file)
-       (load centaur-custom-post-file))))
+	"Load custom-post file."
+	(cond ((file-exists-p centaur-custom-post-org-file)
+				 (and (fboundp 'org-babel-load-file)
+							(org-babel-load-file centaur-custom-post-org-file)))
+				((file-exists-p centaur-custom-post-file)
+				 (load centaur-custom-post-file))))
 (add-hook 'after-init-hook #'load-custom-post-file)
 
 ;; HACK: DO NOT copy package-selected-packages to init/custom file forcibly.
@@ -80,13 +80,13 @@
 
 ;; Initialize packages
 (unless (bound-and-true-p package--initialized) ; To avoid warnings in 27
-  (setq package-enable-at-startup nil)          ; To prevent initializing twice
-  (package-initialize))
+	(setq package-enable-at-startup nil)          ; To prevent initializing twice
+	(package-initialize))
 
 ;; Setup `use-package'
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+	(package-refresh-contents)
+	(package-install 'use-package))
 
 ;; Should set before loading `use-package'
 (eval-and-compile
