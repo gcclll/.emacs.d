@@ -220,6 +220,21 @@
          ([remap isearch-query-replace-regexp] . anzu-isearch-query-replace-regexp))
   :hook (after-init . global-anzu-mode))
 
+;;----------------------------------------------------------------------------
+;; `visual-regexp'
+;;----------------------------------------------------------------------------
+(use-package visual-regexp-steroids
+  :ensure
+  :config
+  (use-package pcre2el :ensure)
+  ;; (define-key global-map (kbd "C-M-%") 'vr/query-replace)
+  ;; (define-key esc-map (kbd "C-M-r") 'vr/isearch-backward) ;; C-M-r
+  ;; (define-key esc-map (kbd "C-M-s") 'vr/isearch-forward) ;; C-M-s
+  (setq vr/engine 'pcre2el))
+;; -END
+
+
+
 ;; Redefine M-< and M-> for some modes
 (when emacs/>=25.3p
   (use-package beginend

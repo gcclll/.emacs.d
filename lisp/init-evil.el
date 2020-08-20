@@ -24,6 +24,7 @@
 	(define-key evil-normal-state-map (kbd "}") 'evil-next-close-brace)
 	(define-key evil-normal-state-map (kbd "(") 'evil-previous-open-paren)
 	(define-key evil-normal-state-map (kbd ")") 'evil-next-close-paren)
+	(define-key evil-normal-state-map (kbd "%") 'vr/query-replace)
   (add-hook 'js2-mode-hook
             (lambda ()
               (setq evil-shift-width 2)))

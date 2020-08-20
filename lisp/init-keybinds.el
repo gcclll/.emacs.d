@@ -79,6 +79,8 @@
   "sR" 'counsel-rg
   "ss" 'swiper
   "sz" 'counsel-fzf
+	"sv" 'vr/isearch-forward
+	"sV" 'vr/isearch-backward
   ;; <t>
   "tb" 'treemacs-bookmark
   "tf" 'treemacs-find-file

@@ -271,6 +271,15 @@
   :config
   (global-highlight-parentheses-mode t))
 (use-package helm-dash)
+(use-package beacon
+	:delight
+	:hook (prog-mode . beacon-mode)
+	:commands (beacon-mode)
+	:config
+		(beacon-mode 1))
+;; :custom
+;; (beacon-blink-duration 0.7)
+;; (beacon-size 100))
 ;; -END
 
 

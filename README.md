@@ -26,6 +26,7 @@
 | `)`  | evil-forward-sentence-begin  | evil-next-close-paren，定位到下一个配对的小括号(右)    |
 | `{`  | evil-backward-paragraph      | evil-previous-open-brace，定位到上一个配对的大括号(左) |
 | `}`  | evil-forward-paragraph       | evil-next-close-paren，定位到下一个配对的大括号(右)    |
+| `%`  | evil-jump-item               | vr/query-replace                                       |
 
 
 
@@ -421,6 +422,8 @@
 | `SPC s R` | counsel-rg，rg 命令搜索            |
 | `SPC s s` | swiper                             |
 | `SPC s z` | counsel-fzf，fzf 命令搜索          |
+| `SPC s v` | vr/isearch-forward                 |
+| `SPC s V` | vr/isearch-backward                |
 
 ### t(treemacs, ...)
 
