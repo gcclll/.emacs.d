@@ -19,6 +19,7 @@
 
   ;; evil normal state keybinds
   (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
+  (define-key evil-motion-state-map (kbd "C-K") 'crux-kill-line-backwards)
   (define-key evil-normal-state-map "Y" (kbd "y$"))
 	(define-key evil-normal-state-map (kbd "{") 'evil-previous-open-brace)
 	(define-key evil-normal-state-map (kbd "}") 'evil-next-close-brace)

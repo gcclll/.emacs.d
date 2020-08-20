@@ -20,17 +20,23 @@
 
 ## 重写默认按键(evil)
 
-| key  | old                          | new                                                    |
-| ---- | ---------------------------- | ------------------------------------------------------ |
-| `(`  | evil-backward-sentence-begin | evil-previous-open-paren，定位到上一个配对的小括号(左) |
-| `)`  | evil-forward-sentence-begin  | evil-next-close-paren，定位到下一个配对的小括号(右)    |
-| `{`  | evil-backward-paragraph      | evil-previous-open-brace，定位到上一个配对的大括号(左) |
-| `}`  | evil-forward-paragraph       | evil-next-close-paren，定位到下一个配对的大括号(右)    |
-| `%`  | evil-jump-item               | vr/query-replace                                       |
+| key   | old                          | new                                                    |
+| ----- | ---------------------------- | ------------------------------------------------------ |
+| `(`   | evil-backward-sentence-begin | evil-previous-open-paren，定位到上一个配对的小括号(左) |
+| `)`   | evil-forward-sentence-begin  | evil-next-close-paren，定位到下一个配对的小括号(右)    |
+| `{`   | evil-backward-paragraph      | evil-previous-open-brace，定位到上一个配对的大括号(左) |
+| `}`   | evil-forward-paragraph       | evil-next-close-paren，定位到下一个配对的大括号(右)    |
+| `%`   | evil-jump-item               | vr/query-replace                                       |
+| `s-t` | counsel-projectile-find-file | -                                                      |
+| `C-K` | kill-line                    | crux-kill-line-backwards                               |
 
 
 
 ## modes(模式分类按键)
+
+### visual-regexp(实时替换)
+
+<span id="mode-vr"></span>
 
 ### smartparens(精明括号模式)
 
@@ -210,11 +216,7 @@
 | `C-c R` | counsel-list-processes       |
 | `C-c u` | lsp-ui-imenu                 |
 
-### C-c n(org-roam)
-
-[keybindings->](#key-org-roam)
-
-### C-c c(counsel)
+### c(counsel)
 
 ```
 // TODO
@@ -246,6 +248,12 @@
 
 
 
+### n(org-roam)
+
+[keybindings->](#key-org-roam)
+
+### t(tabs)
+
 ## C-s
 
 | key     | function            |
@@ -259,6 +267,16 @@
 | key     | function                           |
 | ------- | ---------------------------------- |
 | `M-RET` | lsp-ui-sideline-apply-code-actions |
+
+## s-(Option, Alt按键)
+
+| key   | function        |
+| ----- | --------------- |
+| `s-u` | upcase-word     |
+| `s-l` | downcase-word   |
+| `s-c` | capitalize-word |
+
+
 
 ## ,(Coma，分号)
 
@@ -352,6 +370,7 @@
 | `SPC f D` | gcl/delete-this-file        |
 | `SPC f f` | counsel-find-file           |
 | `SPC f e` | crux-find-user-init-file    |
+| `SPC f i` | crux-find-shell-init-file   |
 | `SPC f o` | gcl/open-in-externel-app    |
 | `SPC f p` | ffip                        |
 | `SPC f r` | crux-recentf-find-file      |
@@ -489,6 +508,19 @@ lsp-vue configuration helps
 
 
 # Elisp
+
+1. 重写 evil 状态下的按键
+
+   ```lisp
+   (use-package xxx
+                :bind
+                (:map evil-normal-state-map
+   	 							("g t" . centaur-tabs-forward)
+   								("g T" . centaur-tabs-backward)))
+   
+   ```
+
+   
 
 ## functions
 
