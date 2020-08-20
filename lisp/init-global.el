@@ -10,6 +10,9 @@
 ;;----------------------------------------------------------------------------
 ;; (global-set-key (kbd "C-+") #'text-scale-increase)
 ;; (global-set-key (kbd "C--") #'text-scale-decrease)
+(global-set-key (kbd "s-k") #'crux-kill-line-backwards)
+(global-set-key (kbd "s-<") #'move-text-up)
+(global-set-key (kbd "s->") #'move-text-down)
 ;; -END
 
 ;;----------------------------------------------------------------------------

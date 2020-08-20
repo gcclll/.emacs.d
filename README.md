@@ -20,15 +20,15 @@
 
 ## 重写默认按键(evil)
 
-| key   | old                          | new                                                    |
-| ----- | ---------------------------- | ------------------------------------------------------ |
-| `(`   | evil-backward-sentence-begin | evil-previous-open-paren，定位到上一个配对的小括号(左) |
-| `)`   | evil-forward-sentence-begin  | evil-next-close-paren，定位到下一个配对的小括号(右)    |
-| `{`   | evil-backward-paragraph      | evil-previous-open-brace，定位到上一个配对的大括号(左) |
-| `}`   | evil-forward-paragraph       | evil-next-close-paren，定位到下一个配对的大括号(右)    |
-| `%`   | evil-jump-item               | vr/query-replace                                       |
-| `s-t` | counsel-projectile-find-file | -                                                      |
-| `C-K` | kill-line                    | crux-kill-line-backwards                               |
+| key   | old                          | new                                                          |
+| ----- | ---------------------------- | ------------------------------------------------------------ |
+| `(`   | evil-backward-sentence-begin | evil-previous-open-paren，<br />定位到上一个配对的小括号(左) |
+| `)`   | evil-forward-sentence-begin  | evil-next-close-paren，<br />定位到下一个配对的小括号(右)    |
+| `{`   | evil-backward-paragraph      | evil-previous-open-brace，<br />定位到上一个配对的大括号(左) |
+| `}`   | evil-forward-paragraph       | evil-next-close-paren，<br />定位到下一个配对的大括号(右)    |
+| `%`   | evil-jump-item               | vr/query-replace                                             |
+| `s-t` | counsel-projectile-find-file | -                                                            |
+| `s-k` | kill-current-buffer          | crux-kill-line-backwards                                     |
 
 
 
@@ -192,10 +192,12 @@
 | key          | function                                               |
 | ------------ | ------------------------------------------------------ |
 | `<C-return>` | rect-hydra/body，text-mode, prog-mode,打开快捷操作面板 |
-| `<s-return>` | rect-hydra/body, org-mode,打开快捷操作面板             |
 | `<C-;>`      | iedit-mode                                             |
 | `<C-=>`      | er/expand-region，选择区域                             |
 | `<C-,>`      | goto-last-change                                       |
+| `<s-return>` | rect-hydra/body, org-mode,打开快捷操作面板             |
+| `s-<`        | move-text-up                                           |
+| `s->`        | move-text-down                                         |
 
 ### C-c n(org-roam)
 
