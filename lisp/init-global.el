@@ -13,6 +13,7 @@
 (global-set-key (kbd "s-k") #'crux-kill-line-backwards)
 (global-set-key (kbd "s-<") #'move-text-up)
 (global-set-key (kbd "s->") #'move-text-down)
+(global-set-key (kbd "C-j") #'emmet-expand-yas)
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -37,10 +38,12 @@
 ;; `setq'
 ;;----------------------------------------------------------------------------
 
+(setq make-backup-files nil) ; no backup
+;; (setq backup-directory-alist '(("" . "~/.backups")))
 (setq warning-minimum-level :emergency)
-;; (setq user-full-name "ZhiCheng Lee")
+(setq user-full-name "ZhiCheng Lee")
 (setq user-blog-url "https://blog.ii6g.com")
-;; (setq user-mail-address "gccll.love@gmail.com")
+(setq user-mail-address "gccll.love@gmail.com")
 ;; (setq x-alt-keysym 'meta)
 ;; (setq ring-bell-function 'ignore)
 ;; (setq echo-keystrokes 0.1)

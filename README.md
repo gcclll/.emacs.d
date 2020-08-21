@@ -1,3 +1,25 @@
+Update log
+
+1. 2020-08-21 09:30:22, ADD：`autoinsert`, [reference link.](http://blog.lujun9972.win/emacs-document/blog/2016/10/12/%E8%AE%A9emacs%E4%B8%BA%E4%BD%A0%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E5%86%85%E5%AE%B9(emacs%E6%A8%A1%E6%9D%BF%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97)/index.html)
+
+# Awesome Features
+
+## org-html-themes
+
+[Docs Link 🛬](https://github.com/fniessen/org-html-themes)
+
+[Examples](https://github.com/fniessen/refcard-org-mode)
+
+add header:
+
+`#+SETUPFILE: ~/.emacs.d/site-lisp/org-html-themes/setup/theme-readtheorg.setup`
+
+and `export-html-to-html` or `C-c C-e h h`, result:
+
+![](http://qiniu.ii6g.com/1597921998.png?imageMogr2/thumbnail/!100p)
+
+[read the docs for  theme configuration](https://docs.readthedocs.io/en/latest/)
+
 # keybinds
 
 | key  | function   |
@@ -20,15 +42,16 @@
 
 ## 重写默认按键(evil)
 
-| key   | old                          | new                                                          |
-| ----- | ---------------------------- | ------------------------------------------------------------ |
-| `(`   | evil-backward-sentence-begin | evil-previous-open-paren，<br />定位到上一个配对的小括号(左) |
-| `)`   | evil-forward-sentence-begin  | evil-next-close-paren，<br />定位到下一个配对的小括号(右)    |
-| `{`   | evil-backward-paragraph      | evil-previous-open-brace，<br />定位到上一个配对的大括号(左) |
-| `}`   | evil-forward-paragraph       | evil-next-close-paren，<br />定位到下一个配对的大括号(右)    |
-| `%`   | evil-jump-item               | vr/query-replace                                             |
-| `s-t` | counsel-projectile-find-file | -                                                            |
-| `s-k` | kill-current-buffer          | crux-kill-line-backwards                                     |
+| key   | old                               | new                                                          |
+| ----- | --------------------------------- | ------------------------------------------------------------ |
+| `(`   | evil-backward-sentence-begin      | evil-previous-open-paren，<br />定位到上一个配对的小括号(左) |
+| `)`   | evil-forward-sentence-begin       | evil-next-close-paren，<br />定位到下一个配对的小括号(右)    |
+| `{`   | evil-backward-paragraph           | evil-previous-open-brace，<br />定位到上一个配对的大括号(左) |
+| `}`   | evil-forward-paragraph            | evil-next-close-paren，<br />定位到下一个配对的大括号(右)    |
+| `%`   | evil-jump-item                    | vr/query-replace                                             |
+| `s-t` | counsel-projectile-find-file      | -                                                            |
+| `s-k` | kill-current-buffer               | crux-kill-line-backwards                                     |
+| `C-j` | electric-newline-and-maybe-indent | emmet-expand-yas                                             |
 
 
 
@@ -91,6 +114,34 @@
 | H     | Resume on hold session  |
 
 ### org-mode
+
+#### verb, http-client-in-org
+
+| key       | function                           |
+| --------- | ---------------------------------- |
+| `C-c C-r` | verb-command-map，作为 verb 命令族 |
+
+**使用**
+
+1. 需要在标题后面增加 `:verb:`
+2. 可以通过 `template https://www.gnu.org` 来声明接口地址
+3. `get /...` 或 `post /...`
+4. `template` 可以多级使用
+
+```markdown
+* gnu.org :verb:
+	template https://www.gnu.org
+** PDF
+		get /licenses/quick-guide-gplv3.pdf
+	** Images
+		// 这里相当于请求路径为：https://www.gnu.org/graphics
+		template /graphics 
+		*** PNG image
+			get /gnu-head.png
+
+```
+
+
 
 #### keybindings
 
@@ -198,6 +249,7 @@
 | `<s-return>` | rect-hydra/body, org-mode,打开快捷操作面板             |
 | `s-<`        | move-text-up                                           |
 | `s->`        | move-text-down                                         |
+| `s-p`        | projectile-command-map                                 |
 
 ### C-c n(org-roam)
 
@@ -316,10 +368,11 @@
 
 | key   | function                 |
 | ----- | ------------------------ |
-| `z-(` | sp-wrap-round，()括起来  |
-| `z-{` | sp-wrap-curly，{}括起来  |
-| `z-[` | sp-wrap-square，[]括起来 |
-| `z--` | sp-splice-sexp，去掉括号 |
+| `z (` | sp-wrap-round，()括起来  |
+| `z {` | sp-wrap-curly，{}括起来  |
+| `z [` | sp-wrap-square，[]括起来 |
+| `z -` | sp-splice-sexp，去掉括号 |
+| `z w` | emmet-wrap-with-markup   |
 
 
 
@@ -507,7 +560,13 @@ lsp-vue configuration helps
 
 1. https://medium.com/kloeckner-i/til-language-server-setup-for-elixir-and-vue-with-emacs-33a38be0672f
 
+# Issues
 
+1. JSON readtable error:122
+
+   https://github.com/syl20bnr/spacemacs/issues/13206
+
+   `pip3 install jupyter`
 
 # Elisp
 
@@ -522,7 +581,7 @@ lsp-vue configuration helps
    
    ```
 
-   
+2. 新建文件自动插入内容，auto insert when new file.
 
 ## functions
 

@@ -1,2 +1,6 @@
 (["*scratch*" "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。
-" (28 . 28) lisp-interaction-mode nil nil])
+
+(yas-expand-snippet \";; Bah-da $1 Bing\")  ;; Bah-da  Bing
+
+(message user-mail-address)
+(message user-full-name)" (114 . 111) lisp-interaction-mode nil nil])

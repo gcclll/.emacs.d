@@ -59,7 +59,7 @@ prepended to the element after the #+HEADER: tag."
       (when text (insert text))))
   :pretty-hydra
   ((:title (pretty-hydra-title "Org Template" 'fileicon "org")
-	   :color blue :quit-key "q")
+	  :color blue :quit-key "q")
    ("Basic"
     (("a" (hot-expand "<a") "ascii")
      ("c" (hot-expand "<c") "center")
@@ -113,6 +113,7 @@ prepended to the element after the #+HEADER: tag."
                               (make-variable-buffer-local 'show-paren-mode)
                               (setq show-paren-mode nil))))
   :config
+	(define-key org-mode-map (kbd "C-c C-r") verb-command-map)
   ;; To speed up startup, don't put to init section
   (setq org-agenda-files `(,centaur-org-directory)
         org-todo-keywords
@@ -157,7 +158,15 @@ prepended to the element after the #+HEADER: tag."
   (use-package org-bullets
     :if (char-displayable-p ?⚫)
     :hook (org-mode . org-bullets-mode)
-    :init (setq org-bullets-bullet-list '("⚫" "⚫" "⚫" "⚫")))
+		;; '("⚫" "⚫" "⚫" "⚫"))
+		:init (setq org-bullets-bullet-list
+								'("◉"
+									"○"
+									"✸"
+									"✿"
+									;; ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶
+									;; Small ► • ★ ▸
+									)))
 
   (use-package org-fancy-priorities
     :diminish
@@ -207,7 +216,7 @@ prepended to the element after the #+HEADER: tag."
   ;; Rich text clipboard
   (use-package org-rich-yank
     :bind (:map org-mode-map
-		("C-M-y" . org-rich-yank)))
+					 ("C-M-y" . org-rich-yank)))
 
   ;; Table of contents
   (use-package toc-org
@@ -216,13 +225,20 @@ prepended to the element after the #+HEADER: tag."
   ;; Export text/html MIME emails
   (use-package org-mime
     :bind (:map message-mode-map
-		("C-c M-o" . org-mime-htmlize)
-		:map org-mode-map
-		("C-c M-o" . org-mime-org-buffer-htmlize)))
+					 ("C-c M-o" . org-mime-htmlize)
+					 :map org-mode-map
+					 ("C-c M-o" . org-mime-org-buffer-htmlize)))
 
   ;; Preview
   (use-package org-preview-html
     :diminish)
+
+	(use-package org-capture
+		:config
+		(setq org-capture-templates
+					'(("t" "Task for a day" entry
+						 (file+headline "tasks.org" "Task list")
+						 "* TODO [#A] %?\nDEADLINE: %^t"))))
 
   ;; Presentation
   (use-package org-tree-slide
@@ -230,12 +246,12 @@ prepended to the element after the #+HEADER: tag."
     :functions (org-display-inline-images
                 org-remove-inline-images)
     :bind (:map org-mode-map
-		("s-<f7>" . org-tree-slide-mode)
-		:map org-tree-slide-mode-map
-		("<left>" . org-tree-slide-move-previous-tree)
-		("<right>" . org-tree-slide-move-next-tree)
-		("S-SPC" . org-tree-slide-move-previous-tree)
-		("SPC" . org-tree-slide-move-next-tree))
+					 ("s-<f7>" . org-tree-slide-mode)
+					 :map org-tree-slide-mode-map
+					 ("<left>" . org-tree-slide-move-previous-tree)
+					 ("<right>" . org-tree-slide-move-next-tree)
+					 ("S-SPC" . org-tree-slide-move-previous-tree)
+					 ("SPC" . org-tree-slide-move-next-tree))
     :hook ((org-tree-slide-play . (lambda ()
                                     (text-scale-increase 4)
                                     (org-display-inline-images)
@@ -255,7 +271,7 @@ prepended to the element after the #+HEADER: tag."
     (org-pomodoro-mode-line-overtime ((t (:inherit error))))
     (org-pomodoro-mode-line-break ((t (:inherit success))))
     :bind (:map org-agenda-mode-map
-		("P" . org-pomodoro))))
+					 ("P" . org-pomodoro))))
 
 ;; org-roam
 (when (and emacs/>=26p (executable-find "cc"))
@@ -264,12 +280,12 @@ prepended to the element after the #+HEADER: tag."
     :custom (org-roam-directory centaur-org-directory)
     :hook (after-init . org-roam-mode)
     :bind (:map org-roam-mode-map
-		(("C-c n l" . org-roam)
-		 ("C-c n f" . org-roam-find-file)
-		 ("C-c n g" . org-roam-graph))
-		:map org-mode-map
-		(("C-c n i" . org-roam-insert))
-		(("C-c n I" . org-roam-insert-immediate))))
+					 (("C-c n l" . org-roam)
+						("C-c n f" . org-roam-find-file)
+						("C-c n g" . org-roam-graph))
+					 :map org-mode-map
+					 (("C-c n i" . org-roam-insert))
+					 (("C-c n I" . org-roam-insert-immediate))))
 
   (use-package org-roam-server
     :functions xwidget-buffer xwidget-webkit-current-session
@@ -285,7 +301,19 @@ prepended to the element after the #+HEADER: tag."
                   (when (buffer-live-p buf)
                     (and (eq buf (current-buffer)) (quit-window))
                     (pop-to-buffer buf))))
-            (browse-url url)))))))
+            (browse-url url))))))
+	:config
+	(setq org-roam-server-host "127.0.0.1"
+				org-roam-server-port 8765
+				org-roam-server-authenticate nil
+				org-roam-server-export-inline-images t
+				org-roam-server-serve-files nil
+				org-roam-server-served-file-extensions '("pdf" "mp4" "ogv")
+				org-roam-server-network-poll t
+				org-roam-server-network-arrows nil
+				org-roam-server-network-label-truncate t
+				org-roam-server-network-label-truncate-length 60
+				org-roam-server-network-label-wrap-length 20))
 
 (provide 'init-org)
 

@@ -270,17 +270,34 @@
 (use-package highlight-parentheses
   :config
   (global-highlight-parentheses-mode t))
-(use-package helm-dash)
+
+(use-package dash
+	:demand t
+  :config (dash-enable-font-lock))
 (use-package beacon
 	:delight
 	:hook (prog-mode . beacon-mode)
 	:commands (beacon-mode)
 	:config
-		(beacon-mode 1))
+	(beacon-mode 1))
 ;; :custom
 ;; (beacon-blink-duration 0.7)
 ;; (beacon-size 100))
 ;; -END
+
+;;----------------------------------------------------------------------------
+;; `eaf'
+;;----------------------------------------------------------------------------
+;; (use-package eaf
+;;   :load-path "~/.emacs.d/site-lisp/emacs-application-framework" ; Set to "/usr/share/emacs/site-lisp/eaf" if installed from AUR
+;;   :custom
+;;   (eaf-find-alternate-file-in-dired t)
+;;   :config
+;;   (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+;;   (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+;;   (eaf-bind-key take_photo "p" eaf-camera-keybinding))
+;; -END
+
 
 
 (provide 'init-utils)

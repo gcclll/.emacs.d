@@ -1,0 +1,3 @@
+#+SETUPFILE: ~/.emacs.d/site-lisp/org-html-themes/setup/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src:before{border: 1px solid lightgray;color:black;}</style>
+#+HTML_HEAD: <style>pre.src{background:#343131;color:white;overflow-y:visible;} </style>

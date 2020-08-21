@@ -94,6 +94,25 @@
   :hook (fish-mode . (lambda ()
                        (add-hook 'before-save-hook
                                  #'fish_indent-before-save))))
+;;----------------------------------------------------------------------------
+;; `autoinsert'
+;;----------------------------------------------------------------------------
+(use-package autoinsert
+	:init
+	(setq auto-insert-query nil)
+	(setq auto-insert-directory (locate-user-emacs-file "templates"))
+	(add-hook 'find-file-hook 'auto-insert)
+	(auto-insert-mode 1)
+
+	:config
+	(define-auto-insert "\\.html?$" ["default-html.html" gcl/autoinsert-yas-expand])
+	(define-auto-insert "\\.sh$" ["default-sh.sh" gcl/autoinsert-yas-expand])
+	(define-auto-insert "/bin/" ["default-sh.sh" gcl/autoinsert-yas-expand])
+	(define-auto-insert "\\.el$" ["default-el.el" gcl/autoinsert-yas-expand])
+	(define-auto-insert "\\.org$" ["default-org.org" gcl/autoinsert-yas-expand]))
+;; -END
+
+
 
 (provide 'init-prog)
 

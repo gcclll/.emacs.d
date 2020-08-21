@@ -714,6 +714,14 @@ Version 2019-11-04"
 		(run-at-time "1 sec" nil 'git-push-delete-window)))
 ;; -END
 
+;;----------------------------------------------------------------------------
+;; `autoinsert-yas'
+;;----------------------------------------------------------------------------
+(defun gcl/autoinsert-yas-expand()
+	"Replace text in yasnippet template."
+	(yas-expand-snippet (buffer-string) (point-min) (point-max)))
+;; -END
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

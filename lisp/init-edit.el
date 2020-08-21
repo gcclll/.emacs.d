@@ -435,6 +435,7 @@
   :diminish
   :hook (after-init . fancy-narrow-mode))
 
+
 (provide 'init-edit)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

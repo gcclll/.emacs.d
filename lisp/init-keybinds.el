@@ -202,11 +202,12 @@
 ;; `backquote Leader'
 ;;----------------------------------------------------------------------------
 (zleader
- "(" 'sp-wrap-round ; wrap with ()
- "[" 'sp-wrap-square ; wrap with []
- "{" 'sp-wrap-curly ; wrap with {}
- "-" 'sp-splice-sexp ; unwrap
- )
+	"(" 'sp-wrap-round ; wrap with ()
+	"[" 'sp-wrap-square ; wrap with []
+	"{" 'sp-wrap-curly ; wrap with {}
+	"-" 'sp-splice-sexp ; unwrap
+	"w" 'emmet-wrap-with-markup
+	)
 
 ;; -END
 

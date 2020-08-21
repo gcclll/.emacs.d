@@ -32,10 +32,6 @@
 
 (require 'init-def)
 
-;; Personal information
-(setq user-full-name centaur-full-name
-      user-mail-address centaur-mail-address)
-
 ;; Key Modifiers
 (with-no-warnings
   (cond
