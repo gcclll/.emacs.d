@@ -39,7 +39,8 @@
 ;;----------------------------------------------------------------------------
 
 (setq make-backup-files nil) ; no backup
-;; (setq backup-directory-alist '(("" . "~/.backups")))
+;; (setq make-backup-file-name-function 'gcl/backup-file-name) ; backup with absolute path
+;; (setq backup-directory-alist '(("" . "~/.backups"))) ; directly bakup into
 (setq warning-minimum-level :emergency)
 (setq user-full-name "ZhiCheng Lee")
 (setq user-blog-url "https://blog.ii6g.com")
