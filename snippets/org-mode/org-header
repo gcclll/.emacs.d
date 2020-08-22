@@ -2,9 +2,9 @@
 # name: org-header
 # key: org
 # --
-📓 用emacs进行时间管理
-👤 lujun9972
-🏷 Emacs之怒
-📆 [2018-12-26 三 23:41]
+📓 $1
+👤 `user-full-name` <`user-mail-address`>
+🏷 `(gcl/get-parent-dir-name)`
+📆 [`(format-time-string "%Y-%m-%d %a %H:%M")`]
 #+LANGUAGE:  zh-CN
 #+OPTIONS:  H:6 num:nil toc:t \n:nil ::t |:t ^:nil -:nil f:t *:t <:nil
