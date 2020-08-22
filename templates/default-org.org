@@ -1,3 +1,6 @@
-#+SETUPFILE: ~/.emacs.d/site-lisp/org-html-themes/setup/theme-readtheorg.setup
-#+HTML_HEAD: <style>pre.src:before{border: 1px solid lightgray;color:black;}</style>
-#+HTML_HEAD: <style>pre.src{background:#343131;color:white;overflow-y:visible;} </style>
+📓 $1
+👤 `user-full-name` <`user-mail-address`>
+🏷 `(gcl/get-parent-dir-name)`
+📆 [`(format-time-string "%Y-%m-%d %a %H:%M")`]
+#+LANGUAGE:  zh-CN
+#+OPTIONS:  H:6 num:nil toc:t \n:nil ::t |:t ^:nil -:nil f:t *:t <:nil

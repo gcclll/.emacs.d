@@ -57,9 +57,30 @@ and `export-html-to-html` or `C-c C-e h h`, result:
 
 ## modes(模式分类按键)
 
+### Habitica(日记，TODOs模式)
+
+```
+C-x t n => new task
+C-x t t => cycle todo/done
+C-x t + => + a habit
+C-x t - => - a habit
+C-x t d => set deadline
+C-x t i => set difficulty
+C-x t D => delete the task
+C-x t b => buy reward
+C-x t a => add a tag to the task
+C-x t A => remove a tag from the task
+C-x t g => refresh
+```
+
 ### visual-regexp(实时替换)
 
 <span id="mode-vr"></span>
+
+| key       | function            |
+| --------- | ------------------- |
+| `SPC s v` | vr/isearch-forward  |
+| `SPC s V` | vr/isearch-backward |
 
 ### smartparens(精明括号模式)
 

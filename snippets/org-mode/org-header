@@ -2,6 +2,9 @@
 # name: org-header
 # key: org
 # --
-#+SETUPFILE: ~/.emacs.d/site-lisp/org-html-themes/setup/theme-readtheorg.setup
-#+HTML_HEAD: <style>pre.src:before{border: 1px solid lightgray;color:black;}</style>
-#+HTML_HEAD: <style>pre.src{background:#343131;color:white;overflow-y:visible;} </style>
+📓 用emacs进行时间管理
+👤 lujun9972
+🏷 Emacs之怒
+📆 [2018-12-26 三 23:41]
+#+LANGUAGE:  zh-CN
+#+OPTIONS:  H:6 num:nil toc:t \n:nil ::t |:t ^:nil -:nil f:t *:t <:nil

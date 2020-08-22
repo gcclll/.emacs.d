@@ -3,4 +3,54 @@
 (yas-expand-snippet \";; Bah-da $1 Bing\")  ;; Bah-da  Bing
 
 (message user-mail-address)
-(message user-full-name)" (114 . 111) lisp-interaction-mode nil nil])
+\"gccll.love@gmail.com\"
+
+(format-time-string \"%Y-%m-%d %a %H:%M\")
+\"2020-08-22 Sat 16:57\"
+
+\"2020-08-22 Sat Aug:57\"
+
+\"2020-08-22\"
+
+(message (gcl/get-parent-dir-name))
+
+(gcl/get-parent-dir-name buffer-file-name)
+
+(defun gcl/get-parent-dir-name ()
+	(if (buffer-file-name) 
+			(let* ((dir-list (split-string (file-name-directory (buffer-file-name)) \"/\"))
+						 (dir-list-len (length dir-list))
+						 (parent-dir-name (nth (- dir-list-len 2) dir-list)))
+				parent-dir-name)
+		nil))
+gcl/get-parent-dir-name
+
+gcl/get-parent-dir-name
+
+gcl/get-parent-dir-name
+
+gcl/get-parent-dir-name
+
+(gcl/get-parent-dir-name)
+nil
+
+\"buffer file name is ‘nil’\"
+
+
+\"buffer file name is ‘nil’\"
+
+
+
+
+
+
+
+
+(message buffer-file-name)
+nil
+
+
+
+
+
+" (97 . 97) lisp-interaction-mode nil nil])

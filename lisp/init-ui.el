@@ -441,7 +441,7 @@
 ;; `tabs'
 ;;----------------------------------------------------------------------------
 (use-package centaur-tabs
-	;; :disabled
+	:disabled
 	:config
 	(setq centaur-tabs-style "bar"
 				centaur-tabs-height 32

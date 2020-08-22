@@ -740,7 +740,17 @@ If the new path's directories does not exist, create them."
 	)
 ;; -END
 
-
+;;----------------------------------------------------------------------------
+;; `get-parent-dirname'
+;;----------------------------------------------------------------------------
+(defun gcl/get-parent-dir-name ()
+	(if (buffer-file-name) 
+			(let* ((dir-list (split-string (file-name-directory (buffer-file-name)) "/"))
+						 (dir-list-len (length dir-list))
+						 (parent-dir-name (nth (- dir-list-len 2) dir-list)))
+				parent-dir-name)
+		nil))
+;; -END
 
 (provide 'init-funcs)
 
