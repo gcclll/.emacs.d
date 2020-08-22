@@ -1,4 +1,4 @@
-📓 $1
+#+TITLE: $1
 👤 `user-full-name` <`user-mail-address`>
 🏷 `(gcl/get-parent-dir-name)`
 📆 [`(format-time-string "%Y-%m-%d %a %H:%M")`]
