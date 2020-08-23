@@ -31,6 +31,8 @@
 
 (defconst zcheng-misc-packages
   '(
+    git-messenger
+    swiper
     keyfreq
     wrap-region
     prodigy
@@ -350,5 +352,30 @@ Each entry is either:
     (progn
       (keyfreq-mode t)
       (keyfreq-autosave-mode 1))))
+
+(defun zcheng-misc/post-init-swiper ()
+  "Initialize my package"
+  (progn
+    (setq ivy-use-virtual-buffers t)
+    (setq ivy-display-style 'fancy)
+    (evilified-state-evilify ivy-occur-mode ivy-occur-mode-map)
+
+    (use-package ivy
+      :defer t
+      :config
+      (progn
+        (spacemacs|hide-lighter ivy-mode)
+        (setq ivy-dynamic-exhibit-delay-ms 300)
+        (setq ivy-initial-inputs-alist nil)
+        (setq ivy-wrap t)
+        (setq confirm-nonexistent-file-or-buffer t)))))
+
+(defun zcheng-misc/post-init-git-messenger ()
+  (use-package git-messenger
+    :defer t
+    :config
+    (progn
+      (define-key git-messenger-map (kbd "f") 'zilong/github-browse-commit))))
+
 ;;; packages.el ends here
 
