@@ -133,6 +133,51 @@ org-files and bookmarks"
       (git-timemachine-quit)))
 
 
+(defun zilongshanren/load-my-layout ()
+  (interactive)
+  (persp-load-state-from-file (concat persp-save-dir "zcheng")))
+
+(defun zilongshanren/save-my-layout ()
+  (interactive)
+  (persp-save-state-to-file (concat persp-save-dir "zcheng")))
+
+
+(defun zilongshanren/highlight-dwim ()
+  (interactive)
+  (if (use-region-p)
+      (progn
+        (highlight-frame-toggle)
+        (deactivate-mark))
+    (spacemacs/symbol-overlay)))
+
+(defun zilongshanren/clearn-highlight ()
+  (interactive)
+  (clear-highlight-frame)
+  (symbol-overlay-remove-all))
+
+
+(defun zilongshanren/iterm-shell-command (command &optional prefix)
+  "cd to `default-directory' then run COMMAND in iTerm.
+With PREFIX, cd to project root."
+  (interactive (list (read-shell-command
+                      "iTerm Shell Command: ")
+                     current-prefix-arg))
+  (let* ((dir (if prefix (zilongshanren/git-project-root)
+                default-directory))
+         ;; if COMMAND is empty, just change directory
+         (cmd (format "cd %s ;%s" dir command)))
+    (do-applescript
+     (format
+      "
+  tell application \"iTerm2\"
+       activate
+       set _session to current session of current window
+       tell _session
+            set command to get the clipboard
+            write text \"%s\"
+       end tell
+  end tell
+  " cmd))))
 
 (provide 'funcs)
 

@@ -11,6 +11,7 @@
 ;;; License: GPLv3
 
 (configuration-layer/declare-layers '(
+                                      zcheng-misc
                                       ;; zilongshanren-misc
                                       ;; zilongshanren-programming
                                       ;; zilongshanren-ui

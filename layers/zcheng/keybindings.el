@@ -47,12 +47,14 @@
 ;; `global-key'
 ;;----------------------------------------------------------------------------
 
+;; (define-key evil-normal-state-map (kbd "s-/") 'evilnc-comment-or-uncomment-lines)
+
 ;; -END
 
 ;;----------------------------------------------------------------------------
 ;; `define-key'
 ;;----------------------------------------------------------------------------
-
+(define-key global-map (kbd "C-c t") 'org-capture)
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -62,6 +64,7 @@
 (bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
 (bind-key* "M--" 'zilongshanren/goto-match-paren)
 (bind-key* "M-i" 'string-inflection-java-style-cycle)
+(bind-key* "s-p" 'find-file-in-project)
 ;; -END
 
 
@@ -80,6 +83,7 @@
 ;;----------------------------------------------------------------------------
 
 (spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
+(spacemacs/set-leader-keys "bM" 'spacemacs/switch-to-messages-buffer)
 (spacemacs/set-leader-keys "bm" nil)
 (spacemacs/declare-prefix "bm" "Bookmark")
 (spacemacs/set-leader-keys "bms" 'bookmark-set)
@@ -91,6 +95,11 @@
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
 (spacemacs/set-leader-keys "fd" 'projectile-find-file-dwim-other-window)
+
+;; highlight
+(spacemacs/set-leader-keys "hh" 'zilongshanren/highlight-dwim)
+;; (spacemacs/set-leader-keys "hc" 'zilongshanren/clearn-highlight)
+(spacemacs/set-leader-keys "hc" 'symbol-overlay-remove-all)
 
 (spacemacs/set-leader-keys "gg" 'magit)
 (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
@@ -104,7 +113,12 @@
 (spacemacs/set-leader-keys "ox" 'org-open-at-point-global)
 (spacemacs/set-leader-keys "or" 'zilongshanren/browser-refresh--chrome-applescript)
 (spacemacs/set-leader-keys "og" 'my-git-timemachine)
+(spacemacs/set-leader-keys "oll" 'zilongshanren/load-my-layout)
+(spacemacs/set-leader-keys "ols" 'zilongshanren/save-my-layout)
+(when (spacemacs/system-is-mac)
+  (spacemacs/set-leader-keys "o!" 'zilongshanren/iterm-shell-command))
 
+(spacemacs/set-leader-keys "xe" 'set-buffer-file-coding-system)
 
 (spacemacs/set-leader-keys "yi" 'yas/insert-snippet)
 (spacemacs/set-leader-keys "yd" 'youdao-dictionary-search-at-point+)
@@ -121,8 +135,6 @@
   :documentation "Toggle shadowsocks proxy mode."
   :evil-leader "ots")
 ;; -END
-
-
 
 (provide 'keybindings)
 

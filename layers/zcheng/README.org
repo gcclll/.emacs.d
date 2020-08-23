@@ -14,7 +14,10 @@
   - [[#features][Features:]]
 - [[#install][Install]]
 - [[#key-bindings][Key bindings]]
-  - [[#spc-o-o-zilongshanrenhelm-hotspots][SPC o o, zilongshanren/helm-hotspots]]
+- [[#modes][modes]]
+  - [[#zilongshanrenhelm-hotspots-spc-o-o][zilongshanren/helm-hotspots, SPC o o]]
+  - [[#tiny-spc-o-e][tiny, SPC o e]]
+  - [[#multiple-cursors][multiple-cursors]]
 
 * Description
 This layer adds support for something.
@@ -32,54 +35,84 @@ file.
 
 * Key bindings
 
-| Key Binding | Description                                       |
-|-------------+---------------------------------------------------|
-| ~SPC b D~   | spacemacs/kill-other-buffers                      |
-| ~SPC b m s~ | bookmark-set                                      |
-| ~SPC b m r~ | bookmark-rename                                   |
-| ~SPC b m d~ | bookmark-delete                                   |
-| ~SPC b m j~ | counsel-bookmark                                  |
-|-------------+---------------------------------------------------|
-|             |                                                   |
-| ~SPC e n~   | flycheck-next-error                               |
-| ~SPC e p~   | flycheck-previous-error                           |
-|-------------+---------------------------------------------------|
-| ~SPC f d~   | projectile-find-file-dwim-other-window            |
-|             |                                                   |
-|-------------+---------------------------------------------------|
-| ~SPC g g~   | magit                                             |
-| ~SPC g L~   | magit-log-buffer-file, show git logs              |
-| ~SPC g n~   | smerge-next                                       |
-| ~SPC g p~   | smerge-prev                                       |
-|-------------+---------------------------------------------------|
-| ~SPC p b~   | counsel-projectile-switch-to-buffer               |
-|-------------+---------------------------------------------------|
-| ~SPC o o~   | zilongshanren/helm-hotspots                       |
-| ~SPC o x~   | org-open-at-point-global, open link               |
-| ~SPC o r~   | zilongshanren/browser-refresh--chrome-applescript |
-| ~SPC o g~   | my-git-timemachine, git record                                      |
-|-------------+---------------------------------------------------|
-| ~SPC r l~   | ivy-resume, resume last search result             |
-|-------------+---------------------------------------------------|
-| ~SPC s j~   | counsel-jump-in-buffer                            |
-|-------------+---------------------------------------------------|
-|             |                                                   |
-| ~SPC y i~   | yas/insert-snippet                                |
-| ~SPC y d~   | youdao-dictionary-search-at-point+                |
-|-------------+---------------------------------------------------|
-| ~C-c l~     | zilongshanren/insert-chrome-current-tab-url       |
-|-------------+---------------------------------------------------|
-| ~M--~       | zilongshanren/goto-match-paren                    |
-| ~M-i~       | string-inflection-java-style-cycle                |
-|-------------+---------------------------------------------------|
-| ~, '~       | ielm, lisp-repl                                   |
-|-------------+---------------------------------------------------|
-| ~+~         | evil-numbers/inc-at-pt，number +1                 |
-| ~-~         | evil-numbers/dec-at-pt, number -1                 |
+| Key Binding | Description                                                     |
+|-------------+-----------------------------------------------------------------|
+| ~SPC b i~   | ibuffer                                                         |
+| ~SPC b D~   | spacemacs/kill-other-buffers                                    |
+| ~SPC b m s~ | bookmark-set                                                    |
+| ~SPC b m r~ | bookmark-rename                                                 |
+| ~SPC b m d~ | bookmark-delete                                                 |
+| ~SPC b m j~ | counsel-bookmark                                                |
+|-------------+-----------------------------------------------------------------|
+|             |                                                                 |
+| ~SPC e n~   | flycheck-next-error                                             |
+| ~SPC e p~   | flycheck-previous-error                                         |
+|-------------+-----------------------------------------------------------------|
+| ~SPC f d~   | projectile-find-file-dwim-other-window                          |
+|             |                                                                 |
+|-------------+-----------------------------------------------------------------|
+| ~SPC g g~   | magit                                                           |
+| ~SPC g L~   | magit-log-buffer-file, show git logs                            |
+| ~SPC g n~   | smerge-next                                                     |
+| ~SPC g p~   | smerge-prev                                                     |
+|-------------+-----------------------------------------------------------------|
+| ~SPC h h~   | zilongshanren/highlight-dwim                                    |
+| ~SPC h c~   | zilongshanren/clearn-highlight, TODO                            |
+|             | symbol-overlay-remove-all                                       |
+|-------------+-----------------------------------------------------------------|
+|-------------+-----------------------------------------------------------------|
+| ~SPC o o~   | zilongshanren/helm-hotspots                                     |
+| ~SPC o x~   | org-open-at-point-global, open link                             |
+| ~SPC o r~   | zilongshanren/browser-refresh--chrome-applescript               |
+| ~SPC o g~   | my-git-timemachine, git record                                  |
+| ~SPC o !~   | zilongshanren/iterm-shell-command, go current dir & run command |
+| ~SPC o e~   | tiny-expand                                                     |
+|             |                                                                 |
+|-------------+-----------------------------------------------------------------|
+| ~SPC p b~   | counsel-projectile-switch-to-buffer                             |
+| ~SPC p t~   | my-simple-todo                                                  |
+| ~SPC p f~   | zilongshanren/open-file-with-projectile-or-counsel-git                                                                |
+|-------------+-----------------------------------------------------------------|
+| ~SPC r l~   | ivy-resume, resume last search result                           |
+|-------------+-----------------------------------------------------------------|
+| ~SPC s j~   | counsel-jump-in-buffer                                          |
+|-------------+-----------------------------------------------------------------|
+|             |                                                                 |
+| ~SPC y i~   | yas/insert-snippet                                              |
+| ~SPC y d~   | youdao-dictionary-search-at-point+                              |
+|-------------+-----------------------------------------------------------------|
+| ~C-c l~     | zilongshanren/insert-chrome-current-tab-url                     |
+| ~C-c t~     | org-capture                                                     |
+| ~C-c r~     | vr/replace                                                      |
+| ~C-c q~     | vr/query-replace                                                |
+|-------------+-----------------------------------------------------------------|
+| ~M--~       | zilongshanren/goto-match-paren                                  |
+| ~M-i~       | string-inflection-java-style-cycle                              |
+| ~M-'~       | avy-goto-char-2                                                 |
+|             |                                                                 |
+|             |                                                                 |
+|-------------+-----------------------------------------------------------------|
+| ~s-p~       | find-file-in-project                                            |
+|-------------+-----------------------------------------------------------------|
+| ~, '~       | ielm, lisp-repl                                                 |
+|-------------+-----------------------------------------------------------------|
+| ~+~         | evil-numbers/inc-at-pt，number +1                               |
+| ~-~         | evil-numbers/dec-at-pt, number -1                               |
+|             |                                                                 |
+|             |                                                                 |
+|-------------+-----------------------------------------------------------------|
+| ~g [~       | beginning-of-defun                                              |
+| ~g ]~       | end-of-defun                                                    |
 
-** TODO SPC o o, zilongshanren/helm-hotspots
+
+* modes
+** TODO zilongshanren/helm-hotspots, SPC o o
 Search List, Collection List.
 
+** TODO tiny, SPC o e
+   https://github.com/abo-abo/tiny
+   
+** multiple-cursors
 
 
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
