@@ -194,7 +194,7 @@ With PREFIX, cd to project root."
          (compilation-ask-about-save nil))
     (executable-interpret (read-shell-command "Run: " command))))
 
-(defun gcl/git-push-delete-window ()
+(defun gcl/git-push-delete-window (buffer)
 	(progn
 		(message "Git push should done or running in background.")
 		(when (string-match-p "\\`\\*interpretation\\*\\'" (buffer-name buffer))
