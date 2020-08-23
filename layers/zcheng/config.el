@@ -1,6 +1,7 @@
                                         ; -*- lexical-binding: t -*-
 ;; (golden-ratio-mode 1)
 
+(setq sunshine-appid "6621f1828db7491591a32d1391539ac5")
 (defvar org-agenda-dir ""
   "gtd org files location")
 

@@ -52,6 +52,7 @@
 (define-key evil-normal-state-map (kbd "z{") 'sp-wrap-curly)
 (define-key evil-normal-state-map (kbd "z-") 'sp-splice-sexp)
 (define-key evil-normal-state-map (kbd "z.") 'emmet-wrap-with-markup)
+(define-key evil-visual-state-map (kbd "z.") 'emmet-wrap-with-markup)
 
 ;; -END
 
@@ -86,6 +87,7 @@
 ;;----------------------------------------------------------------------------
 ;; `spacemacs'
 ;;----------------------------------------------------------------------------
+(spacemacs/set-leader-keys "aS" 'prodigy)
 
 (spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
 (spacemacs/set-leader-keys "bM" 'spacemacs/switch-to-messages-buffer)
@@ -95,6 +97,8 @@
 (spacemacs/set-leader-keys "bmr" 'bookmark-rename)
 (spacemacs/set-leader-keys "bmd" 'bookmark-delete)
 (spacemacs/set-leader-keys "bmj" 'counsel-bookmark)
+
+(spacemacs/set-leader-keys "dd" 'dash-at-point)
 
 (spacemacs/set-leader-keys "en" 'flycheck-next-error)
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
@@ -115,12 +119,15 @@
 
 
 (global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots)
-(spacemacs/set-leader-keys "oo" 'zilongshanren/helm-hotspots)
-(spacemacs/set-leader-keys "ox" 'org-open-at-point-global)
-(spacemacs/set-leader-keys "or" 'zilongshanren/browser-refresh--chrome-applescript)
 (spacemacs/set-leader-keys "og" 'my-git-timemachine)
 (spacemacs/set-leader-keys "oll" 'zilongshanren/load-my-layout)
 (spacemacs/set-leader-keys "ols" 'zilongshanren/save-my-layout)
+(spacemacs/set-leader-keys "oo" 'zilongshanren/helm-hotspots)
+(spacemacs/set-leader-keys "or" 'zilongshanren/browser-refresh--chrome-applescript)
+(spacemacs/set-leader-keys "os" 'spacemacs/search-engine-select)
+;; (spacemacs/set-leader-keys "oS" 'sunshine-forecast)
+
+(spacemacs/set-leader-keys "ox" 'org-open-at-point-global)
 (when (spacemacs/system-is-mac)
   (spacemacs/set-leader-keys "o!" 'zilongshanren/iterm-shell-command))
 

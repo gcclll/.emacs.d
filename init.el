@@ -38,6 +38,9 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     (wakatime :variables
+               wakatime-api-key  "497a474b-5512-4e56-82a7-0b56c64cd75c"
+               wakatime-cli-path "/usr/bin/wakatime")
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-tab-key-behavior 'cycle
@@ -50,6 +53,7 @@ This function should only modify configuration layer settings."
             c-c++-backend 'lsp-ccls
             c-c++-lsp-executable (file-truename "/usr/local/bin/ccls"))
      deft
+     dash
      emoji
      emacs-lisp
      graphviz
@@ -68,9 +72,11 @@ This function should only modify configuration layer settings."
      (javascript :variables javascript-backend 'lsp)
      markdown
      multiple-cursors
-
+     nginx
+     (node :variables node-add-modules-path t)
      (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English"
           osx-command-as 'super)
+     php
      (plantuml :variables plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
      (python :variables
              python-test-runner '(nose pytest)
@@ -82,6 +88,7 @@ This function should only modify configuration layer settings."
      react
      restclient
      search-engine
+     shell-scripts
      (typescript :variables
                  typescript-fmt-on-save nil
                  typescript-fmt-tool 'typescript-formatter
@@ -99,6 +106,7 @@ This function should only modify configuration layer settings."
                         layouts-autosave-delay 300)
      ;; version-control
      treemacs
+     (vue :variables vue-backend 'lsp)
      yaml
      zcheng
      )

@@ -14,6 +14,7 @@
   - [[#features][Features:]]
 - [[#install][Install]]
 - [[#key-bindings][Key bindings]]
+  - [[#vue-mode][vue-mode]]
 - [[#modes][modes]]
   - [[#zilongshanrenhelm-hotspots-spc-o-o][zilongshanren/helm-hotspots, SPC o o]]
   - [[#tiny-spc-o-e][tiny, SPC o e]]
@@ -48,12 +49,12 @@ file.
 | ~SPC b m d~ | bookmark-delete                                                              |
 | ~SPC b m j~ | counsel-bookmark                                                             |
 |-------------+------------------------------------------------------------------------------|
-|             |                                                                              |
+| ~SPC d d~   | dash-at-point                                                                |
+|-------------+------------------------------------------------------------------------------|
 | ~SPC e n~   | flycheck-next-error                                                          |
 | ~SPC e p~   | flycheck-previous-error                                                      |
 |-------------+------------------------------------------------------------------------------|
 | ~SPC f d~   | projectile-find-file-dwim-other-window                                       |
-|             |                                                                              |
 |-------------+------------------------------------------------------------------------------|
 | ~SPC g g~   | magit                                                                        |
 | ~SPC g L~   | magit-log-buffer-file, show git logs                                         |
@@ -63,16 +64,14 @@ file.
 |-------------+------------------------------------------------------------------------------|
 | ~SPC h h~   | zilongshanren/highlight-dwim                                                 |
 | ~SPC h c~   | zilongshanren/clearn-highlight, TODO                                         |
-|             | symbol-overlay-remove-all                                                    |
-|-------------+------------------------------------------------------------------------------|
 |-------------+------------------------------------------------------------------------------|
 | ~SPC o o~   | zilongshanren/helm-hotspots                                                  |
 | ~SPC o x~   | org-open-at-point-global, open link                                          |
 | ~SPC o r~   | zilongshanren/browser-refresh--chrome-applescript                            |
+| ~SPC o s~   | spacemacs/search-engine-select, open search engine list to search                                         |
 | ~SPC o g~   | my-git-timemachine, git record                                               |
 | ~SPC o !~   | zilongshanren/iterm-shell-command, go current dir & run command              |
 | ~SPC o e~   | tiny-expand                                                                  |
-|             |                                                                              |
 |-------------+------------------------------------------------------------------------------|
 | ~SPC p b~   | counsel-projectile-switch-to-buffer                                          |
 | ~SPC p t~   | my-simple-todo                                                               |
@@ -82,7 +81,6 @@ file.
 |-------------+------------------------------------------------------------------------------|
 | ~SPC s j~   | counsel-jump-in-buffer                                                       |
 |-------------+------------------------------------------------------------------------------|
-|             |                                                                              |
 | ~SPC y i~   | yas/insert-snippet                                                           |
 | ~SPC y d~   | youdao-dictionary-search-at-point+                                           |
 |-------------+------------------------------------------------------------------------------|
@@ -94,8 +92,6 @@ file.
 | ~M--~       | zilongshanren/goto-match-paren                                               |
 | ~M-i~       | string-inflection-java-style-cycle                                           |
 | ~M-'~       | avy-goto-char-2                                                              |
-|             |                                                                              |
-|             |                                                                              |
 |-------------+------------------------------------------------------------------------------|
 | ~s-p~       | find-file-in-project                                                         |
 |-------------+------------------------------------------------------------------------------|
@@ -103,21 +99,19 @@ file.
 |-------------+------------------------------------------------------------------------------|
 | ~+~         | evil-numbers/inc-at-pt，number +1                                            |
 | ~-~         | evil-numbers/dec-at-pt, number -1                                            |
-|             |                                                                              |
-|             |                                                                              |
 |-------------+------------------------------------------------------------------------------|
 | ~g [~       | beginning-of-defun                                                           |
 | ~g ]~       | end-of-defun                                                                 |
-|             |                                                                              |
-|             |                                                                              |
 |-------------+------------------------------------------------------------------------------|
 | ~z [~       | sp-wrap-square                                                               |
 | ~z (~       | sp-wrap-round                                                                |
 | ~z {~       | sp-wrap-curly                                                                |
 | ~z -~       | sp-splice-sexp                                                               |
 | ~z .~       | emmet-wrap-with-markup                                                       |
-|             |                                                                              |
+|-------------+------------------------------------------------------------------------------|
 
+** vue-mode
+   [[https://github.com/syl20bnr/spacemacs/tree/develop/layers/%2Bframeworks/vue][vue-mode-key-bindings]]
 
 * modes
 ** TODO zilongshanren/helm-hotspots, SPC o o
@@ -134,7 +128,7 @@ blog settings.
 ** TODO wrap-region
    https://github.com/rejeep/wrap-region.el/blob/master/wrap-region.el
 
-* Issues   
+* Issues
 ** TODO gcl/git-push delete-window ?
 
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
@@ -142,3 +136,8 @@ blog settings.
 # [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
 # [[https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bfun/emoji/README.org][Link to Emoji layer README.org]]
 # If space-doc-mode is enabled, Spacemacs will open a local copy of the linked file.
+
+
+
+
+    

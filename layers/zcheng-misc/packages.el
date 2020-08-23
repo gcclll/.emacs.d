@@ -192,12 +192,6 @@ Each entry is either:
     (define-key evil-visual-state-map "p" 'evil-paste-after-from-0)
     (define-key evil-insert-state-map (kbd "C-r") 'evil-paste-from-register)
 
-    ;; change evil initial mode state
-    (loop for (mode . state) in
-          '((shell-mode . normal)
-            (minibuffer-inactive-mode . emacs))
-          do (evil-set-initial-state mode state))
-
     ;;mimic "nzz" behaviou in vim
     (defadvice evil-search-next (after advice-for-evil-search-next activate)
       (evil-scroll-line-to-center (line-number-at-pos)))

@@ -13,8 +13,5 @@
 (configuration-layer/declare-layers '(
                                       zcheng-misc
                                       zcheng-better-defaults
-                                      ;; zilongshanren-programming
-                                      ;; zilongshanren-ui
-                                      ;; zilongshanren-org
-                                      ;; zcheng-better-defaults
+                                      zcheng-programing
                                       ))
