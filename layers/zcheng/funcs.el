@@ -185,7 +185,7 @@ With PREFIX, cd to project root."
 	(progn
 		(gcl/exec-command (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name)))
 		;; second, repeat, func, message
-		(run-at-time "1 sec" nil 'git-push-delete-window)))
+		(run-at-time "1 sec" nil 'gcl/git-push-delete-window)))
 
 (defun gcl/exec-command (cmd)
   "Execute the command: `CMD` with description ARGS."
@@ -193,6 +193,11 @@ With PREFIX, cd to project root."
   (let* ((command (or (and (boundp 'executable-command) executable-command) cmd))
          (compilation-ask-about-save nil))
     (executable-interpret (read-shell-command "Run: " command))))
+
+(defun gcl/git-push-delete-window ()
+	(progn
+		(message "Git push should done or running in background.")
+		(delete-window)))
 
 (provide 'funcs)
 
