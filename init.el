@@ -38,9 +38,6 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     (wakatime :variables
-               wakatime-api-key  "497a474b-5512-4e56-82a7-0b56c64cd75c"
-               wakatime-cli-path "/usr/bin/wakatime")
      (auto-completion :variables auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-tab-key-behavior 'cycle
@@ -274,7 +271,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font or prioritized list of fonts.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 12.0
+                               :size 14.0
                                :weight normal
                                :width normal)
 
@@ -573,22 +570,22 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   ;;解决org表格里面中英文对齐的问题 
-  (when (configuration-layer/layer-usedp 'chinese)
-    (when (and (spacemacs/system-is-mac) window-system)
-      (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
+  ;; (when (configuration-layer/layer-usedp 'chinese)
+  ;;   (when (and (spacemacs/system-is-mac) window-system)
+  ;;     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
 
   (server-start)
   (require 'org-protocol)
 
   ;; Setting Chinese Font
-  (when (and (spacemacs/system-is-mswindows) window-system)
-    (setq ispell-program-name "aspell")
-    (setq w32-pass-alt-to-system nil)
-    (setq w32-apps-modifier 'super)
-    (dolist (charset '(kana han symbol cjk-misc bopomofo))
-      (set-fontset-font (frame-parameter nil 'font)
-                        charset
-                        (font-spec :family "Microsoft Yahei" :size 14))))
+  ;; (when (and (spacemacs/system-is-mswindows) window-system)
+  ;;   (setq ispell-program-name "aspell")
+  ;;   (setq w32-pass-alt-to-system nil)
+  ;;   (setq w32-apps-modifier 'super)
+  ;;   (dolist (charset '(kana han symbol cjk-misc bopomofo))
+  ;;     (set-fontset-font (frame-parameter nil 'font)
+  ;;                       charset
+  ;;                       (font-spec :family "Microsoft Yahei" :size 14))))
 
   (fset 'evil-visual-update-x-selection 'ignore)
 
@@ -607,45 +604,8 @@ before packages are loaded."
   (spacemacs|diminish counsel-mode)
 
   (evilified-state-evilify-map special-mode-map :mode special-mode)
-
-  (add-to-list 'auto-mode-alist
-               '("Capstanfile\\'" . yaml-mode))
-
-  (defun js-indent-line ()
-    "Indent the current line as JavaScript."
-    (interactive)
-    (let* ((parse-status
-            (save-excursion (syntax-ppss (point-at-bol))))
-           (offset (- (point) (save-excursion (back-to-indentation) (point)))))
-      (if (nth 3 parse-status)
-          'noindent
-        (indent-line-to (js--proper-indentation parse-status))
-        (when (> offset 0) (forward-char offset)))))
-
-
-  (global-set-key (kbd "<backtab>") 'un-indent-by-removing-4-spaces)
-  (defun un-indent-by-removing-4-spaces ()
-    "remove 4 spaces from beginning of of line"
-    (interactive)
-    (save-excursion
-      (save-match-data
-        (beginning-of-line)
-        ;; get rid of tabs at beginning of line
-        (when (looking-at "^\\s-+")
-          (untabify (match-beginning 0) (match-end 0)))
-        (when (looking-at (concat "^" (make-string tab-width ?\ )))
-          (replace-match "")))))
-
-  (defun zilongshanren/toggle-major-mode ()
-    (interactive)
-    (if (eq major-mode 'fundamental-mode)
-        (set-auto-mode)
-      (fundamental-mode)))
-  (spacemacs/set-leader-keys "otm" 'zilongshanren/toggle-major-mode)
-
   (setq inhibit-compacting-font-caches t)
   (global-display-line-numbers-mode -1)
-
 
   (defun moon-override-yank-pop (&optional arg)
     "Delete the region before inserting poped string."
@@ -656,53 +616,6 @@ before packages are loaded."
   (setq ivy-more-chars-alist '((counsel-ag . 2)
                                (counsel-grep .2)
                                (t . 3)))
-
-  ;; boost find file and load saved persp layout  performance
-  ;; which will break some function on windows platform
-  ;; eg. known issues: magit related buffer color, reopen will fix it
-  (when (spacemacs/system-is-mswindows)
-    (progn (setq find-file-hook nil)
-           (setq vc-handled-backends nil)
-           (setq magit-refresh-status-buffer nil)
-           (add-hook 'find-file-hook 'spacemacs/check-large-file)
-
-           ;; emax.7z in not under pdumper release
-           ;; https://github.com/m-parashar/emax64/releases/tag/pdumper-20180619
-           (defvar emax-root (concat (expand-file-name "~") "/emax"))
-
-           (when (file-exists-p emax-root)
-             (progn
-               (defvar emax-root (concat (expand-file-name "~") "/emax"))
-               (defvar emax-bin64 (concat emax-root "/bin64"))
-               (defvar emax-mingw64 (concat emax-root "/mingw64/bin"))
-               (defvar emax-lisp (concat emax-root "/lisp"))
-
-               (setq exec-path (cons emax-bin64 exec-path))
-               (setenv "PATH" (concat emax-bin64 ";" (getenv "PATH")))
-
-               (setq exec-path (cons emax-mingw64 exec-path))
-               (setenv "PATH" (concat emax-mingw64 ";" (getenv "PATH")))
-
-               ;; install aspell: https://sheishe.xyz/post/using-aspell-in-windows-10-and-emacs-26-above/
-               (add-to-list 'exec-path "C:/msys64/mingw64/bin/")
-               (setq ispell-program-name "aspell")
-               (setq ispell-personal-dictionary "c:/msys64/mingw64/lib/aspell-0.60/en_GB")
-
-               ))
-
-           (add-hook 'projectile-mode-hook '(lambda () (remove-hook 'find-file-hook #'projectile-find-file-hook-function)))))
-
-  (setq exec-path (cons "/Users/simon/.nvm/versions/node/v10.16.0/bin/" exec-path))
-  (setenv "PATH" (concat "/Users/lionqu/.nvm/versions/node/v10.16.0/bin:" (getenv "PATH")))
-
-  (defun counsel-locate-cmd-es (input)
-    "Return a shell command based on INPUT."
-    (counsel-require-program "es.exe")
-    (encode-coding-string (format "es.exe -i -r -p %s"
-                                  (counsel-unquote-regex-parens
-                                   (ivy--regex input t)))
-                          'gbk))
-  ;; (add-hook 'text-mode-hook 'spacemacs/toggle-spelling-checking-on)
 
   (add-hook 'org-mode-hook 'emojify-mode)
   (add-hook 'org-mode-hook 'auto-fill-mode)
@@ -719,6 +632,7 @@ unwanted space when exporting org-mode to hugo markdown."
              (concat
               "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
       (ad-set-arg 1 fixed-contents)))
+
   (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
   (load custom-file 'no-error 'no-message)
   (defun dotspacemacs/emacs-custom-settings ()
