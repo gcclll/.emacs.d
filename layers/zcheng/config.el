@@ -1,4 +1,5 @@
                                         ; -*- lexical-binding: t -*-
+
 (defvar org-agenda-dir ""
   "gtd org files location")
 

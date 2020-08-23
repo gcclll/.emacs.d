@@ -31,7 +31,87 @@
 
 ;;; Code:
 
+;;----------------------------------------------------------------------------
+;; `func'
+;;----------------------------------------------------------------------------
+;; Utility functions
+(defun bb/define-key (keymap &rest bindings)
+  (declare (indent 1))
+  (while bindings
+    (define-key keymap (pop bindings) (pop bindings))))
+;; -END
+
+
+
+;;----------------------------------------------------------------------------
+;; `global-key'
+;;----------------------------------------------------------------------------
+
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `define-key'
+;;----------------------------------------------------------------------------
+
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `bind-key'
+;;----------------------------------------------------------------------------
+(bind-key* "C-=" 'er/expand-region)
+(bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
+(bind-key* "M--" 'zilongshanren/goto-match-paren)
+;; -END
+
+
+
+;;----------------------------------------------------------------------------
+;; `evil-key'
+;;----------------------------------------------------------------------------
+(bb/define-key evil-normal-state-map
+               "+" 'evil-numbers/inc-at-pt
+               "-" 'evil-numbers/dec-at-pt
+               "\\" 'evil-repeat-find-char-reverse)
+;; -END
+
+;; 137
+;;----------------------------------------------------------------------------
+;; `spacemacs'
+;;----------------------------------------------------------------------------
+
+(spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
+(spacemacs/set-leader-keys "bm" nil)
+(spacemacs/declare-prefix "bm" "Bookmark")
+(spacemacs/set-leader-keys "bms" 'bookmark-set)
+(spacemacs/set-leader-keys "bmr" 'bookmark-rename)
+(spacemacs/set-leader-keys "bmd" 'bookmark-delete)
+(spacemacs/set-leader-keys "bmj" 'counsel-bookmark)
+
+(spacemacs/set-leader-keys "en" 'flycheck-next-error)
+(spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
+(spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
+(spacemacs/set-leader-keys "fd" 'projectile-find-file-dwim-other-window)
+
+
+(spacemacs/set-leader-keys "gg" 'magit)
+
 (spacemacs/set-leader-keys "yi" 'yas/insert-snippet)
+(spacemacs/set-leader-keys "yd" 'youdao-dictionary-search-at-point+)
+
+;; -END
+
+;;----------------------------------------------------------------------------
+;; `other'
+;;----------------------------------------------------------------------------
+(spacemacs|add-toggle toggle-shadowsocks-proxy-mode
+  :status shadowsocks-proxy-mode
+  :on (global-shadowsocks-proxy-mode)
+  :off (global-shadowsocks-proxy-mode -1)
+  :documentation "Toggle shadowsocks proxy mode."
+  :evil-leader "ots")
+;; -END
+
+
 
 (provide 'keybindings)
 

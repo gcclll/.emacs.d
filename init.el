@@ -542,7 +542,12 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 (setq warning-minimum-level :error)
 (setq user-full-name "Zhicheng Lee")
 (setq user-mail-address "gccll.love@gmail.com")
+(setq user-blog-url "https://blog.ii6g.com")
 (setq user-web-homepage "https://www.zcheng.top")
+(setq warning-minimum-level :emergency)
+(setq make-backup-files nil) ; no backup
+(setq initial-scratch-message "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。\n")
+
   )
 
 (defun dotspacemacs/user-load ()
