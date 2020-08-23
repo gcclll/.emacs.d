@@ -47,7 +47,11 @@
 ;; `global-key'
 ;;----------------------------------------------------------------------------
 
-;; (define-key evil-normal-state-map (kbd "s-/") 'evilnc-comment-or-uncomment-lines)
+(define-key evil-normal-state-map (kbd "z(") 'sp-wrap-round)
+(define-key evil-normal-state-map (kbd "z[") 'sp-wrap-square)
+(define-key evil-normal-state-map (kbd "z{") 'sp-wrap-curly)
+(define-key evil-normal-state-map (kbd "z-") 'sp-splice-sexp)
+(define-key evil-normal-state-map (kbd "z.") 'emmet-wrap-with-markup)
 
 ;; -END
 
@@ -65,6 +69,7 @@
 (bind-key* "M--" 'zilongshanren/goto-match-paren)
 (bind-key* "M-i" 'string-inflection-java-style-cycle)
 (bind-key* "s-p" 'find-file-in-project)
+
 ;; -END
 
 
@@ -105,6 +110,7 @@
 (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
 (spacemacs/set-leader-keys "gn" 'smerge-next)
 (spacemacs/set-leader-keys "gp" 'smerge-prev)
+(spacemacs/set-leader-keys "gP" 'gcl/git-push)
 
 
 

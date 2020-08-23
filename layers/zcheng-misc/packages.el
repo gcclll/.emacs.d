@@ -31,6 +31,9 @@
 
 (defconst zcheng-misc-packages
   '(
+    keyfreq
+    wrap-region
+    prodigy
     projectile
     find-file-in-project
     visual-regexp
@@ -290,5 +293,62 @@ Each entry is either:
         (occur my-simple-todo-regex)))
     (spacemacs/set-leader-keys "pf" 'zilongshanren/open-file-with-projectile-or-counsel-git)
     (spacemacs/set-leader-keys "pt" 'my-simple-todo)))
+
+
+(defun zcheng-misc/post-init-prodigy ()
+  (progn
+    (prodigy-define-tag
+      :name 'jekyll
+      :env '(("LANG" "en_US.UTF-8")
+             ("LC_ALL" "en_US.UTF-8")))
+    ;; define service
+
+    (prodigy-define-service
+      :name "Hugo Server"
+      :command "hugo"
+      :args '("server" "-D" "--navigateToChanged" "-t" "even")
+      :cwd blog-admin-dir
+      :tags '(hugo server)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
+
+    (prodigy-define-service
+      :name "hugo Deploy"
+      :command "bash"
+      :args '("./deploy.sh" )
+      :cwd blog-admin-dir
+      :tags '(hugo deploy)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
+    ))
+
+(defun zcheng-misc/init-ag ()
+  (use-package ag
+    :init))
+
+(defun zcheng-misc/init-wrap-region ()
+  (use-package wrap-region
+    :init
+    (progn
+      (wrap-region-global-mode t)
+      (wrap-region-add-wrappers
+       '(("$" "$")
+         ("{-" "-}" "#")
+         ("/" "/" nil ruby-mode)
+         ("/* " " */" "#" (java-mode javascript-mode css-mode js2-mode))
+         ("`" "`" nil (markdown-mode ruby-mode))))
+      (add-to-list 'wrap-region-except-modes 'dired-mode)
+      (add-to-list 'wrap-region-except-modes 'web-mode)
+      )
+    :defer t
+    :config
+    (spacemacs|hide-lighter wrap-region-mode)))
+
+(defun zcheng-misc/init-keyfreq ()
+  (use-package keyfreq
+    :init
+    (progn
+      (keyfreq-mode t)
+      (keyfreq-autosave-mode 1))))
 ;;; packages.el ends here
 

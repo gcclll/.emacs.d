@@ -1,5 +1,5 @@
                                         ; -*- lexical-binding: t -*-
-(golden-ratio-mode 1)
+;; (golden-ratio-mode 1)
 
 (defvar org-agenda-dir ""
   "gtd org files location")

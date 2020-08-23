@@ -18,6 +18,8 @@
   - [[#zilongshanrenhelm-hotspots-spc-o-o][zilongshanren/helm-hotspots, SPC o o]]
   - [[#tiny-spc-o-e][tiny, SPC o e]]
   - [[#multiple-cursors][multiple-cursors]]
+  - [[#prodigy][prodigy]]
+  - [[#wrap-region][wrap-region]]
 
 * Description
 This layer adds support for something.
@@ -71,7 +73,7 @@ file.
 |-------------+-----------------------------------------------------------------|
 | ~SPC p b~   | counsel-projectile-switch-to-buffer                             |
 | ~SPC p t~   | my-simple-todo                                                  |
-| ~SPC p f~   | zilongshanren/open-file-with-projectile-or-counsel-git                                                                |
+| ~SPC p f~   | zilongshanren/open-file-with-projectile-or-counsel-git          |
 |-------------+-----------------------------------------------------------------|
 | ~SPC r l~   | ivy-resume, resume last search result                           |
 |-------------+-----------------------------------------------------------------|
@@ -103,6 +105,15 @@ file.
 |-------------+-----------------------------------------------------------------|
 | ~g [~       | beginning-of-defun                                              |
 | ~g ]~       | end-of-defun                                                    |
+|             |                                                                 |
+|             |                                                                 |
+|-------------+-----------------------------------------------------------------|
+| ~z [~       | sp-wrap-square                                                  |
+| ~z (~       | sp-wrap-round                                                   |
+| ~z {~       | sp-wrap-curly                                                   |
+| ~z -~       | sp-splice-sexp                                                  |
+| ~z .~       | emmet-wrap-with-markup                                          |
+|             |                                                                 |
 
 
 * modes
@@ -112,8 +123,13 @@ Search List, Collection List.
 ** TODO tiny, SPC o e
    https://github.com/abo-abo/tiny
    
-** multiple-cursors
+** TODO multiple-cursors
+   
+** TODO prodigy
+blog settings.
 
+** TODO wrap-region
+   https://github.com/rejeep/wrap-region.el/blob/master/wrap-region.el
 
 # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
 # Examples:
