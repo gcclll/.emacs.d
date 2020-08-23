@@ -61,6 +61,7 @@
 (bind-key* "C-=" 'er/expand-region)
 (bind-key* "C-c l" 'zilongshanren/insert-chrome-current-tab-url)
 (bind-key* "M--" 'zilongshanren/goto-match-paren)
+(bind-key* "M-i" 'string-inflection-java-style-cycle)
 ;; -END
 
 
@@ -74,7 +75,6 @@
                "\\" 'evil-repeat-find-char-reverse)
 ;; -END
 
-;; 137
 ;;----------------------------------------------------------------------------
 ;; `spacemacs'
 ;;----------------------------------------------------------------------------
@@ -92,8 +92,19 @@
 (spacemacs/set-leader-keys "ep" 'flycheck-previous-error)
 (spacemacs/set-leader-keys "fd" 'projectile-find-file-dwim-other-window)
 
-
 (spacemacs/set-leader-keys "gg" 'magit)
+(spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
+(spacemacs/set-leader-keys "gn" 'smerge-next)
+(spacemacs/set-leader-keys "gp" 'smerge-prev)
+
+
+
+(global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots)
+(spacemacs/set-leader-keys "oo" 'zilongshanren/helm-hotspots)
+(spacemacs/set-leader-keys "ox" 'org-open-at-point-global)
+(spacemacs/set-leader-keys "or" 'zilongshanren/browser-refresh--chrome-applescript)
+(spacemacs/set-leader-keys "og" 'my-git-timemachine)
+
 
 (spacemacs/set-leader-keys "yi" 'yas/insert-snippet)
 (spacemacs/set-leader-keys "yd" 'youdao-dictionary-search-at-point+)

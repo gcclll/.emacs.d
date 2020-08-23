@@ -63,6 +63,76 @@
         ((looking-back "[\[\(\{]" 1) (backward-char) (evil-jump-item))
         (t nil)))
 
+(defun zilongshanren/run-current-file ()
+  "Compile and/or Execute the current file."
+  (interactive)
+  ;; (call-interactively #'compile-dwim-compile)
+  (call-interactively #'compile-dwim-run))
+
+(defun zilongshanren/helm-hotspots ()
+  "helm interface to my hotspots, which includes my locations,
+org-files and bookmarks"
+  (interactive)
+  (helm :buffer "*helm: utities*"
+        :sources `(,(zilongshanren//hotspots-sources))))
+
+(defun zilongshanren//hotspots-sources ()
+  "Construct the helm sources for my hotspots"
+  `((name . "Mail and News")
+    (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
+                   ("RSS" . elfeed)
+                   ("Blog" . browse-hugo-maybe)
+                   ("Search" . (lambda () (call-interactively #'engine/search-google)))
+                   ("Random Todo" . org-random-entry)
+                   ("Github" . (lambda() (helm-github-stars)))
+                   ("Calculator" . (lambda () (helm-calcul-expression)))
+                   ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
+                   ("Agenda" . (lambda () (org-agenda "" "a")))
+                   ("sicp" . (lambda() (browse-url "http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html#%_toc_start")))))
+    (candidate-number-limit)
+    (action . (("Open" . (lambda (x) (funcall x)))))))
+
+
+;; https://github.com/syohex/emacs-browser-refresh/blob/master/browser-refresh.el
+(defun zilongshanren/browser-refresh--chrome-applescript ()
+  (interactive)
+  (do-applescript
+   (format
+    "
+  tell application \"Google Chrome\"
+    set winref to a reference to (first window whose title does not start with \"Developer Tools - \")
+    set winref's index to 1
+    reload active tab of winref
+  end tell
+" )))
+
+(defun my-git-timemachine ()
+  "Open git snapshot with the selected version.  Based on ivy-mode."
+  (interactive)
+  (unless (featurep 'git-timemachine)
+    (require 'git-timemachine))
+  (git-timemachine--start #'my-git-timemachine-show-selected-revision))
+
+(defun my-git-timemachine-show-selected-revision ()
+  "Show last (current) revision of file."
+  (interactive)
+  (let (collection)
+    (setq collection
+          (mapcar (lambda (rev)
+                    ;; re-shape list for the ivy-read
+                    (cons (concat (substring (nth 0 rev) 0 7) "|" (nth 5 rev) "|" (nth 6 rev)) rev))
+                  (git-timemachine--revisions)))
+    (ivy-read "commits:"
+              collection
+              :unwind #'my-unwind-git-timemachine
+              :action (lambda (rev)
+                        (git-timemachine-show-revision (cdr rev))))))
+
+(defun my-unwind-git-timemachine ()
+  (if (not (eq last-command-event 13))
+      (git-timemachine-quit)))
+
+
 
 (provide 'funcs)
 
