@@ -12,7 +12,7 @@
 
 (configuration-layer/declare-layers '(
                                       zcheng-misc
-                                      ;; zilongshanren-misc
+                                      zcheng-better-defaults
                                       ;; zilongshanren-programming
                                       ;; zilongshanren-ui
                                       ;; zilongshanren-org
