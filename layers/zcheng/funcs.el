@@ -197,8 +197,7 @@ With PREFIX, cd to project root."
 (defun gcl/git-push-delete-window ()
 	(progn
 		(message "Git push should done or running in background.")
-		(when (string-match-p "\\`\\*interpretation\\*\\'" (buffer-name))
-      (kill-buffer buffer-name))))
+		(delete-window)))
 
 (provide 'funcs)
 
