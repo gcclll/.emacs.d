@@ -184,6 +184,7 @@ With PREFIX, cd to project root."
   (interactive)
 	(progn
 		(gcl/exec-command (concat "~/.gclrc/shl/git-push.sh " (file-name-directory buffer-file-name)))
+    (ace-select-window)
 		;; second, repeat, func, message
 		(run-at-time "1 sec" nil 'gcl/git-push-delete-window)))
 
@@ -197,7 +198,7 @@ With PREFIX, cd to project root."
 (defun gcl/git-push-delete-window ()
 	(progn
 		(message "Git push should done or running in background.")
-		(spacemacs/kill-this-buffer)))
+		(delete-window)))
 
 (provide 'funcs)
 

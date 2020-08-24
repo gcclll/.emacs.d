@@ -60,3 +60,13 @@ Error out if this isn't a GitHub repo."
     (unless url (error "Not in a GitHub repo"))
     (when (and url (string-match "github.com:?/?\\(.*\\)" url))
       (replace-regexp-in-string "\\.git$" "" (match-string 1 url)))))
+
+(defun zilongshanren/pomodoro-notification ()
+  "show notifications when pomodoro end"
+  (if (spacemacs/system-is-mswindows)
+      (progn (add-hook 'org-pomodoro-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav"))))
+             (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav"))))
+             (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (sound-wav-play (expand-file-name "~/.spacemacs.d/game_win.wav")))))
+    (progn (add-hook 'org-pomodoro-finished-hook '(lambda () (zilongshanren/growl-notification "Pomodoro Finished" "☕️ Have a break!" t)))
+           (add-hook 'org-pomodoro-short-break-finished-hook '(lambda () (zilongshanren/growl-notification "Short Break" "🐝 Ready to Go?" t)))
+           (add-hook 'org-pomodoro-long-break-finished-hook '(lambda () (zilongshanren/growl-notification "Long Break" " 💪 Ready to Go?" t))))))

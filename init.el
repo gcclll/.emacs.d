@@ -74,6 +74,7 @@ This function should only modify configuration layer settings."
      (osx :variables osx-dictionary-dictionary-choice "Simplified Chinese - English"
           osx-command-as 'super)
      php
+     prettier
      (plantuml :variables plantuml-jar-path "~/.spacemacs.d/plantuml.jar")
      (python :variables
              python-test-runner '(nose pytest)
@@ -94,6 +95,7 @@ This function should only modify configuration layer settings."
      ;; markdown
      (org :variables org-want-todo-bindings t
           org-enable-hugo-support t)
+     rust
      (shell :variables shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/zsh")
      (syntax-checking :variables syntax-checking-enable-by-default nil
@@ -594,6 +596,12 @@ before packages are loaded."
 
   (spacemacs|add-company-backends :modes text-mode)
 
+  (add-hook 'js2-mode-hook 'prettier-js-mode)
+  (add-hook 'web-mode-hook 'prettier-js-mode)
+  (add-hook 'vue-mode-hook 'prettier-js-mode)
+  (add-hook 'css-mode-hook 'prettier-js-mode)
+  (add-hook 'less-css-mode-hook 'prettier-js-mode)
+  (add-hook 'typescript-mode-hook 'prettier-js-mode)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   (global-hungry-delete-mode t)

@@ -23,6 +23,12 @@
   - [[#wrap-region][wrap-region]]
 - [[#issues][Issues]]
   - [[#gclgit-push-delete-window-][gcl/git-push delete-window ?]]
+- [[#11][11]]
+  - [[#22][22]]
+    - [[#33][33]]
+    - [[#444][444]]
+    - [[#cancelled-555][CANCELLED 555]]
+    - [[#idea-666][IDEA 666]]
 
 * Description
 This layer adds support for something.
@@ -115,7 +121,7 @@ file.
 
 * modes
 ** TODO zilongshanren/helm-hotspots, SPC o o
-Search List, Collection List.
+   Search List, Collection List.
 
 ** TODO tiny, SPC o e
    https://github.com/abo-abo/tiny
@@ -141,3 +147,19 @@ blog settings.
 
 
     
+
+* 11
+** 22
+*** DONE 33
+    CLOSED: [2020-08-23 Sun 21:42]
+
+*** TODO 444
+*** CANCELLED 555
+    CLOSED: [2020-08-23 Sun 21:43]
+
+*** IDEA 666
+    - [-] xxx
+    - [X] yyy
+    - [ ] zzz
+
+      https://www.baidu.com
