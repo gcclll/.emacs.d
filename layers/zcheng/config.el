@@ -12,12 +12,7 @@
 (defvar blog-admin-dir ""
   "blog-admin files location")
 
-(if (spacemacs/system-is-mswindows)
-    (setq
-     org-agenda-dir "d:/.blog/zcheng.top/orgs"
-     deft-dir "d:/.blog/zcheng.top/orgs"
-     blog-admin-dir "d:/.blog/zcheng.top")
-  (setq
-   org-agenda-dir "~/.blog/zcheng.top/orgs"
-   deft-dir "~/.blog/zcheng.top/orgs"
-   blog-admin-dir "~/.blog/zcheng.top"))
+(setq
+ org-agenda-dir user-note-dir
+ deft-dir user-note-dir
+ blog-admin-dir user-note-dir)
