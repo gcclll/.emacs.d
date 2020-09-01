@@ -66,7 +66,7 @@
 (define-key global-map (kbd "s->") 'sp-backward-barf-sexp)
 (define-key global-map (kbd "C-{") 'sp-backward-sexp)
 (define-key global-map (kbd "C-}") 'sp-forward-sexp)
-;; ;;;-
+;;;-
 
 ;;----------------------------------------------------------------------------
 ;; `bind-key'
