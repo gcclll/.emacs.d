@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: tpl-algo
+# key: tpl-algo
+# --
+#+BEGIN_EXPORT html
+基于 leetcode 的算法学习记录文章，使用语言主要是 JavaScript，可能会有少于 C/Python 实现，在没标明的情况下默认都是 JavaScript 实现。<br><br>
+约定 ：<br>
+
+1. 有<sup><font color="red" size="2">每日</font></sup> 角标的标识是每日一题的题目 <br>
+2. 有<sup><font color="red" size="2">leetcode</font></sup>角标的标识是该方案是Leetcode 网站上的题解 <br>
+
+#+END_EXPORT
+

@@ -82,6 +82,18 @@
                      `(lambda (c)
                         (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 
+      (add-hook
+         'org-mode-hook
+         (lambda ()
+           "Beautify Org Checkbox Symbol"
+           (push '("[ ]" . "☐ ") prettify-symbols-alist)
+           (push '("[X]" . "it" ) prettify-symbols-alist)
+           (push '("[-]" . "❍" ) prettify-symbols-alist)
+           (prettify-symbols-mode)))
+
+      (add-hook 'org-mode-hook 'turn-on-auto-fill)
+      (setq-default fill-column 80)
+
       (require 'org-tempo)
       ;; Allow multiple line Org emphasis markup.
       ;; http://emacs.stackexchange.com/a/13828/115
@@ -391,7 +403,7 @@ See `org-capture-templates' for more information."
       (defvar zilongshanren-website-html-preamble
         "<div class='nav'>
 <ul>
-<li><a href='http://zcheng.ii6g.com'>博客</a></li>
+<li><a href='https://www.cheng92.com'>博客</a></li>
 <li><a href='/index.html'>Wiki目录</a></li>
 </ul>
 </div>")
@@ -401,9 +413,9 @@ See `org-capture-templates' for more information."
       (setq org-publish-project-alist
             `(
               ("blog-notes"
-               :base-directory "~/org-notes"
+               :base-directory "~/.blog/orgs"
                :base-extension "org"
-               :publishing-directory "~/org-notes/public_html/"
+               :publishing-directory "~/.blog/orgs/public_html/"
 
                :recursive t
                :html-head , zilongshanren-website-html-blog-head
@@ -423,18 +435,15 @@ See `org-capture-templates' for more information."
                :sitemap-file-entry-format "%t" ; %d to output date, we don't need date here
                )
               ("blog-static"
-               :base-directory "~/org-notes"
+               :base-directory "~/.blog/orgs"
                :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-               :publishing-directory "~/org-notes/public_html/"
+               :publishing-directory "~/.blog/orgs/public_html/"
                :recursive t
                :publishing-function org-publish-attachment
                )
               ("blog" :components ("blog-notes" "blog-static"))))
 
-
-
       (add-hook 'org-after-todo-statistics-hook 'zilong/org-summary-todo)
-      ;; used by zilong/org-clock-sum-today-by-tags
 
       (define-key org-mode-map (kbd "s-p") 'org-priority)
       (spacemacs/set-leader-keys-for-major-mode 'org-mode

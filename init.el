@@ -43,6 +43,7 @@ This function should only modify configuration layer settings."
                       auto-completion-tab-key-behavior 'cycle
                       :disabled-for org markdown)
      better-defaults
+     ;; (colors :variables colors-enable-nyan-cat-progress-bar t)
      colors
      (chinese :variables chinese-enable-youdao-dict t)
      (c-c++ :variables
@@ -52,7 +53,7 @@ This function should only modify configuration layer settings."
      deft
      dash
      emoji
-     emacs-lisp
+     ;; emacs-lisp
      graphviz
      (git :variables
           git-magit-status-fullscreen t
@@ -61,7 +62,7 @@ This function should only modify configuration layer settings."
           magit-revert-buffers 'silent
           magit-refs-show-commit-count 'all
           magit-revision-show-gravatars nil)
-     gpu
+     ;; gpu
      helm
      html
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
@@ -91,7 +92,7 @@ This function should only modify configuration layer settings."
                  typescript-fmt-on-save nil
                  typescript-fmt-tool 'typescript-formatter
                  typescript-backend 'lsp)
-     ;; lsp
+     lsp
      ;; markdown
      (org :variables org-want-todo-bindings t
           org-enable-hugo-support t)
@@ -124,7 +125,22 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    magit-gh-pulls magit-gitflow org-projectile evil-mc realgud
+                                    evil-args evil-ediff evil-exchange evil-unimpaired
+                                    evil-indent-plus volatile-highlights
+                                    spaceline holy-mode skewer-mode rainbow-delimiters
+                                    highlight-indentation vi-tilde-fringe
+                                    org-bullets smooth-scrolling org-repo-todo org-download org-timer
+                                    livid-mode git-gutter git-gutter-fringe  evil-escape
+                                    leuven-theme gh-md evil-lisp-state spray lorem-ipsum symon
+                                    ac-ispell ace-jump-mode auto-dictionary
+                                    clang-format define-word google-translate disaster epic
+                                    fancy-battery org-present orgit orglue spacemacs-theme
+                                    helm-flyspell flyspell-correct-helm clean-aindent-mode
+                                    helm-c-yasnippet ace-jump-helm-line helm-make magithub
+                                    helm-themes helm-swoop helm-spacemacs-help smeargle
+                                    ido-vertical-mode flx-ido company-quickhelp counsel-projectile)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -427,7 +443,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -538,24 +554,24 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-(setq-default configuration-layer-elpa-archives
+  (setq-default configuration-layer-elpa-archives
                 '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
                   ("org-cn"   . "http://elpa.emacs-china.org/org/")
                   ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
-(setq tramp-ssh-controlmaster-options
-      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-(setq socks-server '("Default server" "127.0.0.1" 7891 5))
-(setq evil-shift-round nil)
-(setq byte-compile-warnings '(not obsolete))
-(setq warning-minimum-level :error)
-(setq user-full-name "Zhicheng Lee")
-(setq user-mail-address "gccll.love@gmail.com")
-(setq user-blog-url "https://blog.ii6g.com")
-(setq user-new-blog-url "https://www.cheng87.com")
-(setq user-note-dir "~/.blog/orgs")
-(setq warning-minimum-level :emergency)
-(setq make-backup-files nil) ; no backup
-(setq initial-scratch-message "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。\n")
+  (setq tramp-ssh-controlmaster-options
+        "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+  (setq socks-server '("Default server" "127.0.0.1" 7891 5))
+  (setq evil-shift-round nil)
+  (setq byte-compile-warnings '(not obsolete))
+  (setq warning-minimum-level :error)
+  (setq user-full-name "Zhicheng Lee")
+  (setq user-mail-address "gccll.love@gmail.com")
+  (setq user-blog-url "https://blog.ii6g.com")
+  (setq user-new-blog-url "https://www.cheng87.com")
+  (setq user-note-dir "~/.blog/orgs")
+  (setq warning-minimum-level :emergency)
+  (setq make-backup-files nil) ; no backup
+  (setq initial-scratch-message "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。\n")
 
   )
 
@@ -572,7 +588,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;;解决org表格里面中英文对齐的问题 
+  ;;解决org表格里面中英文对齐的问题
   ;; (when (configuration-layer/layer-usedp 'chinese)
   ;;   (when (and (spacemacs/system-is-mac) window-system)
   ;;     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16)))
@@ -581,14 +597,14 @@ before packages are loaded."
   (require 'org-protocol)
 
   ;; Setting Chinese Font
-  ;; (when (and (spacemacs/system-is-mswindows) window-system)
-  ;;   (setq ispell-program-name "aspell")
-  ;;   (setq w32-pass-alt-to-system nil)
-  ;;   (setq w32-apps-modifier 'super)
-  ;;   (dolist (charset '(kana han symbol cjk-misc bopomofo))
-  ;;     (set-fontset-font (frame-parameter nil 'font)
-  ;;                       charset
-  ;;                       (font-spec :family "Microsoft Yahei" :size 14))))
+  (when (and (spacemacs/system-is-mswindows) window-system)
+    (setq ispell-program-name "aspell")
+    (setq w32-pass-alt-to-system nil)
+    (setq w32-apps-modifier 'super)
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font (frame-parameter nil 'font)
+                        charset
+                        (font-spec :family "Microsoft Yahei" :size 14))))
 
   (fset 'evil-visual-update-x-selection 'ignore)
 
@@ -605,6 +621,7 @@ before packages are loaded."
   (add-hook 'typescript-mode-hook 'prettier-js-mode)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
+  ;; (global-aggressive-indent-mode)
   (global-hungry-delete-mode t)
   (spacemacs|diminish helm-gtags-mode)
   (spacemacs|diminish ggtags-mode)

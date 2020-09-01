@@ -16,3 +16,6 @@
  org-agenda-dir user-note-dir
  deft-dir user-note-dir
  blog-admin-dir user-note-dir)
+
+(setq save-abbrevs nil)
+(setq-default abbrev-mode t)

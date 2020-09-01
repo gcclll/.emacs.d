@@ -16,6 +16,14 @@
 - [[#key-bindings][Key bindings]]
   - [[#vue-mode][vue-mode]]
 - [[#modes][modes]]
+  - [[#ranger][ranger]]
+  - [[#org-mode][org-mode]]
+    - [[#text-style][text-style]]
+    - [[#checkbox][checkbox]]
+    - [[#todos][todos]]
+      - [[#todo-one][todo one]]
+      - [[#waiting-todo-two-waiting][WAITING todo two waiting]]
+      - [[#scheduler][scheduler]]
   - [[#zilongshanrenhelm-hotspots-spc-o-o][zilongshanren/helm-hotspots, SPC o o]]
   - [[#tiny-spc-o-e][tiny, SPC o e]]
   - [[#multiple-cursors][multiple-cursors]]
@@ -23,12 +31,6 @@
   - [[#wrap-region][wrap-region]]
 - [[#issues][Issues]]
   - [[#gclgit-push-delete-window-][gcl/git-push delete-window ?]]
-- [[#11][11]]
-  - [[#22][22]]
-    - [[#33][33]]
-    - [[#444][444]]
-    - [[#cancelled-555][CANCELLED 555]]
-    - [[#idea-666][IDEA 666]]
 
 * Description
 This layer adds support for something.
@@ -44,8 +46,8 @@ To use this configuration layer, add it to your =~/.spacemacs=. You will need to
 add =zcheng= to the existing =dotspacemacs-configuration-layers= list in this
 file.
 
-* Key bindings
-
+* Key bindings                                                        :doing:
+  
 | Key Binding | Description                                                                  |
 |-------------+------------------------------------------------------------------------------|
 | ~SPC b i~   | ibuffer                                                                      |
@@ -74,10 +76,12 @@ file.
 | ~SPC o o~   | zilongshanren/helm-hotspots                                                  |
 | ~SPC o x~   | org-open-at-point-global, open link                                          |
 | ~SPC o r~   | zilongshanren/browser-refresh--chrome-applescript                            |
-| ~SPC o s~   | spacemacs/search-engine-select, open search engine list to search                                         |
+| ~SPC o s~   | spacemacs/search-engine-select, open search engine list to search            |
 | ~SPC o g~   | my-git-timemachine, git record                                               |
 | ~SPC o !~   | zilongshanren/iterm-shell-command, go current dir & run command              |
 | ~SPC o e~   | tiny-expand                                                                  |
+| ~SPC o i~   | org-mode insert command                                                      |
+| ~SPC o i t~ | org-set-tags-command, --> :done:                                            |
 |-------------+------------------------------------------------------------------------------|
 | ~SPC p b~   | counsel-projectile-switch-to-buffer                                          |
 | ~SPC p t~   | my-simple-todo                                                               |
@@ -120,7 +124,8 @@ file.
    [[https://github.com/syl20bnr/spacemacs/tree/develop/layers/%2Bframeworks/vue][vue-mode-key-bindings]]
 
 * modes
- 
+** ranger
+   
 | key       | function               |
 |-----------+------------------------|
 | ~SPC a r~ | open ranger            |
@@ -155,6 +160,42 @@ file manangement:
 | ~C-k~        | scroll preview window up                    |
 | ~S~          | enter shell                                 |
 
+** org-mode
+   
+ref: https://practicalli.github.io/spacemacs/org-mode/
+
+| key     | function     |
+|---------+--------------|
+| ~, i p~ | set property |
+|         |              |
+
+*** text-style
+    
+    ~code: , x c~
+    
+    /italic: , x i/
+    
+    +line-throught: , x s+
+    
+    _underline: , x u_ 
+    
+    =verbatim: , x v=
+    
+    *bold: , x b*
+*** checkbox
+- [ ] todo one, =C-c C-c= change status
+- [X] todo two, done
+- [X] todo three
+
+*** todos
+**** TODO todo one
+     SCHEDULED: <2020-08-27 Thu>
+**** WAITING todo two waiting
+
+     - State "WAITING"    from "TODO"       [2020-08-25 Tue 14:46] \\
+       --
+**** todo scheduler
+     SCHEDULED: <2020-08-25 Tue>
 ** TODO zilongshanren/helm-hotspots, SPC o o
    Search List, Collection List.
 
@@ -162,7 +203,6 @@ file manangement:
    https://github.com/abo-abo/tiny
    
 ** TODO multiple-cursors
-   
 ** TODO prodigy
 blog settings.
 
@@ -182,19 +222,3 @@ blog settings.
 
 
     
-
-* 11
-** 22
-*** DONE 33
-    CLOSED: [2020-08-23 Sun 21:42]
-
-*** TODO 444
-*** CANCELLED 555
-    CLOSED: [2020-08-23 Sun 21:43]
-
-*** IDEA 666
-    - [-] xxx
-    - [X] yyy
-    - [ ] zzz
-
-      https://www.baidu.com

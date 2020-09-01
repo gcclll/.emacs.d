@@ -60,7 +60,13 @@
 ;; `define-key'
 ;;----------------------------------------------------------------------------
 (define-key global-map (kbd "C-c t") 'org-capture)
-;; -END
+(define-key global-map (kbd "C-<") 'sp-backward-slurp-sexp)
+(define-key global-map (kbd "C->") 'sp-forward-slurp-sexp)
+(define-key global-map (kbd "s-<") 'sp-forward-barf-sexp)
+(define-key global-map (kbd "s->") 'sp-backward-barf-sexp)
+(define-key global-map (kbd "C-{") 'sp-backward-sexp)
+(define-key global-map (kbd "C-}") 'sp-forward-sexp)
+;; ;;;-
 
 ;;----------------------------------------------------------------------------
 ;; `bind-key'
@@ -119,7 +125,11 @@
 
 
 (global-set-key (kbd "<f1>") 'zilongshanren/helm-hotspots)
+(spacemacs/set-leader-keys "oc" 'org-capture)
 (spacemacs/set-leader-keys "og" 'my-git-timemachine)
+(spacemacs/declare-prefix "oi" "Org Insert")
+(spacemacs/set-leader-keys "oit" 'org-set-tags-command)
+
 (spacemacs/set-leader-keys "oll" 'zilongshanren/load-my-layout)
 (spacemacs/set-leader-keys "ols" 'zilongshanren/save-my-layout)
 (spacemacs/set-leader-keys "oo" 'zilongshanren/helm-hotspots)
