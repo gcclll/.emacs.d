@@ -60,10 +60,10 @@
 ;; `define-key'
 ;;----------------------------------------------------------------------------
 (define-key global-map (kbd "C-c t") 'org-capture)
-(define-key global-map (kbd "C-<") 'sp-backward-slurp-sexp)
-(define-key global-map (kbd "C->") 'sp-forward-slurp-sexp)
-(define-key global-map (kbd "s-<") 'sp-forward-barf-sexp)
-(define-key global-map (kbd "s->") 'sp-backward-barf-sexp)
+(define-key global-map (kbd "C-(") 'sp-backward-slurp-sexp)
+(define-key global-map (kbd "s-(") 'sp-backward-barf-sexp)
+(define-key global-map (kbd "C-)") 'sp-forward-slurp-sexp)
+(define-key global-map (kbd "s-)") 'sp-forward-barf-sexp)
 (define-key global-map (kbd "C-{") 'sp-backward-sexp)
 (define-key global-map (kbd "C-}") 'sp-forward-sexp)
 ;;;-
