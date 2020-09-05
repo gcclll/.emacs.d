@@ -54,6 +54,10 @@
 (define-key evil-normal-state-map (kbd "z.") 'emmet-wrap-with-markup)
 (define-key evil-visual-state-map (kbd "z.") 'emmet-wrap-with-markup)
 
+(define-key evil-normal-state-map (kbd "s-<") 'move-text-up)
+(define-key evil-normal-state-map (kbd "s->") 'move-text-down)
+(define-key evil-visual-state-map (kbd "s-<") 'move-text-up)
+(define-key evil-visual-state-map (kbd "s->") 'move-text-down)
 ;; -END
 
 ;;----------------------------------------------------------------------------
@@ -61,11 +65,13 @@
 ;;----------------------------------------------------------------------------
 (define-key global-map (kbd "C-c t") 'org-capture)
 (define-key global-map (kbd "C-(") 'sp-backward-slurp-sexp)
-(define-key global-map (kbd "s-(") 'sp-backward-barf-sexp)
 (define-key global-map (kbd "C-)") 'sp-forward-slurp-sexp)
-(define-key global-map (kbd "s-)") 'sp-forward-barf-sexp)
 (define-key global-map (kbd "C-{") 'sp-backward-sexp)
 (define-key global-map (kbd "C-}") 'sp-forward-sexp)
+
+(define-key global-map (kbd "s-)") 'sp-forward-barf-sexp)
+(define-key global-map (kbd "s-(") 'sp-backward-barf-sexp)
+
 ;;;-
 
 ;;----------------------------------------------------------------------------
@@ -94,7 +100,17 @@
 ;; `spacemacs'
 ;;----------------------------------------------------------------------------
 (spacemacs/set-leader-keys "aS" 'prodigy)
+(spacemacs/set-leader-keys "am" nil)
+;; -music
+(spacemacs/declare-prefix "am" "Music")
+(spacemacs/set-leader-keys "ame" 'emms-smart-browse)
+(spacemacs/set-leader-keys "amn" 'emms-next)
+(spacemacs/set-leader-keys "amp" 'emms-previous)
+(spacemacs/set-leader-keys "amP" 'emms-pause)
+(spacemacs/set-leader-keys "ams" 'emms-start)
+(spacemacs/set-leader-keys "amS" 'emms-stop)
 
+;; -buffer
 (spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
 (spacemacs/set-leader-keys "bM" 'spacemacs/switch-to-messages-buffer)
 (spacemacs/set-leader-keys "bm" nil)
@@ -146,6 +162,12 @@
 (spacemacs/set-leader-keys "yi" 'yas/insert-snippet)
 (spacemacs/set-leader-keys "yd" 'youdao-dictionary-search-at-point+)
 
+
+(spacemacs/set-leader-keys "v" nil)
+(spacemacs/declare-prefix "v" "View Stack")
+(spacemacs/set-leader-keys "vp" 'ivy-push-view)
+(spacemacs/set-leader-keys "vo" 'ivy-pop-view)
+(spacemacs/set-leader-keys "v." 'ivy-switch-view)
 ;; -END
 
 ;;----------------------------------------------------------------------------

@@ -53,7 +53,8 @@ This function should only modify configuration layer settings."
      deft
      dash
      emoji
-     ;; emacs-lisp
+     emms
+     emacs-lisp
      graphviz
      (git :variables
           git-magit-status-fullscreen t
@@ -68,6 +69,7 @@ This function should only modify configuration layer settings."
      (ibuffer :variables ibuffer-group-buffers-by 'projects)
      (ivy :variables ivy-enable-advanced-buffer-information nil)
      (javascript :variables javascript-backend 'lsp)
+     ;; media
      markdown
      multiple-cursors
      nginx
@@ -596,6 +598,7 @@ before packages are loaded."
   (server-start)
   (require 'org-protocol)
 
+  (setq emms-source-file-default-directory "~/Music/mine")
   ;; Setting Chinese Font
   (when (and (spacemacs/system-is-mswindows) window-system)
     (setq ispell-program-name "aspell")
@@ -670,3 +673,22 @@ This function is called at the very end of Spacemacs initialization.")
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(overseer nameless macrostep flycheck-package package-lint flycheck-elsa emr clang-format list-utils emms elisp-slime-nav auto-compile packed youdao-dictionary yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode wrap-region winum which-key wgrep web-mode web-beautify vterm visual-regexp-steroids uuidgen use-package unfill treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toml-mode toc-org tiny tide terminal-here tagedit symbol-overlay string-inflection ssh-agency spaceline-all-the-icons sound-wav smex slim-mode sicp shell-pop scss-mode sass-mode ron-mode rjsx-mode reveal-in-osx-finder restart-emacs ranger rainbow-mode rainbow-identifiers racer pytest pyim pyenv-mode py-isort pug-mode prodigy prettier-js popwin plantuml-mode pippel pipenv pip-requirements phpunit phpcbf php-extras php-auto-yasnippets pcre2el password-generator paradox pangu-spacing ox-hugo osx-trash osx-dictionary osx-clipboard org-superstar org-pomodoro org-mime org-cliplink org-brain open-junk-file ob-typescript ob-restclient ob-http nodejs-repl nginx-mode mwim multi-term move-text mmm-mode markdown-toc magit-svn magit-section lsp-ui lsp-python-ms lsp-ivy live-py-mode lispyville link-hint launchctl keyfreq json-navigator json-mode js2-refactor js-doc ivy-yasnippet ivy-xref ivy-rtags ivy-purpose ivy-hydra insert-shebang indent-guide importmagic impatient-mode ibuffer-projectile hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-global graphviz-dot-mode google-c-style golden-ratio gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link geben fuzzy font-lock+ flyspell-correct-ivy flycheck-ycmd flycheck-rust flycheck-rtags flycheck-pos-tip flycheck-bashate flx fish-mode find-file-in-project find-by-pinyin-dired eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lion evil-iedit-state evil-goggles evil-cleverparens evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help engine-mode emojify emoji-cheat-sheet-plus emmet-mode editorconfig dumb-jump drupal-mode dotenv-mode diminish devdocs deft dash-at-point dap-mode cython-mode cpp-auto-include counsel-dash counsel-css company-ycmd company-web company-statistics company-shell company-rtags company-restclient company-phpactor company-php company-emoji company-c-headers company-anaconda column-enforce-mode color-identifiers-mode chinese-conv centered-cursor-mode ccls cargo blacken bind-map auto-yasnippet auto-highlight-symbol auto-complete anki-editor aggressive-indent add-node-modules-path ace-pinyin ace-link)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)

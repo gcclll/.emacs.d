@@ -45,5 +45,20 @@
                                             ("8ptag" "/vue/vue3-source-code-compiler-core/#parsetagcontext-type-parent")
                                             ("8pbase" "/vue/vue3-source-code-compiler-core/#baseparsecontext-options")
                                             ("8pele" "/vue/vue3-source-code-compiler-core/#parseelementcontext-mode" )
+
+                                            ;; js import
+                                            ("8imarker" "import marker from '@commons/requests/marker'")
+                                            ("8ilang" "import lang from '@commons/langs/t'")
+                                            ("8ikeys" "import keys from '@commons/keymaps/'")
+                                            ("8icls" "import cls from '@commons/cclass'")
+                                            ("8iback" "import goBack from '@commons/back'")
+                                            ("8iquery" "import { queryParams as query } from '@commons/param'")
+                                            ("8ireq" "import - from '@commons/requests/-'")
+                                            ("8istore" "import store from '@/config/store'")
+                                            ("8ievent" "import EVENT from '@commons/event'")
+                                            ("8ivideo" "import videoHandler from '@commons/medias/video-handler'")
+
+                                            ;; css import
+                                            ("81common" "@import '~@commons/styles/common';")
                                             ))
 
