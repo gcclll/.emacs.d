@@ -570,7 +570,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq user-mail-address "gccll.love@gmail.com")
   (setq user-blog-url "https://blog.ii6g.com")
   (setq user-new-blog-url "https://www.cheng87.com")
-  (setq user-note-dir "~/.blog/orgs")
+  (setq user-note-dir "~/github/documents/")
   (setq warning-minimum-level :emergency)
   (setq make-backup-files nil) ; no backup
   (setq initial-scratch-message "落叶相依浑似醉，潦倒何妨；悠悠岁月谁高歌，绝胜柳狂。\n")

@@ -99,16 +99,21 @@
 ;;----------------------------------------------------------------------------
 ;; `spacemacs'
 ;;----------------------------------------------------------------------------
+(spacemacs/set-leader-keys "aD" 'deft)
 (spacemacs/set-leader-keys "aS" 'prodigy)
 (spacemacs/set-leader-keys "am" nil)
 ;; -music
 (spacemacs/declare-prefix "am" "Music")
+(spacemacs/set-leader-keys "ama" 'emms-add-directory-tree)
 (spacemacs/set-leader-keys "ame" 'emms-smart-browse)
+(spacemacs/set-leader-keys "aml" 'emms-play-playlist)
 (spacemacs/set-leader-keys "amn" 'emms-next)
 (spacemacs/set-leader-keys "amp" 'emms-previous)
 (spacemacs/set-leader-keys "amP" 'emms-pause)
 (spacemacs/set-leader-keys "ams" 'emms-start)
 (spacemacs/set-leader-keys "amS" 'emms-stop)
+(spacemacs/set-leader-keys "amt" 'emms-toggle-repeat-playlist)
+(spacemacs/set-leader-keys "amw" 'emms-playlist-save)
 
 ;; -buffer
 (spacemacs/set-leader-keys "bD" 'spacemacs/kill-other-buffers)
@@ -168,6 +173,8 @@
 (spacemacs/set-leader-keys "vp" 'ivy-push-view)
 (spacemacs/set-leader-keys "vo" 'ivy-pop-view)
 (spacemacs/set-leader-keys "v." 'ivy-switch-view)
+
+(spacemacs/set-leader-keys "w`" 'ace-select-window)
 ;; -END
 
 ;;----------------------------------------------------------------------------

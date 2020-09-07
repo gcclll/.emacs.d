@@ -50,6 +50,7 @@
     symbol-overlay
     lispyville
     ;; popup
+    (eaf :location (recipe :fetcher github :repo "manateelazycat/emacs-application-framework"))
     )
   "The list of Lisp packages required by the zcheng-misc layer.
 
@@ -77,6 +78,14 @@ Each entry is either:
 
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
+(defun zcheng-misc/post-init-eaf ()
+  (use-package eaf
+    :custom
+    (eaf-find-alternate-file-in-dired t)
+    :config
+    (eaf-bind-key scroll_up "C-n" eaf-pdf-viewer-keybinding)
+    (eaf-bind-key scroll_down "C-p" eaf-pdf-viewer-keybinding)
+    (eaf-bind-key take_photo "p" eaf-camera-keybinding)))
 
 (defun zcheng-misc/post-init-popup ()
   (use-package popup
