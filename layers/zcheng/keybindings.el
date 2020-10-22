@@ -82,6 +82,7 @@
 (bind-key* "M--" 'zilongshanren/goto-match-paren)
 (bind-key* "M-i" 'string-inflection-java-style-cycle)
 (bind-key* "s-p" 'find-file-in-project)
+(bind-key* "C-c i m" 'helm-imenu)
 
 ;; -END
 
@@ -137,6 +138,11 @@
 ;; (spacemacs/set-leader-keys "hc" 'zilongshanren/clearn-highlight)
 (spacemacs/set-leader-keys "hc" 'symbol-overlay-remove-all)
 
+;; SPC i
+(spacemacs/set-leader-keys "ic" 'counsel-colors-web)
+(spacemacs/set-leader-keys "iC" 'counsel-colors-emacs)
+
+;; SPC g
 (spacemacs/set-leader-keys "gg" 'magit)
 (spacemacs/set-leader-keys "gL" 'magit-log-buffer-file)
 (spacemacs/set-leader-keys "gn" 'smerge-next)
@@ -176,6 +182,21 @@
 
 (spacemacs/set-leader-keys "w`" 'ace-select-window)
 ;; -END
+
+;;----------------------------------------------------------------------------
+;; `org-mode'
+;;----------------------------------------------------------------------------
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "hn" 'org-next-visible-heading
+  "hp" 'org-previous-visible-heading
+  "hi" 'org-next-item
+  "hI" 'org-previous-item
+  "hs" 'org-babel-next-src-block
+  "hS" 'org-babel-previous-src-block)
+
+;; -END
+
+
 
 ;;----------------------------------------------------------------------------
 ;; `other'

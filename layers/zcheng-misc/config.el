@@ -22,6 +22,12 @@
   <body></body>
 </html>
 ")
+                                            ("8script" "
+#+begin_export html
+<script>
+window.g_need_fold = 1
+</script>
+#+end_export")
                                             ;; org prop, tags
                                             ("8cid" "
 :PROPERTIES:
@@ -38,7 +44,13 @@
 #+BEGIN_EXPORT html
 <img src='' alt='some picture'/>
 #+END_EXPORT")
+                                            ;; path
                                             ("8vuecc" "https://img.cheng92.com/vue3/compiler-core/tests/")
+                                            ("8plib" "/img/vue3/compiler-core/lib/")
+                                            ("8pcg" "/img/vue3/compiler-core/pcg/")
+                                            ("8plibo" "https://www.cheng92.com/img/vue3/compiler-core/lib/")
+                                            ("8ipath" "https://gcclll.gitee.io/mind-maps/vue3/")
+                                            ("8ipcc" "https://gcclll.gitee.io/mind-maps/vue3/compiler-core/")
                                             ("8kbd" "@@html:<kbd>@@text@@html:</kbd>@@")
 
                                             ;; vue tags
@@ -47,18 +59,26 @@
                                             ("8pele" "/vue/vue3-source-code-compiler-core/#parseelementcontext-mode" )
 
                                             ;; js import
+                                            ("8idelay" "import { ndelay } from '@commons/timer/delay'")
+                                            ("8idis" "import dispatch from '@commons/actions/dispatch'")
                                             ("8imarker" "import marker from '@commons/requests/marker'")
                                             ("8ilang" "import lang from '@commons/langs/t'")
                                             ("8ikeys" "import keys from '@commons/keymaps/'")
                                             ("8icls" "import cls from '@commons/cclass'")
                                             ("8iback" "import goBack from '@commons/back'")
+                                            ("8ife" "import fetch from '@commons/fetch'")
                                             ("8iquery" "import { queryParams as query } from '@commons/param'")
                                             ("8ireq" "import - from '@commons/requests/-'")
                                             ("8istore" "import store from '@/config/store'")
                                             ("8ievent" "import EVENT from '@commons/event'")
                                             ("8ivideo" "import videoHandler from '@commons/medias/video-handler'")
+                                            ("8iscroll" "import { scroll } from '@commons/plugins/simple-scroll")
+
+                                            ;; js
+                                            ("8jlog" "console.log()")
 
                                             ;; css import
-                                            ("81common" "@import '~@commons/styles/common';")
+                                            ("81com" "@import '~@commons/styles/common';")
+                                            ("81imp" "!important")
                                             ))
 
