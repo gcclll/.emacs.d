@@ -17,6 +17,7 @@
 ;; Set up use-package for tidier package configuration/installation
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
+(setq straight-vc-git-default-clone-depth 1)
 
 ;; Add diminish, which makes it easier to customize lighters (minor mode display)
 (use-package diminish)
@@ -210,6 +211,13 @@
 
 (use-package evil-nerd-commenter
   :ensure t)
+
+;; (evil-set-initial-state 'color-rg-mode 'emacs)
+;; (evil-set-initial-state 'multi-vterm-mode 'emacs)
+;; (evil-set-initial-state 'vterm-mode 'emacs)
+;; (evil-set-initial-state 'magit-mode 'emacs)
+;; (evil-set-initial-state 'dired-mode 'emacs)
+;; (evil-set-initial-state 'magit-branch-manager-mode 'emacs)
 
 (use-package general)
 
@@ -417,3 +425,28 @@
 (use-package expand-region)
 
 (setenv "NODE_PATH" "/usr/local/lib/node_modules")
+
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook ((js2-mode . lsp)
+	 (web-mode . lsp)
+	 (typescript-mode . lsp)
+	 ;; if you want which-key integration
+	 (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package lsp-tailwindcss
+  :init
+  (setq lsp-tailwindcss-add-on-mode t)
+  (setq lsp-tailwindcss-major-modes
+      '(svelte-mode html-mode sgml-mode mhtml-mode web-mode css-mode js-mode))
+  (add-hook 'before-save-hook 'lsp-tailwindcss-rustywind-before-save)
+  )
+
+;; (use-package lsp-volar
+  ;; :straight (:host github :repo "jadestrong/lsp-volar")
