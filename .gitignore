@@ -23,7 +23,7 @@ tramp
 /bookmarks
 /persp-confs/
 /multisession/
-/projectile.cache/
+/projectile*
 /emojis/
 /.projectile
 /snails.db
