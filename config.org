@@ -200,6 +200,17 @@
 #+end_src
 * Evil
 #+begin_src emacs-lisp
+  (use-package which-key
+    :hook (after-init . which-key-mode)
+    :ensure t
+    :init
+    (setq which-key-side-window-location 'bottom)
+    (setq which-key-show-early-on-C-h t)
+    (setq which-key-idle-delay 0.1)
+    ;;(setq which-key-idle-secondary-delay 0.05)
+    (which-key-mode)
+    )
+
   (use-package evil
     :ensure t
     :init
@@ -521,6 +532,45 @@ node 包路径：
 (setenv "NODE_PATH" "/usr/local/lib/node_modules")
 #+end_src
 
+** orderless
+
+#+begin_src emacs-lisp
+  (use-package orderless
+      :init
+      (setq completion-styles '(orderless)
+	    completion-category-defaults nil
+	    completion-category-overrides '((file (styles . (partial-completion)))))
+      :config
+      ;; Fix completing hostnames when using /ssh:
+      (setq completion-styles '(orderless)
+	    completion-category-overrides '((file (styles basic partial-completion)))))
+
+  (use-package corfu
+    :after orderless
+    ;; Optional customizations
+    :custom
+    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+    (corfu-auto t)                 ;; Enable auto completion
+    (corfu-quit-at-boundary nil)     ;; Automatically quit at word boundary
+    (corfu-quit-no-match t)        ;; Automatically quit if there is no match
+    ;; (corfu-separator ?\s)          ;; Orderless field separator
+    (corfu-preview-current nil)    ;; Disable current candidate preview
+    ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+    ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+    ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+    :init
+    (global-corfu-mode)
+    )
+
+
+  ;; A few more useful configurations...
+  (use-package emacs
+    :init
+    (setq completion-cycle-threshold 3)
+    (setq tab-always-indent 'complete))
+#+end_src
+
 ** lsp-mode
 
 #+begin_src emacs-lisp
@@ -533,7 +583,14 @@ node 包路径：
 	   (typescript-mode . lsp)
 	   ;; if you want which-key integration
 	   (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
+    :custom
+    (lsp-completion-provider :none)
+    :commands lsp
+    :config
+    (lsp-enable-which-key-integration t)
+    (setq lsp-disabled-clients '(vls))
+    (setq lsp-enabled-clients '(lsp-volar))
+    )
 
 
   (use-package lsp-ui :commands lsp-ui-mode)
@@ -542,10 +599,100 @@ node 包路径：
     :init
     (setq lsp-tailwindcss-add-on-mode t)
     (setq lsp-tailwindcss-major-modes
-	'(svelte-mode html-mode sgml-mode mhtml-mode web-mode css-mode js-mode))
+	  '(svelte-mode html-mode sgml-mode mhtml-mode web-mode css-mode js-mode))
     (add-hook 'before-save-hook 'lsp-tailwindcss-rustywind-before-save)
     )
 
-  ;; (use-package lsp-volar
-    ;; :straight (:host github :repo "jadestrong/lsp-volar")
+  (use-package lsp-volar
+    :straight (:host github :repo "jadestrong/lsp-volar"))
+
+  (global-set-key (kbd "C-c l s") 'lsp-tailwindcss-rustywind)
+  (global-set-key (kbd "C-c l i") 'lsp-ui-imenu)
+  (global-set-key (kbd "C-c l d") 'lsp-ui-peek-find-definitions)
+  (global-set-key (kbd "C-c l r") 'lsp-ui-peek-find-references)
+  (global-set-key (kbd "C-c l a") 'lsp-organize-imports)
+#+end_src
+
+** web-mode
+
+#+begin_src emacs-lisp
+  (use-package dap-mode
+    :hook ((lsp-mode . dap-mode)
+	   (lsp-mode . dap-ui-mode))
+    :bind (:map dap-mode-map
+		("C-c d d" . dap-debug)
+		("C-c d h" . dap-hydra)
+		("C-c d b" . dap-ui-breakpoints)
+		("C-c d l" . dap-ui-locals)
+		("C-c d r" . dap-ui-repl)))
+
+  (defun my/setup-js-mode ()
+    (require 'dap-chrome)
+    (setq tab-width 2)
+    ;; 由于 lsp 已经提供了 diagnose 功能，故关闭 js2 自带的错误检查，防止干扰。
+    (setq js2-mode-show-strict-warnings nil)
+    (setq js2-mode-show-parse-errors nil))
+
+  (use-package js2-mode
+    :ensure t
+    :after (lsp-mode dap-mode)
+    :mode "\\.js\\'"
+    :hook ((js2-mode . my/setup-js-mode)))
+
+  (use-package typescript-mode
+    :ensure t
+    :after (lsp-mode dap-mode)
+    :mode ("\\.ts\\'" "\\.tsx\\'")
+    :hook ((typescript-mode . my/setup-js-mode)))
+
+  (use-package json-mode
+    :ensure t
+    :mode "\\.json\\'")
+
+  (use-package css-mode)
+  (use-package scss-mode)
+  (use-package emmet-mode
+    :hook ((sgml-mode html-mode css-mode web-mode) . emmet-mode)
+    :config
+    (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2))) ;; indent 2 spaces.
+    )
+
+  (use-package web-mode
+    :mode
+    (
+     ".twig$"
+     ".html?$"
+     ".hbs$"
+     ".vue$"
+     ".blade.php$"
+     )
+    :config
+    (setq
+     web-mode-markup-indent-offset 2
+     web-mode-css-indent-offset 2
+     web-mode-code-indent-offset 2
+     web-mode-style-padding 0
+     web-mode-script-padding 0
+     web-mode-enable-auto-closing t
+     web-mode-enable-auto-opening t
+     web-mode-enable-auto-pairing nil
+     web-mode-enable-auto-indentation t
+     web-mode-tag-auto-close-style 1
+     web-mode-enable-current-element-highlight t)
+
+    ;; Let smartparens handle auto closing brackets, e.g. {{ }} or {% %}
+    ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/web/%2Bhtml.el#L56
+    (dolist (alist web-mode-engines-auto-pairs)
+      (setcdr alist
+	      (cl-loop for pair in (cdr alist)
+		       unless (string-match-p "^[a-z-]" (cdr pair))
+		       collect (cons (car pair)
+				     (string-trim-right (cdr pair)
+							"\\(?:>\\|]\\|}\\)+\\'")))))
+    )
+
+  (defun gcl/web-maybe-activate-lsp ()
+    "Maybe activate language server protocol for the current buffer."
+    (if (equal (gf/filename-extension (buffer-file-name)) "vue")
+	(lsp-vue-mmm-enable)))
 #+end_src
