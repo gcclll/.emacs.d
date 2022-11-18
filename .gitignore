@@ -4,6 +4,7 @@ elpa
 dcache
 anaconda-mode
 company-statistics-cache.el
+straight
 .cache/
 recentf
 eln-cache

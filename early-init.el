@@ -1,5 +1,10 @@
 ;;; early-init.el -*- lexical-binding: t; -*-
 
+;;; remove some ui components
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 ;;; ====== from doom-emacs =====
 ;; A big contributor to startup times is garbage collection. We up the gc
 ;; threshold to temporarily prevent it from running, then reset it later by
