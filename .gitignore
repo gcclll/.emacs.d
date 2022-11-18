@@ -1,6 +1,7 @@
 auto-save-list
 .cask
 elpa
+dcache
 anaconda-mode
 company-statistics-cache.el
 .cache/
@@ -31,4 +32,5 @@ tramp
 /history
 /.project
 /.dap-*
-dcache
+/places
+
