@@ -175,6 +175,55 @@
 (use-package font-lock+
   :straight (:host github :repo "emacsmirror/font-lock-plus"))
 
+(use-package all-the-icons)
+(use-package all-the-icons-dired
+  :hook ((dired-mode . all-the-icons-dired-mode)))
+
+(use-package marginalia
+  ;; :general
+  ;; (:keymaps 'minibuffer-local-map
+  ;; 	    "M-A" 'marginalia-cycle)
+  :custom
+  (marginalia-max-relative-age 0)
+  (marginalia-align 'right)
+  :init
+  (marginalia-mode))
+
+(use-package all-the-icons-completion
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
+
+(use-package vertico
+  ;; Special recipe to load extensions conveniently
+  :straight (vertico :files (:defaults "extensions/*")
+		     :includes (vertico-indexed
+				vertico-flat
+				vertico-grid
+				vertico-mouse
+				vertico-quick
+				vertico-buffer
+				vertico-repeat
+				vertico-reverse
+				vertico-directory
+				vertico-multiform
+				vertico-unobtrusive
+				))
+  ;; :general
+  ;; (:keymaps 'vertico-map
+  ;; 	    "<tab>" #'vertico-insert    ; Choose selected candidate
+  ;; 	    "<escape>" #'minibuffer-keyboard-quit ; Close minibuffer
+  ;; 	    ;; NOTE 2022-02-05: Cycle through candidate groups
+  ;; 	    "C-M-n" #'vertico-next-group
+  ;; 	    "C-M-p" #'vertico-previous-group)
+  :custom
+  (vertico-count 13)                    ; Number of candidates to display
+  (vertico-resize t)
+  (vertico-cycle nil) ; Go from last to first candidate and first to last (cycle)?
+  :config
+  (vertico-mode))
+
 (use-package which-key
   :hook (after-init . which-key-mode)
   :ensure t
@@ -437,15 +486,26 @@
 
 (setenv "NODE_PATH" "/usr/local/lib/node_modules")
 
+;; Optionally use the `orderless' completion style.
 (use-package orderless
-    :init
-    (setq completion-styles '(orderless)
-	  completion-category-defaults nil
-	  completion-category-overrides '((file (styles . (partial-completion)))))
-    :config
-    ;; Fix completing hostnames when using /ssh:
-    (setq completion-styles '(orderless)
-	  completion-category-overrides '((file (styles basic partial-completion)))))
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless-fast)
+	completion-category-defaults nil
+	completion-category-overrides '((file (styles . (partial-completion)))))
+
+
+  :config
+  (defun orderless-fast-dispatch (word index total)
+    (and (= index 0) (= total 1) (length< word 4)
+	 `(orderless-regexp . ,(concat "^" (regexp-quote word)))))
+
+  (orderless-define-completion-style orderless-fast
+    (orderless-style-dispatchers '(orderless-fast-dispatch))
+    (orderless-matching-styles '(orderless-literal orderless-regexp)))
+  )
 
 (use-package corfu
   :after orderless
@@ -455,22 +515,47 @@
   (corfu-auto t)                 ;; Enable auto completion
   (corfu-quit-at-boundary nil)     ;; Automatically quit at word boundary
   (corfu-quit-no-match t)        ;; Automatically quit if there is no match
+  (corfu-auto-delay 0)
+  ;; 输入两个字符开始实例
+  (corfu-auto-prefix 2)
   ;; (corfu-separator ?\s)          ;; Orderless field separator
   (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+  (corfu-preselect-first t)    ;; Enable candidate preselection
   ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
   ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+  :bind
+  (:map corfu-map
+	("C-j" . corfu-next)
+	("C-k" . corfu-previous))
   :init
   (global-corfu-mode)
+  :config
+  (defun corfu-enable-always-in-minibuffer ()
+    "Enable Corfu in the minibuffer if Vertico/Mct are not active."
+    (unless (or (bound-and-true-p mct--active)
+		(bound-and-true-p vertico--input))
+      ;; (setq-local corfu-auto nil) Enable/disable auto completion
+      (corfu-mode 1)))
+  (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer 1)
   )
 
+;; (use-package corfu-history)
 
 ;; A few more useful configurations...
 (use-package emacs
   :init
-  (setq completion-cycle-threshold 3)
+  (setq completion-cycle-threshold 2)
   (setq tab-always-indent 'complete))
+
+;; Use Dabbrev with Corfu!
+(use-package dabbrev
+  ;; Swap M-/ and C-M-/
+  :bind (("M-/" . dabbrev-completion)
+	 ("C-M-/" . dabbrev-expand))
+  ;; Other useful Dabbrev configurations.
+  :custom
+  (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
 
 (use-package lsp-mode
   :init
@@ -485,7 +570,6 @@
   (lsp-completion-provider :none)
   :commands lsp
   :config
-  (lsp-enable-which-key-integration t)
   (setq lsp-disabled-clients '(vls))
   (setq lsp-enabled-clients '(lsp-volar))
   )
