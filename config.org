@@ -7,31 +7,8 @@
 使用 use-package 和 straight.el。
 
 #+begin_src emacs-lisp
-  (require 'package)
   (setq package-archives '(("gnu"   . "http://1.15.88.122/gnu/")
 			   ("melpa" . "http://1.15.88.122/melpa/")))
-
-  (package-initialize)
-
-  (assq-delete-all 'org package--builtins)
-  (assq-delete-all 'org package--builtin-versions)
-
-  ;; Setup `use-package'
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-
-
-  ;; Should set before loading `use-package'
-  (eval-and-compile
-    (setq use-package-always-ensure t)
-    (setq use-package-always-defer t)
-    (setq use-package-expand-minimally t)
-    (setq use-package-enable-imenu-support t))
-
-
-  (eval-when-compile
-    (require 'use-package))
 #+end_src
 
 添加 straight 支持，主要是为了在 use-package 中使用。
@@ -49,6 +26,13 @@
 	(goto-char (point-max))
 	(eval-print-last-sexp)))
     (load bootstrap-file nil 'nomessage))
+
+  ;; Set up use-package for tidier package configuration/installation
+  (straight-use-package 'use-package)
+  (setq straight-use-package-by-default t)
+
+  ;; Add diminish, which makes it easier to customize lighters (minor mode display)
+  (use-package diminish)
 #+end_src
 
 * 快捷方式
