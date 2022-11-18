@@ -206,9 +206,6 @@
 
 #+begin_src emacs-lisp
   (use-package marginalia
-    ;; :general
-    ;; (:keymaps 'minibuffer-local-map
-    ;; 	    "M-A" 'marginalia-cycle)
     :custom
     (marginalia-max-relative-age 0)
     (marginalia-align 'right)
@@ -236,13 +233,8 @@
 				  vertico-multiform
 				  vertico-unobtrusive
 				  ))
-    ;; :general
-    ;; (:keymaps 'vertico-map
-    ;; 	    "<tab>" #'vertico-insert    ; Choose selected candidate
-    ;; 	    "<escape>" #'minibuffer-keyboard-quit ; Close minibuffer
-    ;; 	    ;; NOTE 2022-02-05: Cycle through candidate groups
-    ;; 	    "C-M-n" #'vertico-next-group
-    ;; 	    "C-M-p" #'vertico-previous-group)
+    ;; Make sure vertico state is saved for `vertico-repeat'
+    :hook (minibuffer-setup . vertico-repeat-save)
     :custom
     (vertico-count 13)                    ; Number of candidates to display
     (vertico-resize t)
@@ -633,10 +625,16 @@ node 包路径：
     ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
     ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
     ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+    ;; (corfu-min-width 80)
+    (corfu-max-width 80)
     :bind
     (:map corfu-map
 	  ("C-j" . corfu-next)
-	  ("C-k" . corfu-previous))
+	  ("C-k" . corfu-previous)
+	  ("<escape>" . corfu-quit)
+	  ;; ("M-l" . corfu-show-location)
+	  ;; ("M-d" . corfu-show-documentation)
+	  )
     :init
     (global-corfu-mode)
     :config
@@ -649,7 +647,35 @@ node 包路径：
     (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer 1)
     )
 
-  ;; (use-package corfu-history)
+  (use-package kind-icon
+    :after corfu
+    :custom
+    (kind-icon-use-icons t)
+    (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
+    (kind-icon-blend-background nil)  ; Use midpoint color between foreground and background colors ("blended")?
+    (kind-icon-blend-frac 0.08)
+    :config
+    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter) ; Enable `kind-icon'
+    )
+
+  (use-package corfu-doc
+    ;; NOTE 2022-02-05: At the time of writing, `corfu-doc' is not yet on melpa
+    :straight (corfu-doc :type git :host github :repo "galeo/corfu-doc")
+    :after corfu
+    :hook (corfu-mode . corfu-doc-mode)
+    :bind
+    (:map corfu-map
+	  ("M-n" . corfu-doc-scroll-up)
+	  ("M-p" . corfu-doc-scroll-down))
+    :custom
+    (corfu-doc-delay 0.5)
+    (corfu-doc-max-width 70)
+    (corfu-doc-max-height 20)
+
+    ;; NOTE 2022-02-05: I've also set this in the `corfu' use-package to be
+    ;; extra-safe that this is set when corfu-doc is loaded. I do not want
+    ;; documentation shown in both the echo area and in the `corfu-doc' popup.
+    (corfu-echo-documentation nil))
 
   ;; A few more useful configurations...
   (use-package emacs
@@ -665,6 +691,7 @@ node 包路径：
     ;; Other useful Dabbrev configurations.
     :custom
     (dabbrev-ignored-buffer-regexps '("\\.\\(?:pdf\\|jpe?g\\|png\\)\\'")))
+
 #+end_src
 
 ** lsp-mode
