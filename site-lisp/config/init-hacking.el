@@ -15,22 +15,22 @@
   (global-set-key (kbd "<f1>") 'gcl/open-init-file)
   (global-set-key (kbd "<f2>") 'restart-emacs)
 
-  ;; 保存文件时自动生成配置到 init.el
-  (use-package org-auto-tangle
-    :hook (org-mode . org-auto-tangle-mode))
+;;   ;; 保存文件时自动生成配置到 init.el
+;;   (use-package org-auto-tangle
+;;     :hook (org-mode . org-auto-tangle-mode))
 
-  (use-package auto-save
-    :straight (:host github :repo "manateelazycat/auto-save")
-    :config
-    (auto-save-enable)
-    (setq auto-save-silent t)
-    (setq auto-save-delete-trailing-whitespace t)
-    ;; 不想自动保存的文件后缀
-    (setq auto-save-disable-predicates
-	'((lambda ()
-	(string-suffix-p
-	"gpg"
-	(file-name-extension (buffer-name)) t))))
-    )
+;;   (use-package auto-save
+;;     :straight (:host github :repo "manateelazycat/auto-save")
+;;     :config
+;;     (auto-save-enable)
+;;     (setq auto-save-silent t)
+;;     (setq auto-save-delete-trailing-whitespace t)
+;;     ;; 不想自动保存的文件后缀
+;;     (setq auto-save-disable-predicates
+;; 	'((lambda ()
+;; 	(string-suffix-p
+;; 	"gpg"
+;; 	(file-name-extension (buffer-name)) t))))
+;;     )
 
 (provide 'init-hacking)

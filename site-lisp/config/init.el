@@ -31,15 +31,13 @@
   ;; (require 'benchmark-init-modes)
   ;; (add-hook 'after-init-hook 'benchmark-init/deactivate)
 
-
-    (add-hook 'minibuffer-setup-hook #'max-gc-limit)
-(add-hook 'minibuffer-exit-hook #'reset-gc-limit)
-
-
 ;;   (require 'init-fullscreen)
 
   ;; --- basic
   (require 'init-funcs)
+
+    (add-hook 'minibuffer-setup-hook #'max-gc-limit)
+(add-hook 'minibuffer-exit-hook #'reset-gc-limit)
   (require 'init-hacking)
 ;;   (require 'init-basic)
 
