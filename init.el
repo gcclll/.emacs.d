@@ -535,29 +535,25 @@ one, an error is signaled."
 
   (+general-global-menu! "load&link" "l"
 			 ;; test: https://blog.cheng92.com
-			 ;; "o" 'link-hint-open-link
-			 ;; "c" 'link-hint-copy-link
+			 "o" 'link-hint-open-link
+			 "c" 'link-hint-copy-link
 			 )
 
   (+general-global-menu! "projects" "p"
-			 ;; "p" 'consult-projectile-switch-project
-			 ;; "f" 'consult-projectile-find-file
-			 ;; "d" 'consult-projectile-find-dir
-			 ;; "b" 'consult-projectile-switch-to-buffer
-			 ;; "B" 'consult-project-buffer
+			 "p" 'consult-projectile-switch-project
+			 "f" 'consult-projectile-find-file
+			 "d" 'consult-projectile-find-dir
+			 "b" 'consult-projectile-switch-to-buffer
+			 "B" 'consult-project-buffer
 			 )
 
   (+general-global-menu! "query" "q"
 			 ;; "r" 'restart-emacs
 			 )
 
-  (+general-global-menu! "search" "s"
-			 ;; "p" 'consult-ripgrep
-			 ;; "i" 'color-rg-search-input
-			 ;; "I" 'color-rg-search-input-in-project
-			 ;; "s" 'color-rg-search-symbol
-			 ;; "S" 'color-rg-search-symbol-in-project
-			 )
+(+general-global-menu! "search" "s"
+  "p" 'consult-ripgrep
+  )
 
   (+general-global-menu! "window" "w"
 			 "," 'delete-window

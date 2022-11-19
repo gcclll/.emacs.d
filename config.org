@@ -614,8 +614,8 @@ so-long
 #+begin_src emacs-lisp
   (+general-global-menu! "load&link" "l"
 			 ;; test: https://blog.cheng92.com
-			 ;; "o" 'link-hint-open-link
-			 ;; "c" 'link-hint-copy-link
+			 "o" 'link-hint-open-link
+			 "c" 'link-hint-copy-link
 			 )
 #+end_src
 
@@ -623,11 +623,11 @@ so-long
 
 #+begin_src emacs-lisp
   (+general-global-menu! "projects" "p"
-			 ;; "p" 'consult-projectile-switch-project
-			 ;; "f" 'consult-projectile-find-file
-			 ;; "d" 'consult-projectile-find-dir
-			 ;; "b" 'consult-projectile-switch-to-buffer
-			 ;; "B" 'consult-project-buffer
+			 "p" 'consult-projectile-switch-project
+			 "f" 'consult-projectile-find-file
+			 "d" 'consult-projectile-find-dir
+			 "b" 'consult-projectile-switch-to-buffer
+			 "B" 'consult-project-buffer
 			 )
 #+end_src
 
@@ -642,13 +642,9 @@ so-long
 *** SPC s 搜索相关
 
 #+begin_src emacs-lisp
-  (+general-global-menu! "search" "s"
-			 ;; "p" 'consult-ripgrep
-			 ;; "i" 'color-rg-search-input
-			 ;; "I" 'color-rg-search-input-in-project
-			 ;; "s" 'color-rg-search-symbol
-			 ;; "S" 'color-rg-search-symbol-in-project
-			 )
+(+general-global-menu! "search" "s"
+  "p" 'consult-ripgrep
+  )
 #+end_src
 
 *** SPC w 窗口相关
@@ -897,7 +893,6 @@ so-long
 
   ;; 还要自动选择翻译内容 buffer
   (setq fanyi-auto-select nil))
-
 #+end_src
 ** link-hint
 #+begin_src emacs-lisp
@@ -1113,6 +1108,67 @@ node 包路径：
   (global-set-key (kbd "C-c l a") 'lsp-organize-imports)
 #+end_src
 
+** lsp-bridge
+#+begin_src emacs-lisp :tangle no
+(use-package lsp-bridge
+  :straight (:host github :repo "manateelazycat/lsp-bridge")
+  :hook ((emacs-lisp-mode) . lsp-bridge-mode)
+  :config
+  (require 'lsp-bridge)
+  (require 'lsp-bridge-jdtls)
+  (require 'acm-backend-tailwind)
+  ;; (global-lsp-bridge-mode)
+  (setq acm-enable-tabnine nil)
+  ;; (lsp-bridge-enable-auto-import)
+  ;; 融合 `lsp-bridge' `find-function' 以及 `dumb-jump' 的智能跳转
+  (defun lsp-bridge-jump ()
+    (interactive)
+    (cond
+     ((eq major-mode 'emacs-lisp-mode)
+      (let ((symb (function-called-at-point)))
+	(when symb
+          (find-function symb))))
+     (lsp-bridge-mode
+      (lsp-bridge-find-def))
+     (t
+      (require 'dumb-jump)
+      (dumb-jump-go))))
+
+  (defun lsp-bridge-jump-back ()
+    (interactive)
+    (cond
+     (lsp-bridge-mode
+      (lsp-bridge-find-def-return))
+     (t
+      (require 'dumb-jump)
+      (dumb-jump-back))))
+
+  (setq lsp-bridge-get-single-lang-server-by-project
+	(lambda (project-path filepath)
+          ;; If typescript first line include deno.land, then use Deno LSP server.
+          (save-excursion
+            (when (string-equal (file-name-extension filepath) "ts")
+              (dolist (buf (buffer-list))
+		(when (string-equal (buffer-file-name buf) filepath)
+		  (with-current-buffer buf
+                    (goto-char (point-min))
+                    (when (string-match-p (regexp-quote "from \"https://deno.land") (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
+                      (return "deno")))))))))
+
+  ;; 打开日志，开发者才需要
+  (setq lsp-bridge-enable-log nil)
+
+  (general-define-key
+   "C-5" 'lsp-bridge-diagnostic-list
+   "C-6" 'lsp-bridge-lookup-documentation
+   "C-7" 'lsp-bridge-jump-back
+   "C-8" 'lsp-bridge-jump
+   "C-9" 'lsp-bridge-find-references
+   "C-0" 'lsp-bridge-rename)
+
+  (evil-set-initial-state 'lsp-bridge-ref-mode 'emacs)
+  )
+#+end_src
 ** web-mode
 
 #+begin_src emacs-lisp
