@@ -37,8 +37,6 @@
 
 
 ;;   (require 'init-fullscreen)
-  ;; --- package
-  (require 'init-package)
 
   ;; --- basic
   (require 'init-funcs)
