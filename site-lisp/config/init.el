@@ -40,7 +40,7 @@
 
   ;; --- basic
   (require 'init-funcs)
-;;   (require 'init-hacking)
+  (require 'init-hacking)
 ;;   (require 'init-basic)
 
 ;;   (require 'init-performance)
