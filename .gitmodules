@@ -409,3 +409,72 @@
 [submodule "site-lisp/extensions/org-mac-link"]
 	path = site-lisp/extensions/org-mac-link
 	url = https://gitlab.com/aimebertrand/org-mac-link.git
+[submodule "site-lisp/extensions/fanyi.el"]
+	path = site-lisp/extensions/fanyi.el
+	url = https://github.com/condy0919/fanyi.el.git
+[submodule "site-lisp/extensions/svg-lib"]
+	path = site-lisp/extensions/svg-lib
+	url = https://github.com/rougier/svg-lib.git
+[submodule "site-lisp/extensions/org-super-agenda"]
+	path = site-lisp/extensions/org-super-agenda
+	url = https://github.com/alphapapa/org-super-agenda.git
+[submodule "site-lisp/extensions/org-roam"]
+	path = site-lisp/extensions/org-roam
+	url = https://github.com/org-roam/org-roam.git
+[submodule "site-lisp/extensions/org-roam-ui"]
+	path = site-lisp/extensions/org-roam-ui
+	url = https://github.com/org-roam/org-roam-ui.git
+[submodule "site-lisp/extensions/magit"]
+	path = site-lisp/extensions/magit
+	url = https://github.com/magit/magit.git
+[submodule "site-lisp/extensions/visual-regexp.el"]
+	path = site-lisp/extensions/visual-regexp.el
+	url = https://github.com/benma/visual-regexp.el.git
+[submodule "site-lisp/extensions/snails"]
+	path = site-lisp/extensions/snails
+	url = https://github.com/manateelazycat/snails.git
+[submodule "site-lisp/extensions/inheritenv"]
+	path = site-lisp/extensions/inheritenv
+	url = https://github.com/purcell/inheritenv.git
+[submodule "site-lisp/extensions/blamer.el"]
+	path = site-lisp/extensions/blamer.el
+	url = https://github.com/Artawower/blamer.el.git
+[submodule "site-lisp/extensions/themes"]
+	path = site-lisp/extensions/themes
+	url = https://github.com/doomemacs/themes.git
+[submodule "site-lisp/extensions/emacsql"]
+	path = site-lisp/extensions/emacsql
+	url = https://github.com/magit/emacsql.git
+[submodule "site-lisp/extensions/org-special-block-extras"]
+	path = site-lisp/extensions/org-special-block-extras
+	url = https://github.com/alhassy/org-special-block-extras.git
+[submodule "site-lisp/extensions/valign"]
+	path = site-lisp/extensions/valign
+	url = https://github.com/casouri/valign.git
+[submodule "site-lisp/extensions/blink-search"]
+	path = site-lisp/extensions/blink-search
+	url = https://github.com/manateelazycat/blink-search.git
+[submodule "site-lisp/extensions/projectile"]
+	path = site-lisp/extensions/projectile
+	url = https://github.com/bbatsov/projectile.git
+[submodule "site-lisp/extensions/consult-projectile"]
+	path = site-lisp/extensions/consult-projectile
+	url = https://gitlab.com/OlMon/consult-projectile.git
+[submodule "site-lisp/extensions/emacs-tree-sitter"]
+	path = site-lisp/extensions/emacs-tree-sitter
+	url = https://github.com/ubolonton/emacs-tree-sitter.git
+[submodule "site-lisp/extensions/lsp-ui"]
+	path = site-lisp/extensions/lsp-ui
+	url = https://github.com/emacs-lsp/lsp-ui.git
+[submodule "site-lisp/extensions/insert-translated-name"]
+	path = site-lisp/extensions/insert-translated-name
+	url = https://github.com/manateelazycat/insert-translated-name.git
+[submodule "site-lisp/extensions/pyim"]
+	path = site-lisp/extensions/pyim
+	url = https://github.com/tumashu/pyim.git
+[submodule "site-lisp/extensions/pyim-basedict"]
+	path = site-lisp/extensions/pyim-basedict
+	url = https://github.com/tumashu/pyim-basedict.git
+[submodule "site-lisp/extensions/pyim-wbdict"]
+	path = site-lisp/extensions/pyim-wbdict
+	url = https://github.com/tumashu/pyim-wbdict.git

@@ -31,18 +31,18 @@
   ;; (require 'benchmark-init-modes)
   ;; (add-hook 'after-init-hook 'benchmark-init/deactivate)
 
-;;   (require 'init-fullscreen)
+  ;;   (require 'init-fullscreen)
 
   ;; --- basic
   (require 'init-funcs)
   (require 'init-performance)
 
-;;   (require 'init-hacking)
-;;   (require 'init-basic)
+  (require 'init-hacking)
+  ;;   (require 'init-basic)
 
-;;   (require 'init-ui)
-;;   (require 'init-buffer)
-;;   (require 'init-evil)
+  ;;   (require 'init-ui)
+  ;;   (require 'init-buffer)
+  ;;   (require 'init-evil)
 
   (setq-default bidi-display-reordering nil)
 
@@ -50,7 +50,7 @@
   (run-with-idle-timer
    1 nil
    #'(lambda ()
-        ;; TODO
+       ;; TODO
        ))
   )
 
@@ -59,8 +59,8 @@
 ;; sh -c 'printf "%s" "$PATH"' > ~/.path
 (condition-case err
     (let ((path (with-temp-buffer
-		              (insert-file-contents-literally "~/.path")
-		              (buffer-string))))
+		  (insert-file-contents-literally "~/.path")
+		  (buffer-string))))
       (setenv "PATH" path)
       (setq exec-path (append (parse-colon-path path) (list exec-directory))))
   (error (warn "%s" (error-message-string err))))
