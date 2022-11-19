@@ -38,11 +38,11 @@
   (require 'init-performance)
 
   (require 'init-hacking)
-  ;;   (require 'init-basic)
+  (require 'init-basic)
 
-  ;;   (require 'init-ui)
-  ;;   (require 'init-buffer)
-  ;;   (require 'init-evil)
+  (require 'init-ui)
+  (require 'init-buffer)
+  (require 'init-evil)
 
   (setq-default bidi-display-reordering nil)
 

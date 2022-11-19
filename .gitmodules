@@ -478,3 +478,9 @@
 [submodule "site-lisp/extensions/pyim-wbdict"]
 	path = site-lisp/extensions/pyim-wbdict
 	url = https://github.com/tumashu/pyim-wbdict.git
+[submodule "site-lisp/extensions/font-lock-plus"]
+	path = site-lisp/extensions/font-lock-plus
+	url = https://github.com/emacsmirror/font-lock-plus.git
+[submodule "site-lisp/extensions/all-the-icons-completion"]
+	path = site-lisp/extensions/all-the-icons-completion
+	url = https://github.com/iyefrat/all-the-icons-completion.git
