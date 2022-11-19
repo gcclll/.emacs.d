@@ -299,6 +299,12 @@ one, an error is signaled."
   ;; lsp-mode's performance suggest
   (setq read-process-output-max (* 3 1mb))
 
+(use-package so-long
+  :straight (:host github :repo "hlissner/emacs-so-long")
+  :config
+  (add-hook 'after-init-hook #'global-so-long-mode)
+  (setq so-long-threshold 40000))
+
 (set-face-attribute 'default nil :height 140 :family "WenQuanYi Micro Hei Mono")
 
 (use-package font-lock+
@@ -474,7 +480,7 @@ one, an error is signaled."
     :non-normal-prefix "C-SPC")
 
   (global-definer
-   ;; "TAB" 'projectile-persp-switch-project
+   "TAB" 'projectile-persp-switch-project
    "SPC" 'execute-extended-command
    "0" 'select-window-0
    "1" 'select-window-1
@@ -583,7 +589,6 @@ one, an error is signaled."
 
    ;; C-c
    ;; 1 + 2 + 3
-   ;; "C-c =" 'math-at-point
    ;; C-c f  -> hydra-lsp/body
    "C-c b" 'consult-bookmark
    "C-c h" 'consult-history
@@ -594,10 +599,10 @@ one, an error is signaled."
    ;; "C-c c" 'copy-buffer-file-name-as-kill
    "C-c i" 'org-mac-link-get-link
    "C-c e" 'consult-flycheck
-   ;; "C-c r" 'vr/replace
-   ;; "C-c q" 'vr/query-replace
-   ;; "C-c m" 'vr/mc-mark
-   ;; "C-c u" 'uuidgen
+   "C-c r" 'vr/replace
+   "C-c q" 'vr/query-replace
+   "C-c m" 'vr/mc-mark
+   "C-c u" 'uuidgen
    )
 
   (general-define-key
@@ -618,7 +623,7 @@ one, an error is signaled."
    "s-R" 're-builder
    ;; "s-i" 'gcl/string-inflection-cycle-auto
    "s-d" 'consult-dir
-   ;; "s-F" 'format-all-buffer
+   "s-F" 'format-all-buffer
    ;; "s-h" 'gcl/urls/body
    ;; "s-`" 'vterm-toggle
    "s-'" 'vertico-repeat
@@ -736,6 +741,8 @@ one, an error is signaled."
                                  "'"
                                  "`")))
 
+(use-package hydra)
+
 (use-package crux)
 
 (use-package fanyi
@@ -749,6 +756,42 @@ one, an error is signaled."
 
   ;; 还要自动选择翻译内容 buffer
   (setq fanyi-auto-select nil))
+
+(use-package link-hint
+  :ensure t
+  :bind
+  ("C-c l o" . link-hint-open-link)
+  ("C-c l c" . link-hint-copy-link))
+
+(use-package math-at-point
+  :straight (:host github :repo "shankar2k/math-at-point"))
+
+(use-package uuidgen)
+
+(require 'dired)
+
+(setq dired-recursive-deletes 'always)
+(setq dired-recursive-copies 'always)
+(setq delete-by-moving-to-trash t)
+(setq dired-dwim-target t)
+(setq dired-listing-switches "-alh")
+
+(setq dired-guess-shell-alist-user
+      '(("\\.pdf\\'" "open")
+        ("\\.docx\\'" "open")
+        ("\\.\\(?:djvu\\|eps\\)\\'" "open")
+        ("\\.\\(?:jpg\\|jpeg\\|png\\|gif\\|xpm\\)\\'" "open")
+        ("\\.\\(?:xcf\\)\\'" "open")
+        ("\\.csv\\'" "open")
+        ("\\.tex\\'" "open")
+        ("\\.\\(?:mp4\\|mkv\\|avi\\|flv\\|ogv\\)\\(?:\\.part\\)?\\'"
+         "open")
+        ("\\.\\(?:mp3\\|flac\\)\\'" "open")
+        ("\\.html?\\'" "open")
+        ("\\.md\\'" "open")))
+
+(use-package diredfl
+  :hook ((dired-mode . diredfl-mode)))
 
 (setenv "NODE_PATH" "/usr/local/lib/node_modules")
 
@@ -859,6 +902,12 @@ one, an error is signaled."
     :hook ((js2-mode . lsp)
 	   (web-mode . lsp)
 	   (typescript-mode . lsp)
+	   (c-mode . lsp)
+	   (c++-mode . lsp)
+	   (python-mode . lsp)
+	   (css-mode . lsp)
+	   (lua-mode . lsp)
+	   (shell-mode . lsp)
 	   ;; if you want which-key integration
 	   (lsp-mode . lsp-enable-which-key-integration))
     :custom
@@ -969,7 +1018,40 @@ one, an error is signaled."
     (if (equal (gf/filename-extension (buffer-file-name)) "vue")
 	(lsp-vue-mmm-enable)))
 
-(use-package hydra)
+(defhydra gcl/lsp (:exit t :hint nil)
+  "
+ Buffer^^               Server^^                   Symbol
+-------------------------------------------------------------------------------------
+ [_f_] format           [_M-r_] restart            [_d_] declaration  [_i_] implementation  [_o_] documentation
+ [_m_] imenu            [_S_]   shutdown           [_D_] definition   [_t_] type            [_r_] rename
+ [_x_] execute action   [_M-s_] describe session   [_R_] references   [_s_] signature"
+  ("d" lsp-find-declaration)
+  ("D" lsp-ui-peek-find-definitions)
+  ("R" lsp-ui-peek-find-references)
+  ("i" lsp-ui-peek-find-implementation)
+  ("t" lsp-find-type-definition)
+  ("s" lsp-signature-help)
+  ("o" lsp-describe-thing-at-point)
+  ("r" lsp-rename)
+
+  ("f" format-all-buffer)
+  ("m" lsp-ui-imenu)
+  ("x" lsp-execute-code-action)
+
+  ("M-s" lsp-describe-session)
+  ("M-r" lsp-restart-workspace)
+  ("S" lsp-shutdown-workspace))
+
+(use-package format-all)
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+(use-package pkg-info)
+(use-package posframe)
+(use-package flymake-posframe
+  :straight (:host github :repo "Ladicle/flymake-posframe")
+  :hook (flymake-mode . flymake-posframe-mode))
 
 (use-package magit
   :ensure t
@@ -1614,3 +1696,49 @@ one, an error is signaled."
   ;; (autoload 'projectile-project-root "projectile")
   ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
   )
+
+(use-package wgrep
+  :config
+  (setq wgrep-auto-save-buffer t))
+
+(use-package visual-regexp)
+(use-package visual-regexp-steroids)
+
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (autoload 'projectile-project-root "projectile")
+  (setq consult-project-function (lambda (_) (projectile-project-root)))
+  ;; alien, hybrid
+  (setq projectile-indexing-method 'alien projectile-enable-caching t)
+  )
+
+(use-package consult-projectile)
+
+(use-package perspective
+  :bind
+  ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
+  :custom
+  (persp-mode-prefix-key (kbd "C-c TAB"))  ; pick your own prefix key here
+  :init
+  (persp-mode)
+  :config
+  (setq persp-state-default-file (expand-file-name ".cache/gcl" user-emacs-directory))
+  (setq persp-show-modestring 'header)
+  (add-hook 'kill-emacs-hook #'persp-state-save)
+  (use-package persp-projectile)
+  )
+
+(with-eval-after-load 'general
+  (general-define-key
+   "s-1" '(lambda () (interactive) (persp-switch-by-number 1))
+   "s-2" '(lambda () (interactive) (persp-switch-by-number 2))
+   "s-3" '(lambda () (interactive) (persp-switch-by-number 3))
+   "s-4" '(lambda () (interactive) (persp-switch-by-number 4))
+   "s-5" '(lambda () (interactive) (persp-switch-by-number 5))
+   "s-)" 'persp-next
+   "s-(" 'persp-prev
+   ))
