@@ -435,7 +435,8 @@ one, an error is signaled."
     (define-key evil-motion-state-map (kbd "0") 'evil-end-of-line)
 
     (evil-global-set-key 'normal "f" 'evil-avy-goto-char)
-    (evil-global-set-key 'normal "w" 'evil-avy-goto-word-1)
+    (evil-global-set-key 'normal "w" 'evil-avy-goto-word-or-subword-1)
+    (evil-global-set-key 'normal "s" 'evil-avy-goto-line)
     (evil-global-set-key 'motion "-" 'org-decrease-number-at-point)
     (evil-global-set-key 'motion "+" 'org-increase-number-at-point)
 
@@ -1884,6 +1885,14 @@ _k_: down      _a_: combine       _q_: quit
 (use-package window-numbering
   :config
   (add-hook 'after-init-hook 'window-numbering-mode))
+
+(setq display-buffer-base-action
+      '(display-buffer-reuse-mode-window
+        display-buffer-reuse-window
+        display-buffer-same-window))
+
+;; If a popup does happen, don't resize windows to be equal-sized
+(setq even-window-sizes nil)
 
 (use-package vterm)
 (use-package multi-vterm :ensure t)
