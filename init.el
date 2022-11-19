@@ -484,7 +484,7 @@ one, an error is signaled."
    "." 'kill-this-buffer
    ";" 'kill-other-window-buffer
    "x" 'switch-to-scratch-buffer
-   ;; "`" 'multi-vterm-project
+   "`" 'multi-vterm-project
    )
 
   ;; 可以定制 SPC <key1> <key2> ...
@@ -571,7 +571,7 @@ one, an error is signaled."
    "C-j" 'emmet-expand-yas
    "C-s" 'consult-line
    ;; "C-'" 'toggle-quotes-plus
-   ;; "C-`" 'vterm-toggle
+   "C-`" 'vterm-toggle
    "C-w" 'evil-delete-backward-word
    "C-p" 'previous-line
    "C-S-h" 'buf-move-left
@@ -1508,6 +1508,32 @@ one, an error is signaled."
 (use-package window-numbering
   :config
   (add-hook 'after-init-hook 'window-numbering-mode))
+
+(use-package vterm)
+(use-package multi-vterm :ensure t)
+(use-package vterm-toggle)
+(add-hook 'vterm-mode-hook
+          (lambda ()
+            (setq-local evil-insert-state-cursor 'box)
+            (evil-insert-state)))
+(define-key vterm-mode-map [return] #'vterm-send-return)
+(define-key vterm-mode-map [(control return)]   #'vterm-toggle-insert-cd)
+(define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
+(define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward)
+(setq vterm-toggle-fullscreen-p nil)
+(add-to-list 'display-buffer-alist
+             '((lambda (buffer-or-name _)
+                 (let ((buffer (get-buffer buffer-or-name)))
+                   (with-current-buffer buffer
+                     (or (equal major-mode 'vterm-mode)
+                         (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+               (display-buffer-reuse-window display-buffer-at-bottom)
+               ;;(display-buffer-reuse-window display-buffer-in-direction)
+               ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+               ;;(direction . bottom)
+               ;;(dedicated . t) ;dedicated is supported in emacs27
+               (reusable-frames . visible)
+               (window-height . 0.3)))
 
 (use-package engine-mode
   :ensure t
