@@ -36,6 +36,28 @@
   (use-package diminish)
 #+end_src
 
+* 函数定义
+#+begin_src emacs-lisp
+;; time date
+(defun gcl/insert-standard-date ()
+  "Inserts standard date time string."
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %T")))
+
+(defun gcl/insert-changelog-date ()
+  "Insert changelog date, like yyyy/mm/dd."
+  (interactive)
+  (insert (format-time-string "%Y/%m/%d")))
+
+(defun gcl/insert-current-time ()
+  "Insert current time, like hh:mm:ss."
+  (interactive)
+  (insert (format-time-string "%T")))
+
+(defun gcl/open-current-directory ()
+  (interactive)
+  (consult-file-externally default-directory))
+#+end_src
 * 便捷 Hacking
 #+begin_src emacs-lisp
   (defun reload-init-file ()
@@ -73,6 +95,21 @@
     )
 #+end_src
 
+* 个人设置
+#+begin_src emacs-lisp
+(setq blog-admin-dir "~/github/mine/blog.cheng92.com/")
+(setq user-full-name "Lee ZhiCheng"
+      user-mail-address "gccll.love@gmail.com"
+      user-blog-url "https://blog.cheng92.com"
+      user-github-dir "~/github/mine/"
+      user-web-dir "~/github/mine/gcl-web-system/"
+      user-blog-dir (concat user-web-dir "apps/blog/")
+      user-blog-public-dir (concat user-blog-dir "public/")
+      user-blog-posts (concat user-blog-dir "/public/posts/")
+      user-dot-dir "~/.gclrc/"
+      user-dot-bin-dir "~/.gclrc/bin/"
+      )
+#+end_src
 * 基础设置
 #+begin_src emacs-lisp
   ;; 启动全屏
@@ -193,14 +230,62 @@
 #+end_src
 * UI/主题/字体
 #+begin_src emacs-lisp
-  (set-face-attribute 'default nil :height 140 :family "WenQuanYi Micro Hei Mono")
+(set-face-attribute 'default nil :height 140 :family "WenQuanYi Micro Hei Mono")
 
-  (use-package font-lock+
-    :straight (:host github :repo "emacsmirror/font-lock-plus"))
+(use-package font-lock+
+  :straight (:host github :repo "emacsmirror/font-lock-plus"))
 
-  (use-package all-the-icons)
-  (use-package all-the-icons-dired
-    :hook ((dired-mode . all-the-icons-dired-mode)))
+(use-package all-the-icons)
+(use-package all-the-icons-dired
+  :hook ((dired-mode . all-the-icons-dired-mode)))
+
+;; -- header line
+(set-face-attribute 'header-line nil
+                    :foreground (face-attribute 'mode-line :foreground)
+                    :background (face-attribute 'mode-line :background)
+                    ;; height of mode-line is also unspecified, so we set it directly.
+                    :height 150
+                    :box (face-attribute 'mode-line :box))
+
+;; -- awesome tray
+(use-package awesome-tray
+  :straight (awesome-tray :type git :host github :repo "manateelazycat/awesome-tray")
+  :config
+  (setq awesome-tray-mode-line-height 0.1)
+  ;; (setq-default awesome-tray-mode-line-default-height 0.1)
+  (setq awesome-tray-mode-line-active-color "#EC4899")
+  (setq awesome-tray-mode-line-inactive-color "#959eb1")
+  (setq awesome-tray-active-modules '(
+				      ;; "location"
+				      "pdf-view-page"
+				      "date"
+				      "file-path"
+				      "buffer-name"
+				      "mode-name"
+				      "battery"
+				      "git"
+				      "input-method"
+				      "evil"
+				      ;; "flymake"
+				      "belong"
+				      "anzu"
+				      ;; "github"
+				      ))
+  (setq awesome-tray-date-format "%d/%H:%M:%S")
+
+  (awesome-tray-mode 1))
+
+;; -- highlight-parentheses
+(use-package highlight-parentheses
+  :hook (prog-mode . highlight-parentheses-mode)
+  :config
+  (add-hook 'minibuffer-setup-hook #'highlight-parentheses-minibuffer-setup)
+  )
+
+;; -- 丰富括号
+(use-package rainbow-delimiters
+  :hook (prog-mode-hook . rainbow-delimiters-mode))
+
 #+end_src
 * MiniBuffer
 
@@ -350,7 +435,7 @@
    "," 'delete-window
    "." 'kill-this-buffer
    ;; ";" 'kill-other-window-buffer
-   ;; "x" 'switch-to-scratch-buffer
+   "x" 'switch-to-scratch-buffer
    ;; "`" 'multi-vterm-project
    )
 
@@ -381,8 +466,8 @@
 
 #+begin_src emacs-lisp
   (+general-global-menu! "buffer" "b"
-			 ;; "b" 'consult-buffer
-			 ;; "o" 'consult-buffer-other-window
+			 "b" 'consult-buffer
+			 "o" 'consult-buffer-other-window
 			 "p" 'previous-buffer
 			 "n" 'next-buffer
 			 "k" 'kill-buffer
@@ -390,7 +475,7 @@
 			 "i" 'ibuffer
 			 ;; "r" 'crux-rename-buffer-and-file
 			 ;; "x" 'crux-kill-other-buffers
-			 ;; "f" 'gcl/open-current-directory
+			 "f" 'gcl/open-current-directory
 			 )
 #+end_src
 
@@ -471,12 +556,12 @@
    "C-=" 'er/expand-region
    ;; "C-a" 'crux-move-beginning-of-line
    ;; "C-r" 'crux-rename-buffer-and-file
-   ;; "C-j" 'emmet-expand-yas
-   ;; "C-s" 'consult-line
+   "C-j" 'emmet-expand-yas
+   "C-s" 'consult-line
    ;; "C-'" 'toggle-quotes-plus
    ;; "C-`" 'vterm-toggle
-   ;; "C-w" 'evil-delete-backward-word
-   ;; "C-p" 'previous-line
+   "C-w" 'evil-delete-backward-word
+   "C-p" 'previous-line
    ;; C-S-<key>
    ;; "C-S-h" 'buf-move-left
    ;; "C-S-l" 'buf-move-right
@@ -489,19 +574,16 @@
    ;; 1 + 2 + 3
    ;; "C-c =" 'math-at-point
    ;; C-c f  -> hydra-lsp/body
-   ;; "C-c b" 'consult-bookmark
-   ;; "C-c h" 'consult-history
-   ;; "C-c o" 'consult-outline
+   "C-c b" 'consult-bookmark
+   "C-c h" 'consult-history
+   "C-c o" 'consult-outline
    ;; "C-c y" nil
-   ;; "C-c y y" 'popweb-dict-bing-pointer
-   ;; "C-c ;" 'popweb-dict-bing-input
    ;; "C-c Y" 'fanyi-dwim2
-   ;; "C-c t" 'gcl/insert-current-time
-   ;; "C-c d" 'gcl/insert-standard-date
+   "C-c t" 'gcl/insert-current-time
+   "C-c d" 'gcl/insert-standard-date
    ;; "C-c c" 'copy-buffer-file-name-as-kill
-   ;; "C-c i" 'org-mac-link-get-link
-   ;; "C-c e" 'consult-flycheck
-   ;; "C-c e" 'consult-flycheck
+   "C-c i" 'org-mac-link-get-link
+   "C-c e" 'consult-flycheck
    ;; "C-c r" 'vr/replace
    ;; "C-c q" 'vr/query-replace
    ;; "C-c m" 'vr/mc-mark
@@ -518,18 +600,18 @@
    ;; "<s-right>" 'windmove-right
    ;; "<s-down>" 'windmove-down
    ;; "<s-up>" 'windmove-up
-   ;; "s-," 'bury-buffer
-   ;; "s-." 'unbury-buffer
+   "s-," 'bury-buffer
+   "s-." 'unbury-buffer
    ;; "s-<" 'watch-other-window-up-line
    ;; "s->" 'watch-other-window-down-line
    ;; "s-0" 'sp-splice-sexp
    ;; "s-p" 'move-text-up
    ;; "s-n" 'move-text-down
-   ;; "s-m" 'toggle-input-method
+   "s-m" 'toggle-input-method
    ;; "s-o" 'toggle-one-window
    "s-R" 're-builder
    ;; "s-i" 'gcl/string-inflection-cycle-auto
-   ;; "s-d" 'consult-dir
+   "s-d" 'consult-dir
    ;; "s-F" 'format-all-buffer
    ;; "s-h" 'gcl/urls/body
    ;; "s-`" 'vterm-toggle
@@ -537,10 +619,10 @@
 
    ;; s-g
    "s-g" nil
-   ;; "s-g o" 'consult-outline
-   ;; "s-g m" 'consult-mark
-   ;; "s-g k" 'consult-global-mark
-   ;; "s-g i" 'consult-yasnippet
+   "s-g o" 'consult-outline
+   "s-g m" 'consult-mark
+   "s-g k" 'consult-global-mark
+   "s-g i" 'consult-yasnippet
    )
 #+end_src
 
@@ -711,7 +793,7 @@ node 包路径：
     :commands lsp
     :config
     (setq lsp-disabled-clients '(vls))
-    (setq lsp-enabled-clients '(lsp-volar))
+    ;; (setq lsp-enabled-clients '(lsp-volar))
     )
 
 
@@ -818,3 +900,660 @@ node 包路径：
     (if (equal (gf/filename-extension (buffer-file-name)) "vue")
 	(lsp-vue-mmm-enable)))
 #+end_src
+** lsp-hydra
+
+#+begin_src emacs-lisp
+(use-package hydra)
+#+end_src
+* org-mode
+
+*bold* _underline_ +delete+ /italic/
+
+#+begin_src emacs-lisp
+(with-eval-after-load 'org
+  (progn
+    (setq org-directory "~/.gclrc/org/")
+
+    ;; -- basic
+    (setq org-startup-indented t
+          org-pretty-entities t
+          org-hide-emphasis-markers t
+          org-startup-with-inline-images t
+          org-image-actual-width '(300)
+          org-html-doctype "html5")
+
+    ;; -- 使用 “+” 来切换列表风格，- -> 1. -> a. ...
+    (evil-define-key 'normal org-mode-map
+      "+" #'org-cycle-list-bullet)
+
+    ;; -- keywords
+    (setq org-todo-keywords
+          (quote ((sequence "TODO(t)" "STARTED(s)" "|" "DONE(d!/!)")
+                  (sequence "WAITING(w@/!)" "SOMEDAY(S)" "|" "CANCELLED(c@/!)" "MEETING(m)" "PHONE(p)"))))
+
+    ;; -- paint
+    (setq org-plantuml-jar-path "~/.gclrc/plantuml.jar")
+    (setq org-ditaa-jar-path "~/.gclrc/ditaa.jar")
+
+
+    ;; -- emphasis 设置
+    (setq org-emphasis-alist
+          '(("*" my-org-emphasis-bold)
+            ("/" my-org-emphasis-italic)
+            ("_" underline)
+            ("=" org-verbatim verbatim)
+            ("~" org-code verbatim)
+            ("+" (:strike-through t))))
+    (defface my-org-emphasis-bold
+      '((default :inherit bold)
+        (((class color) (min-colors 88) (background light))
+         :foreground "#a60000")
+        (((class color) (min-colors 88) (background dark))
+         :foreground "#ff8059"))
+      "My bold emphasis for Org.")
+
+    (defface my-org-emphasis-italic
+      '((default :inherit italic)
+        (((class color) (min-colors 55) (background light))
+         :foreground "#972500")
+        (((class color) (min-colors 55) (background dark))
+         :foreground "#ef8b50"))
+      "My italic emphasis for Org.")
+
+    ;; Allow multiple line Org emphasis markup.
+    ;; http://emacs.stackexchange.com/a/13828/115
+    (setcar (nthcdr 4 org-emphasis-regexp-components) 20) ;Up to 20 lines, default is just 1
+    ;; Below is needed to apply the modified `org-emphasis-regexp-components'
+    ;; settings from above.
+    (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
+    ;; ------------- end --------------
+    )
+  )
+#+end_src
+
+** org-agenda
+
+#+begin_src emacs-lisp
+  (use-package org-super-agenda
+    :config
+    (defvar org-agenda-dir ""
+      "gtd org files location")
+
+    (defvar deft-dir ""
+      "deft org files locaiton")
+
+    (setq org-agenda-dir "~/.gclrc/org/")
+    (setq deft-dir  "~/.gclrc/org/")
+    (setq org-agenda-log-mode-items '(clock closed state))
+
+    (setq org-agenda-inhibit-startup t) ;; ~50x speedup
+    (setq org-agenda-span 'day)
+    (setq org-agenda-use-tag-inheritance nil) ;; 3-4x speedup
+    (setq org-agenda-window-setup 'current-window)
+    (setq org-log-done t)
+    (setq org-columns-default-format "%60ITEM(Task) %6Effort(Estim){:}")
+
+    (setq org-agenda-file-note (expand-file-name "notes.org" org-agenda-dir))
+    (setq org-agenda-file-gtd (expand-file-name "gtd.org" org-agenda-dir))
+    (setq org-agenda-file-work (expand-file-name "work.org" org-agenda-dir))
+    (setq org-agenda-file-journal (expand-file-name "journal.org" org-agenda-dir))
+    (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
+    (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
+    (setq org-agenda-file-blogposts (expand-file-name "all-posts.org" org-agenda-dir))
+    (setq org-agenda-files (list org-agenda-file-gtd org-agenda-file-journal org-agenda-file-blogposts org-agenda-file-work org-agenda-file-note))
+    )
+#+end_src
+
+** svg-tag-mode
+
+<2022-10-30 10:00> [2022-10-30 10:00] [2022-10-30 Tue 10:00]
+
+[1/3] [30%]
+
+TODO DONE WORK FIXME
+
+[ ] [x] (0) (1) (2) (3) (4) (5) (6) (7) (8) (9) (a) (b) ... (z)
+
+[#A] [#B] [#C] [#D] [#E]
+
+:#TAG :#TAG1:#TAG2
+
+#+begin_src emacs-lisp
+  (use-package svg-tag-mode
+    :after org
+    :hook (org-mode . svg-tag-mode)
+    :config
+    (defun mk/svg-checkbox-empty ()
+      (let* ((svg (svg-create 14 14)))
+        (svg-rectangle svg 0 0 14 14 :fill 'white :rx 2 :stroke-width 2.5 :stroke-color 'black)
+        (svg-image svg :ascent 'center)))
+
+    (defun mk/svg-checkbox-filled ()
+      (let* ((svg (svg-create 14 14)))
+        (svg-rectangle svg 0 0 14 14 :fill "#FFFFFF" :rx 2)
+        (svg-polygon svg '((5.5 . 11) (12 . 3.5) (11 . 2) (5.5 . 9) (1.5 . 5) (1 . 6.5))
+                     :stroke-color 'black :stroke-width 1 :fill 'black)
+        (svg-image svg :ascent 'center)))
+
+    (defun mk/svg-checkbox-toggle ()
+      (interactive)
+      (save-excursion
+        (let* ((start-pos (line-beginning-position))
+               (end-pos (line-end-position))
+               (text (buffer-substring-no-properties start-pos end-pos))
+               (case-fold-search t)       ; Let X and x be the same in search
+               )
+          (beginning-of-line)
+          (cond ((string-match-p "\\[X\\]" text)
+                 (progn
+                   (re-search-forward "\\[X\\]" end-pos)
+                   (replace-match "[ ]")))
+                ((string-match-p "\\[ \\]" text)
+                 (progn
+                   (search-forward "[ ]" end-pos)
+                   (replace-match "[X]")))))))
+
+    (defun svg-progress-percent (value)
+      (svg-image (svg-lib-concat
+                  (svg-lib-progress-bar (/ (string-to-number value) 100.0)
+                                        nil :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                  (svg-lib-tag (concat value "%")
+                               nil :stroke 0 :margin 0)) :ascent 'center))
+
+    (defun svg-progress-count (value)
+      (let* ((seq (mapcar #'string-to-number (split-string value "/")))
+             (count (float (car seq)))
+             (total (float (cadr seq))))
+        (svg-image (svg-lib-concat
+                    (svg-lib-progress-bar (/ count total) nil
+                                          :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                    (svg-lib-tag value nil
+                                 :stroke 0 :margin 0)) :ascent 'center)))
+
+    (defconst date-re "[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}")
+    (defconst time-re "[0-9]\\{2\\}:[0-9]\\{2\\}")
+    (defconst day-re "[A-Za-z]\\{3\\}")
+    (defconst day-time-re (format "\\(%s\\)? ?\\(%s\\)?" day-re time-re))
+
+    (setq svg-tag-tags
+          `(
+            ;; -- Number
+            ("\([0-9a-zA-Z]\)" . ((lambda (tag)
+                                    (svg-tag-make tag :beg 1 :end -1 :radius 12))))
+            ;; -- Task priority
+            ("\\[#[A-Z]\\]" . ((lambda (tag)
+                                 (svg-tag-make tag :face 'org-priority
+                                               :beg 2 :end -1 :margin 0))))
+            ;; -- Tags
+            ("\\(:#[A-Za-z0-9]+\\)" . ((lambda (tag)
+                                         (svg-tag-make tag :beg 2))))
+            ("\\(:#[A-Za-z0-9]+:\\)$" . ((lambda (tag)
+                                           (svg-tag-make tag :beg 2 :end -1))))
+
+            ;; -- Progress
+            ("\\(\\[[0-9]\\{1,3\\}%\\]\\)" . ((lambda (tag)
+                                                (svg-progress-percent (substring tag 1 -2)))))
+            ("\\(\\[[0-9]+/[0-9]+\\]\\)" . ((lambda (tag)
+                                              (svg-progress-count (substring tag 1 -1)))))
+
+            ;; -- Checkbox
+            ("\\[ \\]" . ((lambda (_tag) (mk/svg-checkbox-empty))
+                          (lambda () (interactive) (mk/svg-checkbox-toggle))
+                          "Click to toggle."))
+            ("\\(\\[[Xx]\\]\\)" . ((lambda (_tag) (mk/svg-checkbox-filled))
+                                   (lambda () (interactive) (mk/svg-checkbox-toggle))
+                                   "Click to toggle."))
+
+            ;; -- Date: Active date (with or without day name, with or without time)
+            (,(format "\\(<%s>\\)" date-re) .
+             ((lambda (tag)
+                (svg-tag-make tag :beg 1 :end -1 :margin 0))))
+            (,(format "\\(<%s \\)%s>" date-re day-time-re) .
+             ((lambda (tag)
+                (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0))))
+            (,(format "<%s \\(%s>\\)" date-re day-time-re) .
+             ((lambda (tag)
+                (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0))))
+
+            ;; -- Date: Inactive date  (with or without day name, with or without time)
+            (,(format "\\(\\[%s\\]\\)" date-re) .
+             ((lambda (tag)
+                (svg-tag-make tag :beg 1 :end -1 :margin 0 :face 'org-date))))
+            (,(format "\\(\\[%s \\)%s\\]" date-re day-time-re) .
+             ((lambda (tag)
+                (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0 :face 'org-date))))
+            (,(format "\\[%s \\(%s\\]\\)" date-re day-time-re) .
+             ((lambda (tag)
+                (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0 :face 'org-date))))
+
+            ;; Keywords
+            ;; ("TODO" . ((lambda (tag) (svg-tag-make tag :height 0.8 :inverse t
+            ;;                                        :face 'org-todo :margin 0 :radius 5))))
+            ;; ("WORK" . ((lambda (tag) (svg-tag-make tag :height 0.8
+            ;;                                        :face 'org-todo :margin 0 :radius 5))))
+            ;; ("DONE" . ((lambda (tag) (svg-tag-make tag :height 0.8 :inverse t
+            ;;                                        :face 'org-done :margin 0 :radius 5))))
+
+            ("FIXME\\b" . ((lambda (tag) (svg-tag-make "FIXME" :face 'org-todo :inverse t :margin 0 :crop-right t))))
+            ("DONE\\b" . ((lambda (tag) (svg-tag-make "DONE" :face 'org-done :inverse t :margin 0 :crop-right t))))
+            ("TODO\\b" . ((lambda (tag) (svg-tag-make "TODO" :face 'org-tag :inverse t :margin 0 :crop-right t))))
+            ("WORK\\b" . ((lambda (tag) (svg-tag-make "WORK" :face 'org-todo :inverse t :margin 0 :crop-right t))))
+            ))
+    )
+#+end_src
+
+** org-block
+
+#+begin_src emacs-lisp
+  (with-eval-after-load 'org
+    (progn
+      (require 'org-tempo)
+      (require 'org-src)
+      (add-hook 'org-babel-after-execute-hook #'org-redisplay-inline-images)
+      (setq org-confirm-babel-evaluate nil
+            org-src-fontify-natively t
+            org-src-tab-acts-natively t
+            org-src-preserve-indentation t
+            ;; or current-window
+            org-src-window-setup 'other-window)
+      ))
+#+end_src
+
+** evil-org
+#+begin_src emacs-lisp
+  ;; https://github.com/Somelauw/evil-org-mode/blob/master/doc/keythemes.org
+  (use-package evil-org
+    :ensure t
+    :after org
+    :config
+    (add-hook 'org-mode-hook (lambda () org-superstar-mode))
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys))
+#+end_src
+** org-appear
+#+begin_src emacs-lisp
+(use-package org-appear
+  :ensure t
+  :after org
+  :hook (org-mode . org-appear-mode)
+  :config
+  (defun org-apperance-evil-hack ()
+    (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
+    (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t))
+  (setq org-appear-trigger 'manual)
+  (add-hook 'org-mode-hook #'org-apperance-evil-hack)
+  )
+#+end_src
+** org-superstar
+#+begin_src emacs-lisp
+(use-package org-superstar
+  :ensure t
+  :after org
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+  (setq org-superstar-special-todo-items t)
+  )
+#+end_src
+** org-protocol
+#+begin_src emacs-lisp
+#+end_src
+** org-mac-link
+#+begin_src emacs-lisp
+(use-package org-mac-link)
+#+end_src
+** org-fragtog
+#+begin_src emacs-lisp
+(use-package org-fragtog
+  :hook (org-mode . org-fragtog-mode))
+#+end_src
+** org-capture
+#+begin_src emacs-lisp
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline org-agenda-file-gtd "Workspace")
+         "* TODO [#B] %?\n  %i\n %U"
+         :empty-lines 1)
+        ("n" "notes" entry (file+headline org-agenda-file-note "Quick notes")
+         "* %?\n  %i\n %U"
+         :empty-lines 1)
+        ("b" "Blog Ideas" entry (file+headline org-agenda-file-note "Blog Ideas")
+         "* TODO [#B] %?\n  %i\n %U"
+         :empty-lines 1)
+        ("s" "Slipbox" entry  (file "inbox.org")
+         "* %?\n")
+        ("S" "Code Snippet" entry
+         (file org-agenda-file-code-snippet)
+         "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
+        ("w" "work" entry (file+headline org-agenda-file-work "Work")
+         "* TODO [#A] %?\n  %i\n %U"
+         :empty-lines 1)
+        ("x" "Web Collections" entry
+         (file+headline org-agenda-file-note "Web")
+         "* %U %:annotation\n\n%:initial\n\n%?")
+        ("p" "Protocol" entry (file+headline org-agenda-file-note "Inbox")
+         "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
+        ("L" "Protocol Link" entry (file+headline org-agenda-file-note "Inbox")
+         "* %? [[%:link][%:description]] \nCaptured On: %U")
+        ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
+         "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
+         :empty-lines 1)
+        ("l" "links" entry (file+headline org-agenda-file-note "Quick notes")
+         "* TODO [#C] %?\n  %i\n %a \n %U"
+         :empty-lines 1)
+        ("j" "Journal Entry"
+         entry (file+datetree org-agenda-file-journal)
+         "* %?"
+         :empty-lines 1)))
+#+end_src
+** org-download
+#+begin_src emacs-lisp
+(use-package org-download
+  :ensure t
+  :hook (dired-mode . org-download-enable)
+  :config
+  (setq-default org-download-heading-lvl nil
+                org-download-image-dir "~/.img/tmp/"
+                ;; org-download-screenshot-method "screencapture -i %s"
+                org-download-screenshot-method "pngpaste %s"
+                org-download-screenshot-file (expand-file-name "screenshot.jpg" temporary-file-directory))
+  )
+#+end_src
+** org-special-block-extras
+
+More: [[http://alhassy.com/org-special-block-extras/][org-special-block-extras]]
+
+red:text green:text [[color:#fad][Using Hex colour code!]]
+
+kbd:C-c_C-c <kbd:C-c C-c>
+
+#+begin_src emacs-lisp
+(use-package org-special-block-extras
+  :ensure t
+  :after org
+  :hook (org-mode . org-special-block-extras-mode)
+  ;; All relevant Lisp functions are prefixed ‘o-’; e.g., `o-docs-insert'.
+  :custom
+  (o-docs-libraries
+   '("~/.posts/documentations.org")
+   "The places where I keep my ‘#+documentation’"))
+#+end_src
+** org-roam
+#+begin_src emacs-lisp
+(use-package org-roam
+  :ensure t
+  :after org
+  :custom
+  (org-roam-directory (file-truename user-blog-posts))
+  (org-roam-dailies-directory "daily/")
+  :config
+  (defun gcl/org-capture-slipbox ()
+    (interactive)
+    (org-capture nil "s"))
+  (cl-defmethod org-roam-node-type ((node org-roam-node))
+    "Return the TYPE of NODE."
+    (condition-case nil
+        (file-name-nondirectory
+         (directory-file-name
+          (file-name-directory
+           (file-relative-name (org-roam-node-file node) org-roam-directory))))
+      (error "")))
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  (setq org-roam-capture-templates
+        '(("m" "main" plain
+           "%?"
+           :if-new (file+head "main/${slug}.org"
+                              "#+title: ${title}\n")
+           :immediate-finish t
+           :unnarrowed t)
+          ("r" "reference" plain "%?"
+           :if-new
+           (file+head "reference/${title}.org" "#+title: ${title}\n")
+           :immediate-finish t
+           :unnarrowed t)
+          ("a" "article" plain "%?"
+           :if-new
+           (file+head "articles/${title}.org" "#+title: ${title}\n#+filetags: :article:\n")
+           :immediate-finish t
+           :unnarrowed t)))
+
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol)
+  )
+#+end_src
+*** org-roam-ui
+#+begin_src emacs-lisp
+(use-package org-roam-ui
+  :ensure t
+  :after org-roam
+  ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;         if you don't care about startup time, use
+  ;;  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start nil
+	org-roam-ui-browser-function #'browse-url
+	))
+#+end_src
+*** consult-org-roam
+#+begin_src emacs-lisp
+(use-package consult-org-roam
+  :ensure t
+  :after org-roam
+  :init
+  (require 'consult-org-roam)
+  ;; Activate the minor mode
+  (consult-org-roam-mode 1)
+  :custom
+  ;; Use `ripgrep' for searching with `consult-org-roam-search'
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  ;; Configure a custom narrow key for `consult-buffer'
+  (consult-org-roam-buffer-narrow-key ?r)
+  ;; Display org-roam buffers right after non-org-roam buffers
+  ;; in consult-buffer (and not down at the bottom)
+  (consult-org-roam-buffer-after-buffers t)
+  :config
+  ;; Eventually suppress previewing for certain functions
+  (consult-customize
+   consult-org-roam-forward-links
+   :preview-key (kbd "M-."))
+  :bind
+  ;; Define some convenient keybindings as an addition
+  )
+#+end_src
+*** bindings
+#+begin_src emacs-lisp
+(general-define-key
+ "C-c n f" 'org-roam-node-find
+ "C-c n g" 'org-roam-graph
+ "C-c n r" 'org-roam-node-random
+ "C-c n c" 'org-roam-capture
+ "C-c n d" 'org-roam-dailies-capture-today
+ "C-c n u" 'org-roam-ui-open
+ "C-c n e" 'consult-org-roam-file-find
+ "C-c n b" 'consult-org-roam-backlinks
+ "C-c n l" 'consult-org-roam-forward-links
+ "C-c n s" 'consult-org-roam-search
+ )
+
+(general-def org-mode-map
+  "C-c n i" 'org-roam-node-insert
+  "C-c n o" 'org-id-get-create
+  "C-c n t" 'org-roam-tag-add
+  ;; "C-c n e" 'org-roam-extract-subtree
+  "C-c n a" 'org-roam-alias-add
+  "C-c n ," 'org-roam-buffer-toggle)
+#+end_src
+** org-bindings
+#+begin_src emacs-lisp
+(evil-define-key 'normal org-mode-map
+  "tt" 'org-todo
+  "tp" 'org-priority
+  "td" 'org-deadline
+  "tc" 'org-capture
+  "tl" 'org-store-link
+  "tn" 'org-add-note
+  "t," 'org-toggle-checkbox
+
+  ;; clock
+  "ci" 'org-clock-in
+  "co" 'org-clock-out
+  "cg" 'org-clock-goto
+  "cx" 'org-clock-cancel
+  "ck" 'org-clock-timestamps-up
+  "cj" 'org-clock-timestamps-down
+  )
+#+end_src
+* Rime
+#+begin_src emacs-lisp
+(use-package rime
+  :config
+  (setq rime-user-data-dir "~/github/mine/dot-emacs-rime")
+  (setq rime-share-data-dir "~/Library/Rime")
+  (setq rime-posframe-properties
+	(list
+         :internal-border-color "#000000"
+         :internal-border-width 10
+         ;; :font "TsangerJinKai03-6763 W05"
+         :font "WenQuanYi Micro Hei Mono-16"
+         ))
+					;； “”
+					;； 默认的前景色和背景色（仅posframe）
+					;； 编码提示颜色 - rime-comment-face
+					;； 编码的颜色   - rime-code-face
+					;； 候选序号颜色 - rime-candidate-num-face
+  (set-face-attribute 'rime-default-face nil :foreground "#eeeeee" :background "#000000")
+
+  (setq default-input-method "rime"
+	rime-show-candidate 'posframe
+
+	;; rime-default-face "Red" ;默认的前景色和背景色（仅posframe）
+	;; rime-code-face ;编码的颜色
+	;; rime-candidate-num-face ;候选序号颜色
+	;; rime-comment-face ;编码提示颜色
+
+	;; posframe/popup/sidewindow 候选版式
+	;; simple - 单行, horizontal - 水平，默认, vertical - 垂直
+	rime-posframe-style 'vertical
+	;; rime-popup-style
+	;; rime-sidewindow-style
+	)
+  					;； 代码中自动使用英文
+  (setq rime-disable-predicates
+	'(rime-predicate-evil-mode-p ; evil 模式
+          ;; 在英文字符串之后（必须为以字母开头的英文字符串）
+          rime-predicate-after-alphabet-char-p
+          ;; 在 prog-mode 和 conf-mode 中除了注释和引号内字符串之外的区域
+          rime-predicate-prog-in-code-p
+          ;; 激活 ace-window-mode
+          rime-predicate-ace-window-p
+          ;; 如果激活了一个 hydra keymap
+          rime-predicate-hydra-p
+          ;; 将要输入的为大写字母时
+          rime-predicate-current-uppercase-letter-p
+          ;; 在 (La)TeX 数学环境中或者输入 (La)TeX 命令时
+          rime-predicate-tex-math-or-command-p
+          ))
+
+
+;;;  support shift-l, shift-r, control-l, control-r
+  (setq rime-inline-ascii-trigger 'shift-l)
+  (setq rime-translate-keybindings
+	'("C-`" "S-<delete>" "C-f" "C-b" "C-n" "C-p" "C-g" "<return>" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
+					;； 临时强制转成英文模式，通过 rime-inline-ascii 恢复中文模式（什么鬼～～～）
+					;；　(define-key rime-active-mode-map (kbd "M-j") 'rime-inline-ascii)
+  ;; (define-key rime-mode-map (kbd "M-j") 'rime-force-enable)
+  (define-key rime-mode-map (kbd "C-`") 'rime-send-keybinding)
+
+  (setq rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-plus@29/29.0.50/include")
+  (setq-default rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
+  )
+#+end_src
+* flycheck
+#+begin_src emacs-lisp
+(use-package posframe)
+#+end_src
+* Window
+
+#+begin_src emacs-lisp
+(defun split-window--select-window (orig-func &rest args)
+  "Switch to the other window after a `split-window'"
+  (let ((cur-window (selected-window))
+        (new-window (apply orig-func args)))
+    (when (equal (window-buffer cur-window) (window-buffer new-window))
+      (select-window new-window))
+    new-window))
+(advice-add 'split-window :around #'split-window--select-window)
+#+end_src
+* 搜索
+** engine-mode
+#+begin_src emacs-lisp
+(use-package engine-mode
+  :ensure t
+  :config
+  (engine-mode t)
+
+  (engine/set-keymap-prefix (kbd "C-c s"))
+  (defengine baidu "https://www.baidu.com/s?wd=%s"
+	     :keybinding "b")
+  (defengine github
+    "https://github.com/search?ref=simplesearch&q=%s"
+    :keybinding "g")
+  (defengine qwant
+    "https://www.qwant.com/?q=%s"
+    :docstring "什么都能搜到哦~~😍😍"
+    :keybinding "q")
+  (defengine rfcs
+    "http://pretty-rfc.herokuapp.com/search?q=%s"
+    :keybinding "r")
+  (defengine stack-overflow
+    "https://stackoverflow.com/search?q=%s"
+    :keybinding "s")
+  (defengine twitter
+    "https://twitter.com/search?q=%s"
+    :keybinding "t")
+  (defengine wolfram-alpha
+    "http://www.wolframalpha.com/input/?i=%s"
+    :docstring "数学搜索引擎，公式，坐标图等。"
+    :keybinding "w")
+  (defengine google
+    "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
+    :keybinding "/")
+  (defengine youtube
+    "http://www.youtube.com/results?aq=f&oq=&search_query=%s"
+    :keybinding "y")
+  )
+#+end_src
+** consult
+
+#+begin_src emacs-lisp
+;; Example configuration for Consult
+(use-package consult
+  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :init
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format)
+  (advice-add #'register-preview :override #'consult-register-window)
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  :config
+  (consult-customize
+   consult-theme :preview-key '(:debounce 0.2 any)
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   consult--source-bookmark consult--source-file-register
+   consult--source-recent-file consult--source-project-recent-file
+   :preview-key '(:debounce 0.4 any))
+  (setq consult-narrow-key "<") ;; (kbd "C-+")
+
+  ;; (autoload 'projectile-project-root "projectile")
+  ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
+  )
+#+end_src
+* 参考配置
+
+[[https://github.com/purcell/emacs.d][purcell/emacs.d: An Emacs configuration bundle with batteries included]]
