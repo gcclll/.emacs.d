@@ -1,3 +1,10 @@
+  (defun add-subdirs-to-load-path (dir)
+    "Recursive add directories to `load-path'."
+    (let ((default-directory (file-name-as-directory dir)))
+      (add-to-list 'load-path dir)
+      (normal-top-level-add-subdirs-to-load-path)))
+  (add-subdirs-to-load-path "~/.emacs.d/site-lisp/")
+
   (setq package-archives '(("gnu"   . "http://1.15.88.122/gnu/")
 			   ("melpa" . "http://1.15.88.122/melpa/")))
 
@@ -873,30 +880,6 @@ one, an error is signaled."
   ("q" nil "Quit")
   )
 
-(defhydra hydra-lsp (:exit t :hint nil)
-  "
- Buffer^^               Server^^                   Symbol
--------------------------------------------------------------------------------------
- [_f_] format           [_M-r_] restart            [_d_] declaration  [_i_] implementation  [_o_] documentation
- [_m_] imenu            [_S_]   shutdown           [_D_] definition   [_t_] type            [_r_] rename
- [_x_] execute action   [_M-s_] describe session   [_R_] references   [_s_] signature"
-  ("d" lsp-find-declaration)
-  ("D" lsp-ui-peek-find-definitions)
-  ("R" lsp-ui-peek-find-references)
-  ("i" lsp-ui-peek-find-implementation)
-  ("t" lsp-find-type-definition)
-  ("s" lsp-signature-help)
-  ("o" lsp-describe-thing-at-point)
-  ("r" lsp-rename)
-
-  ("f" format-all-buffer)
-  ("m" lsp-ui-imenu)
-  ("x" lsp-execute-code-action)
-
-  ("M-s" lsp-describe-session)
-  ("M-r" lsp-restart-workspace)
-  ("S" lsp-shutdown-workspace))
-
 (defhydra gcl/smerge (:color red :hint nil)
   "
 Navigate       Keep               other
@@ -922,18 +905,6 @@ _k_: down      _a_: combine       _q_: quit
   ("q" nil :exit t))
 
 (use-package crux)
-
-(use-package fanyi
-  :config
-  (custom-set-variables
-   '(fanyi-providers '(fanyi-haici-provider
-                       fanyi-youdao-thesaurus-provider
-                       fanyi-etymon-provider
-                       fanyi-longman-provider
-                       fanyi-libre-provider)))
-
-  ;; 还要自动选择翻译内容 buffer
-  (setq fanyi-auto-select nil))
 
 (use-package link-hint
   :ensure t
@@ -1004,153 +975,90 @@ _k_: down      _a_: combine       _q_: quit
       (orderless-matching-styles '(orderless-literal orderless-regexp)))
     )
 
-  (use-package corfu
-    :after orderless
-    ;; Optional customizations
-    :custom
-    (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-    (corfu-auto t)                 ;; Enable auto completion
-    (corfu-quit-at-boundary nil)     ;; Automatically quit at word boundary
-    (corfu-quit-no-match t)        ;; Automatically quit if there is no match
-    (corfu-auto-delay 0)
-    ;; 输入两个字符开始实例
-    (corfu-auto-prefix 2)
-    ;; (corfu-separator ?\s)          ;; Orderless field separator
-    (corfu-preview-current nil)    ;; Disable current candidate preview
-    (corfu-preselect-first t)    ;; Enable candidate preselection
-    ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
-    ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
-    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
-    ;; (corfu-min-width 80)
-    (corfu-max-width 80)
-    :bind
-    (:map corfu-map
-	  ("C-j" . corfu-next)
-	  ("C-k" . corfu-previous)
-	  ("<escape>" . corfu-quit)
-	  ;; ("M-l" . corfu-show-location)
-	  ;; ("M-d" . corfu-show-documentation)
-	  )
-    :init
-    (global-corfu-mode)
-    :config
-    (defun corfu-enable-always-in-minibuffer ()
-      "Enable Corfu in the minibuffer if Vertico/Mct are not active."
-      (unless (or (bound-and-true-p mct--active)
-		  (bound-and-true-p vertico--input))
-	;; (setq-local corfu-auto nil) Enable/disable auto completion
-	(corfu-mode 1)))
-    (add-hook 'minibuffer-setup-hook #'corfu-enable-always-in-minibuffer 1)
-    )
+(require 'lsp-bridge)
+(require 'lsp-bridge-jdtls)
+(require 'acm-backend-tailwind)
 
-  (use-package kind-icon
-    :after corfu
-    :custom
-    (kind-icon-use-icons t)
-    (kind-icon-default-face 'corfu-default) ; Have background color be the same as `corfu' face background
-    (kind-icon-blend-background nil)  ; Use midpoint color between foreground and background colors ("blended")?
-    (kind-icon-blend-frac 0.08)
-    :config
-    (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter) ; Enable `kind-icon'
-    )
+(global-lsp-bridge-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'lsp-bridge-mode)
+;; (add-hook 'sh-mode-hook 'lsp-bridge-mode)
+;; (add-hook 'python-mode-hook 'lsp-bridge-mode)
 
-  (use-package corfu-doc
-    ;; NOTE 2022-02-05: At the time of writing, `corfu-doc' is not yet on melpa
-    :straight (corfu-doc :type git :host github :repo "galeo/corfu-doc")
-    :after corfu
-    :hook (corfu-mode . corfu-doc-mode)
-    :bind
-    (:map corfu-map
-	  ("M-n" . corfu-doc-scroll-up)
-	  ("M-p" . corfu-doc-scroll-down))
-    :custom
-    (corfu-doc-delay 0.5)
-    (corfu-doc-max-width 70)
-    (corfu-doc-max-height 20)
+(setq acm-enable-tabnine nil)
+;; (lsp-bridge-enable-auto-import)
 
-    ;; NOTE 2022-02-05: I've also set this in the `corfu' use-package to be
-    ;; extra-safe that this is set when corfu-doc is loaded. I do not want
-    ;; documentation shown in both the echo area and in the `corfu-doc' popup.
-    (corfu-echo-documentation nil))
+;; 融合 `lsp-bridge' `find-function' 以及 `dumb-jump' 的智能跳转
+(defun lsp-bridge-jump ()
+  (interactive)
+  (cond
+   ((eq major-mode 'emacs-lisp-mode)
+    (let ((symb (function-called-at-point)))
+      (when symb
+        (find-function symb))))
+   (lsp-bridge-mode
+    (lsp-bridge-find-def))
+   (t
+    (require 'dumb-jump)
+    (dumb-jump-go))))
 
-  ;; A few more useful configurations...
-  (use-package emacs
-    :init
-    (setq completion-cycle-threshold 2)
-    (setq tab-always-indent 'complete))
+(defun lsp-bridge-jump-back ()
+  (interactive)
+  (cond
+   (lsp-bridge-mode
+    (lsp-bridge-find-def-return))
+   (t
+    (require 'dumb-jump)
+    (dumb-jump-back))))
 
-(use-package lsp-mode
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook ((js2-mode . lsp)
-	       (web-mode . lsp)
-	       (typescript-mode . lsp)
-	       (c-mode . lsp)
-	       (c++-mode . lsp)
-	       (python-mode . lsp)
-	       (css-mode . lsp)
-	       (lua-mode . lsp)
-	       (shell-mode . lsp)
-	       ;; if you want which-key integration
-	       (lsp-mode . lsp-enable-which-key-integration))
-  :custom
-  (lsp-completion-provider :none)
-  ;; (lsp-auto-configure nil)
-  :commands lsp
-  ;; :config
-  ;; (add-to-list 'lsp-disabled-clients 'vls)
-  ;; (add-to-list 'lsp-enabled-clients 'volar)
-  )
+(setq lsp-bridge-get-single-lang-server-by-project
+      (lambda (project-path filepath)
+        ;; If typescript first line include deno.land, then use Deno LSP server.
+        (save-excursion
+          (when (string-equal (file-name-extension filepath) "ts")
+            (dolist (buf (buffer-list))
+              (when (string-equal (buffer-file-name buf) filepath)
+		(with-current-buffer buf
+                  (goto-char (point-min))
+                  (when (string-match-p (regexp-quote "from \"https://deno.land") (buffer-substring-no-properties (point-at-bol) (point-at-eol)))
+                    (return "deno")))))))))
 
-
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-(use-package lsp-tailwindcss
-  :init
-  (setq lsp-tailwindcss-add-on-mode t)
-  (setq lsp-tailwindcss-major-modes
-	      '(svelte-mode html-mode sgml-mode mhtml-mode web-mode css-mode js-mode))
-  (add-hook 'before-save-hook 'lsp-tailwindcss-rustywind-before-save)
-  )
-
-(use-package lsp-volar
-  :straight (:host github :repo "jadestrong/lsp-volar"))
+;; 打开日志，开发者才需要
+(setq lsp-bridge-enable-log nil)
 
 (general-define-key
- "C-c l s" 'lsp-tailwindcss-rustywind
- "C-c l i" 'lsp-ui-imenu
- "C-c l d" 'lsp-ui-peek-find-definitions
- "C-c l r" 'lsp-ui-peek-find-references
- "C-c l a" 'lsp-organize-imports
- "C-c l e" 'lsp-treemacs-errors-list)
+ "C-5" 'lsp-bridge-diagnostic-list
+ "C-6" 'lsp-bridge-lookup-documentation
+ "C-7" 'lsp-bridge-jump-back
+ "C-8" 'lsp-bridge-jump
+ "C-9" 'lsp-bridge-find-references
+ "C-0" 'lsp-bridge-rename)
 
-(use-package dap-mode
-  :hook ((lsp-mode . dap-mode)
-	       (lsp-mode . dap-ui-mode))
-  :bind (:map dap-mode-map
-		          ("C-c d d" . dap-debug)
-		          ("C-c d h" . dap-hydra)
-		          ("C-c d b" . dap-ui-breakpoints)
-		          ("C-c d l" . dap-ui-locals)
-		          ("C-c d r" . dap-ui-repl)))
+(evil-set-initial-state 'lsp-bridge-ref-mode 'emacs)
 
 (defun my/setup-js-mode ()
-  (require 'dap-chrome)
+  (setq js-indent-level 2)
+  (setq evil-shift-width js-indent-level)
   (setq tab-width 2)
   ;; 由于 lsp 已经提供了 diagnose 功能，故关闭 js2 自带的错误检查，防止干扰。
   (setq js2-mode-show-strict-warnings nil)
-  (setq js2-mode-show-parse-errors nil))
+  (setq js2-mode-show-parse-errors nil)
+  )
 
 (use-package js2-mode
-  :ensure t
-  :after (lsp-mode dap-mode)
-  :mode "\\.js\\'"
-  :hook ((js2-mode . my/setup-js-mode)))
+  :mode "\\.jsx?\\'"
+  :config
+  ;; Use js2-mode for Node scripts
+  (add-to-list 'magic-mode-alist '("#!/usr/bin/env node" . js2-mode))
+
+  ;; Don't use built-in syntax checking
+  (setq js2-mode-show-strict-warnings nil)
+
+  ;; Set up proper indentation in JavaScript and JSON files
+  (add-hook 'js2-mode-hook #'my/setup-js-mode)
+  (add-hook 'json-mode-hook #'my/setup-js-mode))
 
 (use-package typescript-mode
   :ensure t
-  :after (lsp-mode dap-mode)
   :mode ("\\.ts\\'" "\\.tsx\\'")
   :hook ((typescript-mode . my/setup-js-mode)))
 
@@ -1160,6 +1068,7 @@ _k_: down      _a_: combine       _q_: quit
 
 (use-package css-mode)
 (use-package scss-mode)
+
 (use-package emmet-mode
   :hook ((sgml-mode html-mode css-mode web-mode) . emmet-mode)
   :config
@@ -1201,11 +1110,8 @@ _k_: down      _a_: combine       _q_: quit
   ;; (add-to-list 'lsp-language-id-configuration '(web-mode . "vue"))
   )
 
-;; (add-hook 'web-mode-hook
-;;           (lambda ()
-;;             (when (equal "vue" (file-name-extension buffer-file-name))
-;;               (let ((major-mode 'vue-mode))
-;;                 (lsp)))))
+(use-package nvm
+  :defer t)
 
 (use-package python-mode)
 
@@ -1221,6 +1127,8 @@ _k_: down      _a_: combine       _q_: quit
 
 (use-package php-mode)
 
+(use-package go-mode)
+
 (use-package sql
   :straight (:type built-in))
 (use-package emacs-sql-indent
@@ -1229,6 +1137,40 @@ _k_: down      _a_: combine       _q_: quit
 
 (use-package lua-mode)
 
+(use-package rust-mode
+  :mode "\\.rs\\'"
+  :init (setq rust-format-on-save t))
+
+(use-package cargo
+  :straight t
+  :defer t)
+
+(use-package markdown-mode
+  :straight t
+  :mode "\\.md\\'"
+  :config
+  (setq markdown-command "marked")
+  (defun dw/set-markdown-header-font-sizes ()
+    (dolist (face '((markdown-header-face-1 . 1.2)
+                    (markdown-header-face-2 . 1.1)
+                    (markdown-header-face-3 . 1.0)
+                    (markdown-header-face-4 . 1.0)
+                    (markdown-header-face-5 . 1.0)))
+      (set-face-attribute (car face) nil :weight 'normal :height (cdr face))))
+
+  (defun dw/markdown-mode-hook ()
+    (dw/set-markdown-header-font-sizes))
+
+  (add-hook 'markdown-mode-hook 'dw/markdown-mode-hook))
+
+(use-package rainbow-mode
+  :defer t
+  :hook (org-mode
+         emacs-lisp-mode
+         web-mode
+         typescript-mode
+         js2-mode))
+
 (use-package dockerfile-mode
   :mode "Dockerfile\\'")
 
@@ -1236,113 +1178,15 @@ _k_: down      _a_: combine       _q_: quit
 
 (use-package format-all)
 
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-(use-package pkg-info)
-(use-package posframe)
-(use-package flymake-posframe
-  :straight (:host github :repo "Ladicle/flymake-posframe")
-  :hook (flymake-mode . flymake-posframe-mode))
-
-;;; --- 绑定扩展名到特定的模式
-(defun add-to-alist (alist-var elt-cons &optional no-replace)
-  "Add to the value of ALIST-VAR an element ELT-CONS if it isn't there yet.
-If an element with the same car as the car of ELT-CONS is already present,
-replace it with ELT-CONS unless NO-REPLACE is non-nil; if a matching
-element is not already present, add ELT-CONS to the front of the alist.
-The test for presence of the car of ELT-CONS is done with `equal'."
-  (let ((existing-element (assoc (car elt-cons) (symbol-value alist-var))))
-    (if existing-element
-        (or no-replace
-            (rplacd existing-element (cdr elt-cons)))
-      (set alist-var (cons elt-cons (symbol-value alist-var)))))
-  (symbol-value alist-var))
-
-(dolist (elt-cons '(
-                    ("\\.markdown" . markdown-mode)
-                    ("\\.md" . markdown-mode)
-                    ("\\.coffee$" . coffee-mode)
-                    ("\\.iced$" . coffee-mode)
-                    ("Cakefile" . coffee-mode)
-                    ("\\.stumpwmrc\\'" . lisp-mode)
-                    ("\\.jl\\'" . lisp-mode)
-                    ("\\.asdf\\'" . lisp-mode)
-                    ("\\.[hg]s\\'" . haskell-mode)
-                    ("\\.hi\\'" . haskell-mode)
-                    ("\\.hs-boot\\'" . haskell-mode)
-                    ("\\.chs\\'" . haskell-mode)
-                    ("\\.l[hg]s\\'" . literate-haskell-mode)
-                    ("\\.inc\\'" . asm-mode)
-                    ("\\.max\\'" . maxima-mode)
-                    ("\\.org\\'" . org-mode)
-                    ("\\.cron\\(tab\\)?\\'" . crontab-mode)
-                    ("cron\\(tab\\)?\\." . crontab-mode)
-                    ("\\.a90\\'" . intel-hex-mode)
-                    ("\\.hex\\'" . intel-hex-mode)
-                    ("\\.py$" . python-mode)
-                    ("SConstruct". python-mode)
-                    ("\\.ml\\'" . tuareg-mode)
-                    ("\\.mli\\'" . tuareg-mode)
-                    ("\\.mly\\'" . tuareg-mode)
-                    ("\\.mll\\'" . tuareg-mode)
-                    ("\\.mlp\\'" . tuareg-mode)
-                    ("\\.qml\\'" . qml-mode)
-                    ("CMakeLists\\.txt\\'" . cmake-mode)
-                    ("\\.cmake\\'" . cmake-mode)
-                    ("\\.php\\'" . php-mode)
-                    ("\\.vue" . web-mode)
-                    ("\\.wxml" . web-mode)
-                    ("\\.blade\\.php\\'" . web-mode)
-                    ("\\.phtml\\'" . web-mode)
-                    ("\\.tpl\\.php\\'" . web-mode)
-                    ("\\.jsp\\'" . web-mode)
-                    ("\\.as[cp]x\\'" . web-mode)
-                    ("\\.erb\\'" . web-mode)
-                    ("\\.mustache\\'" . web-mode)
-                    ("\\.djhtml\\'" . web-mode)
-                    ("\\.html?\\'" . web-mode)
-                    ("\\.jsx$" . web-mode)
-                    ("\\.tsx$" . web-mode)
-                    ("\\.ts$" . typescript-mode)
-                    ("\\.js.erb\\'" . js2-mode)
-                    ("\\.wxs$" . js2-mode)
-                    ("\\.cjs$" . js2-mode)
-                    ("\\.js$" . js2-mode)
-                    ("\\.css\\'" . css-mode)
-                    ("\\.wxss\\'" . css-mode)
-                    ("\\.json$" . json-mode)
-                    ("\\.coffee\\'" . coffee-mode)
-                    ("\\.coffee.erb\\'" . coffee-mode)
-                    ("\\.iced\\'" . coffee-mode)
-                    ("Cakefile\\'" . coffee-mode)
-                    ("\\.styl$" . sws-mode)
-                    ("\\.jade" . jade-mode)
-                    ("\\.go$" . go-mode)
-                    ("\\.vala$" . vala-mode)
-                    ("\\.vapi$" . vala-mode)
-                    ("\\.rs$" . rust-mode)
-                    ("\\.pro$" . qmake-mode)
-                    ("\\.lua$" . lua-mode)
-                    ("\\.swift$" . swift-mode)
-                    ("\\.l$" . flex-mode)
-                    ("\\.y$" . bison-mode)
-                    ("\\.pdf$" . pdf-view-mode)
-                    ("\\.cpp$" . c++-mode)
-                    ("\\.h$" . c++-mode)
-                    ("\\.ll$" . llvm-mode)
-                    ("\\.bc$" . hexl-mode)
-                    ("\\.nim$" . nim-mode)
-                    ("\\.nims$" . nim-mode)
-                    ("\\.nimble$" . nim-mode)
-                    ("\\.nim.cfg$" . nim-mode)
-                    ("\\.exs$" . elixir-mode)
-                    ("\\.clj$" . clojure-mode)
-                    ("\\.svg$" . xml-mode)
-                    ))
-  (add-to-alist 'auto-mode-alist elt-cons))
-
-(add-to-list 'interpreter-mode-alist '("coffee" . coffee-mode))
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+  (use-package pkg-info)
+  (use-package posframe
+    :straight (:host github :repo "tumashu/posframe"))
+  (use-package flymake-posframe
+    :straight (:host github :repo "Ladicle/flymake-posframe")
+    :hook (flymake-mode . flymake-posframe-mode))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
@@ -1369,6 +1213,11 @@ The test for presence of the car of ELT-CONS is done with `equal'."
 (setq web-mode-sql-indent-offset 2)
 
 (setq css-indent-offset 2)
+
+;; Don't let ediff break EXWM, keep it in one frame
+(setq ediff-diff-options "-w"
+      ediff-split-window-function 'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (use-package magit
   :ensure t
@@ -1431,17 +1280,6 @@ The test for presence of the car of ELT-CONS is done with `equal'."
   (add-to-list 'auto-mode-alist
                (cons "/.gitconfig\\'" 'gitconfig-mode))
   )
-
-(use-package smerge
-  :straight (:type built-in)
-  :config
-  (defun enable-smerge-maybe ()
-    (when (and buffer-file-name (vc-backend buffer-file-name))
-      (save-excursion
-        (goto-char (point-min))
-        (when (re-search-forward "^<<<<<<< " nil t)
-          (smerge-mode +1)
-          (hydra-smerge/body))))))
 
 (use-package treemacs
   :ensure t
@@ -1769,18 +1607,28 @@ The test for presence of the car of ELT-CONS is done with `equal'."
             ))
     )
 
-  (with-eval-after-load 'org
-    (progn
-      (require 'org-tempo)
-      (require 'org-src)
-      (add-hook 'org-babel-after-execute-hook #'org-redisplay-inline-images)
-      (setq org-confirm-babel-evaluate nil
-            org-src-fontify-natively t
-            org-src-tab-acts-natively t
-            org-src-preserve-indentation t
-            ;; or current-window
-            org-src-window-setup 'other-window)
-      ))
+(with-eval-after-load 'org
+  (progn
+    (require 'org-tempo)
+    (require 'org-src)
+    (add-hook 'org-babel-after-execute-hook #'org-redisplay-inline-images)
+    (setq org-confirm-babel-evaluate nil
+          org-src-fontify-natively t
+          org-src-tab-acts-natively t
+          org-src-preserve-indentation t
+          ;; or current-window
+          org-src-window-setup 'other-window)
+
+
+    (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    (add-to-list 'org-structure-template-alist '("sc" . "src scheme"))
+    (add-to-list 'org-structure-template-alist '("ts" . "src typescript"))
+    (add-to-list 'org-structure-template-alist '("py" . "src python"))
+    (add-to-list 'org-structure-template-alist '("go" . "src go"))
+    (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
+    (add-to-list 'org-structure-template-alist '("json" . "src json"))
+    ))
 
   ;; https://github.com/Somelauw/evil-org-mode/blob/master/doc/keythemes.org
   (use-package evil-org
@@ -2035,8 +1883,6 @@ The test for presence of the car of ELT-CONS is done with `equal'."
   ;; (setq-default rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
   )
 
-(use-package posframe)
-
 (defun split-window--select-window (orig-func &rest args)
   "Switch to the other window after a `split-window'"
   (let ((cur-window (selected-window))
@@ -2161,10 +2007,6 @@ The test for presence of the car of ELT-CONS is done with `equal'."
          :map minibuffer-local-completion-map
          ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file)))
-
-(use-package consult-lsp
-  :config
-  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
 
 (use-package consult-flycheck)
 
