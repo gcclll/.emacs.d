@@ -527,6 +527,10 @@ one, an error is signaled."
 			 "f" 'gcl/open-current-directory
 			 )
 
+(+general-global-menu! "errors" "e"
+  "e" 'consult-lsp-diagnostics
+	)
+
   (+general-global-menu! "files" "f"
 			 "o" 'crux-open-with
 			 "p" 'consult-find
@@ -555,6 +559,7 @@ one, an error is signaled."
 
 (+general-global-menu! "search" "s"
   "p" 'consult-ripgrep
+  "v" 'consult-lsp-symbols
   )
 
   (+general-global-menu! "window" "w"
@@ -601,6 +606,9 @@ one, an error is signaled."
    "C-c q" 'vr/query-replace
    "C-c m" 'vr/mc-mark
    "C-c u" 'uuidgen
+
+   ;; C-c g, git
+   ;; ...
    )
 
   (general-define-key
@@ -693,6 +701,18 @@ one, an error is signaled."
   (setq dabbrev-case-fold-search t)
   (setq dabbrev-case-replace nil)
   )
+
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :hook ((prog-mode org-mode) . yas-minor-mode)
+  :config
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  (yas-reload-all))
+(use-package yasnippet-snippets
+  :defer t
+  :after yasnippet)
+(yas-global-mode 1)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 ;; 有变化时自动保存
 (setq bookmark-save-flag 1)
@@ -1246,7 +1266,8 @@ The test for presence of the car of ELT-CONS is done with `equal'."
                     :height 120
                     :italic t)))
   :config
-  (global-blamer-mode 1))
+  ;; (global-blamer-mode 1)
+  )
 
 (use-package git-gutter
   :diminish
@@ -1909,10 +1930,30 @@ _k_: down      _a_: combine       _q_: quit
    consult--source-recent-file consult--source-project-recent-file
    :preview-key '(:debounce 0.4 any))
   (setq consult-narrow-key "<") ;; (kbd "C-+")
+  ;; (setq consult-async-min-input 2)
 
   ;; (autoload 'projectile-project-root "projectile")
   ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
   )
+
+(use-package consult-dir
+  :ensure t
+  :bind (("C-x C-d" . consult-dir)
+         :map minibuffer-local-completion-map
+         ("C-x C-d" . consult-dir)
+         ("C-x C-j" . consult-dir-jump-file)))
+
+(use-package consult-lsp
+  :config
+  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
+
+(use-package consult-flycheck)
+
+(use-package consult-ls-git
+  :straight t
+  :bind
+  (("C-c g f" . #'consult-ls-git)
+   ("C-c g F" . #'consult-ls-git-other-window)))
 
 (use-package wgrep
   :config

@@ -599,6 +599,12 @@ so-long
 			 )
 #+end_src
 
+*** SPC e 异常
+#+begin_src emacs-lisp
+(+general-global-menu! "errors" "e"
+  "e" 'consult-lsp-diagnostics
+	)
+#+end_src
 *** SPC f 文件相关
 
 #+begin_src emacs-lisp
@@ -646,6 +652,7 @@ so-long
 #+begin_src emacs-lisp
 (+general-global-menu! "search" "s"
   "p" 'consult-ripgrep
+  "v" 'consult-lsp-symbols
   )
 #+end_src
 
@@ -700,6 +707,9 @@ so-long
    "C-c q" 'vr/query-replace
    "C-c m" 'vr/mc-mark
    "C-c u" 'uuidgen
+
+   ;; C-c g, git
+   ;; ...
    )
 #+end_src
 
@@ -809,6 +819,21 @@ so-long
   (setq dabbrev-case-fold-search t)
   (setq dabbrev-case-replace nil)
   )
+#+end_src
+** snippets
+
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :diminish yas-minor-mode
+  :hook ((prog-mode org-mode) . yas-minor-mode)
+  :config
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  (yas-reload-all))
+(use-package yasnippet-snippets
+  :defer t
+  :after yasnippet)
+(yas-global-mode 1)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 #+end_src
 * bookmarks
 #+begin_src emacs-lisp
@@ -1516,7 +1541,8 @@ The test for presence of the car of ELT-CONS is done with `equal'."
                     :height 120
                     :italic t)))
   :config
-  (global-blamer-mode 1))
+  ;; (global-blamer-mode 1)
+  )
 #+end_src
 ** git-gutter
 #+begin_src emacs-lisp
@@ -2279,10 +2305,30 @@ kbd:C-c_C-c <kbd:C-c C-c>
    consult--source-recent-file consult--source-project-recent-file
    :preview-key '(:debounce 0.4 any))
   (setq consult-narrow-key "<") ;; (kbd "C-+")
+  ;; (setq consult-async-min-input 2)
 
   ;; (autoload 'projectile-project-root "projectile")
   ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
   )
+
+(use-package consult-dir
+  :ensure t
+  :bind (("C-x C-d" . consult-dir)
+         :map minibuffer-local-completion-map
+         ("C-x C-d" . consult-dir)
+         ("C-x C-j" . consult-dir-jump-file)))
+
+(use-package consult-lsp
+  :config
+  (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
+
+(use-package consult-flycheck)
+
+(use-package consult-ls-git
+  :straight t
+  :bind
+  (("C-c g f" . #'consult-ls-git)
+   ("C-c g F" . #'consult-ls-git-other-window)))
 #+end_src
 ** wgrep
 #+begin_src emacs-lisp
