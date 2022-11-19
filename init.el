@@ -471,6 +471,8 @@ one, an error is signaled."
 
 (global-leader
   ;; "c" 'blamer-show-posframe-commit-info
+  "," 'gcl/smerge/body
+  "l" 'gcl/lsp/body
   )
 
   (general-create-definer global-definer
@@ -1038,6 +1040,33 @@ one, an error is signaled."
   ("M-r" lsp-restart-workspace)
   ("S" lsp-shutdown-workspace))
 
+(use-package python-mode)
+
+(use-package yaml-mode
+  :mode "\\.yml\\'"
+  :mode "\\.yaml\\'"
+  :hook ((yaml-mode . yaml-imenu-enable)))
+(use-package yaml-imenu
+  :after yaml-mode)
+
+(use-package nxml-mode
+  :straight (:type built-in))
+
+(use-package php-mode)
+
+(use-package sql
+  :straight (:type built-in))
+(use-package emacs-sql-indent
+  :straight (:host github :repo "alex-hhh/emacs-sql-indent")
+  :hook (sql-mode . sqlind-minor-mode))
+
+(use-package lua-mode)
+
+(use-package dockerfile-mode
+  :mode "Dockerfile\\'")
+
+(use-package restclient)
+
 (use-package format-all)
 
 (use-package flycheck
@@ -1048,6 +1077,131 @@ one, an error is signaled."
 (use-package flymake-posframe
   :straight (:host github :repo "Ladicle/flymake-posframe")
   :hook (flymake-mode . flymake-posframe-mode))
+
+;;; --- 绑定扩展名到特定的模式
+(defun add-to-alist (alist-var elt-cons &optional no-replace)
+  "Add to the value of ALIST-VAR an element ELT-CONS if it isn't there yet.
+If an element with the same car as the car of ELT-CONS is already present,
+replace it with ELT-CONS unless NO-REPLACE is non-nil; if a matching
+element is not already present, add ELT-CONS to the front of the alist.
+The test for presence of the car of ELT-CONS is done with `equal'."
+  (let ((existing-element (assoc (car elt-cons) (symbol-value alist-var))))
+    (if existing-element
+        (or no-replace
+            (rplacd existing-element (cdr elt-cons)))
+      (set alist-var (cons elt-cons (symbol-value alist-var)))))
+  (symbol-value alist-var))
+
+(dolist (elt-cons '(
+                    ("\\.markdown" . markdown-mode)
+                    ("\\.md" . markdown-mode)
+                    ("\\.coffee$" . coffee-mode)
+                    ("\\.iced$" . coffee-mode)
+                    ("Cakefile" . coffee-mode)
+                    ("\\.stumpwmrc\\'" . lisp-mode)
+                    ("\\.jl\\'" . lisp-mode)
+                    ("\\.asdf\\'" . lisp-mode)
+                    ("\\.[hg]s\\'" . haskell-mode)
+                    ("\\.hi\\'" . haskell-mode)
+                    ("\\.hs-boot\\'" . haskell-mode)
+                    ("\\.chs\\'" . haskell-mode)
+                    ("\\.l[hg]s\\'" . literate-haskell-mode)
+                    ("\\.inc\\'" . asm-mode)
+                    ("\\.max\\'" . maxima-mode)
+                    ("\\.org\\'" . org-mode)
+                    ("\\.cron\\(tab\\)?\\'" . crontab-mode)
+                    ("cron\\(tab\\)?\\." . crontab-mode)
+                    ("\\.a90\\'" . intel-hex-mode)
+                    ("\\.hex\\'" . intel-hex-mode)
+                    ("\\.py$" . python-mode)
+                    ("SConstruct". python-mode)
+                    ("\\.ml\\'" . tuareg-mode)
+                    ("\\.mli\\'" . tuareg-mode)
+                    ("\\.mly\\'" . tuareg-mode)
+                    ("\\.mll\\'" . tuareg-mode)
+                    ("\\.mlp\\'" . tuareg-mode)
+                    ("\\.qml\\'" . qml-mode)
+                    ("CMakeLists\\.txt\\'" . cmake-mode)
+                    ("\\.cmake\\'" . cmake-mode)
+                    ("\\.php\\'" . php-mode)
+                    ("\\.vue" . web-mode)
+                    ("\\.wxml" . web-mode)
+                    ("\\.blade\\.php\\'" . web-mode)
+                    ("\\.phtml\\'" . web-mode)
+                    ("\\.tpl\\.php\\'" . web-mode)
+                    ("\\.jsp\\'" . web-mode)
+                    ("\\.as[cp]x\\'" . web-mode)
+                    ("\\.erb\\'" . web-mode)
+                    ("\\.mustache\\'" . web-mode)
+                    ("\\.djhtml\\'" . web-mode)
+                    ("\\.html?\\'" . web-mode)
+                    ("\\.jsx$" . web-mode)
+                    ("\\.tsx$" . web-mode)
+                    ("\\.ts$" . typescript-mode)
+                    ("\\.js.erb\\'" . js2-mode)
+                    ("\\.wxs$" . js2-mode)
+                    ("\\.cjs$" . js2-mode)
+                    ("\\.js$" . js2-mode)
+                    ("\\.css\\'" . css-mode)
+                    ("\\.wxss\\'" . css-mode)
+                    ("\\.json$" . json-mode)
+                    ("\\.coffee\\'" . coffee-mode)
+                    ("\\.coffee.erb\\'" . coffee-mode)
+                    ("\\.iced\\'" . coffee-mode)
+                    ("Cakefile\\'" . coffee-mode)
+                    ("\\.styl$" . sws-mode)
+                    ("\\.jade" . jade-mode)
+                    ("\\.go$" . go-mode)
+                    ("\\.vala$" . vala-mode)
+                    ("\\.vapi$" . vala-mode)
+                    ("\\.rs$" . rust-mode)
+                    ("\\.pro$" . qmake-mode)
+                    ("\\.lua$" . lua-mode)
+                    ("\\.swift$" . swift-mode)
+                    ("\\.l$" . flex-mode)
+                    ("\\.y$" . bison-mode)
+                    ("\\.pdf$" . pdf-view-mode)
+                    ("\\.cpp$" . c++-mode)
+                    ("\\.h$" . c++-mode)
+                    ("\\.ll$" . llvm-mode)
+                    ("\\.bc$" . hexl-mode)
+                    ("\\.nim$" . nim-mode)
+                    ("\\.nims$" . nim-mode)
+                    ("\\.nimble$" . nim-mode)
+                    ("\\.nim.cfg$" . nim-mode)
+                    ("\\.exs$" . elixir-mode)
+                    ("\\.clj$" . clojure-mode)
+                    ("\\.svg$" . xml-mode)
+                    ))
+  (add-to-alist 'auto-mode-alist elt-cons))
+
+(add-to-list 'interpreter-mode-alist '("coffee" . coffee-mode))
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+
+(setq c-basic-offset 4)
+
+;; sh
+(setq sh-basic-offset 4)
+(setq sh-indentation 4)
+(setq smie-indent-basic 4)
+
+(setq coffee-tab-width 2)
+(setq javascript-indent-level 2)
+(setq js-indent-level 2)
+(setq js2-basic-offset 2)
+(setq typescript-indent-offset 2)
+(setq typescript-indent-level 2)
+
+(setq web-mode-attr-indent-offset 2)
+(setq web-mode-attr-value-indent-offset 2)
+(setq web-mode-code-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-sql-indent-offset 2)
+
+(setq css-indent-offset 2)
 
 (use-package magit
   :ensure t
@@ -1078,6 +1232,73 @@ one, an error is signaled."
   ;; 加速diff
   (setq magit-revision-insert-related-refs nil)
   )
+
+(use-package blamer
+  :custom
+  (blamer-idle-time 0.3)
+  (blamer-min-offset 70)
+  (blamer-author-formatter " ✎ %s ")
+  (blamer-datetime-formatter "[%s]")
+  (blamer-commit-formatter " ● %s")
+  :custom-face
+  (blamer-face ((t :foreground "#7a88cf"
+                    :background nil
+                    :height 120
+                    :italic t)))
+  :config
+  (global-blamer-mode 1))
+
+(use-package git-gutter
+  :diminish
+  :hook ((prog-mode . git-gutter-mode))
+  :init
+  (setq git-gutter:update-interval 0.5))
+
+(use-package git-modes
+  :config
+  (add-to-list 'auto-mode-alist
+	       (cons "/.dockerignore\\'" 'gitignore-mode))
+  (add-to-list 'auto-mode-alist
+	       (cons "/.gitignore\\'" 'gitignore-mode))
+  (add-to-list 'auto-mode-alist
+               (cons "/.gitconfig\\'" 'gitconfig-mode))
+  )
+
+(use-package smerge
+  :straight (:type built-in)
+  :config
+  (defun enable-smerge-maybe ()
+    (when (and buffer-file-name (vc-backend buffer-file-name))
+      (save-excursion
+        (goto-char (point-min))
+        (when (re-search-forward "^<<<<<<< " nil t)
+          (smerge-mode +1)
+          (hydra-smerge/body))))))
+
+
+(defhydra gcl/smerge (:color red :hint nil)
+  "
+Navigate       Keep               other
+----------------------------------------
+_p_: previous  _c_: current       _e_: ediff
+_n_: next      _m_: mine  <<      _u_: undo
+_j_: up        _o_: other >>      _r_: refine
+_k_: down      _a_: combine       _q_: quit
+               _b_: base
+"
+  ("n" smerge-next)
+  ("p" smerge-prev)
+  ("c" smerge-keep-current)
+  ("m" smerge-keep-mine)
+  ("o" smerge-keep-other)
+  ("b" smerge-keep-base)
+  ("a" smerge-keep-all)
+  ("e" smerge-ediff)
+  ("j" previous-line)
+  ("k" forward-line)
+  ("r" smerge-refine)
+  ("u" undo)
+  ("q" nil :exit t))
 
 (with-eval-after-load 'org
   (progn
@@ -1738,3 +1959,9 @@ one, an error is signaled."
    "s-)" 'persp-next
    "s-(" 'persp-prev
    ))
+
+;; Interops (with Terminal, Conkeror...) -----------------------------
+(condition-case err
+    (unless (server-running-p)
+      (server-start))
+  (error (message "Could not start server")))
