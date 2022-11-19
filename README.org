@@ -590,7 +590,7 @@ so-long
  )
 #+end_src
 
-** 逗号前缀
+** 逗号前缀(各种 hydras)
 
 #+begin_src emacs-lisp
 (general-create-definer global-leader
@@ -1303,9 +1303,9 @@ node 包路径：
   (lsp-completion-provider :none)
   ;; (lsp-auto-configure nil)
   :commands lsp
-  :config
-  (setq lsp-disabled-clients '(vls))
-  ;; (setq lsp-enabled-clients '(lsp-volar))
+  ;; :config
+  ;; (add-to-list 'lsp-disabled-clients 'vls)
+  ;; (add-to-list 'lsp-enabled-clients 'volar)
   )
 
 
@@ -1329,7 +1329,6 @@ node 包路径：
  "C-c l r" 'lsp-ui-peek-find-references
  "C-c l a" 'lsp-organize-imports
  "C-c l e" 'lsp-treemacs-errors-list)
-
 #+end_src
 
 ** lsp-bridge
@@ -2705,6 +2704,14 @@ kbd:C-c_C-c <kbd:C-c C-c>
     (unless (server-running-p)
       (server-start))
   (error (message "Could not start server")))
+
+(defun my-cleanup-gc ()
+  "Clean up gc."
+  (setq gc-cons-threshold  (* 1024 200)) ; 200MB
+  (setq gc-cons-percentage 0.5) ; 0.5s
+  (garbage-collect))
+
+(run-with-idle-timer 4 nil #'my-cleanup-gc)
 #+end_src
 * 参考配置
 

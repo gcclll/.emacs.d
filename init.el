@@ -1098,9 +1098,9 @@ _k_: down      _a_: combine       _q_: quit
   (lsp-completion-provider :none)
   ;; (lsp-auto-configure nil)
   :commands lsp
-  :config
-  (setq lsp-disabled-clients '(vls))
-  ;; (setq lsp-enabled-clients '(lsp-volar))
+  ;; :config
+  ;; (add-to-list 'lsp-disabled-clients 'vls)
+  ;; (add-to-list 'lsp-enabled-clients 'volar)
   )
 
 
@@ -2269,3 +2269,11 @@ The test for presence of the car of ELT-CONS is done with `equal'."
     (unless (server-running-p)
       (server-start))
   (error (message "Could not start server")))
+
+(defun my-cleanup-gc ()
+  "Clean up gc."
+  (setq gc-cons-threshold  (* 1024 200)) ; 200MB
+  (setq gc-cons-percentage 0.5) ; 0.5s
+  (garbage-collect))
+
+(run-with-idle-timer 4 nil #'my-cleanup-gc)
