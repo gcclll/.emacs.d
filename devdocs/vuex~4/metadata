@@ -1,1 +1,0 @@
-(1 (name . "Vuex") (slug . "vuex~4") (type . "simple") (links (home . "https://vuex.vuejs.org") (code . "https://github.com/vuejs/vuex")) (version . "4") (release . "4.0.2") (mtime . 1634931821) (db_size . 285608))
