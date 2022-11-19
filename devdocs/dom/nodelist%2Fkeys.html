@@ -1,0 +1,88 @@
+<h1>NodeList.keys()</h1>
+<div class="section-content"><p> The <code>NodeList.keys()</code> method returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols"><code>iterator</code></a> allowing to go through all keys contained in this object. The keys are <code>unsigned integer</code>. </p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js">nodeList<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><p>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols"><code>iterator</code></a>.</p></div>
+<h2 id="example">Example</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="js"><span class="token keyword">var</span> node <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> kid1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> kid2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createTextNode</span><span class="token punctuation">(</span><span class="token string">"hey"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> kid3 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"span"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+node<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>kid1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+node<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>kid2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+node<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>kid3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> list <span class="token operator">=</span> node<span class="token punctuation">.</span>childNodes<span class="token punctuation">;</span>
+
+<span class="token comment">// Using for..of</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> key <span class="token keyword">of</span> list<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <p>The result is:</p> <pre class="notranslate">0
+1
+2
+</pre>
+</div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>keys</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://github.com/zloirock/core-js#iterable-dom-collections" rel=" noopener">Polyfill of <code>NodeList.prototype.keys</code> in <code>core-js</code></a></li> <li><a href="../node"><code>Node</code></a></li> <li><a href="../nodelist"><code>NodeList</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/nodelist/keys/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/nodelist/keys/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FNodeList%2Fkeys&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fnodelist%2Fkeys%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FNodeList%2Fkeys%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fnodelist%2Fkeys%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F88508ebe5c73264be2cf03f1a949d8099d68d1ea%0A*+Document+last+modified%3A+2022-02-04T02%3A05%3A25.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-02-04T02:05:25.000Z">Feb 4, 2022</time>, <a href="keys/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList/keys" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NodeList/keys</a>
+  </p>
+</div>

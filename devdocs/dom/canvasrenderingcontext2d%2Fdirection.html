@@ -1,0 +1,88 @@
+<h1>CanvasRenderingContext2D.direction</h1>
+<div class="section-content">
+<div class="notecard experimental" id="sect1"><p><strong>Experimental:</strong> <strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p></div> <p> The <code>CanvasRenderingContext2D.direction</code> property of the Canvas 2D API specifies the current text direction used to draw text. </p>
+</div>
+<h2 id="value">Value</h2>
+<div class="section-content">
+<p>Possible values:</p> <dl> <dt id="ltr"><code>"ltr"</code></dt> <dd> <p>The text direction is left-to-right.</p> </dd> <dt id="rtl"><code>"rtl"</code></dt> <dd> <p>The text direction is right-to-left.</p> </dd> <dt id="inherit"><code>"inherit"</code></dt> <dd> <p> The text direction is inherited from the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element or the <a href="../document"><code>Document</code></a> as appropriate. Default value. </p> </dd> </dl> <p>The default value is <code>"inherit"</code>.</p>
+</div>
+<h2 id="examples">Examples</h2>
+
+<h3 id="changing_text_direction">Changing text direction</h3>
+<div class="section-content">
+<p> This example draws two pieces of text. The first one is left-to-right, and the second is right-to-left. Note that "Hi!" in <code>ltr</code> becomes "!Hi" in <code>rtl</code>. </p> <h4 id="html">HTML</h4> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="javascript">JavaScript</h4> <div class="code-example"><pre data-language="js"><span class="token keyword">var</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx<span class="token punctuation">.</span>font <span class="token operator">=</span> <span class="token string">'48px serif'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillText</span><span class="token punctuation">(</span><span class="token string">'Hi!'</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span>direction <span class="token operator">=</span> <span class="token string">'rtl'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillText</span><span class="token punctuation">(</span><span class="token string">'Hi!'</span><span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">,</span> <span class="token number">130</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div> <h4 id="result">Result</h4>
+<iframe class="sample-code-frame" title="Changing text direction sample" id="frame_changing_text_direction" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/direction/_sample_.changing_text_direction.html" loading="lazy"></iframe>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-direction-dev">HTML Standard <br><small># dom-context-2d-direction-dev</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>direction</code></th>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>The interface defining this property: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/canvasrenderingcontext2d/direction/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/canvasrenderingcontext2d/direction/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FCanvasRenderingContext2D%2Fdirection&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fcanvasrenderingcontext2d%2Fdirection%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FCanvasRenderingContext2D%2Fdirection%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fcanvasrenderingcontext2d%2Fdirection%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F9c20e6bb6e9370198e6f66b03062de694286b69b%0A*+Document+last+modified%3A+2022-03-27T12%3A09%3A43.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-27T12:09:43.000Z">Mar 27, 2022</time>, <a href="direction/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/direction</a>
+  </p>
+</div>

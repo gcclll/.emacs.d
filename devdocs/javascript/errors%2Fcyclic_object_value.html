@@ -1,0 +1,49 @@
+<h1>TypeError: cyclic object value</h1>
+<div class="section-content"><p> The JavaScript exception "cyclic object value" occurs when object references were found in <a href="https://www.json.org/" rel=" noopener">JSON</a>. <a href="../global_objects/json/stringify"><code>JSON.stringify()</code></a> doesn't try to solve them and fails accordingly. </p></div>
+<section aria-labelledby="message"><h2 id="message">Message</h2>
+<div class="section-content"><pre class="notranslate">TypeError: Converting circular structure to JSON (V8-based)
+TypeError: cyclic object value (Firefox)
+TypeError: JSON.stringify cannot serialize cyclic structures. (Safari)
+</pre></div></section><section aria-labelledby="error_type"><h2 id="error_type">Error type</h2>
+<div class="section-content"><a href="../global_objects/typeerror"><code>TypeError</code></a></div></section><section aria-labelledby="what_went_wrong"><h2 id="what_went_wrong">What went wrong?</h2>
+<div class="section-content"><p> The <a href="https://www.json.org/" rel=" noopener">JSON format</a> per se doesn't support object references (although an <a href="https://datatracker.ietf.org/doc/html/draft-pbryan-zyp-json-ref-03" rel=" noopener">IETF draft exists</a>), hence <a href="../global_objects/json/stringify"><code>JSON.stringify()</code></a> doesn't try to solve them and fails accordingly. </p></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="circular_references"><h3 id="circular_references">Circular references</h3>
+<div class="section-content">
+<p>In a circular structure like the following</p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> circularReference <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">otherData</span><span class="token operator">:</span> <span class="token number">123</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+circularReference<span class="token punctuation">.</span>myself <span class="token operator">=</span> circularReference<span class="token punctuation">;</span>
+</pre></div> <p><a href="../global_objects/json/stringify"><code>JSON.stringify()</code></a> will fail</p> <div class="code-example"><pre data-language="js"><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>circularReference<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: cyclic object value</span>
+</pre></div> <p> To serialize circular references you can use a library that supports them (e.g. <a href="https://github.com/douglascrockford/JSON-js/blob/master/cycle.js" rel=" noopener">cycle.js</a>) or implement a solution by yourself, which will require finding and replacing (or removing) the cyclic references by serializable values. </p> <p> The snippet below illustrates how to find and filter (thus causing data loss) a cyclic reference by using the <code>replacer</code> parameter of <a href="../global_objects/json/stringify"><code>JSON.stringify()</code></a>: </p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> <span class="token function-variable function">getCircularReplacer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> seen <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">"object"</span> <span class="token operator">&amp;&amp;</span> value <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>seen<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      seen<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>circularReference<span class="token punctuation">,</span> <span class="token function">getCircularReplacer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// {"otherData":123}</span>
+</pre></div>
+</div></section><section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../global_objects/json/stringify"><code>JSON.stringify</code></a></li> <li> <a href="https://github.com/douglascrockford/JSON-js/blob/master/cycle.js" rel=" noopener">cycle.js</a> – Introduces two functions, <code>JSON.decycle</code> and <code>JSON.retrocycle</code>, which makes it possible to encode and decode cyclical structures and dags into an extended and retrocompatible JSON format. </li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/javascript/reference/errors/cyclic_object_value/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/javascript/reference/errors/cyclic_object_value/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FErrors%2FCyclic_object_value&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fjavascript%2Freference%2Ferrors%2Fcyclic_object_value%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FErrors%2FCyclic_object_value%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fjavascript%2Freference%2Ferrors%2Fcyclic_object_value%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F703b77e17f2709b6ba4d14b6fd7a2964d437c2e4%0A*+Document+last+modified%3A+2022-07-13T05%3A32%3A39.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-07-13T05:32:39.000Z">Jul 13, 2022</time>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value</a>
+  </p>
+</div>

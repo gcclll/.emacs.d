@@ -1,0 +1,292 @@
+<h1>gap (grid-gap)</h1>
+<div class="section-content"><p>The <code>gap</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> property sets the gaps (<a href="https://developer.mozilla.org/en-US/docs/Glossary/Gutters">gutters</a>) between rows and columns. It is a <a href="shorthand_properties">shorthand</a> for <a href="row-gap"><code>row-gap</code></a> and <a href="column-gap"><code>column-gap</code></a>.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/gap.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token comment">/* One &lt;length&gt; value */</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 1em<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 3vmin<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 0.5cm<span class="token punctuation">;</span>
+
+<span class="token comment">/* One &lt;percentage&gt; value */</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 16%<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+
+<span class="token comment">/* Two &lt;length&gt; values */</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 20px 10px<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 1em 0.5em<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 3vmin 2vmax<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 0.5cm 2mm<span class="token punctuation">;</span>
+
+<span class="token comment">/* One or two &lt;percentage&gt; values */</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 16% 100%<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> 21px 82%<span class="token punctuation">;</span>
+
+<span class="token comment">/* calc() values */</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span>10% + 20px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> <span class="token function">calc</span><span class="token punctuation">(</span>20px + 10%<span class="token punctuation">)</span> <span class="token function">calc</span><span class="token punctuation">(</span>10% - 5px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> revert-layer<span class="token punctuation">;</span>
+<span class="token property">gap</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre></div> <p>This property is specified as a value for <code>&lt;'row-gap'&gt;</code> followed optionally by a value for <code>&lt;'column-gap'&gt;</code>. If <code>&lt;'column-gap'&gt;</code> is omitted, it's set to the same value as <code>&lt;'row-gap'&gt;</code>.</p> <p><code>&lt;'row-gap'&gt;</code> and <code>&lt;'column-gap'&gt;</code> are each specified as a <code>&lt;length&gt;</code> or a <code>&lt;percentage&gt;</code>.</p>
+</div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content"><dl> <dt id="length"><a href="length"><code>&lt;length&gt;</code></a></dt> <dd> <p>Is the width of the gutter separating the grid lines.</p> </dd> <dt id="percentage"><a href="percentage"><code>&lt;percentage&gt;</code></a></dt> <dd> <p>Is the width of the gutter separating the grid lines, relative to the dimension of the element.</p> </dd> </dl></div></section><section aria-labelledby="formal_definition"><h2 id="formal_definition">Formal definition</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td>as each of the properties of the shorthand:<br><ul>
+<li>
+<a href="row-gap"><code>row-gap</code></a>: <code>normal</code>
+</li>
+<li>
+<a href="column-gap"><code>column-gap</code></a>: <code>normal</code>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>multi-column elements, flex containers, grid containers</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as each of the properties of the shorthand:<br><ul>
+<li>
+<a href="row-gap"><code>row-gap</code></a>: as specified, with &lt;length&gt;s made absolute, and normal computing to zero except on multi-column elements</li>
+<li>
+<a href="column-gap"><code>column-gap</code></a>: as specified, with &lt;length&gt;s made absolute, and normal computing to zero except on multi-column elements</li>
+</ul>
+</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>as each of the properties of the shorthand:<br><ul>
+<li>
+<a href="row-gap"><code>row-gap</code></a>: a <a href="length#interpolation">length</a>, <a href="percentage#interpolation">percentage</a> or calc();</li>
+<li>
+<a href="column-gap"><code>column-gap</code></a>: a <a href="length#interpolation">length</a>, <a href="percentage#interpolation">percentage</a> or calc();</li>
+</ul>
+</td>
+</tr>
+</tbody></table></div></div></div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="gap">gap = </span><br>  <span class="token property">&lt;'row-gap'&gt;</span> <span class="token property">&lt;'column-gap'&gt;</span><a href="value_definition_syntax#question_mark">?</a>  <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="flex_layout"><h3 id="flex_layout">Flex layout</h3>
+<div class="section-content">
+<h4 id="html">HTML</h4> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flexbox<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="css">CSS</h4> <div class="code-example"><pre data-language="css"><span class="token selector">#flexbox</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+  <span class="token property">gap</span><span class="token punctuation">:</span> 20px 5px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#flexbox &gt; div</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid green<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> lime<span class="token punctuation">;</span>
+  <span class="token property">flex</span><span class="token punctuation">:</span> 1 1 auto<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</pre></div> <h4 id="result">Result</h4>
+<iframe class="sample-code-frame" title="Flex layout sample" id="frame_flex_layout" width="auto" height="250" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/gap/_sample_.flex_layout.html" loading="lazy"></iframe>
+</div></section><section aria-labelledby="grid_layout"><h3 id="grid_layout">Grid layout</h3>
+<div class="section-content">
+<h4 id="html_2">HTML</h4> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="css_2">CSS</h4> <div class="code-example"><pre data-language="css"><span class="token selector">#grid</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+  <span class="token property">grid-template</span><span class="token punctuation">:</span> <span class="token function">repeat</span><span class="token punctuation">(</span>3<span class="token punctuation">,</span> 1fr<span class="token punctuation">)</span> / <span class="token function">repeat</span><span class="token punctuation">(</span>3<span class="token punctuation">,</span> 1fr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">gap</span><span class="token punctuation">:</span> 20px 5px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#grid &gt; div</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid green<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> lime<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <h4 id="result_2">Result</h4>
+<iframe class="sample-code-frame" title="Grid layout sample" id="frame_grid_layout" width="auto" height="250" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/gap/_sample_.grid_layout.html" loading="lazy"></iframe>
+</div></section><section aria-labelledby="multi-column_layout"><h3 id="multi-column_layout">Multi-column layout</h3>
+<div class="section-content">
+<h4 id="html_3">HTML</h4> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>content-box<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  This is some multi-column text with a 40px column
+  gap created with the CSS <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>gap<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span> property.
+  Don't you think that's fun and exciting? I sure do!
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="css_3">CSS</h4> <div class="code-example"><pre data-language="css"><span class="token selector">.content-box</span> <span class="token punctuation">{</span>
+  <span class="token property">column-count</span><span class="token punctuation">:</span> 3<span class="token punctuation">;</span>
+  <span class="token property">gap</span><span class="token punctuation">:</span> 40px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <h4 id="result_3">Result</h4>
+<iframe class="sample-code-frame" title="Multi-column layout sample" id="frame_multi-column_layout" width="auto" height="120px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/gap/_sample_.multi-column_layout.html" loading="lazy"></iframe>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-align/#gap-shorthand">CSS Box Alignment Module Level 3 <br><small># gap-shorthand</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>gap</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>flex_context</code></th>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>grid_context</code></th>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>16</div>
+</td>
+<td class="bc-supports-yes">
+<div>61</div>
+<div>52</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>44</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>10.1</div>
+</td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes">
+<div>61</div>
+<div>52</div>
+</td>
+<td class="bc-supports-yes">
+<div>47</div>
+<div>43</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>10.3</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.0</div>
+<div>7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>multicol_context</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>Related CSS properties: <a href="row-gap"><code>row-gap</code></a>, <a href="column-gap"><code>column-gap</code></a>
+</li> <li>Grid Layout Guide: <em><a href="css_grid_layout/basic_concepts_of_grid_layout#gutters">Basic concepts of grid layout - Gutters</a></em>
+</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/gap/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/gap/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fgap&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Fgap%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fgap%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fgap%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F0a4c76e8e225fa23b6398f3ee1b9c2daae6ea5b9%0A*+Document+last+modified:+2022-05-22T11:57:55.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-05-22T11:57:55.000Z">May 22, 2022</time>, <a href="gap/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/gap" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/gap</a>
+  </p>
+</div>

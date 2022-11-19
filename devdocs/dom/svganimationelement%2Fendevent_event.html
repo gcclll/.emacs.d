@@ -1,0 +1,204 @@
+<h1>SVGAnimationElement: endEvent event</h1>
+<div class="section-content">
+<p>The <code>endEvent</code> event of the <a href="../svganimationelement"><code>SVGAnimationElement</code></a> interface is fired when at the active end of the animation is reached.</p> <div class="notecard note" id="sect1"> <p><strong>Note:</strong> This event is not raised at the simple end of each animation repeat. This event may be raised both in the course of normal (i.e. scheduled or interactive) timeline play, as well as in the case that the element was ended with a DOM method.</p> </div> <p>This event is not cancelable and does not bubble.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<p>Use the event name in methods like <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a>, or set an event handler property.</p> <div class="code-example"><pre data-language="js"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'endEvent'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function-variable function">onend</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="event_type">Event type</h2>
+<div class="section-content">
+<p>An <a href="../timeevent"><code>TimeEvent</code></a>. Inherits from <a href="../event"><code>Event</code></a>.</p>
+<svg viewbox="-1 -1 650 42" preserveaspectratio="xMinYMin meet"> <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/Event">  <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> Event </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/TimeEvent">  <text x="142.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> TimeEvent </text> </a></svg>
+</div>
+<h2 id="event_properties">Event properties</h2>
+<div class="section-content"><dl> <dt id="timeevent.detail">
+<a class="page-not-created"><code>TimeEvent.detail</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>Is a <code>long</code> that specifies some detail information about the Event, depending on the type of the event. For this event type, indicates the repeat number for the animation.</p> </dd> <dt id="timeevent.view">
+<a class="page-not-created"><code>TimeEvent.view</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>Is a <a class="page-not-created"><code>WindowProxy</code></a> that identifies the Window from which the event was generated.</p> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+
+<h3 id="animated_circle">Animated circle</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>300px<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>100px<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>SVG SMIL Animate with Path<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>50<span class="token punctuation">"</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>50<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>blue<span class="token punctuation">"</span></span> <span class="token attr-name">stroke</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>black<span class="token punctuation">"</span></span> <span class="token attr-name">stroke-width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>animateMotion</span>
+       <span class="token attr-name">path</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>M 0 0 H 300 Z<span class="token punctuation">"</span></span>
+       <span class="token attr-name">dur</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5s<span class="token punctuation">"</span></span> <span class="token attr-name">repeatCount</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>indefinite<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>circle</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>Stop animation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <div class="code-example"><pre data-language="css"><span class="token selector">ul</span> <span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ddd<span class="token punctuation">;</span>
+  <span class="token property">overflow-y</span><span class="token punctuation">:</span> scroll<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 10px 30px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="code-example"><pre data-language="js"><span class="token keyword">let</span> svgElem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'svg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> animateElem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'animateMotion'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> list <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> btn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+animateElem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'beginEvent'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  listItem<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'beginEvent fired'</span><span class="token punctuation">;</span>
+  list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+animateElem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'endEvent'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  listItem<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'endEvent fired'</span><span class="token punctuation">;</span>
+  list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+animateElem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'repeatEvent'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> msg <span class="token operator">=</span> <span class="token string">'repeatEvent fired'</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>detail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    msg <span class="token operator">+=</span> <span class="token string">'; repeat number: '</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>detail<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  listItem<span class="token punctuation">.</span>textContent <span class="token operator">=</span> msg<span class="token punctuation">;</span>
+  list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+btn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  btn<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  animateElem<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'repeatCount'</span><span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre></div>
+<iframe class="sample-code-frame" title="Animated circle sample" id="frame_animated_circle" width="100%" height="300" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/SVGAnimationElement/endEvent_event/_sample_.animated_circle.html" loading="lazy"></iframe>
+</div>
+<h3 id="event_handler_property_equivalent">Event handler property equivalent</h3>
+<div class="section-content">
+<p>Note that you can also create an event listener for the <code>end</code> event using the <code>onend</code> event handler property:</p> <div class="code-example"><pre data-language="js">animateElem<span class="token punctuation">.</span><span class="token function-variable function">onend</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'endEvent fired'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://svgwg.org/svg2-draft/interact.html#EndEvent">Scalable Vector Graphics (SVG) 1.1 (Second Edition) <br><small># EndEvent</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>endEvent_event</code></th>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+<div>31</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+</td>
+<td class="bc-supports-yes">
+<div>93</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+<div>6</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+<div>18</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+<div>4.4.3</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+<div>31</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>93</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+<div>6</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+<div>18</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>3.0</div>
+<div>The event handler is <code>onend</code> for this event.</div>
+<div>2.0</div>
+<div>The event handler, <code>onend</code>, is not supported.</div>
+</td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_animation_with_SMIL">SVG animation with SMIL</a></li> <li>
+<a href="beginevent_event"><code>beginEvent</code></a> event</li> <li>
+<a href="repeatevent_event"><code>repeatEvent</code></a> event</li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/svganimationelement/endevent_event/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/svganimationelement/endevent_event/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FSVGAnimationElement%2FendEvent_event&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fsvganimationelement%2Fendevent_event%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FSVGAnimationElement%2FendEvent_event%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fsvganimationelement%2Fendevent_event%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F529663b77721cded2c6ea2634d89d0fc38481bcb%0A*+Document+last+modified%3A+2022-03-18T22%3A24%3A30.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-18T22:24:30.000Z">Mar 18, 2022</time>, <a href="endevent_event/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SVGAnimationElement/endEvent_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SVGAnimationElement/endEvent_event</a>
+  </p>
+</div>

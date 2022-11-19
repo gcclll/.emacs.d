@@ -1,0 +1,84 @@
+<h1>XRLightEstimate.primaryLightIntensity</h1>
+<div class="section-content"><p>The <em>read-only</em> <code>primaryLightIntensity</code> property of the <a href="../xrlightestimate"><code>XRLightEstimate</code></a> interface returns a <a href="../dompointreadonly"><code>DOMPointReadOnly</code></a> representing the intensity of the primary light source from the <code>probeSpace</code> of an <a href="../xrlightprobe"><code>XRLightProbe</code></a>.</p></div>
+<h2 id="value">Value</h2>
+<div class="section-content"><p>A <a href="../dompointreadonly"><code>DOMPointReadOnly</code></a> object where an RGB value is mapped to the <code>x</code>, <code>y</code>, and <code>z</code> values. The <code>w</code> value is always <code>1.0</code>. If no estimated values from the user's environment are available, the point will be <code>{x: 0.0, y: 0.0, z: 0.0, w: 1.0}</code>, representing no illumination.</p></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p> Within an <a href="../xrframe"><code>XRFrame</code></a> loop, you can use the <code>primaryLightDirection</code> and <code>primaryLightIntensity</code> properties to render shadows based on the most prominent light source, for example. </p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> lightProbe <span class="token operator">=</span> <span class="token keyword">await</span> xrSession<span class="token punctuation">.</span><span class="token function">requestLightProbe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// frame loop</span>
+<span class="token keyword">function</span> <span class="token function">onXRFrame</span><span class="token punctuation">(</span><span class="token parameter">time<span class="token punctuation">,</span> xrFrame</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> lightEstimate <span class="token operator">=</span> xrFrame<span class="token punctuation">.</span><span class="token function">getLightEstimate</span><span class="token punctuation">(</span>lightProbe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Render lights ...</span>
+
+  <span class="token comment">// Available properties</span>
+  lightEstimate<span class="token punctuation">.</span>primaryLightDirection<span class="token punctuation">;</span>
+  lightEstimate<span class="token punctuation">.</span>primaryLightIntensity<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://immersive-web.github.io/lighting-estimation/#dom-xrlightestimate-primarylightintensity">WebXR Lighting Estimation API Level 1 <br><small># dom-xrlightestimate-primarylightintensity</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>primaryLightIntensity</code></th>
+<td class="bc-supports-yes"><div>90</div></td>
+<td class="bc-supports-yes"><div>90</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>90</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="primarylightdirection"><code>XRLightEstimate.primaryLightDirection</code></a></li> <li><a href="../xrlightprobe/probespace"><code>XRLightProbe.probeSpace</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/xrlightestimate/primarylightintensity/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/xrlightestimate/primarylightintensity/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FXRLightEstimate%2FprimaryLightIntensity&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fxrlightestimate%2Fprimarylightintensity%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FXRLightEstimate%2FprimaryLightIntensity%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fxrlightestimate%2Fprimarylightintensity%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fa27eb50e9ecbcea16e8b63ec7238163ad1e0f4de%0A*+Document+last+modified%3A+2021-09-02T16%3A33%3A54.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2021-09-02T16:33:54.000Z">Sep 2, 2021</time>, <a href="primarylightintensity/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRLightEstimate/primaryLightIntensity" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRLightEstimate/primaryLightIntensity</a>
+  </p>
+</div>

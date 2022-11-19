@@ -1,0 +1,92 @@
+<h1>RTCPeerConnection.sctp</h1>
+<div class="section-content">
+<p> The read-only <code>sctp</code> property on the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> interface returns an <a href="../rtcsctptransport"><code>RTCSctpTransport</code></a> describing the <a href="https://developer.mozilla.org/en-US/docs/Glossary/SCTP">SCTP</a> transport over which SCTP data is being sent and received. If SCTP hasn't been negotiated, this value is <code>null</code>. </p> <p> The SCTP transport is used for transmitting and receiving data for any and all <a href="../rtcdatachannel"><code>RTCDataChannel</code></a>s on the peer connection. </p>
+</div>
+<h2 id="value">Value</h2>
+<div class="section-content"><p> A <a href="../rtcsctptransport"><code>RTCSctpTransport</code></a> object describing the SCTP transport being used by the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> for transmitting and receiving on its data channels, or <code>null</code> if SCTP negotiation hasn't happened. </p></div>
+<h2 id="example">Example</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">var</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> channel <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">createDataChannel</span><span class="token punctuation">(</span><span class="token string">"Mydata"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+channel<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  channel<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"sending a message"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+channel<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Determine the largest message size that can be sent</span>
+
+<span class="token keyword">var</span> sctp <span class="token operator">=</span> pc<span class="token punctuation">.</span>sctp<span class="token punctuation">;</span>
+<span class="token keyword">var</span> maxMessageSize <span class="token operator">=</span> sctp<span class="token punctuation">.</span>maxMessageSize<span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-sctp">WebRTC 1.0: Real-Time Communication Between Browsers <br><small># dom-rtcpeerconnection-sctp</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>sctp</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../webrtc_api">WebRTC</a></li> <li><a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a></li> <li><a href="../rtcdatachannel"><code>RTCDataChannel</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/SCTP">SCTP</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/rtcpeerconnection/sctp/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/rtcpeerconnection/sctp/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FRTCPeerConnection%2Fsctp&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Frtcpeerconnection%2Fsctp%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FRTCPeerConnection%2Fsctp%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Frtcpeerconnection%2Fsctp%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fca4828b243df7d9ea71c81eed41a5d2c1335fa5f%0A*+Document+last+modified%3A+2022-03-26T06%3A12%3A06.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-26T06:12:06.000Z">Mar 26, 2022</time>, <a href="sctp/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/sctp" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/sctp</a>
+  </p>
+</div>

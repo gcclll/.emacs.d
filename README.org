@@ -404,45 +404,78 @@ so-long
 #+end_src
 * MiniBuffer
 
+** marginalia
 #+begin_src emacs-lisp
-  (use-package marginalia
+(use-package marginalia
     :custom
     (marginalia-max-relative-age 0)
     (marginalia-align 'right)
     :init
     (marginalia-mode))
-
-  (use-package all-the-icons-completion
+#+end_src
+*** all-the-icons-completion
+#+begin_src emacs-lisp
+(use-package all-the-icons-completion
     :after (marginalia all-the-icons)
     :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
     :init
     (all-the-icons-completion-mode))
-
-  (use-package vertico
-    ;; Special recipe to load extensions conveniently
-    :straight (vertico :files (:defaults "extensions/*")
-		       :includes (vertico-indexed
-				  vertico-flat
-				  vertico-grid
-				  vertico-mouse
-				  vertico-quick
-				  vertico-buffer
-				  vertico-repeat
-				  vertico-reverse
-				  vertico-directory
-				  vertico-multiform
-				  vertico-unobtrusive
-				  ))
-    ;; Make sure vertico state is saved for `vertico-repeat'
-    :hook (minibuffer-setup . vertico-repeat-save)
-    :custom
-    (vertico-count 13)                    ; Number of candidates to display
-    (vertico-resize t)
-    (vertico-cycle nil) ; Go from last to first candidate and first to last (cycle)?
-    :config
-    (vertico-mode))
 #+end_src
+*** vertico
+#+begin_src emacs-lisp
+(use-package vertico
+  ;; Special recipe to load extensions conveniently
+  :straight (vertico :files (:defaults "extensions/*")
+		                 :includes (vertico-indexed
+				                        vertico-flat
+				                        vertico-grid
+				                        vertico-mouse
+				                        vertico-quick
+				                        vertico-buffer
+				                        vertico-repeat
+				                        vertico-reverse
+				                        vertico-directory
+				                        vertico-multiform
+				                        vertico-unobtrusive
+				                        ))
+  ;; Make sure vertico state is saved for `vertico-repeat'
+  :hook (minibuffer-setup . vertico-repeat-save)
+  :custom
+  (vertico-count 13)                    ; Number of candidates to display
+  (vertico-resize t)
+  (vertico-cycle nil) ; Go from last to first candidate and first to last (cycle)?
+  :config
+  (vertico-mode))
+#+end_src
+** embark
+#+begin_src emacs-lisp
+(use-package embark
+  :ensure t
 
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :ensure t ; only need to install it, embark loads it after consult if found
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+#+end_src
 * Evil
 #+begin_src emacs-lisp
 (use-package which-key
@@ -570,6 +603,7 @@ so-long
   ;; "c" 'blamer-show-posframe-commit-info
   "," 'gcl/smerge/body
   "l" 'gcl/lsp/body
+  "t" 'treemacs
   )
 #+end_src
 
@@ -695,6 +729,17 @@ so-long
   )
 #+end_src
 
+*** SPC t treemacs
+#+begin_src emacs-lisp
+(+general-global-menu! "treemacs" "t"
+  "1" 'treemacs-delete-other-windows
+  "," 'treemacs
+  "d" 'treemacs-select-directory
+  "b" 'treemacs-bookmark
+  "f" 'treemacs-find-file
+  "t" 'treemacs-find-tag
+  )
+#+end_src
 *** SPC w 窗口相关
 
 #+begin_src emacs-lisp
@@ -736,19 +781,21 @@ so-long
    "C-c b" 'consult-bookmark
    "C-c h" 'consult-history
    "C-c o" 'consult-outline
-   "C-c t" 'gcl/insert-current-time
-   "C-c d" 'gcl/insert-standard-date
    ;; "C-c c" 'copy-buffer-file-name-as-kill
    "C-c e" 'consult-flycheck
    "C-c r" 'vr/replace
    "C-c q" 'vr/query-replace
    "C-c m" 'vr/mc-mark
    "C-c u" 'uuidgen
+   "C-c f" 'devdocs-lookup
+   "C-c t" 'treemacs
 
    ;; C-c i, insert
    "C-c i u" 'org-mac-link-get-link
    "C-c i s" 'yas-insert-snippet
    "C-c i y" 'consult-yasnippet
+   "C-c i t" 'gcl/insert-current-time
+   "C-c i d" 'gcl/insert-standard-date
 
    ;; C-c g, git
    ;; ...
@@ -802,6 +849,7 @@ so-long
 #+begin_src emacs-lisp
   (general-define-key
    ;; M, Option/Alt
+   "M-0" 'treemacs
    "M-s" 'symbol-overlay-put
    "M-n" 'symbol-overlay-switch-forward
    "M-p" 'symbol-overlay-switch-backward
@@ -815,7 +863,7 @@ so-long
    "M-d" 'dash-at-point
    ;; "M-j" 'rime-inline-ascii
    "M-i" 'consult-imenu
-   ;; "M-m" 'blamer-show-posframe-commit-info
+   "M-m" 'blamer-show-posframe-commit-info
    )
 #+end_src
 
@@ -1026,6 +1074,10 @@ Result 6.23+(3.789/(5-4)) + 6.4*(2 - (5+3) *736.83 ) /2000
 #+begin_src emacs-lisp
 (use-package dash-at-point)
 #+end_src
+** devdocs
+#+begin_src emacs-lisp
+(use-package devdocs)
+#+end_src
 * 开发设置
 
 node 包路径：
@@ -1166,9 +1218,10 @@ node 包路径：
 	   (lsp-mode . lsp-enable-which-key-integration))
     :custom
     (lsp-completion-provider :none)
+    ;; (lsp-auto-configure nil)
     :commands lsp
     :config
-    (setq lsp-disabled-clients '(vls eslint))
+    (setq lsp-disabled-clients '(vls))
     ;; (setq lsp-enabled-clients '(lsp-volar))
     )
 
@@ -1256,85 +1309,81 @@ node 包路径：
 #+end_src
 ** web-mode
 #+begin_src emacs-lisp
-  (use-package dap-mode
-    :hook ((lsp-mode . dap-mode)
-	   (lsp-mode . dap-ui-mode))
-    :bind (:map dap-mode-map
-		("C-c d d" . dap-debug)
-		("C-c d h" . dap-hydra)
-		("C-c d b" . dap-ui-breakpoints)
-		("C-c d l" . dap-ui-locals)
-		("C-c d r" . dap-ui-repl)))
+(use-package dap-mode
+  :hook ((lsp-mode . dap-mode)
+	       (lsp-mode . dap-ui-mode))
+  :bind (:map dap-mode-map
+		          ("C-c d d" . dap-debug)
+		          ("C-c d h" . dap-hydra)
+		          ("C-c d b" . dap-ui-breakpoints)
+		          ("C-c d l" . dap-ui-locals)
+		          ("C-c d r" . dap-ui-repl)))
 
-  (defun my/setup-js-mode ()
-    (require 'dap-chrome)
-    (setq tab-width 2)
-    ;; 由于 lsp 已经提供了 diagnose 功能，故关闭 js2 自带的错误检查，防止干扰。
-    (setq js2-mode-show-strict-warnings nil)
-    (setq js2-mode-show-parse-errors nil))
+(defun my/setup-js-mode ()
+  (require 'dap-chrome)
+  (setq tab-width 2)
+  ;; 由于 lsp 已经提供了 diagnose 功能，故关闭 js2 自带的错误检查，防止干扰。
+  (setq js2-mode-show-strict-warnings nil)
+  (setq js2-mode-show-parse-errors nil))
 
-  (use-package js2-mode
-    :ensure t
-    :after (lsp-mode dap-mode)
-    :mode "\\.js\\'"
-    :hook ((js2-mode . my/setup-js-mode)))
+(use-package js2-mode
+  :ensure t
+  :after (lsp-mode dap-mode)
+  :mode "\\.js\\'"
+  :hook ((js2-mode . my/setup-js-mode)))
 
-  (use-package typescript-mode
-    :ensure t
-    :after (lsp-mode dap-mode)
-    :mode ("\\.ts\\'" "\\.tsx\\'")
-    :hook ((typescript-mode . my/setup-js-mode)))
+(use-package typescript-mode
+  :ensure t
+  :after (lsp-mode dap-mode)
+  :mode ("\\.ts\\'" "\\.tsx\\'")
+  :hook ((typescript-mode . my/setup-js-mode)))
 
-  (use-package json-mode
-    :ensure t
-    :mode "\\.json\\'")
+(use-package json-mode
+  :ensure t
+  :mode "\\.json\\'")
 
-  (use-package css-mode)
-  (use-package scss-mode)
-  (use-package emmet-mode
-    :hook ((sgml-mode html-mode css-mode web-mode) . emmet-mode)
-    :config
-    (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2))) ;; indent 2 spaces.
-    )
+(use-package css-mode)
+(use-package scss-mode)
+(use-package emmet-mode
+  :hook ((sgml-mode html-mode css-mode web-mode) . emmet-mode)
+  :config
+  (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2))) ;; indent 2 spaces.
+  )
 
-  (use-package web-mode
-    :mode
-    (
-     ".twig$"
-     ".html?$"
-     ".hbs$"
-     ".vue$"
-     ".blade.php$"
-     )
-    :config
-    (setq
-     web-mode-markup-indent-offset 2
-     web-mode-css-indent-offset 2
-     web-mode-code-indent-offset 2
-     web-mode-style-padding 0
-     web-mode-script-padding 0
-     web-mode-enable-auto-closing t
-     web-mode-enable-auto-opening t
-     web-mode-enable-auto-pairing nil
-     web-mode-enable-auto-indentation t
-     web-mode-tag-auto-close-style 1
-     web-mode-enable-current-element-highlight t)
+(use-package web-mode
+  :mode
+  (
+   ".twig$"
+   ".html?$"
+   ".hbs$"
+   ".vue$"
+   ".blade.php$"
+   )
+  :config
+  (setq
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-style-padding 0
+   web-mode-script-padding 0
+   web-mode-enable-auto-closing t
+   web-mode-enable-auto-opening t
+   web-mode-enable-auto-pairing nil
+   web-mode-enable-auto-indentation t
+   web-mode-tag-auto-close-style 1
+   web-mode-enable-current-element-highlight t)
 
-    ;; Let smartparens handle auto closing brackets, e.g. {{ }} or {% %}
-    ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/web/%2Bhtml.el#L56
-    (dolist (alist web-mode-engines-auto-pairs)
-      (setcdr alist
-	      (cl-loop for pair in (cdr alist)
-		       unless (string-match-p "^[a-z-]" (cdr pair))
-		       collect (cons (car pair)
-				     (string-trim-right (cdr pair)
-							"\\(?:>\\|]\\|}\\)+\\'")))))
-    )
-
-  (defun gcl/web-maybe-activate-lsp ()
-    "Maybe activate language server protocol for the current buffer."
-    (if (equal (gf/filename-extension (buffer-file-name)) "vue")
-	(lsp-vue-mmm-enable)))
+  ;; Let smartparens handle auto closing brackets, e.g. {{ }} or {% %}
+  ;; https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/web/%2Bhtml.el#L56
+  (dolist (alist web-mode-engines-auto-pairs)
+    (setcdr alist
+	          (cl-loop for pair in (cdr alist)
+		                 unless (string-match-p "^[a-z-]" (cdr pair))
+		                 collect (cons (car pair)
+				                           (string-trim-right (cdr pair)
+							                                        "\\(?:>\\|]\\|}\\)+\\'")))))
+  ;; (add-to-list 'lsp-language-id-configuration '(web-mode . "vue"))
+  )
 #+end_src
 ** lsp-hydra
 #+begin_src emacs-lisp
@@ -1665,6 +1714,122 @@ _k_: down      _a_: combine       _q_: quit
   ("r" smerge-refine)
   ("u" undo)
   ("q" nil :exit t))
+#+end_src
+* treemacs
+#+begin_src emacs-lisp
+(use-package treemacs
+  :ensure t
+  :defer t
+  :init
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+  :config
+  (progn
+    (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
+          treemacs-deferred-git-apply-delay        0.5
+          treemacs-directory-name-transformer      #'identity
+          treemacs-display-in-side-window          t
+          treemacs-eldoc-display                   'simple
+          treemacs-file-event-delay                2000
+          treemacs-file-extension-regex            treemacs-last-period-regex-value
+          treemacs-file-follow-delay               0.2
+          treemacs-file-name-transformer           #'identity
+          treemacs-follow-after-init               t
+          treemacs-expand-after-init               t
+          treemacs-find-workspace-method           'find-for-file-or-pick-first
+          treemacs-git-command-pipe                ""
+          treemacs-goto-tag-strategy               'refetch-index
+          treemacs-header-scroll-indicators        '(nil . "^^^^^^")
+          treemacs-hide-dot-git-directory          t
+          treemacs-indentation                     2
+          treemacs-indentation-string              " "
+          treemacs-is-never-other-window           nil
+          treemacs-max-git-entries                 5000
+          treemacs-missing-project-action          'ask
+          treemacs-move-forward-on-expand          nil
+          treemacs-no-png-images                   nil
+          treemacs-no-delete-other-windows         t
+          treemacs-project-follow-cleanup          nil
+          treemacs-persist-file                    (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
+          treemacs-position                        'left
+          treemacs-read-string-input               'from-child-frame
+          treemacs-recenter-distance               0.1
+          treemacs-recenter-after-file-follow      nil
+          treemacs-recenter-after-tag-follow       nil
+          treemacs-recenter-after-project-jump     'always
+          treemacs-recenter-after-project-expand   'on-distance
+          treemacs-litter-directories              '("/node_modules" "/.venv" "/.cask")
+          treemacs-show-cursor                     nil
+          treemacs-show-hidden-files               t
+          treemacs-silent-filewatch                nil
+          treemacs-silent-refresh                  nil
+          treemacs-sorting                         'alphabetic-asc
+          treemacs-select-when-already-in-treemacs 'move-back
+          treemacs-space-between-root-nodes        t
+          treemacs-tag-follow-cleanup              t
+          treemacs-tag-follow-delay                1.5
+          treemacs-text-scale                      nil
+          treemacs-user-mode-line-format           nil
+          treemacs-user-header-line-format         nil
+          treemacs-wide-toggle-width               70
+          treemacs-width                           35
+          treemacs-width-increment                 1
+          treemacs-width-is-initially-locked       t
+          treemacs-workspace-switch-cleanup        nil)
+
+    ;; The default width and height of the icons is 22 pixels. If you are
+    ;; using a Hi-DPI display, uncomment this to double the icon size.
+    ;;(treemacs-resize-icons 44)
+
+    (treemacs-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-fringe-indicator-mode 'always)
+    (when treemacs-python-executable
+      (treemacs-git-commit-diff-mode t))
+
+    (pcase (cons (not (null (executable-find "git")))
+                 (not (null treemacs-python-executable)))
+      (`(t . t)
+       (treemacs-git-mode 'deferred))
+      (`(t . _)
+       (treemacs-git-mode 'simple)))
+
+    (treemacs-hide-gitignored-files-mode nil))
+  :bind
+  (:map global-map
+        ("M-0"       . treemacs-select-window)
+        ("C-x t 1"   . treemacs-delete-other-windows)
+        ("C-x t t"   . treemacs)
+        ("C-x t d"   . treemacs-select-directory)
+        ("C-x t B"   . treemacs-bookmark)
+        ("C-x t C-t" . treemacs-find-file)
+        ("C-x t M-t" . treemacs-find-tag)))
+
+(use-package treemacs-evil
+  :after (treemacs evil)
+  :ensure t)
+
+(use-package treemacs-projectile
+  :after (treemacs projectile)
+  :ensure t)
+
+(use-package treemacs-icons-dired
+  :hook (dired-mode . treemacs-icons-dired-enable-once)
+  :ensure t)
+
+(use-package treemacs-magit
+  :after (treemacs magit)
+  :ensure t)
+
+(use-package treemacs-persp ;;treemacs-perspective if you use perspective.el vs. persp-mode
+  :after (treemacs persp-mode) ;;or perspective vs. persp-mode
+  :ensure t
+  :config (treemacs-set-scope-type 'Perspectives))
+
+(use-package treemacs-tab-bar ;;treemacs-tab-bar if you use tab-bar-mode
+  :after (treemacs)
+  :ensure t
+  :config (treemacs-set-scope-type 'Tabs))
 #+end_src
 * org-mode
 

@@ -1,0 +1,104 @@
+<h1>CanvasRenderingContext2D.createRadialGradient()</h1>
+<div class="section-content">
+<p> The <code>CanvasRenderingContext2D.createRadialGradient()</code> method of the Canvas 2D API creates a radial gradient using the size and coordinates of two circles. </p> <p> This method returns a <a href="../canvasgradient"><code>CanvasGradient</code></a>. To be applied to a shape, the gradient must first be assigned to the <a href="fillstyle"><code>fillStyle</code></a> or <a href="strokestyle"><code>strokeStyle</code></a> properties. </p> <div class="notecard note" id="sect1"> <p> <strong>Note:</strong> Gradient coordinates are global, i.e., relative to the current coordinate space. When applied to a shape, the coordinates are NOT relative to the shape's coordinates. </p> </div>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="js"><span class="token function">createRadialGradient</span><span class="token punctuation">(</span>x0<span class="token punctuation">,</span> y0<span class="token punctuation">,</span> r0<span class="token punctuation">,</span> x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> r1<span class="token punctuation">)</span>
+</pre></div> <p> The <code>createRadialGradient()</code> method is specified by six parameters, three defining the gradient's start circle, and three defining the end circle. </p>
+</div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="x0"><code>x0</code></dt> <dd> <p>The x-axis coordinate of the start circle.</p> </dd> <dt id="y0"><code>y0</code></dt> <dd> <p>The y-axis coordinate of the start circle.</p> </dd> <dt id="r0"><code>r0</code></dt> <dd> <p>The radius of the start circle. Must be non-negative and finite.</p> </dd> <dt id="x1"><code>x1</code></dt> <dd> <p>The x-axis coordinate of the end circle.</p> </dd> <dt id="y1"><code>y1</code></dt> <dd> <p>The y-axis coordinate of the end circle.</p> </dd> <dt id="r1"><code>r1</code></dt> <dd> <p>The radius of the end circle. Must be non-negative and finite.</p> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><dl> <dt id="canvasgradient"><a href="../canvasgradient"><code>CanvasGradient</code></a></dt> <dd> <p>A radial <code>CanvasGradient</code> initialized with the two specified circles.</p> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+
+<h3 id="filling_a_rectangle_with_a_radial_gradient">Filling a rectangle with a radial gradient</h3>
+<div class="section-content">
+<p> This example initializes a radial gradient using the <code>createRadialGradient()</code> method. Three color stops between the gradient's two circles are then created. Finally, the gradient is assigned to the canvas context, and is rendered to a filled rectangle. </p> <h4 id="html">HTML</h4> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>200<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="javascript">JavaScript</h4> <div class="code-example"><pre data-language="js"><span class="token keyword">var</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a radial gradient</span>
+<span class="token comment">// The inner circle is at x=110, y=90, with radius=30</span>
+<span class="token comment">// The outer circle is at x=100, y=100, with radius=70</span>
+<span class="token keyword">var</span> gradient <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">createRadialGradient</span><span class="token punctuation">(</span><span class="token number">110</span><span class="token punctuation">,</span><span class="token number">90</span><span class="token punctuation">,</span><span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">,</span><span class="token number">70</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Add three color stops</span>
+gradient<span class="token punctuation">.</span><span class="token function">addColorStop</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'pink'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gradient<span class="token punctuation">.</span><span class="token function">addColorStop</span><span class="token punctuation">(</span><span class="token number">.9</span><span class="token punctuation">,</span> <span class="token string">'white'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gradient<span class="token punctuation">.</span><span class="token function">addColorStop</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Set the fill style and draw a rectangle</span>
+ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> gradient<span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">160</span><span class="token punctuation">,</span> <span class="token number">160</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div> <h4 id="result">Result</h4>
+<iframe class="sample-code-frame" title="Filling a rectangle with a radial gradient sample" id="frame_filling_a_rectangle_with_a_radial_gradient" width="700" height="240" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/createRadialGradient/_sample_.filling_a_rectangle_with_a_radial_gradient.html" loading="lazy"></iframe>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://html.spec.whatwg.org/multipage/canvas.html#dom-context-2d-createradialgradient-dev">HTML Standard <br><small># dom-context-2d-createradialgradient-dev</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createRadialGradient</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<h3 id="gecko-specific_notes">Gecko-specific notes</h3>
+<div class="section-content"><ul> <li> Starting with Gecko 2.0 (Firefox 4 / Thunderbird 3.3 / SeaMonkey 2.1), specifying non-finite values now throws <code>NOT_SUPPORTED_ERR</code> instead of <code>SYNTAX_ERR</code>. </li> <li> Starting with Gecko 5.0 (Firefox 5.0 / Thunderbird 5.0 / SeaMonkey 2.2), specifying a negative radius correctly throws <code>INDEX_SIZE_ERR</code>. </li> </ul></div>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>The interface defining this method: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> <li><a href="createlineargradient"><code>CanvasRenderingContext2D.createLinearGradient()</code></a></li> <li><a href="createconicgradient"><code>CanvasRenderingContext2D.createConicGradient()</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/canvasrenderingcontext2d/createradialgradient/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/canvasrenderingcontext2d/createradialgradient/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FCanvasRenderingContext2D%2FcreateRadialGradient&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fcanvasrenderingcontext2d%2Fcreateradialgradient%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FCanvasRenderingContext2D%2FcreateRadialGradient%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fcanvasrenderingcontext2d%2Fcreateradialgradient%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fb9ce868467556335456849a313579d25e35d6e6b%0A*+Document+last+modified%3A+2022-04-17T03%3A55%3A45.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-17T03:55:45.000Z">Apr 17, 2022</time>, <a href="createradialgradient/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createRadialGradient" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/createRadialGradient</a>
+  </p>
+</div>

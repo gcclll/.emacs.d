@@ -1,0 +1,74 @@
+<h1>lab()</h1>
+<div class="section-content">
+<div class="notecard experimental" id="sect1"><p><strong>Experimental:</strong> <strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Writing_guidelines/Experimental_deprecated_obsolete#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p></div> <p>The <code>lab()</code> functional notation expresses a given color in the CIE L*a*b* color space. Lab represents the entire range of color that humans can see.</p>
+</div>
+<section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token function">lab</span><span class="token punctuation">(</span>29.2345% 39.3825 20.0664<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">lab</span><span class="token punctuation">(</span>52.2345% 40.1645 59.9971<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">lab</span><span class="token punctuation">(</span>52.2345% 40.1645 59.9971 / .5<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content"><dl> <dt id="functional_notation">Functional notation: <code>lab(L a b [/ A])</code>
+</dt> <dd> <p><code>L</code> specifies the CIE Lightness, and is a <a href="../percentage"><code>&lt;percentage&gt;</code></a> between <code>0%</code> representing black and <code>100%</code> representing white.</p> <p>The second argument <code>a</code> is the distance along the <code>a</code> axis in the Lab colorspace.</p> <p>The third argument <code>b</code> is the distance along the <code>b</code> axis in the Lab colorspace.</p> <p><code>A</code> (alpha) can be a <a href="../number"><code>&lt;number&gt;</code></a> between <code>0</code> and <code>1</code>, or a <a href="../percentage"><code>&lt;percentage&gt;</code></a>, where the number <code>1</code> corresponds to <code>100%</code> (full opacity).</p> </dd> </dl></div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-color/#lab-colors">CSS Color Module Level 4 <br><small># lab-colors</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>lab</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/" rel=" noopener">LCH colors in CSS: what, why, and how?</a></li> <li>
+<a href="https://webkit.org/blog/11577/release-notes-for-safari-technology-preview-122/" rel=" noopener">Safari Technology Preview 122 release notes</a>: includes <code>lab()</code> and <a href="lch"><code>lch()</code></a> colors.</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/color_value/lab/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/color_value/lab/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fcolor_value%2Flab&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Fcolor_value%2Flab%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fcolor_value%2Flab%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fcolor_value%2Flab%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fa73a037fbfcd234219ca6e26b5762f6dc0a500ad%0A*+Document+last+modified:+2022-08-28T05:14:29.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-08-28T05:14:29.000Z">Aug 28, 2022</time>, <a href="lab/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab</a>
+  </p>
+</div>

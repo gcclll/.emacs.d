@@ -1,0 +1,114 @@
+<h1>MediaSource.isTypeSupported()</h1>
+<div class="section-content">
+<p> The <code>MediaSource.isTypeSupported()</code> static method returns a boolean value which is <code>true</code> if the given MIME type is <em>likely</em> to be supported by the current <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a>. </p> <p> That is, if it can successfully create <a href="../sourcebuffer"><code>SourceBuffer</code></a> objects for that MIME type. If the returned value is <code>false</code>, then the user agent is certain that it <em>cannot</em> access media of the specified format. </p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">isTypeSupported</span><span class="token punctuation">(</span>mimeType<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="mimetype"><code>mimeType</code></dt> <dd> <p> The MIME media type that you want to test support for in the current browser. This may include the <code>codecs</code> parameter to provide added details about the codecs used within the file. </p> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content">
+<p> A boolean value which is <code>true</code> if the browser feels that it can <em>probably</em> play media of the specified type. This is <em>not</em> a guarantee, however, and your code must be prepared for the possibility that the media will not play correctly if at all. A value of <code>false</code> is a guarantee that media of the given type will <em>not</em> play, however. </p> <p> All web APIs that work with media files use a "no/maybe/probably" approach (or, in this case, "no or probably") when determining if a media type can be used. This is because media files are complex, intricate constructs with far too many subtle variations to be absolutely certain of anything until you actually use the contents of the media. </p>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p>The following snippet is from an example written by Nick Desaulniers (<a href="https://nickdesaulniers.github.io/netfix/demo/bufferAll.html" rel=" noopener">view the full demo live</a>, or <a href="https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html" rel=" noopener">download the source</a> for further investigation.)</p> <div class="code-example"><pre data-language="js"><span class="token keyword">var</span> assetURL <span class="token operator">=</span> <span class="token string">'frag_bunny.mp4'</span><span class="token punctuation">;</span>
+<span class="token comment">// Need to be specific for Blink regarding codecs</span>
+<span class="token comment">// ./mp4info frag_bunny.mp4 | grep Codec</span>
+<span class="token keyword">var</span> mimeCodec <span class="token operator">=</span> <span class="token string">'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'MediaSource'</span> <span class="token keyword">in</span> window <span class="token operator">&amp;&amp;</span> MediaSource<span class="token punctuation">.</span><span class="token function">isTypeSupported</span><span class="token punctuation">(</span>mimeCodec<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> mediaSource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaSource</span><span class="token punctuation">;</span>
+  <span class="token comment">//console.log(mediaSource.readyState); // closed</span>
+  video<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>mediaSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  mediaSource<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'sourceopen'</span><span class="token punctuation">,</span> sourceOpen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Unsupported MIME type or codec: '</span><span class="token punctuation">,</span> mimeCodec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">sourceOpen</span> <span class="token punctuation">(</span><span class="token parameter">_</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//console.log(this.readyState); // open</span>
+  <span class="token keyword">var</span> mediaSource <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> sourceBuffer <span class="token operator">=</span> mediaSource<span class="token punctuation">.</span><span class="token function">addSourceBuffer</span><span class="token punctuation">(</span>mimeCodec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">fetchAB</span><span class="token punctuation">(</span>assetURL<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">buf</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    sourceBuffer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'updateend'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">_</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mediaSource<span class="token punctuation">.</span><span class="token function">endOfStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      video<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">//console.log(mediaSource.readyState); // ended</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sourceBuffer<span class="token punctuation">.</span><span class="token function">appendBuffer</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/media-source/#dom-mediasource-istypesupported">Media Source Extensions™ <br><small># dom-mediasource-istypesupported</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>isTypeSupported</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Only works on Windows 8+.</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>4.4.3</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>13</div>
+<div>Exposed in Mobile Safari on iPad but not on iPhone.</div>
+</td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../media_source_extensions_api">Media Source Extensions API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats">Guide to media types and formats on the web</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/codecs_parameter">The "codecs" parameter in common media types</a></li> <li><a href="../sourcebuffer"><code>SourceBuffer</code></a></li> <li><a href="../sourcebufferlist"><code>SourceBufferList</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/mediasource/istypesupported/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/mediasource/istypesupported/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMediaSource%2FisTypeSupported&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fmediasource%2Fistypesupported%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMediaSource%2FisTypeSupported%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fmediasource%2Fistypesupported%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fd5e7afe3009a7e3bddc699ae543169d770e1f439%0A*+Document+last+modified%3A+2022-04-20T04%3A52%3A04.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-20T04:52:04.000Z">Apr 20, 2022</time>, <a href="istypesupported/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/isTypeSupported" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/isTypeSupported</a>
+  </p>
+</div>

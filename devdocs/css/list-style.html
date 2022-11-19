@@ -1,0 +1,203 @@
+<h1>list-style</h1>
+<div class="section-content"><p>The <code>list-style</code> CSS <a href="shorthand_properties">shorthand property</a> allows you to set all the list style properties at once.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content">
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/list-style.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <div class="notecard note" id="sect1"> <p><strong>Note:</strong> This property is applied to list items, i.e., elements with <code><a href="display"><code>display</code></a>: list-item;</code> . <a href="https://html.spec.whatwg.org/multipage/rendering.html#lists" rel=" noopener">By default</a> this includes <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li"><code>&lt;li&gt;</code></a> elements. Because this property is inherited, it can be set on a parent element (normally <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol"><code>&lt;ol&gt;</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><code>&lt;ul&gt;</code></a>) to make the same list styling apply to all the items inside.</p> </div>
+</div></section><section aria-labelledby="constituent_properties"><h2 id="constituent_properties">Constituent properties</h2>
+<div class="section-content">
+<p>This property is a shorthand for the following CSS properties:</p> <ul> <li><a href="list-style-image"><code>list-style-image</code></a></li> <li><a href="list-style-position"><code>list-style-position</code></a></li> <li><a href="list-style-type"><code>list-style-type</code></a></li> </ul>
+</div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token comment">/* type */</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> square<span class="token punctuation">;</span>
+
+<span class="token comment">/* image */</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'../img/shape.png'</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">/* position */</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> inside<span class="token punctuation">;</span>
+
+<span class="token comment">/* type | position */</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> georgian inside<span class="token punctuation">;</span>
+
+<span class="token comment">/* type | image | position */</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> lower-roman <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'../img/shape.png'</span><span class="token punctuation">)</span></span> outside<span class="token punctuation">;</span>
+
+<span class="token comment">/* Keyword value */</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> revert-layer<span class="token punctuation">;</span>
+<span class="token property">list-style</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre></div> <p>The <code>list-style</code> property is specified as one, two, or three keywords in any order. If <a href="list-style-type"><code>list-style-type</code></a> and <a href="list-style-image"><code>list-style-image</code></a> are both set, then <code>list-style-type</code> is used as a fallback if the image is unavailable.</p>
+</div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content"><dl> <dt id="list-style-type"><a href="list-style-type"><code>list-style-type</code></a></dt> <dd> <p>See <a href="list-style-type"><code>list-style-type</code></a>.</p> </dd> <dt id="list-style-image"><a href="list-style-image"><code>list-style-image</code></a></dt> <dd> <p>See <a href="list-style-image"><code>list-style-image</code></a>.</p> </dd> <dt id="list-style-position"><a href="list-style-position"><code>list-style-position</code></a></dt> <dd> <p>See <a href="list-style-position"><code>list-style-position</code></a>.</p> </dd> <dt id="none"><code>none</code></dt> <dd> <p>No list style is used.</p> </dd> </dl></div></section><section aria-labelledby="accessibility_concerns"><h2 id="accessibility_concerns">Accessibility concerns</h2>
+<div class="section-content">
+<p>In a notable exception, Safari will not recognize an unordered list as a list in the accessibility tree if has a <code>list-style</code> value of <code>none</code>.</p> <p>The most straightforward way to address this is to add an explicit <code>role="list"</code> to the <code>&lt;ul&gt;</code> element in the markup. This will restore the list semantics without affecting the design.</p> <p>CSS-only workarounds are also available for those who do not have access to the markup. One is to add a <a href="https://en.wikipedia.org/wiki/Zero-width_space" rel=" noopener">zero-width space</a> as <a href="content">pseudo-content</a> before each list item:</p> <div class="code-example"><pre data-language="css"><span class="token selector">ul</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul li::before</span> <span class="token punctuation">{</span>
+  <span class="token property">content</span><span class="token punctuation">:</span> <span class="token string">"\200B"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <p>A second approach is to apply a url value to the list-style property:</p> <div class="code-example"><pre data-language="css"><span class="token selector">nav ol, nav ul</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* becomes */</span>
+
+<span class="token selector">nav ol, nav ul</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <p>These CSS workarounds should be used only when the HTML solution is not available, and only after testing to ensure that they don't result in unexpected behaviors that may negatively impact users' experiences.</p> <ul> <li><a href="https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html" rel=" noopener">'Fixing' Lists</a></li> <li><a href="https://gerardkcohen.me/writing/2017/voiceover-list-style-type.html" rel=" noopener">VoiceOver and list-style-type: none</a></li> <li><a href="#">MDN Understanding WCAG, Guideline 1.3 explanations</a></li> <li><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html" rel=" noopener">Understanding Success Criterion 1.3.1 | W3C Understanding WCAG 2.0</a></li> </ul>
+</div></section><section aria-labelledby="formal_definition"><h2 id="formal_definition">Formal definition</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td>as each of the properties of the shorthand:<br><ul>
+<li>
+<a href="list-style-type"><code>list-style-type</code></a>: <code>disc</code>
+</li>
+<li>
+<a href="list-style-position"><code>list-style-position</code></a>: <code>outside</code>
+</li>
+<li>
+<a href="list-style-image"><code>list-style-image</code></a>: <code>none</code>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>list items</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>yes</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as each of the properties of the shorthand:<br><ul>
+<li>
+<a href="list-style-image"><code>list-style-image</code></a>: </li>
+<li>
+<a href="list-style-position"><code>list-style-position</code></a>: as specified</li>
+<li>
+<a href="list-style-type"><code>list-style-type</code></a>: as specified</li>
+</ul>
+</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div></div></div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="list-style">list-style = </span><br>  <span class="token property">&lt;'list-style-position'&gt;</span>  <a href="value_definition_syntax#double_bar">||</a><br>  <span class="token property">&lt;'list-style-image'&gt;</span>     <a href="value_definition_syntax#double_bar">||</a><br>  <span class="token property">&lt;'list-style-type'&gt;</span>      <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="setting_list_style_type_and_position"><h3 id="setting_list_style_type_and_position">Setting list style type and position</h3>
+<div class="section-content">
+<h4 id="html">HTML</h4> <div class="code-example"><pre data-language="html">List 1
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>one<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>List Item1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>List Item2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>List Item3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+List 2
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>two<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>List Item A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>List Item B<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>List Item C<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="css">CSS</h4> <div class="code-example"><pre data-language="css"><span class="token selector">.one</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style</span><span class="token punctuation">:</span> circle<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.two</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style</span><span class="token punctuation">:</span> square inside<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <h4 id="result">Result</h4>
+<iframe class="sample-code-frame" title="Setting list style type and position sample" id="frame_setting_list_style_type_and_position" width="auto" height="220" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/list-style/_sample_.setting_list_style_type_and_position.html" loading="lazy"></iframe>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-lists/#list-style-property">CSS Lists and Counters Module Level 3 <br><small># list-style-property</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>list-style</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>symbols</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>
+<a href="list-style-type"><code>list-style-type</code></a>, <a href="list-style-image"><code>list-style-image</code></a>, <a href="list-style-position"><code>list-style-position</code></a>
+</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/list-style/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/list-style/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Flist-style&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Flist-style%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Flist-style%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Flist-style%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fba8194486e3e267c52e0abd9b9b5c3aa78262f25%0A*+Document+last+modified:+2022-05-13T05:22:00.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-05-13T05:22:00.000Z">May 13, 2022</time>, <a href="list-style/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/list-style" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/list-style</a>
+  </p>
+</div>

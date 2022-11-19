@@ -1,0 +1,83 @@
+<h1>WorkerNavigator.hardwareConcurrency</h1>
+<div class="section-content"><p> The <code>navigator.hardwareConcurrency</code> read-only property returns the number of logical processors available to run threads on the user's computer. </p></div>
+<h2 id="value">Value</h2>
+<div class="section-content">
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> indicating the number of logical processor cores.</p> <p> Modern computers have multiple physical processor cores in their CPU (two or four cores is typical), but each physical core is also usually able to run more than one thread at a time using advanced scheduling techniques. So a four-core CPU may offer eight <strong>logical processor cores</strong>, for example. The number of logical processor cores can be used to measure the number of threads which can effectively be run at once without them having to context switch. </p> <p> The browser may, however, choose to report a lower number of logical cores in order to represent more accurately the number of <a href="../worker"><code>Worker</code></a>s that can run at once, so don't treat this as an absolute measurement of the number of cores in the user's system. </p>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p> In this example, one <a href="../worker"><code>Worker</code></a> is created for each logical processor reported by the browser and a record is created which includes a reference to the new worker as well as a Boolean value indicating whether or not we're using that worker yet; these objects are, in turn, stored into an array for later use. This creates a pool of workers we can use to process requests later. </p> <p>The following code can be run in a worker:</p> <div class="code-example"><pre data-language="js"><span class="token keyword">let</span> workerList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> navigator<span class="token punctuation">.</span>hardwareConcurrency<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> newWorker <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">worker</span><span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">'cpuworker.js'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">inUse</span><span class="token operator">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  workerList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>newWorker<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://html.spec.whatwg.org/multipage/workers.html#dom-navigator-hardwareconcurrency-dev">HTML Standard <br><small># dom-navigator-hardwareconcurrency-dev</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>hardwareConcurrency</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-no"><div>10.1-11</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-no"><div>10.3-11</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../workernavigator"><code>WorkerNavigator</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/workernavigator/hardwareconcurrency/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/workernavigator/hardwareconcurrency/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWorkerNavigator%2FhardwareConcurrency&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fworkernavigator%2Fhardwareconcurrency%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWorkerNavigator%2FhardwareConcurrency%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fworkernavigator%2Fhardwareconcurrency%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fb3715b378f376716751bc3ece349b58173dff42d%0A*+Document+last+modified%3A+2022-04-02T04%3A34%3A47.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-02T04:34:47.000Z">Apr 2, 2022</time>, <a href="hardwareconcurrency/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WorkerNavigator/hardwareConcurrency" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WorkerNavigator/hardwareConcurrency</a>
+  </p>
+</div>

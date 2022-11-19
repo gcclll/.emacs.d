@@ -1,0 +1,74 @@
+<h1>sepia()</h1>
+<div class="section-content"><p>The <code>sepia()</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="../css_functions">function</a> converts the input image to sepia, giving it a warmer, more yellow/brown appearance. Its result is a <a href="../filter-function"><code>&lt;filter-function&gt;</code></a>.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/function-sepia.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token function">sepia</span><span class="token punctuation">(</span>amount<span class="token punctuation">)</span>
+</pre></div></div></section><section aria-labelledby="parameters"><h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="amount"><code>amount</code></dt> <dd> <p>The amount of the conversion, specified as a <a href="../number"><code>&lt;number&gt;</code></a> or a <a href="../percentage"><code>&lt;percentage&gt;</code></a>. A value of <code>100%</code> is completely sepia, while a value of <code>0%</code> leaves the input unchanged. Values between <code>0%</code> and <code>100%</code> are linear multipliers on the effect. The initial value for <a href="https://developer.mozilla.org/en-US/docs/Glossary/Interpolation">interpolation</a> is <code>0</code>.</p> </dd> </dl></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="examples_of_correct_values_for_sepia"><h3 id="examples_of_correct_values_for_sepia">Examples of correct values for sepia()</h3>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token function">sepia</span><span class="token punctuation">(</span>0<span class="token punctuation">)</span>     <span class="token comment">/* No effect */</span>
+<span class="token function">sepia</span><span class="token punctuation">(</span>.65<span class="token punctuation">)</span>   <span class="token comment">/* 65% sepia */</span>
+<span class="token function">sepia</span><span class="token punctuation">(</span>100%<span class="token punctuation">)</span>  <span class="token comment">/* Completely sepia */</span>
+</pre></div></div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.fxtf.org/filter-effects/#funcdef-filter-sepia">Filter Effects Module Level 2 <br><small># funcdef-filter-sepia</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>sepia</code></th>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../filter-function"><code>&lt;filter-function&gt;</code></a></li> <li><a href="blur"><code>blur()</code></a></li> <li><a href="brightness"><code>brightness()</code></a></li> <li><a href="contrast"><code>contrast()</code></a></li> <li><a href="drop-shadow"><code>drop-shadow()</code></a></li> <li><a href="grayscale"><code>grayscale()</code></a></li> <li><a href="hue-rotate"><code>hue-rotate()</code></a></li> <li><a href="invert"><code>invert()</code></a></li> <li><a href="opacity"><code>opacity()</code></a></li> <li><a href="saturate"><code>saturate()</code></a></li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/filter-function/sepia/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/filter-function/sepia/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Ffilter-function%2Fsepia&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Ffilter-function%2Fsepia%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Ffilter-function%2Fsepia%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Ffilter-function%2Fsepia%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fad2a3a261ed0e4b9703213af6982167bc4aaa199%0A*+Document+last+modified:+2022-04-28T02:18:42.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-28T02:18:42.000Z">Apr 28, 2022</time>, <a href="sepia/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/sepia" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/filter-function/sepia</a>
+  </p>
+</div>

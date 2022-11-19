@@ -1,0 +1,105 @@
+<h1>Blob.slice()</h1>
+<div class="section-content"><p> The <a href="../blob"><code>Blob</code></a> interface's <code>slice()</code> method creates and returns a new <code>Blob</code> object which contains data from a subset of the blob on which it's called. </p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">slice</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>start<span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> end<span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> end<span class="token punctuation">,</span> contentType<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="start">
+<code>start</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> An index into the <a href="../blob"><code>Blob</code></a> indicating the first byte to include in the new <a href="../blob"><code>Blob</code></a>. If you specify a negative value, it's treated as an offset from the end of the <a href="../blob"><code>Blob</code></a> toward the beginning. For example, -10 would be the 10th from last byte in the <a href="../blob"><code>Blob</code></a>. The default value is 0. If you specify a value for <code>start</code> that is larger than the size of the source <a href="../blob"><code>Blob</code></a>, the returned <a href="../blob"><code>Blob</code></a> has size 0 and contains no data. </p> </dd> <dt id="end">
+<code>end</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> An index into the <a href="../blob"><code>Blob</code></a> indicating the first byte that will *not* be included in the new <a href="../blob"><code>Blob</code></a> (i.e. the byte exactly at this index is not included). If you specify a negative value, it's treated as an offset from the end of the <a href="../blob"><code>Blob</code></a> toward the beginning. For example, -10 would be the 10th from last byte in the <a href="../blob"><code>Blob</code></a>. The default value is <code>size</code>. </p> </dd> <dt id="contenttype">
+<code>contentType</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> The content type to assign to the new <a href="../blob"><code>Blob</code></a>; this will be the value of its <code>type</code> property. The default value is an empty string. </p> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><p> A new <a href="../blob"><code>Blob</code></a> object containing the specified subset of the data contained within the blob on which this method was called. The original blob is not altered. </p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/FileAPI/#dfn-slice">File API <br><small># dfn-slice</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>slice</code></th>
+<td class="bc-supports-yes">
+<div>21</div>
+<div>5-25</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>13</div>
+<div>Before Firefox 12, there was a bug that affected the behavior of <code>Blob.slice()</code>; it did not work for <code>start</code> and <code>end</code> positions outside the range of signed 64-bit values; it has now been fixed to support unsigned 64-bit values.</div>
+<div>5-13</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>6-7</div>
+</td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>18-25</div>
+</td>
+<td class="bc-supports-yes">
+<div>14</div>
+<div>Before Firefox 12, there was a bug that affected the behavior of <code>Blob.slice()</code>; it did not work for <code>start</code> and <code>end</code> positions outside the range of signed 64-bit values; it has now been fixed to support unsigned 64-bit values.</div>
+<div>5-14</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>6-7</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.0-1.5</div>
+</td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../blob"><code>Blob</code></a></li> <li><a href="../file/using_files_from_web_applications">Using files from web applications</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/blob/slice/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/blob/slice/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FBlob%2Fslice&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fblob%2Fslice%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FBlob%2Fslice%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fblob%2Fslice%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F8a27b1d996de03a8cb687d8b5a0fd9fb04f2ab8d%0A*+Document+last+modified%3A+2022-04-16T05%3A53%3A55.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-16T05:53:55.000Z">Apr 16, 2022</time>, <a href="slice/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Blob/slice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Blob/slice</a>
+  </p>
+</div>

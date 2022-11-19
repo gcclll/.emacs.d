@@ -1,0 +1,240 @@
+<h1>white-space</h1>
+<div class="section-content"><p>The <code>white-space</code> CSS property sets how <a href="https://developer.mozilla.org/en-US/docs/Glossary/Whitespace">white space</a> inside an element is handled.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content">
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/white-space.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>The property specifies two things:</p> <ul> <li>Whether and how white space is <a href="#collapsing_of_white_space">collapsed</a>.</li> <li>Whether lines may wrap at soft-wrap opportunities.</li> </ul> <div class="notecard note" id="sect1"> <p><strong>Note:</strong> To make words break <em>within themselves</em>, use <a href="overflow-wrap"><code>overflow-wrap</code></a>, <a href="word-break"><code>word-break</code></a>, or <a href="hyphens"><code>hyphens</code></a> instead.</p> </div>
+</div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> nowrap<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> pre<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> pre-wrap<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> pre-line<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> break-spaces<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> revert-layer<span class="token punctuation">;</span>
+<span class="token property">white-space</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre></div> <p>The <code>white-space</code> property is specified as a single keyword chosen from the list of values below.</p>
+</div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content">
+<dl> <dt id="normal"><code>normal</code></dt> <dd> <p>Sequences of white space are <a href="#collapsing_of_white_space">collapsed</a>. Newline characters in the source are handled the same as other white space. Lines are broken as necessary to fill line boxes.</p> </dd> <dt id="nowrap"><code>nowrap</code></dt> <dd> <p><a href="#collapsing_of_white_space">Collapses</a> white space as for <code>normal</code>, but suppresses line breaks (text wrapping) within the source.</p> </dd> <dt id="pre"><code>pre</code></dt> <dd> <p>Sequences of white space are preserved. Lines are only broken at newline characters in the source and at <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br"><code>&lt;br&gt;</code></a> elements.</p> </dd> <dt id="pre-wrap"><code>pre-wrap</code></dt> <dd> <p>Sequences of white space are preserved. Lines are broken at newline characters, at <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br"><code>&lt;br&gt;</code></a>, and as necessary to fill line boxes.</p> </dd> <dt id="pre-line"><code>pre-line</code></dt> <dd> <p>Sequences of white space are <a href="#collapsing_of_white_space">collapsed</a>. Lines are broken at newline characters, at <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br"><code>&lt;br&gt;</code></a>, and as necessary to fill line boxes.</p> </dd> <dt id="break-spaces"><code>break-spaces</code></dt> <dd> <p>The behavior is identical to that of <code>pre-wrap</code>, except that:</p> <ul> <li>Any sequence of preserved white space always takes up space, including at the end of the line.</li> <li>A line breaking opportunity exists after every preserved white space character, including between white space characters.</li> <li>Such preserved spaces take up space and do not hang, and thus affect the box's intrinsic sizes (min-content size and max-content size).</li> </ul> </dd> </dl> <p>The following table summarizes the behavior of the various <code>white-space</code> values:</p> <div class="table-scroll"><div class="_table"><table class="standard-table"> <thead> <tr> <th></th> <th>New lines</th> <th>Spaces and tabs</th> <th>Text wrapping</th> <th>End-of-line spaces</th> <th>End-of-line other space separators</th> </tr> </thead> <tbody> <tr> <th><code>normal</code></th> <td>Collapse</td> <td>Collapse</td> <td>Wrap</td> <td>Remove</td> <td>Hang</td> </tr> <tr> <th><code>nowrap</code></th> <td>Collapse</td> <td>Collapse</td> <td>No wrap</td> <td>Remove</td> <td>Hang</td> </tr> <tr> <th><code>pre</code></th> <td>Preserve</td> <td>Preserve</td> <td>No wrap</td> <td>Preserve</td> <td>No wrap</td> </tr> <tr> <th><code>pre-wrap</code></th> <td>Preserve</td> <td>Preserve</td> <td>Wrap</td> <td>Hang</td> <td>Hang</td> </tr> <tr> <th><code>pre-line</code></th> <td>Preserve</td> <td>Collapse</td> <td>Wrap</td> <td>Remove</td> <td>Hang</td> </tr> <tr> <th><code>break-spaces</code></th> <td>Preserve</td> <td>Preserve</td> <td>Wrap</td> <td>Wrap</td> <td>Wrap</td> </tr> </tbody> </table></div></div> <div class="notecard note" id="sect2"> <p><strong>Note:</strong> There is a distinction made between <strong>spaces</strong> and <strong>other space separators</strong>. These are defined as follows:</p> <dl> <dt id="spaces">spaces</dt> <dd> <p>Spaces (U+0020), tabs (U+0009), and segment breaks (such as newlines).</p> </dd> <dt id="other_space_separators">other space separators</dt> <dd> <p>All other space separators defined in Unicode, other than those already defined as spaces.</p> </dd> </dl> <p>Where white space is said to <em>hang</em>, this can affect the size of the box when measured for intrinsic sizing.</p> </div>
+</div></section><section aria-labelledby="collapsing_of_white_space"><h2 id="collapsing_of_white_space">Collapsing of white space</h2>
+<div class="section-content"><p>The CSS Text specification contains a <a href="https://drafts.csswg.org/css-text-3/#white-space-phase-1" rel=" noopener">Collapsing and Transformation</a> section that precisely defines what "white space is collapsed" means, including an example with an illustration. Usually, it means reducing sequences of multiple white-space characters down to a single space character — though in some cases it means reducing them to no character (the empty string).</p></div></section><section aria-labelledby="formal_definition"><h2 id="formal_definition">Formal definition</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>normal</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>yes</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div></div></div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="white-space">white-space = </span><br>  <span class="token keyword">normal</span>        <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">pre</span>           <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">nowrap</span>        <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">pre-wrap</span>      <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">break-spaces</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">pre-line</span>      <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="basic_example"><h3 id="basic_example">Basic example</h3>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token selector">code</span> <span class="token punctuation">{</span>
+  <span class="token property">white-space</span><span class="token punctuation">:</span> pre<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div></div></section><section aria-labelledby="line_breaks_inside_pre_elements"><h3 id="line_breaks_inside_pre_elements">Line breaks inside &lt;pre&gt; elements</h3>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token selector">pre</span> <span class="token punctuation">{</span>
+  <span class="token property">white-space</span><span class="token punctuation">:</span> pre-wrap<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div></div></section><section aria-labelledby="in_action"><h3 id="in_action">In action</h3>
+<div class="section-content">
+<h4 id="html">HTML</h4>    <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="result">Result</h4>
+<iframe class="sample-code-frame" title="In action sample" id="frame_in_action" width="100%" height="500" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/white-space/_sample_.in_action.html" loading="lazy"></iframe>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-text/#white-space-property">CSS Text Module Level 3 <br><small># white-space-property</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>white-space</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>break-spaces</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>nowrap</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>pre</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>pre-line</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>9.5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>pre-wrap</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>1-3.6</div>
+</td>
+<td class="bc-supports-yes">
+<div>8</div>
+<div>From Internet Explorer 5.5 to 7, <code>word-wrap: break-word;</code> can be used for line breaks in <code>pre</code> elements.</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>svg_support</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>12-79</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>textarea_support</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>Properties that define how words break <em>within themselves</em>: <a href="overflow-wrap"><code>overflow-wrap</code></a>, <a href="word-break"><code>word-break</code></a>, <a href="hyphens"><code>hyphens</code></a>
+</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/white-space/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/white-space/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fwhite-space&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Fwhite-space%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fwhite-space%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fwhite-space%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F6d697b8a86ea3ce1bf82615c5dc006aeaa22d90b%0A*+Document+last+modified:+2022-08-09T09:59:30.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-08-09T09:59:30.000Z">Aug 9, 2022</time>, <a href="white-space/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/white-space</a>
+  </p>
+</div>

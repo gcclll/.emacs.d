@@ -1,0 +1,124 @@
+<h1>RegExp.prototype[@@match]()</h1>
+<div class="section-content"><p>The <code>[@@match]()</code> method of a regular expression specifies how <a href="../string/match"><code>String.prototype.match()</code></a> should behave. In addition, its presence (or absence) can influence whether an object is regarded as a regular expression.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-js-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/js/regexp-prototype-@@match.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js">regexp<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>match<span class="token punctuation">]</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span>
+</pre></div></div></section><section aria-labelledby="parameters"><h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="str"><code>str</code></dt> <dd> <p>A <a href="../string"><code>String</code></a> that is a target of the match.</p> </dd> </dl></div></section><section aria-labelledby="return_value"><h3 id="return_value">Return value</h3>
+<div class="section-content">
+<p>An <a href="../array"><code>Array</code></a> whose contents depend on the presence or absence of the global (<code>g</code>) flag, or <a href="../../operators/null"><code>null</code></a> if no matches are found.</p> <ul> <li>If the <code>g</code> flag is used, all results matching the complete regular expression will be returned, but capturing groups are not included.</li> <li>If the <code>g</code> flag is not used, only the first complete match and its related capturing groups are returned. In this case, <code>match()</code> will return the same result as <a href="exec"><code>RegExp.prototype.exec()</code></a> (an array with some extra properties).</li> </ul>
+</div></section><section aria-labelledby="description"><h2 id="description">Description</h2>
+<div class="section-content">
+<p>This method is called internally in <a href="../string/match"><code>String.prototype.match()</code></a>.</p> <p>For example, the following two examples return same result.</p> <div class="code-example"><pre data-language="js"><span class="token string">'abc'</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">a</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">/</span>a<span class="token operator">/</span><span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>match<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token string">'abc'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div> <p>If the regex is global (with the <code>g</code> flag), the regex's <a href="exec"><code>exec()</code></a> method will be repeatedly called until <code>exec()</code> returns <code>null</code>. Otherwise, <code>exec()</code> would only be called once and its result becomes the return value of <code>@@match</code>.</p> <p>Because <code>@@match</code> would keep calling <code>exec()</code> until it returns <code>null</code>, and <code>exec()</code> would automatically reset the regex's <a href="lastindex"><code>lastIndex</code></a> to 0 when the last match fails, <code>@@match</code> would typically not have side effects when it exits. However, when the regex is <a href="sticky">sticky</a> but not global, <code>lastIndex</code> would not be reset. In this case, each call to <code>match()</code> may return a different result.</p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> re <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex"><span class="token char-class"><span class="token char-class-punctuation punctuation">[</span>abc<span class="token char-class-punctuation punctuation">]</span></span></span><span class="token regex-delimiter">/</span><span class="token regex-flags">y</span></span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"abc"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>re<span class="token punctuation">)</span><span class="token punctuation">,</span> re<span class="token punctuation">.</span>lastIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// [ 'a' ] 1</span>
+<span class="token comment">// [ 'b' ] 2</span>
+<span class="token comment">// [ 'c' ] 3</span>
+<span class="token comment">// null 0</span>
+<span class="token comment">// [ 'a' ] 1</span>
+</pre></div> <p>When the regex is sticky and global, it would still perform sticky matches — i.e. it would fail to match any occurrences beyond the <code>lastIndex</code>.</p> <div class="code-example"><pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"ab-c"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex"><span class="token char-class"><span class="token char-class-punctuation punctuation">[</span>abc<span class="token char-class-punctuation punctuation">]</span></span></span><span class="token regex-delimiter">/</span><span class="token regex-flags">gy</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [ 'a', 'b' ]</span>
+</pre></div> <p>If the current match is an empty string, the <code>lastIndex</code> would still be advanced — if the regex has the <a href="unicode"><code>u</code></a> flag, it would advance by one Unicode codepoint; otherwise, it advances by one UTF-16 code unit.</p> <div class="code-example"><pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"😄"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex"><span class="token group punctuation">(?:</span><span class="token group punctuation">)</span></span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [ '', '', '' ]</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"😄"</span><span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex"><span class="token group punctuation">(?:</span><span class="token group punctuation">)</span></span><span class="token regex-delimiter">/</span><span class="token regex-flags">gu</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [ '', '' ]</span>
+</pre></div> <p>This method exists for customizing match behavior within <code>RegExp</code> subclasses.</p> <p>In addition, the <code>@@match</code> property is used to check <a href="../regexp#special_handling_for_regexes">whether an object is a regular expression</a>.</p>
+</div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="direct_call"><h3 id="direct_call">Direct call</h3>
+<div class="section-content">
+<p>This method can be used in <em>almost</em> the same way as <a href="../string/match"><code>String.prototype.match()</code></a>, except the different <code>this</code> and the different arguments order.</p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> re <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex"><span class="token char-class"><span class="token char-class-punctuation punctuation">[</span><span class="token range">0<span class="token range-punctuation operator">-</span>9</span><span class="token char-class-punctuation punctuation">]</span></span><span class="token quantifier number">+</span></span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'2016-01-02'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> result <span class="token operator">=</span> re<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>match<span class="token punctuation">]</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// ["2016", "01", "02"]</span>
+</pre></div>
+</div></section><section aria-labelledby="using_match_in_subclasses"><h3 id="using_match_in_subclasses">Using @@match in subclasses</h3>
+<div class="section-content">
+<p>Subclasses of <a href="../regexp"><code>RegExp</code></a> can override the <code>[@@match]()</code> method to modify the default behavior.</p> <div class="code-example"><pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">MyRegExp</span> <span class="token keyword">extends</span> <span class="token class-name">RegExp</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>match<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token parameter">str</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token class-name">RegExp</span><span class="token punctuation">.</span>prototype<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>match<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>result<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      <span class="token function">group</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> result<span class="token punctuation">[</span>n<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> re <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyRegExp</span><span class="token punctuation">(</span><span class="token string">'([0-9]+)-([0-9]+)-([0-9]+)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'2016-01-02'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> result <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>re<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// String.prototype.match calls re[@@match].</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2016</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 01</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span><span class="token function">group</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 02</span>
+</pre></div>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/multipage/text-processing.html#sec-regexp.prototype-@@match">ECMAScript Language Specification <br><small># sec-regexp.prototype-@@match</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+<th colspan="2">Server</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+<th>Deno</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>@@match</code></th>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>6.0.0</div></td>
+</tr></tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://github.com/zloirock/core-js#ecmascript-string-and-regexp" rel=" noopener">Polyfill of <code>RegExp.prototype[@@match]</code> in <code>core-js</code></a></li> <li><a href="../string/match"><code>String.prototype.match()</code></a></li> <li><a href="@@replace"><code>RegExp.prototype[@@replace]()</code></a></li> <li><a href="@@search"><code>RegExp.prototype[@@search]()</code></a></li> <li><a href="@@split"><code>RegExp.prototype[@@split]()</code></a></li> <li><a href="exec"><code>RegExp.prototype.exec()</code></a></li> <li><a href="test"><code>RegExp.prototype.test()</code></a></li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/javascript/reference/global_objects/regexp/@@match/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/javascript/reference/global_objects/regexp/@@match/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FRegExp%2F@@match&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Fregexp%2F@@match%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FRegExp%2F@@match%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Fregexp%2F@@match%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F3fe8522d9432bd9bf068b937292a3f7499b461af%0A*+Document+last+modified%3A+2022-09-04T06%3A52%3A23.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-09-04T06:52:23.000Z">Sep 4, 2022</time>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/@@match/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/@@match" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/@@match</a>
+  </p>
+</div>

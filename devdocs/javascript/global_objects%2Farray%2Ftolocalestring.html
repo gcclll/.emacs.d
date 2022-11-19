@@ -1,0 +1,143 @@
+<h1>Array.prototype.toLocaleString()</h1>
+<div class="section-content"><p> The <code>toLocaleString()</code> method returns a string representing the elements of the array. The elements are converted to Strings using their <code>toLocaleString</code> methods and these Strings are separated by a locale-specific String (such as a comma ","). </p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-tolocalestring.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">toLocaleString</span><span class="token punctuation">(</span>locales<span class="token punctuation">)</span>
+<span class="token function">toLocaleString</span><span class="token punctuation">(</span>locales<span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+</pre></div></div></section><section aria-labelledby="parameters"><h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="locales">
+<code>locales</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>A string with a BCP 47 language tag, or an array of such strings. For the general form and interpretation of the <code>locales</code> argument, see <a href="../intl#locale_identification_and_negotiation">Locale identification and negotiation</a>.</p> </dd> <dt id="options">
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An object with configuration properties. For numbers, see <a href="../number/tolocalestring"><code>Number.prototype.toLocaleString()</code></a>; for dates, see <a href="../date/tolocalestring"><code>Date.prototype.toLocaleString()</code></a>.</p> </dd> </dl></div></section><section aria-labelledby="return_value"><h3 id="return_value">Return value</h3>
+<div class="section-content"><p>A string representing the elements of the array.</p></div></section><section aria-labelledby="description"><h2 id="description">Description</h2>
+<div class="section-content"><p>The <code>Array.prototype.toLocaleString</code> method traverses its content, calling the <code>toLocaleString</code> method of every element with the <code>locales</code> and <code>options</code> parameters provided, and concatenates them with a implementation-defined separator (such as a comma ","). Note that the method itself does not consume the two parameters — it only passes them to the <code>toLocaleString()</code> of each element. The choice of the separator string depends on the host's current locale, not the <code>locales</code> parameter.</p></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="using_locales_and_options"><h3 id="using_locales_and_options">Using locales and options</h3>
+<div class="section-content">
+<p> The elements of the array are converted to strings using their <code>toLocaleString</code> methods. </p> <ul> <li>
+<code>Object</code>: <a href="../object/tolocalestring"><code>Object.prototype.toLocaleString()</code></a>
+</li> <li>
+<code>Number</code>: <a href="../number/tolocalestring"><code>Number.prototype.toLocaleString()</code></a>
+</li> <li>
+<code>Date</code>: <a href="../date/tolocalestring"><code>Date.prototype.toLocaleString()</code></a>
+</li> </ul> <p> Always display the currency for the strings and numbers in the <code>prices</code> array: </p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> prices <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'￥7'</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">,</span> <span class="token number">8123</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+prices<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token string">'ja-JP'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token literal-property property">style</span><span class="token operator">:</span> <span class="token string">'currency'</span><span class="token punctuation">,</span> <span class="token literal-property property">currency</span><span class="token operator">:</span> <span class="token string">'JPY'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// "￥7,￥500,￥8,123,￥12"</span>
+</pre></div> <p>For more examples, see also the <a href="../intl/numberformat"><code>Intl.NumberFormat</code></a> and <a href="../intl/datetimeformat"><code>Intl.DateTimeFormat</code></a> pages.</p>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody>
+<tr><td><a href="https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.tolocalestring">ECMAScript Language Specification <br><small># sec-array.prototype.tolocalestring</small></a></td></tr>
+<tr><td><a href="https://tc39.es/ecma402/#sup-array.prototype.tolocalestring">ECMAScript Internationalization API Specification <br><small># sup-array.prototype.tolocalestring</small></a></td></tr>
+</tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+<th colspan="2">Server</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+<th>Deno</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>toLocaleString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>locales_parameter</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+<td class="bc-supports-yes">
+<div>1.8</div>
+<div>1.0-1.8</div>
+<div>Only the locale data for <code>en-US</code> is available.</div>
+</td>
+<td class="bc-supports-yes">
+<div>13.0.0</div>
+<div>0.12.0</div>
+<div>Before version 13.0.0, only the locale data for <code>en-US</code> is available by default. When other locales are specified, the function silently falls back to <code>en-US</code>. To make full ICU (locale) data available before version 13, see <a href="https://nodejs.org/docs/latest/api/intl.html#intl_options_for_building_node_js">Node.js documentation on the <code>--with-intl</code> option</a> and how to provide the data.</div>
+</td>
+</tr>
+<tr>
+<th><code>options_parameter</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.12.0</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="tostring"><code>Array.prototype.toString()</code></a></li> <li><a href="../intl"><code>Intl</code></a></li> <li><a href="../object/tolocalestring"><code>Object.prototype.toLocaleString()</code></a></li> <li><a href="../number/tolocalestring"><code>Number.prototype.toLocaleString()</code></a></li> <li><a href="../date/tolocalestring"><code>Date.prototype.toLocaleString()</code></a></li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/javascript/reference/global_objects/array/tolocalestring/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/javascript/reference/global_objects/array/tolocalestring/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FArray%2FtoLocaleString&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Farray%2Ftolocalestring%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FArray%2FtoLocaleString%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Farray%2Ftolocalestring%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F71576a92c3c835c1ffea4fd2150beb7dbb1e2553%0A*+Document+last+modified%3A+2022-09-03T02%3A25%3A09.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-09-03T02:25:09.000Z">Sep 3, 2022</time>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toLocaleString</a>
+  </p>
+</div>

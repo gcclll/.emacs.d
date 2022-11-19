@@ -1,0 +1,31 @@
+<h1>EcdhKeyDeriveParams</h1>
+<div class="section-content">
+<p>The <code>EcdhKeyDeriveParams</code> dictionary of the <a href="web_crypto_api">Web Crypto API</a> represents the object that should be passed as the <code>algorithm</code> parameter into <a href="subtlecrypto/derivekey"><code>SubtleCrypto.deriveKey()</code></a>, when using the <a href="subtlecrypto/derivekey#ecdh">ECDH</a> algorithm.</p> <p>ECDH enables two people who each have a key pair consisting of a public and a private key to derive a shared secret. They exchange public keys and use the combination of their private key and the other entity's public key to derive a secret key that they — and no one else — share.</p> <p>The parameters for ECDH <code>deriveKey()</code> therefore include the other entity's public key, which is combined with this entity's private key to derive the shared secret.</p>
+</div>
+<h2 id="properties">Properties</h2>
+<div class="section-content"><dl> <dt id="name"><code>name</code></dt> <dd> <p>A <a href="domstring"><code>DOMString</code></a>. This should be set to <code>ECDH</code>.</p> </dd> <dt id="public"><code>public</code></dt> <dd> <p>A <a href="cryptokey"><code>CryptoKey</code></a> object representing the public key of the other entity.</p> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><p>See the examples for <a href="subtlecrypto/derivekey"><code>SubtleCrypto.deriveKey()</code></a>.</p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="no-markdown"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/WebCryptoAPI/#dfn-EcdhKeyDeriveParams" hreflang="en" rel=" noopener">Web Cryptography API<br><small>The definition of 'SubtleCrypto.EcdhKeyDeriveParams' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div></div></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>
+<a href="subtlecrypto/derivekey"><code>SubtleCrypto.deriveKey()</code></a>.</li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/ecdhkeyderiveparams/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/ecdhkeyderiveparams/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FEcdhKeyDeriveParams&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fecdhkeyderiveparams%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FEcdhKeyDeriveParams%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fecdhkeyderiveparams%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F8cbdabd8c841ff5dbe46c21d55e4d1fd320661a2%0A*+Document+last+modified%3A+2022-04-09T04%3A51%3A44.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-09T04:51:44.000Z">Apr 9, 2022</time>, <a href="ecdhkeyderiveparams/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/EcdhKeyDeriveParams" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EcdhKeyDeriveParams</a>
+  </p>
+</div>

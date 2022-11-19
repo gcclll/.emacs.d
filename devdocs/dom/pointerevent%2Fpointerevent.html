@@ -1,0 +1,83 @@
+<h1>PointerEvent()</h1>
+<div class="section-content"><p> The <code>PointerEvent()</code> constructor creates a new synthetic and untrusted <a href="../pointerevent"><code>PointerEvent</code></a> object instance. </p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">PointerEvent</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> PointerEventInit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h3 id="arguments">Arguments</h3>
+<div class="section-content"><dl> <dt id="type"><em>type</em></dt> <dd> <p>Is a <a href="../domstring"><code>DOMString</code></a> representing the name of the event (see <a href="../pointerevent#pointer_event_types">PointerEvent event types</a>).</p> </dd> <dt id="pointereventinit">
+<em>PointerEventInit</em><span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Is a <code>PointerEventInit</code> dictionary, having the following fields:</p> <ul> <li> <code>pointerId</code> — optional <code>long</code>, defaulting to <code>0</code>, sets the value of the instance's <a href="pointerid"><code>PointerEvent.pointerId</code></a>. </li> <li> <code>width</code> — optional <code>double</code>, defaulting to <code>1</code>, sets the value of the instance's <a href="width"><code>PointerEvent.width</code></a>. </li> <li> <code>height</code> — optional <code>double</code>, defaulting to <code>1</code>, sets the value of the instance's <a href="height"><code>PointerEvent.height</code></a>. </li> <li> <code>pressure</code> — optional <code>float</code>, defaulting to <code>0</code>, sets the value of the instance's <a href="pressure"><code>PointerEvent.pressure</code></a>. </li> <li> <code>tangentialPressure</code> — optional <code>float</code>, defaulting to <code>0</code>, sets the value of the instance's <a href="tangentialpressure"><code>PointerEvent.tangentialPressure</code></a>. </li> <li> <code>tiltX</code> — optional <code>long</code>, defaulting to <code>0</code>, sets the value of the instance's <a href="tiltx"><code>PointerEvent.tiltX</code></a>. </li> <li> <code>tiltY</code> — optional <code>long</code>, defaulting to <code>0</code>, sets the value of the instance's <a href="tilty"><code>PointerEvent.tiltY</code></a>. </li> <li> <code>twist</code> — optional <code>long</code>, defaulting to <code>0</code>, sets the value of the instance's <a href="twist"><code>PointerEvent.twist</code></a>. </li> <li> <code>pointerType</code> — optional <a href="../domstring"><code>DOMString</code></a>, defaulting to <code>""</code> sets the value of the instance's <a href="pointertype"><code>PointerEvent.pointerType</code></a>. </li> <li> <code>isPrimary</code> — optional boolean value, defaulting to <code>false</code> sets the value of the instance's <a href="isprimary"><code>PointerEvent.isPrimary</code></a>. </li> </ul> <div class="notecard note" id="sect1"> <p> <strong>Note:</strong> The <code>PointerEventInit</code> dictionary also accepts fields from the <a href="../mouseevent/mouseevent"><code>MouseEvent</code></a>, <a href="../uievent/uievent"><code>UIEventInit</code></a> and <a href="../event/event"><code>EventInit</code></a> dictionaries. </p> </div> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">var</span> moveEvent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PointerEvent</span><span class="token punctuation">(</span><span class="token string">"pointermove"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> downEvent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PointerEvent</span><span class="token punctuation">(</span><span class="token string">"pointerdown"</span><span class="token punctuation">,</span>
+   <span class="token punctuation">{</span><span class="token literal-property property">pointerId</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">bubbles</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">cancelable</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">pointerType</span><span class="token operator">:</span> <span class="token string">"touch"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">width</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">height</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">isPrimary</span><span class="token operator">:</span> <span class="token boolean">true</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>PointerEvent</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>See <a href="https://msdn.microsoft.com/library/dn304886">MSDN Pointer events updates</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/pointerevent/pointerevent/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/pointerevent/pointerevent/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FPointerEvent%2FPointerEvent&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fpointerevent%2Fpointerevent%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FPointerEvent%2FPointerEvent%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fpointerevent%2Fpointerevent%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F7c564b0594c9c499ea01db238cfef03486999d3f%0A*+Document+last+modified%3A+2022-04-25T05%3A48%3A46.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-25T05:48:46.000Z">Apr 25, 2022</time>, <a href="pointerevent/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/PointerEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent/PointerEvent</a>
+  </p>
+</div>

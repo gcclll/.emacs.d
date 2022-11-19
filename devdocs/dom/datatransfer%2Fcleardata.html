@@ -1,0 +1,190 @@
+<h1>DataTransfer.clearData()</h1>
+<div class="section-content">
+<p> The <code>DataTransfer.clearData()</code> method removes the drag operation's <a href="../datatransfer"><code>drag data</code></a> for the given type. If data for the given type does not exist, this method does nothing. </p> <p> If this method is called with no arguments or the format is an empty <a href="../domstring"><code>string</code></a>, the data of all types will be removed. </p> <p> This method does <em>not</em> remove files from the drag operation, so it's possible for there still to be an entry with the type <code>"Files"</code> left in the object's <a href="types"><code>DataTransfer.types</code></a> list if there are any files included in the drag. </p> <div class="notecard note" id="sect1"> <p> <strong>Note:</strong> This method can only be used in the handler for the <code><a href="../document/dragstart_event">dragstart</a></code> event, because that's the only time the drag operation's data store is writeable. </p> </div>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">clearData</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">clearData</span><span class="token punctuation">(</span>format<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="format">
+<code>format</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> A <a href="../domstring"><code>string</code></a> which specifies the type of data to remove. If this parameter is an empty string or is not provided, the data for all types is removed. </p> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><p> This example shows the use of the <a href="../datatransfer"><code>DataTransfer</code></a> object's <a href="getdata"><code>getData()</code></a>, <a href="setdata"><code>setData()</code></a> and <a href="cleardata" aria-current="page"><code>clearData()</code></a> methods. </p></div>
+<h3 id="html">HTML</h3>
+<div class="section-content"><div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tweaked<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>source<span class="token punctuation">"</span></span> <span class="token attr-name">draggable</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  Select this element, drag it to the Drop Zone and then release the selection to move the element.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tweaked<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>target<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Drop Zone<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>Status: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>status<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Drag to start<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>Data is: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>data<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>uninitialized<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre></div></div>
+<h3 id="css">CSS</h3>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token selector">span.tweaked</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 1em 0<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 1em 2em<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#source</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#target</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div></div>
+<h3 id="javascript">JavaScript</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'DOMContentLoaded'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Select HTML elements</span>
+  <span class="token keyword">var</span> draggable <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'source'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> droppable <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'target'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> status <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'status'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> data <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> dropped <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Register event handlers</span>
+  draggable<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'dragstart'</span><span class="token punctuation">,</span> dragStartHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  draggable<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'dragend'</span><span class="token punctuation">,</span> dragEndHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  droppable<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'dragover'</span><span class="token punctuation">,</span> dragOverHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  droppable<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'dragleave'</span><span class="token punctuation">,</span> dragLeaveHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  droppable<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'drop'</span><span class="token punctuation">,</span> dropHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">dragStartHandler</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    status<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Drag in process'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Change target element's border to signify drag has started</span>
+    event<span class="token punctuation">.</span>currentTarget<span class="token punctuation">.</span>style<span class="token punctuation">.</span>border <span class="token operator">=</span> <span class="token string">'1px dashed blue'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Start by clearing existing clipboards; this will affect all types since we</span>
+    <span class="token comment">// don't give a specific type.</span>
+
+    event<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">clearData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Set the drag's format and data (use event target's id for data)</span>
+    event<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token string">'text/plain'</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    data<span class="token punctuation">.</span>textContent <span class="token operator">=</span> event<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token string">'text/plain'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">dragEndHandler</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>dropped<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      status<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Drag canceled'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    data<span class="token punctuation">.</span>textContent <span class="token operator">=</span> event<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token string">'text/plain'</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">'empty'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Change border to signify drag is no longer in process</span>
+    event<span class="token punctuation">.</span>currentTarget<span class="token punctuation">.</span>style<span class="token punctuation">.</span>border <span class="token operator">=</span> <span class="token string">'1px solid black'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>dropped<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Remove all event listeners</span>
+      draggable<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'dragstart'</span><span class="token punctuation">,</span> dragStartHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      draggable<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'dragend'</span><span class="token punctuation">,</span> dragEndHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      droppable<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'dragover'</span><span class="token punctuation">,</span> dragOverHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      droppable<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'dragleave'</span><span class="token punctuation">,</span> dragLeaveHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      droppable<span class="token punctuation">.</span><span class="token function">removeEventListener</span><span class="token punctuation">(</span><span class="token string">'drop'</span><span class="token punctuation">,</span> dropHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">dragOverHandler</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    status<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Drop available'</span><span class="token punctuation">;</span>
+
+    event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">dragLeaveHandler</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    status<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Drag in process (drop was available)'</span><span class="token punctuation">;</span>
+
+    event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">function</span> <span class="token function">dropHandler</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dropped <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+    status<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Drop done'</span><span class="token punctuation">;</span>
+
+    event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Get data linked to event format « text »</span>
+    <span class="token keyword">var</span> _data <span class="token operator">=</span> event<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token string">'text/plain'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> element <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>_data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Append drag source element to event's target element</span>
+    event<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Change CSS styles and displayed text</span>
+    element<span class="token punctuation">.</span>style<span class="token punctuation">.</span>cssText <span class="token operator">=</span> <span class="token string">'border: 1px solid black;display: block; color: red'</span><span class="token punctuation">;</span>
+    element<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"I'm in the Drop Zone!"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre></div>
+<iframe class="sample-code-frame" title="JavaScript" id="frame_example" width="300" height="250" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/DataTransfer/clearData/_sample_.example.html" loading="lazy"></iframe>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://html.spec.whatwg.org/multipage/dnd.html#dom-datatransfer-cleardata-dev">HTML Standard <br><small># dom-datatransfer-cleardata-dev</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>clearData</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../html_drag_and_drop_api">Drag and drop</a></li> <li><a href="../html_drag_and_drop_api/drag_operations">Drag Operations</a></li> <li><a href="../html_drag_and_drop_api/recommended_drag_types">Recommended Drag Types</a></li> <li><a href="../html_drag_and_drop_api/multiple_items">Dragging and Dropping Multiple Items</a></li> <li><a href="https://codepen.io/tech_query/pen/MqGgap" rel=" noopener">DataTransfer test - Paste or Drag</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/datatransfer/cleardata/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/datatransfer/cleardata/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FDataTransfer%2FclearData&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fdatatransfer%2Fcleardata%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FDataTransfer%2FclearData%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fdatatransfer%2Fcleardata%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F1b370632583725a720071715680fe8ab10fa1a37%0A*+Document+last+modified%3A+2022-04-18T06%3A20%3A15.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-18T06:20:15.000Z">Apr 18, 2022</time>, <a href="cleardata/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/clearData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/clearData</a>
+  </p>
+</div>

@@ -1,0 +1,327 @@
+<h1>align-items</h1>
+<div class="section-content">
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <code>align-items</code> property sets the <a href="align-self"><code>align-self</code></a> value on all direct children as a group. In Flexbox, it controls the alignment of items on the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Cross_Axis">Cross Axis</a>. In Grid Layout, it controls the alignment of items on the Block Axis within their <a href="https://developer.mozilla.org/en-US/docs/Glossary/Grid_Areas">grid area</a>.</p> <p>The interactive example below demonstrates some of the values for <code>align-items</code> using grid layout.</p>
+</div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/align-items.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token comment">/* Basic keywords */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> stretch<span class="token punctuation">;</span>
+
+<span class="token comment">/* Positional alignment */</span>
+<span class="token comment">/* align-items does not take left and right values */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* Pack items around the center */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> start<span class="token punctuation">;</span> <span class="token comment">/* Pack items from the start */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> end<span class="token punctuation">;</span> <span class="token comment">/* Pack items from the end */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> flex-start<span class="token punctuation">;</span> <span class="token comment">/* Pack flex items from the start */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> flex-end<span class="token punctuation">;</span> <span class="token comment">/* Pack flex items from the end */</span>
+
+<span class="token comment">/* Baseline alignment */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> baseline<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> first baseline<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> last baseline<span class="token punctuation">;</span> <span class="token comment">/* Overflow alignment (for positional alignment only) */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> safe center<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> unsafe center<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> revert-layer<span class="token punctuation">;</span>
+<span class="token property">align-items</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre></div></div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content"><dl> <dt id="normal"><code>normal</code></dt> <dd> <p>The effect of this keyword is dependent of the layout mode we are in:</p> <ul> <li>In absolutely-positioned layouts, the keyword behaves like <code>start</code> on <em>replaced</em> absolutely-positioned boxes, and as <code>stretch</code> on <em>all other</em> absolutely-positioned boxes.</li> <li>In static position of absolutely-positioned layouts, the keyword behaves as <code>stretch</code>.</li> <li>For flex items, the keyword behaves as <code>stretch</code>.</li> <li>For grid items, this keyword leads to a behavior similar to the one of <code>stretch</code>, except for boxes with an aspect ratio or an intrinsic sizes where it behaves like <code>start</code>.</li> <li>The property doesn't apply to block-level boxes, and to table cells.</li> </ul> </dd> <dt id="flex-start"><code>flex-start</code></dt> <dd> <p>The cross-start margin edges of the flex items are flushed with the cross-start edge of the line.</p> </dd> <dt id="flex-end"><code>flex-end</code></dt> <dd> <p>The cross-end margin edges of the flex items are flushed with the cross-end edge of the line.</p> </dd> <dt id="center"><code>center</code></dt> <dd> <p>The flex items' margin boxes are centered within the line on the cross-axis. If the cross-size of an item is larger than the flex container, it will overflow equally in both directions.</p> </dd> <dt id="start"><code>start</code></dt> <dd> <p>The items are packed flush to each other toward the start edge of the alignment container in the appropriate axis.</p> </dd> <dt id="end"><code>end</code></dt> <dd> <p>The items are packed flush to each other toward the end edge of the alignment container in the appropriate axis.</p> </dd> <dt id="self-start"><code>self-start</code></dt> <dd> <p>The items are packed flush to the edge of the alignment container of the start side of the item, in the appropriate axis.</p> </dd> <dt id="self-end"><code>self-end</code></dt> <dd> <p>The items are packed flush to the edge of the alignment container of the end side of the item, in the appropriate axis.</p> </dd> <dt id="baseline">
+<code>baseline</code>, <code>first baseline</code>, <code>last baseline</code>
+</dt> <dd> <p>All flex items are aligned such that their <a href="https://drafts.csswg.org/css-flexbox-1/#flex-baselines" rel=" noopener">flex container baselines</a> align. The item with the largest distance between its cross-start margin edge and its baseline is flushed with the cross-start edge of the line.</p> </dd> <dt id="stretch"><code>stretch</code></dt> <dd> <p>Flex items are stretched such that the cross-size of the item's margin box is the same as the line while respecting width and height constraints.</p> </dd> <dt id="safe"><code>safe</code></dt> <dd> <p>Used alongside an alignment keyword. If the chosen keyword means that the item overflows the alignment container causing data loss, the item is instead aligned as if the alignment mode were <code>start</code>.</p> </dd> <dt id="unsafe"><code>unsafe</code></dt> <dd> <p>Used alongside an alignment keyword. Regardless of the relative sizes of the item and alignment container and whether overflow which causes data loss might happen, the given alignment value is honored.</p> </dd> </dl></div></section><section aria-labelledby="formal_definition"><h2 id="formal_definition">Formal definition</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>normal</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div></div></div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="align-items">align-items = </span><br>  <span class="token keyword">normal</span>                                    <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">stretch</span>                                   <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token property">&lt;baseline-position&gt;</span>                       <a href="value_definition_syntax#single_bar">|</a><br>  <a href="value_definition_syntax#brackets">[</a> <span class="token property">&lt;overflow-position&gt;</span><a href="value_definition_syntax#question_mark">?</a> <span class="token property">&lt;self-position&gt;</span> <a href="value_definition_syntax#brackets">]</a>  <br><br><span class="token property" id="&lt;baseline-position&gt;">&lt;baseline-position&gt; = </span><br>  <a href="value_definition_syntax#brackets">[</a> <span class="token keyword">first</span> <a href="value_definition_syntax#single_bar">|</a> <span class="token keyword">last</span> <a href="value_definition_syntax#brackets">]</a><a href="value_definition_syntax#question_mark">?</a>  <a href="value_definition_syntax#double_ampersand">&amp;&amp;</a><br>  <span class="token keyword">baseline</span>           <br><br><span class="token property" id="&lt;overflow-position&gt;">&lt;overflow-position&gt; = </span><br>  <span class="token keyword">unsafe</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">safe</span>    <br><br><span class="token property" id="&lt;self-position&gt;">&lt;self-position&gt; = </span><br>  <span class="token keyword">center</span>      <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">start</span>       <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">end</span>         <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">self-start</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">self-end</span>    <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">flex-start</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">flex-end</span>    <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="css"><h3 id="css">CSS</h3>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token selector">#container</span> <span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span>200px<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 240px<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* Can be changed in the live sample */</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #8c8c8c<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.flex</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">flex-wrap</span><span class="token punctuation">:</span> wrap<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.grid</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> grid<span class="token punctuation">;</span>
+  <span class="token property">grid-template-columns</span><span class="token punctuation">:</span> <span class="token function">repeat</span><span class="token punctuation">(</span>auto-fill<span class="token punctuation">,</span> 50px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">div &gt; div</span> <span class="token punctuation">{</span>
+  <span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 2px solid #8c8c8c<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#item1</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #8cffa0<span class="token punctuation">;</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#item2</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #a0c8ff<span class="token punctuation">;</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#item3</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #ffa08c<span class="token punctuation">;</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 40px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#item4</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #ffff8c<span class="token punctuation">;</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 60px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#item5</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #ff8cff<span class="token punctuation">;</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 70px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">#item6</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #8cffff<span class="token punctuation">;</span>
+  <span class="token property">min-height</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">select</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.row</span> <span class="token punctuation">{</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div></div></section><section aria-labelledby="html"><h3 id="html">HTML</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item4<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>4<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item5<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>5<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item6<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>display<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>display: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>display<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>flex<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>grid<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span> <span class="token attr-name">for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>values<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>align-items: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>values<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>normal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>normal<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex-start<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>flex-start<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex-end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>flex-end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>center<span class="token punctuation">"</span></span> <span class="token attr-name">selected</span><span class="token punctuation">&gt;</span></span>center<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>baseline<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>baseline<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stretch<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>stretch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>start<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>start<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>self-start<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>self-start<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>self-end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>self-end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>first baseline<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>first baseline<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>last baseline<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>last baseline<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>safe center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>safe center<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>unsafe center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>unsafe center<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>safe right<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>safe right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>unsafe right<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>unsafe right<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>safe end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>safe end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>unsafe end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>unsafe end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>safe self-end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>safe self-end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>unsafe self-end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>unsafe self-end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>safe flex-end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>safe flex-end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>unsafe flex-end<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>unsafe flex-end<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre></div> 
+</div></section><section aria-labelledby="result"><h3 id="result">Result</h3>
+<div class="section-content"><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="260px" height="290px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/align-items/_sample_.examples.html" loading="lazy"></iframe></div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody>
+<tr><td><a href="https://drafts.csswg.org/css-align/#align-items-property">CSS Box Alignment Module Level 3 <br><small># align-items-property</small></a></td></tr>
+<tr><td><a href="https://drafts.csswg.org/css-flexbox/#align-items-property">CSS Flexible Box Layout Module Level 1 <br><small># align-items-property</small></a></td></tr>
+</tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>align-items</code></th>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>21</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>12</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>20</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>7</div>
+</td>
+<td class="bc-supports-yes">
+<div>4.4</div>
+<div>4.4</div>
+</td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>20</div>
+</td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>7</div>
+</td>
+<td class="bc-supports-yes">
+<div>2.0</div>
+<div>1.5</div>
+</td>
+</tr>
+<tr>
+<th><code>flex_context</code></th>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>21-52</div>
+<div>Older versions of the specification treat absolute positioned children as though they are a 0 by 0 flex item. Later specification versions take the children out of the flow and set their positions based on align and justify properties. Chrome implements the new behavior beginning with Chrome 52.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>20</div>
+<div>Multi-line flexbox has been supported since Firefox 28.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>In Internet Explorer 10 and 11, if column flex items have <code>align-items: center;</code> set on them and their content is too large, then they will overflow the bounds of their container. See <a href="https://github.com/philipwalton/flexbugs#2-column-flex-items-set-to-align-itemscenter-overflow-their-container">Flexbug #2</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>4.4-52</div>
+<div>Older versions of the specification treat absolute positioned children as though they are a 0 by 0 flex item. Later specification versions take the children out of the flow and set their positions based on align and justify properties. Chrome implements the new behavior beginning with Chrome 52.</div>
+</td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>25-52</div>
+<div>Older versions of the specification treat absolute positioned children as though they are a 0 by 0 flex item. Later specification versions take the children out of the flow and set their positions based on align and justify properties. Chrome implements the new behavior beginning with Chrome 52.</div>
+</td>
+<td class="bc-supports-yes">
+<div>20</div>
+<div>Multi-line flexbox has been supported since Firefox 28.</div>
+</td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>1.5-6.0</div>
+<div>Older versions of the specification treat absolute positioned children as though they are a 0 by 0 flex item. Later specification versions take the children out of the flow and set their positions based on align and justify properties. Samsung Internet implements the new behavior beginning with Samsung Internet 6.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>grid_context</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.2</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>CSS Flexbox Guide: <em><a href="css_flexible_box_layout/basic_concepts_of_flexbox">Basic Concepts of Flexbox</a></em>
+</li> <li>CSS Flexbox Guide: <em><a href="css_flexible_box_layout/aligning_items_in_a_flex_container">Aligning items in a flex container</a></em>
+</li> <li>CSS Grid Guide: <em><a href="css_grid_layout/box_alignment_in_css_grid_layout">Box alignment in CSS Grid layouts</a></em>
+</li> <li><a href="css_box_alignment">CSS Box Alignment</a></li> <li>The <a href="align-self"><code>align-self</code></a> property</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/align-items/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/align-items/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Falign-items&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Falign-items%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Falign-items%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Falign-items%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F809327edeb99b7dc23afbbf11d198de3f796395f%0A*+Document+last+modified:+2022-08-29T04:40:28.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-08-29T04:40:28.000Z">Aug 29, 2022</time>, <a href="align-items/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/align-items" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/align-items</a>
+  </p>
+</div>

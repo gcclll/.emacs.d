@@ -1,0 +1,84 @@
+<h1>XRInputSource.profiles</h1>
+<div class="section-content">
+<p>The read-only <a href="../xrinputsource"><code>XRInputSource</code></a> property <code>profiles</code> returns an array of strings, each describing a configuration profile for the input source. The profile strings are listed in order of specificity, with the most specific profile listed first.</p> <div class="notecard note" id="sect1"> <p> <strong>Note:</strong> The <code>profiles</code> list is always empty when the WebXR session is in inline mode. </p> </div>
+</div>
+<h2 id="value">Value</h2>
+<div class="section-content"><p> An array of strings, each describing one configuration profile for the input device represented by the <code>XRInputSource</code> object. Each input profile specifies the preferred visual representation and behavior of the input source. </p></div>
+<h3 id="input_profile_names">Input profile names</h3>
+<div class="section-content">
+<p> An input profile name is a string describing a visual representation and behavior the input source may be configured to use. Each string: </p> <ul> <li>Has no spaces; instead, words are separated by hyphen ("-") characters</li> <li> If the platform makes it available, the USB vendor and product ID may be provided but cannot be relied upon </li> <li> Does not uniquely identify a specific device; rather, it identifies a configuration that the product is capable of using </li> <li>Does not provide information about handedness of the device, if applicable</li> </ul> <p> The <a href="https://github.com/immersive-web/webxr-input-profiles/tree/main/packages/registry" rel=" noopener">WebXR Input Profiles Registry</a> is used by device developers and browser developers to attempt to ensure that a given device will report the same profile strings regardless of which browser or other <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> you use. </p>
+</div>
+<h3 id="generic_input_profile_names">Generic input profile names</h3>
+<div class="section-content">
+<p>The following input profile names are generic and can serve as fallbacks that describe the devices in the roughest sense.</p> <ul> <li>generic-button</li> <li>generic-hand-select-grasp</li> <li>generic-hand-select</li> <li>generic-hand</li> <li>generic-touchpad</li> <li>generic-touchscreen</li> <li>generic-trigger-squeeze-thumbstick</li> <li>generic-trigger-squeeze-touchpad-thumbstick</li> <li>generic-trigger-squeeze-touchpad</li> <li>generic-trigger-squeeze</li> <li>generic-trigger-thumbstick</li> <li>generic-trigger-touchpad-thumbstick</li> <li>generic-trigger-touchpad</li> <li>generic-trigger</li> </ul>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p>The list in <code>profiles</code> is in order of reverse specificity; that is, the most precise description is first, and the least precise description is last. The first entry in the list is typically indicative of the precise model of the controller, or of a model with which the controller is compatible.</p> <p>For example, entry 0 in <code>profiles</code> for an Oculus Touch controller is <code>oculus-touch</code>. The next entry is <code>generic-trigger-squeeze-thumbstick</code>, indicating a generic device with a trigger, a squeeze control, and a thumbstick. While the Oculus Touch controller actually has a thumbpad rather than a thumbstick, the overall description is "close enough" that the details within the profile matching the name will let the controller be interpreted usefully.</p> <div class="code-example"><pre data-language="js">inputSource<span class="token punctuation">.</span>profiles<span class="token punctuation">;</span>
+<span class="token comment">// ['oculus-touch', 'generic-trigger-squeeze-thumbstick']</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://immersive-web.github.io/webxr/#dom-xrinputsource-profiles">WebXR Device API <br><small># dom-xrinputsource-profiles</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>profiles</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../webxr_device_api">WebXR Device API</a></li> <li><a href="../webxr_device_api/inputs">Inputs and input sources</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/xrinputsource/profiles/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/xrinputsource/profiles/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FXRInputSource%2Fprofiles&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fxrinputsource%2Fprofiles%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FXRInputSource%2Fprofiles%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fxrinputsource%2Fprofiles%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F93ae23dec42bba9d71d6f1ed45668d8d26847e9c%0A*+Document+last+modified%3A+2022-02-18T09%3A26%3A54.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-02-18T09:26:54.000Z">Feb 18, 2022</time>, <a href="profiles/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/profiles" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/profiles</a>
+  </p>
+</div>

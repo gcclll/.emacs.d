@@ -1,0 +1,86 @@
+<h1>WebSocket.close()</h1>
+<div class="section-content">
+<p> The <code>WebSocket.close()</code> method closes the <a href="../websocket"><code>WebSocket</code></a> connection or connection attempt, if any. If the connection is already <code>CLOSED</code>, this method does nothing. </p> <div class="notecard note" id="sect1"> <p><strong>Note:</strong> The process of closing the connection begins with a <a href="https://www.rfc-editor.org/rfc/rfc6455.html#section-1.4" rel=" noopener">closing handshake</a>, and the <code>close()</code> method does not discard previously-sent messages before starting that closing handshake; even if the user agent is still busy sending those messages, the handshake will only start after the messages are sent.</p> </div>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">close</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span>
+<span class="token function">close</span><span class="token punctuation">(</span>code<span class="token punctuation">,</span> reason<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="code">
+<code>code</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An integer <a href="https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.5" rel=" noopener">WebSocket connection close code</a> value indicating a reason for closure:</p> <ul> <li>If unspecified, a close code for the connection is automatically set: to <code>1000</code> for a normal closure, or otherwise to <a href="https://www.rfc-editor.org/rfc/rfc6455.html#section-7.4.1" rel=" noopener">another standard value in the range <code>1001</code>-<code>1015</code></a> that indicates the actual reason the connection was closed.</li> <li>If specified, the value of this <code>code</code> parameter overrides the automatic setting of the close code for the connection, and instead sets a custom code.</li> </ul> <p>The value must be an integer: either <code>1000</code>, or else a custom code of your choosing in the range <code>3000</code>-<code>4999</code>. If you specify a <code>code</code> value, you should also specify a <a href="#reason"><code>reason</code></a> value.</p> </dd> <dt id="reason">
+<code>reason</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>A string providing a custom <a href="https://www.rfc-editor.org/rfc/rfc6455.html#section-7.1.6" rel=" noopener">WebSocket connection close reason</a> (a concise human-readable prose explanation for the closure). The value must be no longer than 123 bytes (encoded in UTF-8).</p> <div class="notecard note" id="sect2"> <p><strong>Note:</strong> Because <a href="https://developer.mozilla.org/en-US/docs/Glossary/UTF-8">UTF-8 uses two to four bytes</a> to encode any non-<a href="https://developer.mozilla.org/en-US/docs/Glossary/ASCII">ASCII</a> characters, a 123-character <code>reason</code> value containing non-ASCII characters would exceed the 123-byte limit.</p> </div> <p>If you specify a <code>reason</code> value, you should also specify a <a href="#code"><code>code</code></a> value.</p> </dd> </dl></div>
+<h3 id="exceptions">Exceptions</h3>
+<div class="section-content"><dl> <dt id="invalidaccesserror">
+<code>InvalidAccessError</code> <a href="../domexception"><code>DOMException</code></a>
+</dt> <dd> <p>Thrown if <a href="#code"><code>code</code></a> is neither an integer equal to <code>1000</code> nor an integer in the range <code>3000</code>–<code>4999</code>.</p> </dd> <dt id="syntaxerror">
+<code>SyntaxError</code> <a href="../domexception"><code>DOMException</code></a>
+</dt> <dd> <p>Thrown if the UTF-8-encoded <a href="#reason"><code>reason</code></a> value is longer than 123 bytes.</p> </dd> </dl></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="#">WebSockets Standard <br><small># ref-for-dom-websocket-close①</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>close</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>
+<a href="https://www.rfc-editor.org/rfc/rfc6455.html" rel=" noopener">RFC 6455</a> (the WebSocket Protocol specification)</li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/websocket/close/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/websocket/close/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWebSocket%2Fclose&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fwebsocket%2Fclose%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWebSocket%2Fclose%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fwebsocket%2Fclose%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F175a9fb80bd86d4a3ce77b6653d48a473f6f92fd%0A*+Document+last+modified%3A+2022-04-24T10%3A23%3A05.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-24T10:23:05.000Z">Apr 24, 2022</time>, <a href="close/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/close" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/close</a>
+  </p>
+</div>

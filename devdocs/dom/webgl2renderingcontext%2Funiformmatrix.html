@@ -1,0 +1,129 @@
+<h1>WebGL2RenderingContext.uniformMatrix[234]x[234]fv()</h1>
+<div class="section-content">
+<p> The <code>WebGL2RenderingContext.uniformMatrix[234]x[234]fv()</code> methods of the <a href="../webgl_api">WebGL 2 API</a> specify matrix values for uniform variables. </p> <div class="notecard note" id="sect1"> <p> <strong>Note:</strong> There are no <code>2x2</code>, <code>3x3</code>, and <code>4x4</code> versions of this method. They are abbreviated in <code>2</code>, <code>3</code>, and <code>4</code>, respectively. See the syntax below. </p> </div>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">uniformMatrix2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+
+<span class="token function">uniformMatrix3x2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix3x2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix3x2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+
+<span class="token function">uniformMatrix4x2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix4x2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix4x2fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+
+<span class="token function">uniformMatrix2x3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix2x3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix2x3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+
+<span class="token function">uniformMatrix3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+
+<span class="token function">uniformMatrix4x3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix4x3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix4x3fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+
+<span class="token function">uniformMatrix2x4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix2x4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix2x4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+
+<span class="token function">uniformMatrix3x4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix3x4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix3x4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+
+<span class="token function">uniformMatrix4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">)</span>
+<span class="token function">uniformMatrix4fv</span><span class="token punctuation">(</span>location<span class="token punctuation">,</span> transpose<span class="token punctuation">,</span> data<span class="token punctuation">,</span> srcOffset<span class="token punctuation">,</span> srcLength<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="location">location</dt> <dd> <p> A <a href="../webgluniformlocation"><code>WebGLUniformLocation</code></a> object containing the location of the uniform attribute to modify. </p> </dd> <dt id="transpose">transpose</dt> <dd> <p> A <a href="../webgl_api/types"><code>GLboolean</code></a> specifying whether to transpose the matrix. Must be <code>false</code>. </p> </dd> <dt id="data">data</dt> <dd> <p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a> of float values.</p> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><p>None.</p></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js">gl<span class="token punctuation">.</span><span class="token function">uniformMatrix2x3fv</span><span class="token punctuation">(</span>loc<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/#3.7.8">WebGL 2.0 Specification <br><small># 3.7.8</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>uniformMatrix</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>SharedArrayBuffer_as_param</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../webglrenderingcontext/uniformmatrix"><code>WebGLRenderingContext.uniformMatrix()</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/webgl2renderingcontext/uniformmatrix/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/webgl2renderingcontext/uniformmatrix/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWebGL2RenderingContext%2FuniformMatrix&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fwebgl2renderingcontext%2Funiformmatrix%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWebGL2RenderingContext%2FuniformMatrix%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fwebgl2renderingcontext%2Funiformmatrix%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F82d446770f23cfde7021e48cb6a5293141eb137f%0A*+Document+last+modified%3A+2022-04-22T13%3A36%3A59.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-22T13:36:59.000Z">Apr 22, 2022</time>, <a href="uniformmatrix/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext/uniformMatrix" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext/uniformMatrix</a>
+  </p>
+</div>

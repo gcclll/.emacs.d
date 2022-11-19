@@ -1,0 +1,157 @@
+<h1>RTCDataChannel: error event</h1>
+<div class="section-content">
+<p>A WebRTC <a href="error_event" aria-current="page"><code>error</code></a> event is sent to an <a href="../rtcdatachannel"><code>RTCDataChannel</code></a> object's <code>onerror</code> event handler when an error occurs on the data channel.</p> <p>The <a href="../rtcerrorevent"><code>RTCErrorEvent</code></a> object provides details about the error that occurred; see that article for details.</p> <p>This event is not cancelable and does not bubble.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<p>Use the event name in methods like <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a>, or set an event handler property.</p> <div class="code-example"><pre data-language="js"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="event_type">Event type</h2>
+<div class="section-content">
+<p>An <a href="../rtcerrorevent"><code>RTCErrorEvent</code></a>. Inherits from <a href="../event"><code>Event</code></a>.</p>
+<svg viewbox="-1 -1 650 42" preserveaspectratio="xMinYMin meet"> <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/Event">  <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> Event </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/RTCErrorEvent">  <text x="157" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> RTCErrorEvent </text> </a></svg>
+</div>
+<h2 id="event_properties">Event properties</h2>
+<div class="section-content">
+<p><em>In addition to the properties listed below, properties from the parent interface, <a href="../event"><code>Event</code></a>, are available.</em></p> <dl> <dt id="error">
+<a href="../rtcerrorevent/error"><code>error</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>An <a href="../rtcerror"><code>RTCError</code></a> object specifying the error which occurred; this object includes the type of error that occurred, and information about where the error occurred (such as which line number in the <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> or what <a href="https://developer.mozilla.org/en-US/docs/Glossary/SCTP">SCTP</a> cause code was at issue).</p> </dd> </dl>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="js"><span class="token comment">// Strings for each of the SCTP cause codes found in RFC</span>
+<span class="token comment">// 4960, section 3.3.10:</span>
+<span class="token comment">// https://datatracker.ietf.org/doc/html/rfc4960#section-3.3.10</span>
+
+<span class="token keyword">const</span> sctpCauseCodes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string">"No SCTP error"</span><span class="token punctuation">,</span>
+  <span class="token string">"Invalid stream identifier"</span><span class="token punctuation">,</span>
+  <span class="token string">"Missing mandatory parameter"</span><span class="token punctuation">,</span>
+  <span class="token string">"Stale cookie error"</span><span class="token punctuation">,</span>
+  <span class="token string">"Sender is out of resource (i.e., memory)"</span><span class="token punctuation">,</span>
+  <span class="token string">"Unable to resolve address"</span><span class="token punctuation">,</span>
+  <span class="token string">"Unrecognized SCTP chunk type received"</span><span class="token punctuation">,</span>
+  <span class="token string">"Invalid mandatory parameter"</span><span class="token punctuation">,</span>
+  <span class="token string">"Unrecognized parameters"</span><span class="token punctuation">,</span>
+  <span class="token string">"No user data (SCTP DATA chunk has no data)"</span><span class="token punctuation">,</span>
+  <span class="token string">"Cookie received while shutting down"</span><span class="token punctuation">,</span>
+  <span class="token string">"Restart of an association with new addresses"</span><span class="token punctuation">,</span>
+  <span class="token string">"User-initiated abort"</span><span class="token punctuation">,</span>
+  <span class="token string">"Protocol violation"</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+dc<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> err <span class="token operator">=</span> ev<span class="token punctuation">.</span>error<span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"WebRTC error: "</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Handle specific error detail types</span>
+
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span>errorDetail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"sdp-syntax-error"</span><span class="token operator">:</span>
+      console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"    SDP syntax error in line "</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>sdpLineNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"idp-load-failure"</span><span class="token operator">:</span>
+      console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"    Identity provider load failure: HTTP error "</span><span class="token punctuation">,</span>
+                    err<span class="token punctuation">.</span>httpRequestStatusCode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"sctp-failure"</span><span class="token operator">:</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">.</span>sctpCauseCode <span class="token operator">&lt;</span> sctpCauseCodes<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"    SCTP failure: "</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>sctpCauseCode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"    Unknown SCTP error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"dtls-failure"</span><span class="token operator">:</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">.</span>receivedAlert<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"    Received DLTS failure alert: "</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>receivedAlert<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>err<span class="token punctuation">.</span>sentAlert<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"    Sent DLTS failure alert: "</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>receivedAlert<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Add source file name and line information</span>
+
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"    Error in file "</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>filename<span class="token punctuation">,</span> <span class="token string">" at line "</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>lineNumber<span class="token punctuation">,</span>
+                <span class="token string">", column "</span><span class="token punctuation">,</span> err<span class="token punctuation">.</span>columnNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div> <p>The received event provides details in an <a href="../rtcerror"><code>RTCError</code></a> object called <a href="../rtcerrorevent/error"><code>error</code></a>; <code>RTCError</code> is an extension of the <a href="../domexception"><code>DOMException</code></a> interface. The error's <a href="../domexception/name"><code>name</code></a> is <code>RTCError</code> and the <a href="../domexception/message"><code>message</code></a> is an error string specified by the WebRTC layer.</p> <p>Error information is output to the console using <a href="../console/error"><code>console.error()</code></a>. The <code>message</code> string is always output, as is information about the source file's name, line number, and column number at which the error occurred.</p> <p>In addition, however, depending on the value of <a href="../rtcerror/errordetail"><code>errorDetail</code></a>, additional information may be output. Each error type has a different set of information output. For example, an SDP syntax error displays the line number of the error within the SDP, and an SCTP error displays a message corresponding to the SCTP cause code. Other error types similarly output appropriate information.</p> <p>You can also set up an event handler for <code>error</code> events using the <code>RTCDataChannel</code> interface's <a href="error_event" aria-current="page"><code>onerror</code></a> event handler property:</p> <div class="code-example"><pre data-language="js">dc<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> err <span class="token operator">=</span> ev<span class="token punctuation">.</span>error<span class="token punctuation">;</span>
+
+  <span class="token comment">/* ... */</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="notecard note" id="sect1"> <p><strong>Note:</strong> Since <code>RTCError</code> is not one of the legacy errors, the value of <a href="../domexception/code"><code>RTCError.code</code></a> is always 0.</p> </div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody>
+<tr><td><a href="https://w3c.github.io/webrtc-pc/#event-datachannel-error">WebRTC 1.0: Real-Time Communication Between Browsers <br><small># event-datachannel-error</small></a></td></tr>
+<tr><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdatachannel-onerror">WebRTC 1.0: Real-Time Communication Between Browsers <br><small># dom-rtcdatachannel-onerror</small></a></td></tr>
+</tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>error_event</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../webrtc_api/simple_rtcdatachannel_sample">A simple RTCDataChannel example</a></li> <li>Related events: <a href="open_event"><code>open</code></a>, <a href="message_event"><code>message</code></a>, and <a href="close_event"><code>close</code></a>
+</li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/rtcdatachannel/error_event/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/rtcdatachannel/error_event/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FRTCDataChannel%2Ferror_event&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Frtcdatachannel%2Ferror_event%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FRTCDataChannel%2Ferror_event%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Frtcdatachannel%2Ferror_event%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F34b5c4ca63a1cb4c58d852d8beac7b2895b17526%0A*+Document+last+modified%3A+2022-03-23T11%3A00%3A21.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-23T11:00:21.000Z">Mar 23, 2022</time>, <a href="error_event/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/error_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel/error_event</a>
+  </p>
+</div>

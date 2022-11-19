@@ -1,0 +1,279 @@
+<h1>GeolocationCoordinates</h1>
+<div class="section-content">
+<div class="notecard secure" id="sect1"><p><strong>Secure context:</strong> This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div> <p>The <code>GeolocationCoordinates</code> interface represents the position and altitude of the device on Earth, as well as the accuracy with which these properties are calculated.</p>
+</div>
+<h2 id="properties">Properties</h2>
+<div class="section-content">
+<p><em>The <code>GeolocationCoordinates</code> interface doesn't inherit any properties.</em></p> <dl> <dt id="geolocationcoordinates.latitude">
+<a href="geolocationcoordinates/latitude"><code>GeolocationCoordinates.latitude</code></a> <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd> <p>Returns a <code>double</code> representing the position's latitude in decimal degrees.</p> </dd> <dt id="geolocationcoordinates.longitude">
+<a href="geolocationcoordinates/longitude"><code>GeolocationCoordinates.longitude</code></a> <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd> <p>Returns a <code>double</code> representing the position's longitude in decimal degrees.</p> </dd> <dt id="geolocationcoordinates.altitude">
+<a href="geolocationcoordinates/altitude"><code>GeolocationCoordinates.altitude</code></a> <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd> <p>Returns a <code>double</code> representing the position's altitude in meters, relative to sea level. This value can be <code>null</code> if the implementation cannot provide the data.</p> </dd> <dt id="geolocationcoordinates.accuracy">
+<a href="geolocationcoordinates/accuracy"><code>GeolocationCoordinates.accuracy</code></a> <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd> <p>Returns a <code>double</code> representing the accuracy of the <code>latitude</code> and <code>longitude</code> properties, expressed in meters.</p> </dd> <dt id="geolocationcoordinates.altitudeaccuracy">
+<a href="geolocationcoordinates/altitudeaccuracy"><code>GeolocationCoordinates.altitudeAccuracy</code></a> <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd> <p>Returns a <code>double</code> representing the accuracy of the <code>altitude</code> expressed in meters. This value can be <code>null</code>.</p> </dd> <dt id="geolocationcoordinates.heading">
+<a href="geolocationcoordinates/heading"><code>GeolocationCoordinates.heading</code></a> <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd> <p>Returns a <code>double</code> representing the direction towards which the device is facing. This value, specified in degrees, indicates how far off from heading true north the device is. <code>0</code> degrees represents true north, and the direction is determined clockwise (which means that east is <code>90</code> degrees and west is <code>270</code> degrees). If <code>speed</code> is <code>0</code>, <code>heading</code> is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN"><code>NaN</code></a>. If the device is unable to provide <code>heading</code> information, this value is <code>null</code>.</p> </dd> <dt id="geolocationcoordinates.speed">
+<a href="geolocationcoordinates/speed"><code>GeolocationCoordinates.speed</code></a> <span class="badge inline readonly">Read only </span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd> <p>Returns a <code>double</code> representing the velocity of the device in meters per second. This value can be <code>null</code>.</p> </dd> </dl>
+</div>
+<h2 id="methods">Methods</h2>
+<div class="section-content"><p><em>The <code>GeolocationCoordinates</code> interface neither implements, nor inherits any method.</em></p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/geolocation-api/#coordinates_interface">Geolocation API <br><small># coordinates_interface</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>GeolocationCoordinates</code></th>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>5-78</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>12-79</div>
+</td>
+<td class="bc-supports-yes">
+<div>72</div>
+<div>3.5-71</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10.6-15</div>
+</td>
+<td class="bc-supports-yes">
+<div>13.1</div>
+<div>5-13.1</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>≤37-78</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>18-78</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>11-14</div>
+</td>
+<td class="bc-supports-yes">
+<div>13.4</div>
+<div>≤3-13.4</div>
+</td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>accuracy</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10.6-15</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>11-14</div>
+</td>
+<td class="bc-supports-yes"><div>≤3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>altitude</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10.6-15</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>11-14</div>
+</td>
+<td class="bc-supports-yes"><div>≤3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>altitudeAccuracy</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10.6-15</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>11-14</div>
+</td>
+<td class="bc-supports-yes"><div>≤3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>heading</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10.6-15</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>11-14</div>
+</td>
+<td class="bc-supports-yes"><div>≤3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>latitude</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10.6-15</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>11-14</div>
+</td>
+<td class="bc-supports-yes"><div>≤3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>longitude</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10.6-15</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>11-14</div>
+</td>
+<td class="bc-supports-yes"><div>≤3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>secure_context_required</code></th>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>speed</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10.6-15</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>11-14</div>
+</td>
+<td class="bc-supports-yes"><div>≤3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="geolocation_api/using_the_geolocation_api">Using the Geolocation API</a></li> <li><a href="geolocation"><code>Geolocation</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/geolocationcoordinates/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/geolocationcoordinates/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FGeolocationCoordinates&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fgeolocationcoordinates%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FGeolocationCoordinates%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fgeolocationcoordinates%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fc9a795a59234d6d75b4b1092c7e5fd13a766f1a4%0A*+Document+last+modified%3A+2022-01-28T12%3A28%3A43.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-01-28T12:28:43.000Z">Jan 28, 2022</time>, <a href="geolocationcoordinates/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GeolocationCoordinates</a>
+  </p>
+</div>

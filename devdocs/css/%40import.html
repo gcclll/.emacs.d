@@ -1,0 +1,111 @@
+<h1>@import</h1>
+<div class="section-content"><p>The <code>@import</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="at-rule">at-rule</a> is used to import style rules from other stylesheets.</p></div>
+<section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token atrule"><span class="token rule">@import</span> url<span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> url list-of-media-queries<span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> url <span class="token function">supports</span><span class="token punctuation">(</span> supports-query <span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> url <span class="token function">supports</span><span class="token punctuation">(</span> supports-query <span class="token punctuation">)</span> list-of-media-queries<span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> url layer<span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> url <span class="token function">layer</span><span class="token punctuation">(</span> layer-name <span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> url <span class="token function">layer</span><span class="token punctuation">(</span> layer-name <span class="token punctuation">)</span> list-of-media-queries<span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> url <span class="token function">layer</span><span class="token punctuation">(</span> layer-name <span class="token punctuation">)</span> <span class="token function">supports</span><span class="token punctuation">(</span> supports-query <span class="token punctuation">)</span> list-of-media-queries<span class="token punctuation">;</span></span>
+</pre></div> <p>where:</p> <dl> <dt id="url"><em>url</em></dt> <dd> <p>Is a <a href="string"><code>&lt;string&gt;</code></a>, a <code>&lt;url&gt;</code>, or a <a href="url"><code>url()</code></a> function representing the location of the resource to import. The URL may be absolute or relative.</p> </dd> <dt id="list-of-media-queries"><em>list-of-media-queries</em></dt> <dd> <p>Is a comma-separated list of <a href="media_queries/using_media_queries">media queries</a>, which specify the media-dependent conditions for applying the CSS rules defined in the linked URL. If the browser does not support any of these queries, it does not load the linked resource.</p> </dd> <dt id="supports-query"><em>supports-query</em></dt> <dd> <p>Is either a <a href="@supports#syntax"><code>&lt;supports-condition&gt;</code></a> or a <a href="syntax#css_declarations"><code>&lt;declaration&gt;</code></a>. If the import conditions do not match, the rules in the imported stylesheet do not apply.</p> </dd> <dt id="layer-name"><em>layer-name</em></dt> <dd> <p>Is the name of a <a href="@layer">cascade layer</a> into which the contents of the linked resource are imported.</p> </dd> </dl>
+</div></section><section aria-labelledby="description"><h2 id="description">Description</h2>
+<div class="section-content">
+<p>Imported rules must come before all other types of rules, except <a href="@charset"><code>@charset</code></a> rules. The <code>@import</code> rule is not a <a href="syntax#nested_statements">nested statement</a>. Therefore, it cannot be used inside <a href="at-rule#conditional_group_rules">conditional group at-rules</a>.</p> <p>So that <a class="page-not-created">user agents</a> can avoid retrieving resources for unsupported media types, authors may specify media-dependent import conditions. These conditional imports specify comma-separated <a href="media_queries/using_media_queries">media queries</a> after the URL. In the absence of any media query, the import is unconditional. Specifying <code>all</code> for the <code>list-of-media-queries</code> has the same effect.</p> <p>The <code>@import</code> rule can also be used to create a <a href="@layer">cascade layer</a> by importing rules from a linked resource. Rules can also be imported into an existing cascade layer. The <code>layer</code> keyword or the <code>layer()</code> function is used with <code>@import</code> for this purpose. Declarations in style rules from imported stylesheets interact with the cascade as if they were written literally into the stylesheet at the point of the import.</p>
+</div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate">@import [ &lt;url&gt; | &lt;string&gt; ]
+        [ supports( [ &lt;supports-condition&gt; | &lt;declaration&gt; ] ) ]?
+        &lt;media-query-list&gt;? ;
+</pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="importing_css_rules"><h3 id="importing_css_rules">Importing CSS rules</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'custom.css'</span><span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"chrome://communicator/skin/"</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span></span>
+</pre></div> <p>The two examples above show how to specify the <em>url</em> as a <code>&lt;string&gt;</code> and as a <code>url()</code> function.</p>
+</div></section><section aria-labelledby="importing_css_rules_conditionally"><h3 id="importing_css_rules_conditionally">Importing CSS rules conditionally</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token atrule"><span class="token rule">@import</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"fineprint.css"</span><span class="token punctuation">)</span></span> print<span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"bluish.css"</span><span class="token punctuation">)</span></span> print<span class="token punctuation">,</span> screen<span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token string">"common.css"</span> screen<span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">'landscape.css'</span><span class="token punctuation">)</span></span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">orientation</span><span class="token punctuation">:</span> landscape<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"narrow.css"</span><span class="token punctuation">)</span></span> <span class="token function">supports</span><span class="token punctuation">(</span><span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">)</span> screen <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token property">max-width</span><span class="token punctuation">:</span> 400px<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+</pre></div> <p>The <code>@import</code> rules in the above examples show media-dependent conditions that will need to be true before the linked CSS rules are applied.</p> <p>So for instance, the last <code>@import</code> rule will load the <code>narrow.css</code> stylesheet if the user agent supports <a href="display#display_flex"><code>display: flex</code></a>. The <a href="media_queries/using_media_queries">media query</a>, using the <code>and</code> operator, further specifies to apply the style rules only to a screen device with a maximum viewport width of 400px.</p>
+</div></section><section aria-labelledby="importing_css_rules_into_a_cascade_layer"><h3 id="importing_css_rules_into_a_cascade_layer">Importing CSS rules into a cascade layer</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'theme.css'</span> <span class="token function">layer</span><span class="token punctuation">(</span>utilities<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+</pre></div> <p>In the above example, a cascade layer named <code>utilities</code> is created and it will include rules from the imported stylesheet <code>theme</code>.</p> <div class="code-example"><pre data-language="css"><span class="token atrule"><span class="token rule">@import</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>headings.css<span class="token punctuation">)</span></span> <span class="token function">layer</span><span class="token punctuation">(</span>default<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>links.css<span class="token punctuation">)</span></span> <span class="token function">layer</span><span class="token punctuation">(</span>default<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+
+<span class="token atrule"><span class="token rule">@layer</span> default</span> <span class="token punctuation">{</span>
+  <span class="token selector">audio[controls]</span> <span class="token punctuation">{</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></div> <p>In the above example, the rules in <code>headings.css</code> and <code>links.css</code> stylesheets cascade within the same layer as the <code>audio[controls]</code> rule.</p> <div class="code-example"><pre data-language="css"><span class="token atrule"><span class="token rule">@import</span> <span class="token string">'theme.css'</span> <span class="token function">layer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="token atrule"><span class="token rule">@import</span> <span class="token string">'style.css'</span> layer<span class="token punctuation">;</span></span>
+</pre></div> <p>This is an example of creating two separate anonymous cascade layers and importing the linked rules into each one separately. A cascade layer declared without a name is an anonymous cascade layer. Anonymous cascade layers are finalized when created: they do not provide any means for re-arranging or adding styles and they cannot be referenced from outside.</p>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-cascade-5/#at-import">CSS Cascading and Inheritance Level 5 <br><small># at-import</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>@import</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="@media"><code>@media</code></a></li> <li><a href="@supports"><code>@supports</code></a></li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/@import/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/@import/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2F@import&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2F@import%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2F@import%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2F@import%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fb8ea06a4208340fd08dce2d06dbfa05fbdaeb36e%0A*+Document+last+modified:+2022-06-09T23:31:08.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-06-09T23:31:08.000Z">Jun 9, 2022</time>, <a href="@import/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@import" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/@import</a>
+  </p>
+</div>

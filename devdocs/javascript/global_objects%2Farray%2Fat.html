@@ -1,0 +1,118 @@
+<h1>Array.prototype.at()</h1>
+<div class="section-content">
+<p>The <code>at()</code> method takes an integer value and returns the item at that index, allowing for positive and negative integers. Negative integers count back from the last item in the array.</p> <p>This is not to suggest there is anything wrong with using the square bracket notation. For example <code>array[0]</code> would return the first item. However instead of using <a href="length"><code>array.length</code></a> for latter items; e.g. <code>array[array.length-1]</code> for the last item, you can call <code>array.at(-1)</code>. <a href="#examples">(See the examples below)</a></p>
+</div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-js-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-at.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">at</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span>
+</pre></div></div></section><section aria-labelledby="parameters"><h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="index"><code>index</code></dt> <dd> <p>The index (position) of the array element to be returned. Supports relative indexing from the end of the array when passed a negative index; i.e. if a negative number is used, the element returned will be found by counting back from the end of the array.</p> </dd> </dl></div></section><section aria-labelledby="return_value"><h3 id="return_value">Return value</h3>
+<div class="section-content"><p>The element in the array matching the given index. Returns <a href="../undefined"><code>undefined</code></a> if the given index can not be found.</p></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="return_the_last_value_of_an_array"><h3 id="return_the_last_value_of_an_array">Return the last value of an array</h3>
+<div class="section-content">
+<p>The following example provides a function which returns the last element found in a specified array.</p> <div class="code-example"><pre data-language="js"><span class="token comment">// Our array with items</span>
+<span class="token keyword">const</span> cart <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'pear'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// A function which returns the last item of a given array</span>
+<span class="token keyword">function</span> <span class="token function">returnLast</span><span class="token punctuation">(</span><span class="token parameter">arr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arr<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Get the last item of our array 'cart'</span>
+<span class="token keyword">const</span> item1 <span class="token operator">=</span> <span class="token function">returnLast</span><span class="token punctuation">(</span>cart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Logs: 'pear'</span>
+
+<span class="token comment">// Add an item to our 'cart' array</span>
+cart<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">'orange'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> item2 <span class="token operator">=</span> <span class="token function">returnLast</span><span class="token punctuation">(</span>cart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Logs: 'orange'</span>
+</pre></div>
+</div></section><section aria-labelledby="comparing_methods"><h3 id="comparing_methods">Comparing methods</h3>
+<div class="section-content">
+<p>This example compares different ways to select the penultimate (last but one) item of an <a href="../array"><code>Array</code></a>. While all the methods shown below are valid, this example highlights the succinctness and readability of the <code>at()</code> method.</p> <div class="code-example"><pre data-language="js"><span class="token comment">// Our array with items</span>
+<span class="token keyword">const</span> colors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'red'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">,</span> <span class="token string">'blue'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Using length property</span>
+<span class="token keyword">const</span> lengthWay <span class="token operator">=</span> colors<span class="token punctuation">[</span>colors<span class="token punctuation">.</span>length<span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>lengthWay<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Logs: 'green'</span>
+
+<span class="token comment">// Using slice() method. Note an array is returned</span>
+<span class="token keyword">const</span> sliceWay <span class="token operator">=</span> colors<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sliceWay<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Logs: 'green'</span>
+
+<span class="token comment">// Using at() method</span>
+<span class="token keyword">const</span> atWay <span class="token operator">=</span> colors<span class="token punctuation">.</span><span class="token function">at</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>atWay<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Logs: 'green'</span>
+</pre></div>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.at">ECMAScript Language Specification <br><small># sec-array.prototype.at</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+<th colspan="2">Server</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+<th>Deno</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>at</code></th>
+<td class="bc-supports-yes"><div>92</div></td>
+<td class="bc-supports-yes"><div>92</div></td>
+<td class="bc-supports-yes"><div>90</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>78</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>92</div></td>
+<td class="bc-supports-yes"><div>92</div></td>
+<td class="bc-supports-yes"><div>90</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>16.0</div></td>
+<td class="bc-supports-yes"><div>1.12</div></td>
+<td class="bc-supports-yes"><div>16.6.0</div></td>
+</tr></tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://github.com/zloirock/core-js#relative-indexing-method" rel=" noopener">Polyfill of <code>Array.prototype.at</code> in <code>core-js</code></a></li> <li>
+<a href="https://github.com/tc39/proposal-relative-indexing-method#polyfill" rel=" noopener">A polyfill for the at() method</a>.</li> <li>
+<a href="find"><code>Array.prototype.find()</code></a> – return a value based on a given test.</li> <li>
+<a href="includes"><code>Array.prototype.includes()</code></a> – test whether a value exists in the array.</li> <li>
+<a href="indexof"><code>Array.prototype.indexOf()</code></a> – return the index of a given element.</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/javascript/reference/global_objects/array/at/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/javascript/reference/global_objects/array/at/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FArray%2Fat&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Farray%2Fat%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FArray%2Fat%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Farray%2Fat%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F23892e91d2fabdf2a46397fd14af5e5de6727db8%0A*+Document+last+modified%3A+2022-07-26T00%3A48%3A08.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-07-26T00:48:08.000Z">Jul 26, 2022</time>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at</a>
+  </p>
+</div>

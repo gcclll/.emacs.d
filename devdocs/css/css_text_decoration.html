@@ -1,0 +1,68 @@
+<h1>CSS Text Decoration</h1>
+<div class="section-content"><p><strong>CSS Text Decoration</strong> is a module of CSS that defines features relating to text decoration, such as underlines, text shadows, and emphasis marks.</p></div>
+<section aria-labelledby="reference"><h2 id="reference">Reference</h2>
+</section><section aria-labelledby="properties"><h3 id="properties">Properties</h3>
+<div class="section-content"><ul> <li><a href="text-decoration"><code>text-decoration</code></a></li> <li><a href="text-decoration-color"><code>text-decoration-color</code></a></li> <li><a href="text-decoration-line"><code>text-decoration-line</code></a></li> <li><a href="text-decoration-skip-ink"><code>text-decoration-skip-ink</code></a></li> <li><a href="text-decoration-style"><code>text-decoration-style</code></a></li> <li><a href="text-decoration-thickness"><code>text-decoration-thickness</code></a></li> <li><a href="text-emphasis"><code>text-emphasis</code></a></li> <li><a href="text-emphasis-color"><code>text-emphasis-color</code></a></li> <li><a href="text-emphasis-position"><code>text-emphasis-position</code></a></li> <li><a href="text-emphasis-style"><code>text-emphasis-style</code></a></li> <li><a href="text-shadow"><code>text-shadow</code></a></li> <li><a href="text-underline-offset"><code>text-underline-offset</code></a></li> <li><a href="text-underline-position"><code>text-underline-position</code></a></li> </ul></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token selector">.under</span> <span class="token punctuation">{</span>
+  <span class="token property">text-decoration</span><span class="token punctuation">:</span> underline red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.over</span> <span class="token punctuation">{</span>
+  <span class="token property">text-decoration</span><span class="token punctuation">:</span> wavy overline lime<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.line</span> <span class="token punctuation">{</span>
+  <span class="token property">text-decoration</span><span class="token punctuation">:</span> line-through<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.plain</span> <span class="token punctuation">{</span>
+  <span class="token property">text-decoration</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.underover</span> <span class="token punctuation">{</span>
+  <span class="token property">text-decoration</span><span class="token punctuation">:</span> dashed underline overline<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.thick</span> <span class="token punctuation">{</span>
+  <span class="token property">text-decoration</span><span class="token punctuation">:</span> solid underline purple 4px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.blink</span> <span class="token punctuation">{</span>
+  <span class="token property">text-decoration</span><span class="token punctuation">:</span> blink<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>under<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This text has a line underneath it.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>over<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This text has a line over it.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>line<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This text has a line going through it.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>plain<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>link will not be underlined<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>,
+    as links generally are by default. Be careful when removing
+    the text decoration on anchors since users often depend on
+    the underline to denote hyperlinks.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>underover<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This text has lines above <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>em</span><span class="token punctuation">&gt;</span></span>and<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>em</span><span class="token punctuation">&gt;</span></span> below it.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>thick<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This text has a really thick purple underline in supporting browsers.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>blink<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This text might blink for you,
+    depending on the browser you use.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre></div>
+<iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="auto" height="320" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/CSS_Text_Decoration/_sample_.examples.html" loading="lazy"></iframe>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-text-decor/">CSS Text Decoration Module Level 3 <br></a></td></tr></tbody>
+</table></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/css_text_decoration/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/css_text_decoration/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCSS_Text_Decoration&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Fcss_text_decoration%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCSS_Text_Decoration%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fcss_text_decoration%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F77abaefce3b90a6439c5bd4a162956e7d0cf8fda%0A*+Document+last+modified:+2022-08-17T08:27:04.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-08-17T08:27:04.000Z">Aug 17, 2022</time>, <a href="css_text_decoration/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Text_Decoration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Text_Decoration</a>
+  </p>
+</div>

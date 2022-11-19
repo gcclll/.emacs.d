@@ -1,0 +1,170 @@
+<h1>DataTransferItem</h1>
+<div class="section-content">
+<p>The <code>DataTransferItem</code> object represents one drag data item. During a <em>drag operation</em>, each <a href="dragevent"><code>drag event</code></a> has a <a href="dragevent/datatransfer"><code>dataTransfer</code></a> property which contains a <a href="datatransferitemlist"><code>list</code></a> of drag data items. Each item in the list is a <code>DataTransferItem</code> object.</p> <p>This interface has no constructor.</p>
+</div>
+<h2 id="properties">Properties</h2>
+<div class="section-content"><dl> <dt id="datatransferitem.kind">
+<a href="datatransferitem/kind"><code>DataTransferItem.kind</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>The <em>kind</em> of drag data item, <code>string</code> or <code>file</code>.</p> </dd> <dt id="datatransferitem.type">
+<a href="datatransferitem/type"><code>DataTransferItem.type</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>The drag data item's type, typically a MIME type.</p> </dd> </dl></div>
+<h2 id="methods">Methods</h2>
+<div class="section-content"><dl> <dt id="datatransferitem.getasfile"><a href="datatransferitem/getasfile"><code>DataTransferItem.getAsFile()</code></a></dt> <dd> <p>Returns the <a href="file"><code>File</code></a> object associated with the drag data item (or null if the drag item is not a file).</p> </dd> <dt id="datatransferitem.getasfilesystemhandle"><a href="datatransferitem/getasfilesystemhandle"><code>DataTransferItem.getAsFileSystemHandle()</code></a></dt> <dd> <p>Returns a <a href="filesystemfilehandle"><code>FileSystemFileHandle</code></a> if the dragged item is a file, or a <a href="filesystemdirectoryhandle"><code>FileSystemDirectoryHandle</code></a> if the dragged item is a directory.</p> </dd> <dt id="datatransferitem.getasstring"><a href="datatransferitem/getasstring"><code>DataTransferItem.getAsString()</code></a></dt> <dd> <p>Invokes the specified callback with the drag data item string as its argument.</p> </dd> <dt id="datatransferitem.webkitgetasentry">
+<a href="datatransferitem/webkitgetasentry"><code>DataTransferItem.webkitGetAsEntry()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."> <span class="visually-hidden">Non-Standard</span> </abbr>
+</dt> <dd> <p>Returns an object based on <a href="filesystementry"><code>FileSystemEntry</code></a> representing the selected file's entry in its file system. This will generally be either a <a href="filesystemfileentry"><code>FileSystemFileEntry</code></a> or <a href="filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> object.</p> </dd> </dl></div>
+<h2 id="example">Example</h2>
+<div class="section-content"><p>All of this interface's methods and properties have their own reference page, and each reference page has an example of its usage.</p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://html.spec.whatwg.org/multipage/dnd.html#the-datatransferitem-interface">HTML Standard <br><small># the-datatransferitem-interface</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>DataTransferItem</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>≤14</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getAsFile</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>≤14</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getAsFileSystemHandle</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>getAsString</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>≤14</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>kind</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>≤14</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>type</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>≤14</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>webkitGetAsEntry</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/datatransferitem/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/datatransferitem/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FDataTransferItem&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fdatatransferitem%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FDataTransferItem%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fdatatransferitem%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F2279e5ae6c229c707a014a22aa1ec4635a0f981f%0A*+Document+last+modified%3A+2021-09-14T18%3A08%3A09.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2021-09-14T18:08:09.000Z">Sep 14, 2021</time>, <a href="datatransferitem/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem</a>
+  </p>
+</div>

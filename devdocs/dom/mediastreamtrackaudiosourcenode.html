@@ -1,0 +1,115 @@
+<h1>MediaStreamTrackAudioSourceNode</h1>
+<div class="section-content">
+<p>The <code>MediaStreamTrackAudioSourceNode</code> interface is a type of <a href="audionode"><code>AudioNode</code></a> which represents a source of audio data taken from a specific <a href="mediastreamtrack"><code>MediaStreamTrack</code></a> obtained through the <a href="webrtc_api">WebRTC</a> or <a href="media_streams_api">Media Capture and Streams</a> APIs.</p> <p>The audio itself might be input from a microphone or other audio sampling device, or might be received through a <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a>, among other possible options.</p> <p>A <code>MediaStreamTrackAudioSourceNode</code> has no inputs and exactly one output, and is created using the <a href="audiocontext/createmediastreamtracksource"><code>AudioContext.createMediaStreamTrackSource()</code></a> method. This interface is similar to <a href="mediastreamaudiosourcenode"><code>MediaStreamAudioSourceNode</code></a>, except it lets you specifically state the track to use, rather than assuming the first audio track on a stream.</p>
+<svg viewbox="-1 -1 650 42" preserveaspectratio="xMinYMin meet"> <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/EventTarget">  <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> EventTarget </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/AudioNode">  <text x="155.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> AudioNode </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/MediaStreamTrackAudioSourceNode" aria-current="page">  <text x="347" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> MediaStreamTrackAudioSourceNode </text> </a></svg> <div class="table-scroll"><div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Number of inputs</th> <td><code>0</code></td> </tr> <tr> <th scope="row">Number of outputs</th> <td><code>1</code></td> </tr> <tr> <th scope="row">Channel count</th> <td> defined by the first audio <a href="mediastreamtrack"><code>MediaStreamTrack</code></a> passed to the <a href="audiocontext/createmediastreamtracksource"><code>AudioContext.createMediaStreamTrackSource()</code></a> method that created it. </td> </tr> </tbody> </table></div></div>
+</div>
+<h2 id="constructor">Constructor</h2>
+<div class="section-content"><dl> <dt id="new_mediastreamtrackaudiosourcenode"><a href="mediastreamtrackaudiosourcenode/mediastreamtrackaudiosourcenode"><code>new MediaStreamTrackAudioSourceNode()</code></a></dt> <dd> <p>Creates a new <code>MediaStreamTrackAudioSourceNode</code> object instance with the specified options.</p> </dd> </dl></div>
+<h2 id="properties">Properties</h2>
+<div class="section-content"><p><em>The <code>MediaStreamTrackAudioSourceNode</code> interface has no properties of its own; however, it inherits the properties of its parent, <a href="audionode"><code>AudioNode</code></a>.</em></p></div>
+<h2 id="methods">Methods</h2>
+<div class="section-content"><p><em>Inherits methods from its parent, <a href="audionode"><code>AudioNode</code></a></em>.</p></div>
+<h2 id="example">Example</h2>
+<div class="section-content"><p>See <a href="audiocontext/createmediastreamsource#example"><code>AudioContext.createMediaStreamSource()</code></a> for example code that uses this object.</p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://webaudio.github.io/web-audio-api/#MediaStreamTrackAudioSourceNode">Web Audio API <br><small># MediaStreamTrackAudioSourceNode</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>MediaStreamTrackAudioSourceNode</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>MediaStreamTrackAudioSourceNode</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>Firefox 68 implements the updated standard's definition of the "first" audio track; now the first track is the one whose ID comes first lexicographically.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>Firefox 68 implements the updated standard's definition of the "first" audio track; now the first track is the one whose ID comes first lexicographically.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mediaStreamTrack</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> <li><a href="webrtc_api">WebRTC API</a></li> <li><a href="media_streams_api">Media Capture and Streams API (Media Streams)</a></li> <li><a href="mediastreamaudiosourcenode"><code>MediaStreamAudioSourceNode</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/mediastreamtrackaudiosourcenode/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/mediastreamtrackaudiosourcenode/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMediaStreamTrackAudioSourceNode&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fmediastreamtrackaudiosourcenode%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMediaStreamTrackAudioSourceNode%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fmediastreamtrackaudiosourcenode%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fcaaae4e675413aa1c44054883d7e1baa3fa910ff%0A*+Document+last+modified%3A+2022-02-03T16%3A33%3A06.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-02-03T16:33:06.000Z">Feb 3, 2022</time>, <a href="mediastreamtrackaudiosourcenode/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrackAudioSourceNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrackAudioSourceNode</a>
+  </p>
+</div>

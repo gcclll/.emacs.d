@@ -1,0 +1,1053 @@
+<h1>Date</h1>
+<div class="section-content">
+<p>JavaScript <code>Date</code> objects represent a single moment in time in a platform-independent format. <code>Date</code> objects contain a <code>Number</code> that represents milliseconds since 1 January 1970 UTC.</p> <div class="notecard note" id="sect1"> <p><strong>Note:</strong> TC39 is working on <a href="https://tc39.es/proposal-temporal/docs/index.html" rel=" noopener">Temporal</a>, a new Date/Time API. Read more about it on the <a href="https://blogs.igalia.com/compilers/2020/06/23/dates-and-times-in-javascript/" rel=" noopener">Igalia blog</a>. It is not yet ready for production use!</p> </div>
+</div>
+<section aria-labelledby="description"><h2 id="description">Description</h2>
+</section><section aria-labelledby="the_ecmascript_epoch_and_timestamps"><h3 id="the_ecmascript_epoch_and_timestamps">The ECMAScript epoch and timestamps</h3>
+<div class="section-content">
+<p>A JavaScript date is fundamentally specified as the number of milliseconds that have elapsed since the <a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-time-values-and-time-range" rel=" noopener">ECMAScript epoch</a>, which is defined as January 1, 1970, UTC (equivalent to the <a href="https://en.wikipedia.org/wiki/Unix_time" rel=" noopener">UNIX epoch</a>).</p> <div class="notecard note" id="sect2"> <p><strong>Note:</strong> It's important to keep in mind that while the time value at the heart of a Date object is UTC, the basic methods to fetch the date and time or its components all work in the local (i.e. host system) time zone and offset.</p> </div> <p>It should be noted that the maximum <code>Date</code> is not of the same value as the maximum safe integer (<code>Number.MAX_SAFE_INTEGER</code> is 9,007,199,254,740,991). Instead, it is defined in ECMA-262 that a maximum of ±100,000,000 (one hundred million) days relative to January 1, 1970 UTC (that is, April 20, 271821 BCE ~ September 13, 275760 CE) can be represented by the standard <code>Date</code> object (equivalent to ±8,640,000,000,000,000 milliseconds).</p>
+</div></section><section aria-labelledby="date_format_and_time_zone_conversions"><h3 id="date_format_and_time_zone_conversions">Date format and time zone conversions</h3>
+<div class="section-content">
+<p>There are several methods available to obtain a date in various formats, as well as to perform time zone conversions. Particularly useful are the functions that output the date and time in Coordinated Universal Time (UTC), the global standard time defined by the World Time Standard. (This time is historically known as <em>Greenwich Mean Time</em>, as UTC lies along the meridian that includes London—and nearby Greenwich—in the United Kingdom.) The user's device provides the local time.</p> <p>In addition to methods to read and alter individual components of the local date and time (such as <a href="date/getday"><code>getDay()</code></a> and <a href="date/sethours"><code>setHours()</code></a>), there are also versions of the same methods that read and manipulate the date and time using UTC (such as <a class="page-not-created"><code>getUTCDay()</code></a> and <a href="date/setutchours"><code>setUTCHours()</code></a>).</p>
+</div></section><section aria-labelledby="constructor"><h2 id="constructor">Constructor</h2>
+<div class="section-content"><dl> <dt id="date"><a href="date/date"><code>Date()</code></a></dt> <dd> <p>When called as a function, returns a string representation of the current date and time. All arguments are ignored. The result is the same as executing <code>new Date().toString()</code>.</p> </dd> <dt id="new_date"><a href="date/date"><code>new Date()</code></a></dt> <dd> <p>When called as a constructor, returns a new <code>Date</code> object.</p> </dd> </dl></div></section><section aria-labelledby="static_methods"><h2 id="static_methods">Static methods</h2>
+<div class="section-content"><dl> <dt id="date.now"><a href="date/now"><code>Date.now()</code></a></dt> <dd> <p>Returns the numeric value corresponding to the current time—the number of milliseconds elapsed since January 1, 1970 00:00:00 UTC, with leap seconds ignored.</p> </dd> <dt id="date.parse"><a href="date/parse"><code>Date.parse()</code></a></dt> <dd> <p>Parses a string representation of a date and returns the number of milliseconds since 1 January, 1970, 00:00:00 UTC, with leap seconds ignored.</p> <div class="notecard note" id="sect3"> <p><strong>Note:</strong> Parsing of strings with <code>Date.parse</code> is strongly discouraged due to browser differences and inconsistencies.</p> </div> </dd> <dt id="date.utc"><a href="date/utc"><code>Date.UTC()</code></a></dt> <dd> <p>Accepts the same parameters as the longest form of the constructor (i.e. 2 to 7) and returns the number of milliseconds since January 1, 1970, 00:00:00 UTC, with leap seconds ignored.</p> </dd> </dl></div></section><section aria-labelledby="instance_methods"><h2 id="instance_methods">Instance methods</h2>
+<div class="section-content"><dl> <dt id="date.prototype.getdate"><a href="date/getdate"><code>Date.prototype.getDate()</code></a></dt> <dd> <p>Returns the day of the month (<code>1</code>–<code>31</code>) for the specified date according to local time.</p> </dd> <dt id="date.prototype.getday"><a href="date/getday"><code>Date.prototype.getDay()</code></a></dt> <dd> <p>Returns the day of the week (<code>0</code>–<code>6</code>) for the specified date according to local time.</p> </dd> <dt id="date.prototype.getfullyear"><a href="date/getfullyear"><code>Date.prototype.getFullYear()</code></a></dt> <dd> <p>Returns the year (4 digits for 4-digit years) of the specified date according to local time.</p> </dd> <dt id="date.prototype.gethours"><a href="date/gethours"><code>Date.prototype.getHours()</code></a></dt> <dd> <p>Returns the hour (<code>0</code>–<code>23</code>) in the specified date according to local time.</p> </dd> <dt id="date.prototype.getmilliseconds"><a href="date/getmilliseconds"><code>Date.prototype.getMilliseconds()</code></a></dt> <dd> <p>Returns the milliseconds (<code>0</code>–<code>999</code>) in the specified date according to local time.</p> </dd> <dt id="date.prototype.getminutes"><a href="date/getminutes"><code>Date.prototype.getMinutes()</code></a></dt> <dd> <p>Returns the minutes (<code>0</code>–<code>59</code>) in the specified date according to local time.</p> </dd> <dt id="date.prototype.getmonth"><a href="date/getmonth"><code>Date.prototype.getMonth()</code></a></dt> <dd> <p>Returns the month (<code>0</code>–<code>11</code>) in the specified date according to local time.</p> </dd> <dt id="date.prototype.getseconds"><a href="date/getseconds"><code>Date.prototype.getSeconds()</code></a></dt> <dd> <p>Returns the seconds (<code>0</code>–<code>59</code>) in the specified date according to local time.</p> </dd> <dt id="date.prototype.gettime"><a href="date/gettime"><code>Date.prototype.getTime()</code></a></dt> <dd> <p>Returns the numeric value of the specified date as the number of milliseconds since January 1, 1970, 00:00:00 UTC. (Negative values are returned for prior times.)</p> </dd> <dt id="date.prototype.gettimezoneoffset"><a href="date/gettimezoneoffset"><code>Date.prototype.getTimezoneOffset()</code></a></dt> <dd> <p>Returns the time-zone offset in minutes for the current locale.</p> </dd> <dt id="date.prototype.getutcdate"><a href="date/getutcdate"><code>Date.prototype.getUTCDate()</code></a></dt> <dd> <p>Returns the day (date) of the month (<code>1</code>–<code>31</code>) in the specified date according to universal time.</p> </dd> <dt id="date.prototype.getutcday"><a href="date/getutcday"><code>Date.prototype.getUTCDay()</code></a></dt> <dd> <p>Returns the day of the week (<code>0</code>–<code>6</code>) in the specified date according to universal time.</p> </dd> <dt id="date.prototype.getutcfullyear"><a href="date/getutcfullyear"><code>Date.prototype.getUTCFullYear()</code></a></dt> <dd> <p>Returns the year (4 digits for 4-digit years) in the specified date according to universal time.</p> </dd> <dt id="date.prototype.getutchours"><a href="date/getutchours"><code>Date.prototype.getUTCHours()</code></a></dt> <dd> <p>Returns the hours (<code>0</code>–<code>23</code>) in the specified date according to universal time.</p> </dd> <dt id="date.prototype.getutcmilliseconds"><a href="date/getutcmilliseconds"><code>Date.prototype.getUTCMilliseconds()</code></a></dt> <dd> <p>Returns the milliseconds (<code>0</code>–<code>999</code>) in the specified date according to universal time.</p> </dd> <dt id="date.prototype.getutcminutes"><a href="date/getutcminutes"><code>Date.prototype.getUTCMinutes()</code></a></dt> <dd> <p>Returns the minutes (<code>0</code>–<code>59</code>) in the specified date according to universal time.</p> </dd> <dt id="date.prototype.getutcmonth"><a href="date/getutcmonth"><code>Date.prototype.getUTCMonth()</code></a></dt> <dd> <p>Returns the month (<code>0</code>–<code>11</code>) in the specified date according to universal time.</p> </dd> <dt id="date.prototype.getutcseconds"><a href="date/getutcseconds"><code>Date.prototype.getUTCSeconds()</code></a></dt> <dd> <p>Returns the seconds (<code>0</code>–<code>59</code>) in the specified date according to universal time.</p> </dd> <dt id="date.prototype.getyear">
+<a href="date/getyear"><code>Date.prototype.getYear()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."> <span class="visually-hidden">Deprecated</span> </abbr>
+</dt> <dd> <p>Returns the year (usually 2–3 digits) in the specified date according to local time. Use <a href="date/getfullyear"><code>getFullYear()</code></a> instead.</p> </dd> <dt id="date.prototype.setdate"><a href="date/setdate"><code>Date.prototype.setDate()</code></a></dt> <dd> <p>Sets the day of the month for a specified date according to local time.</p> </dd> <dt id="date.prototype.setfullyear"><a href="date/setfullyear"><code>Date.prototype.setFullYear()</code></a></dt> <dd> <p>Sets the full year (e.g. 4 digits for 4-digit years) for a specified date according to local time.</p> </dd> <dt id="date.prototype.sethours"><a href="date/sethours"><code>Date.prototype.setHours()</code></a></dt> <dd> <p>Sets the hours for a specified date according to local time.</p> </dd> <dt id="date.prototype.setmilliseconds"><a href="date/setmilliseconds"><code>Date.prototype.setMilliseconds()</code></a></dt> <dd> <p>Sets the milliseconds for a specified date according to local time.</p> </dd> <dt id="date.prototype.setminutes"><a href="date/setminutes"><code>Date.prototype.setMinutes()</code></a></dt> <dd> <p>Sets the minutes for a specified date according to local time.</p> </dd> <dt id="date.prototype.setmonth"><a href="date/setmonth"><code>Date.prototype.setMonth()</code></a></dt> <dd> <p>Sets the month for a specified date according to local time.</p> </dd> <dt id="date.prototype.setseconds"><a href="date/setseconds"><code>Date.prototype.setSeconds()</code></a></dt> <dd> <p>Sets the seconds for a specified date according to local time.</p> </dd> <dt id="date.prototype.settime"><a href="date/settime"><code>Date.prototype.setTime()</code></a></dt> <dd> <p>Sets the <a href="date" aria-current="page"><code>Date</code></a> object to the time represented by a number of milliseconds since January 1, 1970, 00:00:00 UTC. Use negative numbers for times prior.</p> </dd> <dt id="date.prototype.setutcdate"><a href="date/setutcdate"><code>Date.prototype.setUTCDate()</code></a></dt> <dd> <p>Sets the day of the month for a specified date according to universal time.</p> </dd> <dt id="date.prototype.setutcfullyear"><a href="date/setutcfullyear"><code>Date.prototype.setUTCFullYear()</code></a></dt> <dd> <p>Sets the full year (e.g. 4 digits for 4-digit years) for a specified date according to universal time.</p> </dd> <dt id="date.prototype.setutchours"><a href="date/setutchours"><code>Date.prototype.setUTCHours()</code></a></dt> <dd> <p>Sets the hour for a specified date according to universal time.</p> </dd> <dt id="date.prototype.setutcmilliseconds"><a href="date/setutcmilliseconds"><code>Date.prototype.setUTCMilliseconds()</code></a></dt> <dd> <p>Sets the milliseconds for a specified date according to universal time.</p> </dd> <dt id="date.prototype.setutcminutes"><a href="date/setutcminutes"><code>Date.prototype.setUTCMinutes()</code></a></dt> <dd> <p>Sets the minutes for a specified date according to universal time.</p> </dd> <dt id="date.prototype.setutcmonth"><a href="date/setutcmonth"><code>Date.prototype.setUTCMonth()</code></a></dt> <dd> <p>Sets the month for a specified date according to universal time.</p> </dd> <dt id="date.prototype.setutcseconds"><a href="date/setutcseconds"><code>Date.prototype.setUTCSeconds()</code></a></dt> <dd> <p>Sets the seconds for a specified date according to universal time.</p> </dd> <dt id="date.prototype.setyear">
+<a href="date/setyear"><code>Date.prototype.setYear()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."> <span class="visually-hidden">Deprecated</span> </abbr>
+</dt> <dd> <p>Sets the year (usually 2–3 digits) for a specified date according to local time. Use <a href="date/setfullyear"><code>setFullYear()</code></a> instead.</p> </dd> <dt id="date.prototype.todatestring"><a href="date/todatestring"><code>Date.prototype.toDateString()</code></a></dt> <dd> <p>Returns the "date" portion of the <a href="date" aria-current="page"><code>Date</code></a> as a human-readable string like <code>'Thu Apr 12 2018'</code>.</p> </dd> <dt id="date.prototype.toisostring"><a href="date/toisostring"><code>Date.prototype.toISOString()</code></a></dt> <dd> <p>Converts a date to a string following the ISO 8601 Extended Format.</p> </dd> <dt id="date.prototype.tojson"><a href="date/tojson"><code>Date.prototype.toJSON()</code></a></dt> <dd> <p>Returns a string representing the <a href="date" aria-current="page"><code>Date</code></a> using <a href="date/toisostring"><code>toISOString()</code></a>. Intended for use by <a href="json/stringify"><code>JSON.stringify()</code></a>.</p> </dd> <dt id="date.prototype.togmtstring">
+<a href="date/togmtstring"><code>Date.prototype.toGMTString()</code></a> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."> <span class="visually-hidden">Deprecated</span> </abbr>
+</dt> <dd> <p>Returns a string representing the <a href="date" aria-current="page"><code>Date</code></a> based on the GMT (UTC) time zone. Use <a href="date/toutcstring"><code>toUTCString()</code></a> instead.</p> </dd> <dt id="date.prototype.tolocaledatestring"><a href="date/tolocaledatestring"><code>Date.prototype.toLocaleDateString()</code></a></dt> <dd> <p>Returns a string with a locality sensitive representation of the date portion of this date based on system settings.</p> </dd> <dt id="date.prototype.tolocalestring"><a href="date/tolocalestring"><code>Date.prototype.toLocaleString()</code></a></dt> <dd> <p>Returns a string with a locality-sensitive representation of this date. Overrides the <a href="object/tolocalestring"><code>Object.prototype.toLocaleString()</code></a> method.</p> </dd> <dt id="date.prototype.tolocaletimestring"><a href="date/tolocaletimestring"><code>Date.prototype.toLocaleTimeString()</code></a></dt> <dd> <p>Returns a string with a locality-sensitive representation of the time portion of this date, based on system settings.</p> </dd> <dt id="date.prototype.tostring"><a href="date/tostring"><code>Date.prototype.toString()</code></a></dt> <dd> <p>Returns a string representing the specified <a href="date" aria-current="page"><code>Date</code></a> object. Overrides the <a href="object/tostring"><code>Object.prototype.toString()</code></a> method.</p> </dd> <dt id="date.prototype.totimestring"><a href="date/totimestring"><code>Date.prototype.toTimeString()</code></a></dt> <dd> <p>Returns the "time" portion of the <a href="date" aria-current="page"><code>Date</code></a> as a human-readable string.</p> </dd> <dt id="date.prototype.toutcstring"><a href="date/toutcstring"><code>Date.prototype.toUTCString()</code></a></dt> <dd> <p>Converts a date to a string using the UTC timezone.</p> </dd> <dt id="date.prototype.valueof"><a href="date/valueof"><code>Date.prototype.valueOf()</code></a></dt> <dd> <p>Returns the primitive value of a <a href="date" aria-current="page"><code>Date</code></a> object. Overrides the <a href="object/valueof"><code>Object.prototype.valueOf()</code></a> method.</p> </dd> </dl></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="several_ways_to_create_a_date_object"><h3 id="several_ways_to_create_a_date_object">Several ways to create a Date object</h3>
+<div class="section-content">
+<p>The following examples show several ways to create JavaScript dates:</p> <div class="notecard note" id="sect4"> <p><strong>Note:</strong> When parsing date strings with the <code>Date</code> constructor (and <code>Date.parse</code>, they are equivalent), always make sure that the input conforms to the <a href="https://tc39.es/ecma262/#sec-date-time-string-format" rel=" noopener">ISO 8601 format</a> (<code>YYYY-MM-DDTHH:mm:ss.sssZ</code>) — the parsing behavior with other formats is implementation-defined and may not work across all browsers. A library can help if many different formats are to be accommodated.</p> </div> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> today <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> birthday <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">'December 17, 1995 03:24:00'</span><span class="token punctuation">)</span> <span class="token comment">// DISCOURAGED: may not work in all runtimes</span>
+<span class="token keyword">const</span> birthday2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">'1995-12-17T03:24:00'</span><span class="token punctuation">)</span>   <span class="token comment">// This is ISO8601-compliant and will work reliably</span>
+<span class="token keyword">const</span> birthday3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">1995</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">)</span>            <span class="token comment">// the month is 0-indexed</span>
+<span class="token keyword">const</span> birthday4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">1995</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> birthday5 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">628021800000</span><span class="token punctuation">)</span>            <span class="token comment">// passing epoch timestamp</span>
+</pre></div>
+</div></section><section aria-labelledby="formats_of_tostring_method_return_values"><h3 id="formats_of_tostring_method_return_values">Formats of toString method return values</h3>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">const</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">"2020-05-12T23:50:21.817Z"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+date<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>               <span class="token comment">// Tue May 12 2020 18:50:21 GMT-0500 (Central Daylight Time)</span>
+date<span class="token punctuation">.</span><span class="token function">toDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token comment">// Tue May 12 2020</span>
+date<span class="token punctuation">.</span><span class="token function">toTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token comment">// 18:50:21 GMT-0500 (Central Daylight Time)</span>
+date<span class="token punctuation">.</span><span class="token function">toISOString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>            <span class="token comment">// 2020-05-12T23:50:21.817Z</span>
+date<span class="token punctuation">.</span><span class="token function">toUTCString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>            <span class="token comment">// Tue, 12 May 2020 23:50:21 GMT</span>
+date<span class="token punctuation">.</span><span class="token function">toGMTString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>            <span class="token comment">// Tue, 12 May 2020 23:50:21 GMT</span>
+date<span class="token punctuation">.</span><span class="token function">toJSON</span><span class="token punctuation">(</span><span class="token punctuation">)</span>                 <span class="token comment">// 2020-05-12T23:50:21.817Z</span>
+date<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>         <span class="token comment">// 5/12/2020, 6:50:21 PM</span>
+date<span class="token punctuation">.</span><span class="token function">toLocaleDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment">// 5/12/2020</span>
+date<span class="token punctuation">.</span><span class="token function">toLocaleTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token comment">// 6:50:21 PM</span>
+</pre></div></div></section><section aria-labelledby="to_get_date_month_and_year_or_time"><h3 id="to_get_date_month_and_year_or_time">To get Date, Month and Year or Time</h3>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">const</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>month<span class="token punctuation">,</span> day<span class="token punctuation">,</span> year<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>date<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> date<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> date<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token punctuation">[</span>hour<span class="token punctuation">,</span> minutes<span class="token punctuation">,</span> seconds<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span>date<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> date<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> date<span class="token punctuation">.</span><span class="token function">getSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</pre></div></div></section><section aria-labelledby="interpretation_of_two-digit_years"><h3 id="interpretation_of_two-digit_years">Interpretation of two-digit years</h3>
+<div class="section-content">
+<p><code>new Date()</code> exhibits legacy undesirable, inconsistent behavior with two-digit year values; specifically, when a <code>new Date()</code> call is given a two-digit year value, that year value does not get treated as a literal year and used as-is but instead gets interpreted as a relative offset — in some cases as an offset from the year <code>1900</code>, but in other cases, as an offset from the year <code>2000</code>.</p> <div class="code-example"><pre data-language="js"><span class="token keyword">let</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">98</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Sun Feb 01 1998 00:00:00 GMT+0000 (GMT)</span>
+date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// Wed Feb 01 1922 00:00:00 GMT+0000 (GMT)</span>
+date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">"2/1/22"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Tue Feb 01 2022 00:00:00 GMT+0000 (GMT)</span>
+
+<span class="token comment">// Legacy method; always interprets two-digit year values as relative to 1900</span>
+date<span class="token punctuation">.</span><span class="token function">setYear</span><span class="token punctuation">(</span><span class="token number">98</span><span class="token punctuation">)</span><span class="token punctuation">;</span> date<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Sun Feb 01 1998 00:00:00 GMT+0000 (GMT)</span>
+date<span class="token punctuation">.</span><span class="token function">setYear</span><span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span> date<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Wed Feb 01 1922 00:00:00 GMT+0000 (GMT)</span>
+</pre></div> <p>So, to create and get dates between the years <code>0</code> and <code>99</code>, instead use the preferred <a href="date/setfullyear"><code>setFullYear()</code></a> and <a href="date/getfullyear"><code>getFullYear()</code></a> methods:.</p> <div class="code-example"><pre data-language="js"><span class="token comment">// Preferred method; never interprets any value as being a relative offset,</span>
+<span class="token comment">// but instead uses the year value as-is</span>
+date<span class="token punctuation">.</span><span class="token function">setFullYear</span><span class="token punctuation">(</span><span class="token number">98</span><span class="token punctuation">)</span><span class="token punctuation">;</span> date<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 98 (not 1998)</span>
+date<span class="token punctuation">.</span><span class="token function">setFullYear</span><span class="token punctuation">(</span><span class="token number">22</span><span class="token punctuation">)</span><span class="token punctuation">;</span> date<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 22 (not 1922, not 2022)</span>
+</pre></div>
+</div></section><section aria-labelledby="calculating_elapsed_time"><h3 id="calculating_elapsed_time">Calculating elapsed time</h3>
+<div class="section-content">
+<p>The following examples show how to determine the elapsed time between two JavaScript dates in milliseconds.</p> <p>Due to the differing lengths of days (due to daylight saving changeover), months, and years, expressing elapsed time in units greater than hours, minutes, and seconds requires addressing a number of issues, and should be thoroughly researched before being attempted.</p> <div class="code-example"><pre data-language="js"><span class="token comment">// Using Date objects</span>
+<span class="token keyword">const</span> start <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The event to time goes here:</span>
+<span class="token function">doSomethingForALongTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> end <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> elapsed <span class="token operator">=</span> end <span class="token operator">-</span> start<span class="token punctuation">;</span> <span class="token comment">// elapsed time in milliseconds</span>
+</pre></div> <div class="code-example"><pre data-language="js"><span class="token comment">// Using built-in methods</span>
+<span class="token keyword">const</span> start <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The event to time goes here:</span>
+<span class="token function">doSomethingForALongTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> end <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> elapsed <span class="token operator">=</span> end<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// elapsed time in milliseconds</span>
+</pre></div> <div class="code-example"><pre data-language="js"><span class="token comment">// To test a function and get back its return</span>
+<span class="token keyword">function</span> <span class="token function">printElapsedTime</span><span class="token punctuation">(</span><span class="token parameter">testFn</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> startTime <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">testFn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> endTime <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Elapsed time: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">String</span><span class="token punctuation">(</span>endTime <span class="token operator">-</span> startTime<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> milliseconds</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> yourFunctionReturn <span class="token operator">=</span> <span class="token function">printElapsedTime</span><span class="token punctuation">(</span>yourFunction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div> <div class="notecard note" id="sect5"> <p><strong>Note:</strong> In browsers that support the <a href="https://developer.mozilla.org/en-US/docs/Web/API/performance_property">Web Performance API</a>'s high-resolution time feature, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/now"><code>Performance.now()</code></a> can provide more reliable and precise measurements of elapsed time than <a href="date/now"><code>Date.now()</code></a>.</p> </div>
+</div></section><section aria-labelledby="get_the_number_of_seconds_since_the_ecmascript_epoch"><h3 id="get_the_number_of_seconds_since_the_ecmascript_epoch">Get the number of seconds since the ECMAScript Epoch</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="js"><span class="token keyword">const</span> seconds <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div> <p>In this case, it's important to return only an integer—so a simple division won't do. It's also important to only return actually elapsed seconds. (That's why this code uses <a href="math/floor"><code>Math.floor()</code></a>, and <em>not</em> <a href="math/round"><code>Math.round()</code></a>.)</p>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/multipage/numbers-and-dates.html#sec-date-objects">ECMAScript Language Specification <br><small># sec-date-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+<th colspan="2">Server</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+<th>Deno</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>@@toPrimitive</code></th>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>6.0.0</div></td>
+</tr>
+<tr>
+<th><code>Date</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>UTC</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>Date</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>The <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601 Date Format</a> is not supported in Internet Explorer 8 or earlier.</div>
+</td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getDate</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getDay</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getFullYear</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getHours</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getMilliseconds</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getMinutes</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getMonth</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getSeconds</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getTime</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getTimezoneOffset</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getUTCDate</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getUTCDay</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getUTCFullYear</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getUTCHours</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getUTCMilliseconds</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getUTCMinutes</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getUTCMonth</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getUTCSeconds</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>getYear</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>now</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>parse</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setDate</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setFullYear</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setHours</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setMilliseconds</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setMinutes</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setMonth</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setSeconds</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setTime</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setUTCDate</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setUTCFullYear</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setUTCHours</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setUTCMilliseconds</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setUTCMinutes</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setUTCMonth</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setUTCSeconds</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>setYear</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toDateString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toGMTString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toISOString</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toJSON</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toLocaleDateString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toLocaleString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toLocaleTimeString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toSource</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>1-74</div>
+<div>Starting in Firefox 74, <code>toSource()</code> is no longer available for use by web content. It is still allowed for internal and privileged code.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>toString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toTimeString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>toUTCString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+<tr>
+<th><code>valueOf</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+<td class="bc-supports-yes"><div>0.10.0</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>
+<a href="date/date"><code>Date()</code></a> constructor</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/javascript/reference/global_objects/date/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/javascript/reference/global_objects/date/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FDate&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Fdate%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FDate%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Fdate%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Ffa1c80ded72b16a72e6993034620a6ff35d175b5%0A*+Document+last+modified%3A+2022-09-05T03%3A04%3A56.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-09-05T03:04:56.000Z">Sep 5, 2022</time>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date</a>
+  </p>
+</div>

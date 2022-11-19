@@ -1,0 +1,314 @@
+<h1>Visual Viewport API</h1>
+<div class="section-content"><p>The <strong>Visual Viewport API</strong> provides an explicit mechanism for querying and modifying the properties of the window's <a href="https://developer.mozilla.org/en-US/docs/Glossary/Visual_Viewport">visual viewport</a>. The visual viewport is the visual portion of a screen excluding on-screen keyboards, areas outside of a pinch-zoom area, or any other on-screen artifact that doesn't scale with the dimensions of a page.</p></div>
+<h2 id="visual_viewport_concepts_and_usage">Visual Viewport concepts and usage</h2>
+<div class="section-content">
+<p>The mobile web contains two viewports, the layout viewport and the visual viewport. The layout viewport covers all the elements on a page and the visual viewport is what is actually visible on the screen. When the user pinch-zooms into the page, the visual viewport shrinks but the layout viewport is unchanged. User-interface features like the on-screen keyboard (OSK) can shrink the visual viewport without affecting the layout viewport.</p> <p>What happens when a web page element needs to be visible on screen regardless of the visible portion of a web page? For example, what if you need a set of image controls to remain on screen regardless of the pinch zoom level of the device? Current browsers vary in how they handle this. The visual viewport lets web developers solve this by positioning elements relative to what's shown on screen.</p> <p>To access a window's visual viewport, you can obtain a <a href="visualviewport"><code>VisualViewport</code></a> object from the <a href="window/visualviewport"><code>window.visualViewport</code></a> property. The object includes a set of properties describing the viewport. It also adds two events, <code>onresize</code> and <code>onscroll</code>, that fire whenever the visual viewport changes. These events allow you to position elements relative to the visual viewport that would normally be anchored to the layout viewport.</p>
+</div>
+<h2 id="accessing_the_api">Accessing the API</h2>
+<div class="section-content"><dl> <dt id="window.visualviewport">
+<a href="window/visualviewport"><code>window.visualViewport</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>A read-only reference to the window's <a href="visualviewport"><code>VisualViewport</code></a> object. If this property doesn't exist, the API is unsupported.</p> </dd> </dl></div>
+<h2 id="interfaces">Interfaces</h2>
+<div class="section-content"><dl> <dt id="visualviewport"><a href="visualviewport"><code>VisualViewport</code></a></dt> <dd> <p>Represents the visual viewport for a given window. A window's <code>VisualViewport</code> object provides information about the viewport's position and size, and receives the <a href="visualviewport/resize_event"><code>resize</code></a> and <a href="visualviewport/scroll_event"><code>scroll</code></a> events you can monitor to know when changes occur to the window's viewport.</p> </dd> </dl></div>
+<h2 id="example">Example</h2>
+<div class="section-content">
+<p>The code below is based on <a href="https://github.com/WICG/visual-viewport/blob/gh-pages/examples/fixed-to-viewport.html" rel=" noopener">the sample in the specification</a>, though it adds a few things that make it function better. It shows a function called <code>viewportHandler()</code>. When called it queries the <code>offsetLeft</code> and <code>height</code> properties for values it uses in a CSS <code>translate()</code> method. You invoke this function by passing it to <em>both</em> event calls.</p> <p>One thing that may not be clear in this example is the use of the <code>pendingUpdate</code> flag and the call to <code>requestAnimationFrame()</code>. The <code>pendingUpdate</code> flag serves to prevent multiple invocations of the transform that can occur when <code>onresize</code> and <code>onscroll</code> fire at the same time. Using <code>requestAnimationFrame()</code> ensures that the transform occurs before the next render.</p> <div class="code-example"><pre data-language="js"><span class="token keyword">let</span> pendingUpdate <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">viewportHandler</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pendingUpdate<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  pendingUpdate <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+  <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    pendingUpdate <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> layoutViewport <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'layoutViewport'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Since the bar is position: fixed we need to offset it by the</span>
+    <span class="token comment">// visual viewport's offset from the layout viewport origin.</span>
+    <span class="token keyword">var</span> viewport <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> offsetLeft <span class="token operator">=</span> viewport<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> offsetTop <span class="token operator">=</span> viewport<span class="token punctuation">.</span>height
+                <span class="token operator">-</span> layoutViewport<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>height
+                <span class="token operator">+</span> viewport<span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span>
+
+    <span class="token comment">// You could also do this by setting style.left and style.top if you</span>
+    <span class="token comment">// use width: 100% instead.</span>
+    bottomBar<span class="token punctuation">.</span>style<span class="token punctuation">.</span>transform <span class="token operator">=</span> <span class="token string">'translate('</span> <span class="token operator">+</span>
+                                offsetLeft <span class="token operator">+</span> <span class="token string">'px,'</span> <span class="token operator">+</span>
+                                offsetTop <span class="token operator">+</span> <span class="token string">'px) '</span> <span class="token operator">+</span>
+                                <span class="token string">'scale('</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token operator">/</span>viewport<span class="token punctuation">.</span>scale <span class="token operator">+</span> <span class="token string">')'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span>visualViewport<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> viewportHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>visualViewport<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'resize'</span><span class="token punctuation">,</span> viewportHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://wicg.github.io/visual-viewport/#the-visualviewport-interface">Visual Viewport API <br><small># the-visualviewport-interface</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Visual_Viewport_API</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>height</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>offsetLeft</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>offsetTop</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>pageLeft</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>pageTop</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>resize_event</code></th>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+<div>The <code>onresize</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>66</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>48</div>
+<div>The <code>onresize</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+<div>The <code>onresize</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+<div>The <code>onresize</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>45</div>
+<div>The <code>onresize</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>scale</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>scroll_event</code></th>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+<div>The <code>onscroll</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>66</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>48</div>
+<div>The <code>onscroll</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+<div>The <code>onscroll</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+<div>The <code>onscroll</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>45</div>
+<div>The <code>onscroll</code> property is not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>width</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>91</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+</tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/visual_viewport_api/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/visual_viewport_api/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FVisual_Viewport_API&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fvisual_viewport_api%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FVisual_Viewport_API%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fvisual_viewport_api%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F93ae23dec42bba9d71d6f1ed45668d8d26847e9c%0A*+Document+last+modified%3A+2022-02-18T09%3A26%3A54.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-02-18T09:26:54.000Z">Feb 18, 2022</time>, <a href="visual_viewport_api/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Visual_Viewport_API</a>
+  </p>
+</div>

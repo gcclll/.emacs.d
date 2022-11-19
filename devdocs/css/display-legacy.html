@@ -1,0 +1,258 @@
+<h1>&lt;display-legacy&gt;</h1>
+<div class="section-content"><p>CSS 2 used a single-keyword syntax for the <code>display</code> property, requiring separate keywords for block-level and inline-level variants of the same layout mode. This page details those values.</p></div>
+<section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<p>Valid <code>&lt;display-legacy&gt;</code> values:</p> <dl> <dt id="inline-block"><code>inline-block</code></dt> <dd> <p>The element generates a block element box that will be flowed with surrounding content as if it were a single inline box (behaving much like a replaced element would).</p> <p>It is equivalent to <code>inline flow-root</code>.</p> </dd> <dt id="inline-table"><code>inline-table</code></dt> <dd> <p>The <code>inline-table</code> value does not have a direct mapping in HTML. It behaves like an HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"><code>&lt;table&gt;</code></a> element, but as an inline box, rather than a block-level box. Inside the table box is a block-level context.</p> <p>It is equivalent to <code>inline table</code>.</p> </dd> <dt id="inline-flex"><code>inline-flex</code></dt> <dd> <p>The element behaves like an inline element and lays out its content according to the flexbox model.</p> <p>It is equivalent to <code>inline flex</code>.</p> </dd> <dt id="inline-grid"><code>inline-grid</code></dt> <dd> <p>The element behaves like an inline element and lays out its content according to the grid model.</p> <p>It is equivalent to <code>inline grid</code>.</p> </dd> </dl>
+</div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="&lt;display-legacy&gt;">&lt;display-legacy&gt; = </span><br>  <span class="token keyword">inline-block</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">inline-table</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">inline-flex</span>   <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">inline-grid</span>   <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+<div class="section-content"><p>In the below example, we are creating an inline flex container with the legacy keyword inline-flex.</p></div></section><section aria-labelledby="html"><h3 id="html">HTML</h3>
+<div class="section-content"><div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>Flex Item<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>Flex Item<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+Not a flex item
+</pre></div></div></section><section aria-labelledby="css"><h3 id="css">CSS</h3>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token selector">.container</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline-flex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div></div></section><section aria-labelledby="result"><h3 id="result">Result</h3>
+<div class="section-content">
+<iframe class="sample-code-frame" title="Examples sample" id="frame_examples" width="300" height="150" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/display-legacy/_sample_.examples.html" loading="lazy"></iframe> <p>In the new syntax the inline flex container would be created using two values, inline for the outer display type, and flex for the inner display type.</p> <div class="code-example"><pre data-language="css"><span class="token selector">.container</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> inline flex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-display/#typedef-display-legacy">CSS Display Module Level 3 <br><small># typedef-display-legacy</small></a></td></tr></tbody>
+</table></div>
+<section aria-labelledby="browser_compatibility"><h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-legacy</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>12</div>
+</td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Internet Explorer implements an older version of the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Samsung Internet added this earlier than the corresponding Chrome version would indicate.</div>
+</td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-legacy</code></th>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>21</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>20</div>
+<div>Firefox 28 added multi-line flexbox support.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>8</div>
+</td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>15</div>
+</td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>7</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>4.4</div>
+</td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25</div>
+</td>
+<td class="bc-supports-yes">
+<div>20</div>
+<div>Firefox 28 added multi-line flexbox support.</div>
+</td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>14</div>
+</td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>7</div>
+</td>
+<td class="bc-supports-yes">
+<div>2.0</div>
+<div>1.5</div>
+</td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-legacy</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-legacy</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>8</div>
+<div>6</div>
+<div>Until Internet Explorer 8, <code>inline-block</code> is only for natural inline elements.</div>
+</td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table></section><h3 id="css.properties.display.inline-block">css.properties.display.inline-block</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.properties.display.inline-table">css.properties.display.inline-table</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.properties.display.inline-flex">css.properties.display.inline-flex</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.properties.display.inline-grid">css.properties.display.inline-grid</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>
+<a href="display"><code>display</code></a> <ul> <li><a href="display-outside"><code>&lt;display-outside&gt;</code></a></li> <li><a href="display-inside"><code>&lt;display-inside&gt;</code></a></li> <li><a href="display-listitem"><code>&lt;display-listitem&gt;</code></a></li> <li><a href="display-internal"><code>&lt;display-internal&gt;</code></a></li> <li><a href="display-box"><code>&lt;display-box&gt;</code></a></li> </ul> </li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/display-legacy/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/display-legacy/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fdisplay-legacy&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Fdisplay-legacy%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fdisplay-legacy%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fdisplay-legacy%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F4c11b317f1b301da9c38940c2d4ad22f7123b09b%0A*+Document+last+modified:+2022-08-13T05:04:31.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-08-13T05:04:31.000Z">Aug 13, 2022</time>, <a href="display-legacy/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display-legacy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/display-legacy</a>
+  </p>
+</div>

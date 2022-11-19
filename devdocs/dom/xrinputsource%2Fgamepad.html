@@ -1,0 +1,84 @@
+<h1>XRInputSource.gamepad</h1>
+<div class="section-content">
+<p>The read-only <a href="../xrinputsource"><code>XRInputSource</code></a> property <code>gamepad</code> returns a <a href="../gamepad"><code>Gamepad</code></a> object describing the state of the buttons and axes on the XR input source, if it is a gamepad or comparable device. If the device isn't a gamepad-like device, this property's value is <code>null</code>.</p> <p>The <a href="../gamepad"><code>Gamepad</code></a> instance returned behaves as described by the <a href="../gamepad_api">Gamepad API</a>. However, there are a few things to note:</p> <ul> <li>
+<code>XRInputSource</code> <code>Gamepad</code> instances are not included in the array returned by <a href="../navigator/getgamepads"><code>navigator.getGamepads()</code></a>. Gamepads are strictly associated with the WebXR hardware and are not general-purpose gaming devices.</li> <li>
+<a href="../gamepad/id"><code>Gamepad.id</code></a> is an empty string (<code>""</code>)</li> <li>
+<a href="../gamepad/index"><code>Gamepad.index</code></a> is <code>-1</code>
+</li> <li>
+<a href="../gamepad/connected"><code>Gamepad.connected</code></a> is <code>true</code> until the <code>XRInputSource</code> is removed from the list of active XR input sources or the <a href="../xrsession"><code>XRSession</code></a> is ended.</li> <li>If an axis reported by <a href="../gamepad/axes"><code>Gamepad.axes</code></a> represents an axis of a touchpad, the value is 0 when the associated <a href="../gamepadbutton/touched"><code>GamepadButton.touched</code></a> property is <code>false</code>.</li> <li>
+<a href="../gamepad/mapping"><code>Gamepad.mapping</code></a> returns "xr-standard".</li> </ul>
+</div>
+<h2 id="examples">Examples</h2>
+
+<h3 id="using_a_gamepad_input_source">Using a gamepad input source</h3>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> source <span class="token keyword">of</span> frame<span class="token punctuation">.</span>session<span class="token punctuation">.</span>inputSources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> gamepad <span class="token operator">=</span> source<span class="token punctuation">.</span>gamepad<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>gamepad<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>gamepad<span class="token punctuation">.</span>buttons<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>pressed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// do something</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></div></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://immersive-web.github.io/webxr-gamepads-module/#dom-xrinputsource-gamepad">WebXR Gamepads Module - Level 1 <br><small># dom-xrinputsource-gamepad</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>gamepad</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/xrinputsource/gamepad/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/xrinputsource/gamepad/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FXRInputSource%2Fgamepad&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fxrinputsource%2Fgamepad%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FXRInputSource%2Fgamepad%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fxrinputsource%2Fgamepad%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Faeebde8bcad9e569470bb50d7cc9d47d350699c2%0A*+Document+last+modified%3A+2021-08-13T09%3A56%3A36.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2021-08-13T09:56:36.000Z">Aug 13, 2021</time>, <a href="gamepad/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/gamepad" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/gamepad</a>
+  </p>
+</div>

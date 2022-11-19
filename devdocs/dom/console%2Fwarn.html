@@ -1,0 +1,106 @@
+<h1>console.warn()</h1>
+<div class="section-content">
+<p> The <code>console.warn()</code> method outputs a warning message to the Web console. </p>
+<div class="notecard note" id="sect1"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a></p> </div> <div class="notecard note" id="sect2"> <p> <strong>Note:</strong> In Chrome and Firefox, warnings have a small exclamation point icon next to them in the Web console log. </p> </div>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">warn</span><span class="token punctuation">(</span>obj1<span class="token punctuation">)</span>
+<span class="token function">warn</span><span class="token punctuation">(</span>obj1<span class="token punctuation">,</span> <span class="token comment">/* ..., */</span> objN<span class="token punctuation">)</span>
+<span class="token function">warn</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+<span class="token function">warn</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> subst1<span class="token punctuation">,</span> <span class="token comment">/* ..., */</span> substN<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content">
+<dl> <dt id="obj1">
+<code>obj1</code> ... <code>objN</code>
+</dt> <dd> <p> A list of JavaScript objects to output. The string representations of each of these objects are appended together in the order listed and output. </p> </dd> <dt id="msg"><code>msg</code></dt> <dd> <p>A JavaScript string containing zero or more substitution strings.</p> </dd> <dt id="subst1">
+<code>subst1</code> ... <code>substN</code>
+</dt> <dd> <p> JavaScript objects with which to replace substitution strings within <code>msg</code>. This gives you additional control over the format of the output. </p> </dd> </dl> <p>See <a href="../console#outputting_text_to_the_console">Outputting text to the console</a> in the documentation of <a href="../console"><code>console</code></a> for details.</p>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://console.spec.whatwg.org/#warn">Console Standard <br><small># warn</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>warn</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>substitution_strings</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>["Before Edge 79, <code>%c</code> is not supported.", "Before Edge 79, <code>%d</code> outputs a 0 if the specified value isn't a number."]</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>["<code>%c</code> is not supported.", "<code>%d</code> outputs a 0 if the specified value isn't a number."]</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/samples/gg589530(v=vs.85)" rel=" noopener">MSDN: Using the F12 Tools Console to View Errors and Status</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/console/warn/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/console/warn/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2Fconsole%2Fwarn&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fconsole%2Fwarn%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2Fconsole%2Fwarn%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fconsole%2Fwarn%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F0872b73731bb333479087e069e0ba94009587fb7%0A*+Document+last+modified%3A+2022-04-22T06%3A07%3A10.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-22T06:07:10.000Z">Apr 22, 2022</time>, <a href="warn/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/console/warn" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/console/warn</a>
+  </p>
+</div>

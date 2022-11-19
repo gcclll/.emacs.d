@@ -1,0 +1,121 @@
+<h1>Window: deviceorientation event</h1>
+<div class="section-content">
+<p>The <code>deviceorientation</code> event is fired when fresh data is available from an orientation sensor about the current orientation of the device as compared to the Earth coordinate frame. This data is gathered from a magnetometer inside the device.</p> <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Orientation_and_motion_data_explained">Orientation and motion data explained</a> for details.</p> <p>This event is not cancelable and does not bubble.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<p>Use the event name in methods like <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a>, or set an event handler property.</p> <div class="code-example"><pre data-language="js"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'deviceorientation'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function-variable function">ondeviceorientation</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="event_type">Event type</h2>
+<div class="section-content">
+<p>An <a href="../deviceorientationevent"><code>DeviceOrientationEvent</code></a>. Inherits from <a href="../event"><code>Event</code></a>.</p>
+<svg viewbox="-1 -1 650 42" preserveaspectratio="xMinYMin meet"> <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/Event">  <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> Event </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/DeviceOrientationEvent">  <text x="193" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> DeviceOrientationEvent </text> </a></svg>
+</div>
+<h2 id="event_properties">Event properties</h2>
+<div class="section-content"><dl> <dt id="deviceorientationevent.absolute">
+<a href="../deviceorientationevent/absolute"><code>DeviceOrientationEvent.absolute</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>A boolean that indicates whether the device is providing orientation data absolutely.</p> </dd> <dt id="deviceorientationevent.alpha">
+<a href="../deviceorientationevent/alpha"><code>DeviceOrientationEvent.alpha</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>A number representing the motion of the device around the z axis, express in degrees with values ranging from 0 (inclusive) to 360 (exclusive).</p> </dd> <dt id="deviceorientationevent.beta">
+<a href="../deviceorientationevent/beta"><code>DeviceOrientationEvent.beta</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>A number representing the motion of the device around the x axis, expressed in degrees with values ranging from -180 (inclusive) to 180 (exclusive). This represents the front to back motion of the device.</p> </dd> <dt id="deviceorientationevent.gamma">
+<a href="../deviceorientationevent/gamma"><code>DeviceOrientationEvent.gamma</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>A number representing the motion of the device around the y axis, expressed in degrees with values ranging from -90 (inclusive) to 90 (exclusive). This represents the left to right motion of the device.</p> </dd> <dt id="deviceorientationevent.webkitcompassheading">
+<code>DeviceOrientationEvent.webkitCompassHeading</code> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."> <span class="visually-hidden">Non-Standard</span> </abbr> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>A number represents the difference between the motion of the device around the z axis of the world system and the direction of the north, expressed in degrees with values ranging from 0 to 360.</p> </dd> <dt id="deviceorientationevent.webkitcompassaccuracy">
+<code>DeviceOrientationEvent.webkitCompassAccuracy</code> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."> <span class="visually-hidden">Non-Standard</span> </abbr> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>The accuracy of the compass given as a positive or negative deviation. It's usually 10.</p> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>DeviceOrientationEvent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"deviceorientation"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// alpha: rotation around z-axis</span>
+        <span class="token keyword">var</span> rotateDegrees <span class="token operator">=</span> event<span class="token punctuation">.</span>alpha<span class="token punctuation">;</span>
+        <span class="token comment">// gamma: left to right</span>
+        <span class="token keyword">var</span> leftToRight <span class="token operator">=</span> event<span class="token punctuation">.</span>gamma<span class="token punctuation">;</span>
+        <span class="token comment">// beta: front back motion</span>
+        <span class="token keyword">var</span> frontToBack <span class="token operator">=</span> event<span class="token punctuation">.</span>beta<span class="token punctuation">;</span>
+
+        <span class="token function">handleOrientationEvent</span><span class="token punctuation">(</span>frontToBack<span class="token punctuation">,</span> leftToRight<span class="token punctuation">,</span> rotateDegrees<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> <span class="token function-variable function">handleOrientationEvent</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">frontToBack<span class="token punctuation">,</span> leftToRight<span class="token punctuation">,</span> rotateDegrees</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// do something amazing</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody>
+<tr><td><a href="https://w3c.github.io/deviceorientation/#deviceorientation">DeviceOrientation Event Specification <br><small># deviceorientation</small></a></td></tr>
+<tr><td><a href="https://w3c.github.io/deviceorientation/#ref-for-dom-window-ondeviceorientation">DeviceOrientation Event Specification <br><small># ref-for-dom-window-ondeviceorientation</small></a></td></tr>
+</tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>deviceorientation_event</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>3.6-6</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>4-6</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../window.devicemotion_event" class="page-not-created"><code>devicemotion</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/Detecting_device_orientation">Detecting device orientation</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/Orientation_and_motion_data_explained">Orientation and motion data explained</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/window/deviceorientation_event/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/window/deviceorientation_event/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWindow%2Fdeviceorientation_event&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fwindow%2Fdeviceorientation_event%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWindow%2Fdeviceorientation_event%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fwindow%2Fdeviceorientation_event%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F593f9ac8545e3ea7f67a7d8b5a25743ae681f4d3%0A*+Document+last+modified%3A+2022-04-02T17%3A42%3A56.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-02T17:42:56.000Z">Apr 2, 2022</time>, <a href="deviceorientation_event/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/deviceorientation_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/deviceorientation_event</a>
+  </p>
+</div>

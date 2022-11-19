@@ -1,0 +1,379 @@
+<h1>width</h1>
+<div class="section-content"><p>The <code>width</code> CSS property sets an element's width. By default, it sets the width of the <a href="css_box_model/introduction_to_the_css_box_model#content_area">content area</a>, but if <a href="box-sizing"><code>box-sizing</code></a> is set to <code>border-box</code>, it sets the width of the <a href="css_box_model/introduction_to_the_css_box_model#border_area">border area</a>.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content">
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/width.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>The <a href="min-width"><code>min-width</code></a> and <a href="max-width"><code>max-width</code></a> properties override <code>width</code>.</p>
+</div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token comment">/* &lt;length&gt; values */</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 25em<span class="token punctuation">;</span>
+
+<span class="token comment">/* &lt;percentage&gt; value */</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 75%<span class="token punctuation">;</span>
+
+<span class="token comment">/* Keyword values */</span>
+<span class="token property">width</span><span class="token punctuation">:</span> max-content<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> min-content<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> <span class="token function">fit-content</span><span class="token punctuation">(</span>20em<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">width</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> revert-layer<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre></div></div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content"><dl> <dt id="length"><a href="length"><code>&lt;length&gt;</code></a></dt> <dd> <p>Defines the width as an absolute value.</p> </dd> <dt id="percentage"><a href="percentage"><code>&lt;percentage&gt;</code></a></dt> <dd> <p>Defines the width as a percentage of the containing block's width.</p> </dd> <dt id="auto"><code>auto</code></dt> <dd> <p>The browser will calculate and select a width for the specified element.</p> </dd> <dt id="max-content"><code>max-content</code></dt> <dd> <p>The intrinsic preferred width.</p> </dd> <dt id="min-content"><code>min-content</code></dt> <dd> <p>The intrinsic minimum width.</p> </dd> <dt id="fit-contentlength-percentage"><code>fit-content(<a href="length-percentage"><code>&lt;length-percentage&gt;</code></a>)</code></dt> <dd> <p>Uses the fit-content formula with the available space replaced by the specified argument, i.e. <code>min(max-content, max(min-content, &lt;length-percentage&gt;))</code>.</p> </dd> </dl></div></section><section aria-labelledby="accessibility_concerns"><h2 id="accessibility_concerns">Accessibility concerns</h2>
+<div class="section-content">
+<p>Ensure that elements set with a <code>width</code> aren't truncated and/or don't obscure other content when the page is zoomed to increase text size.</p> <ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#guideline_1.4_make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background">MDN Understanding WCAG, Guideline 1.4 explanations</a></li> <li><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-scale.html" rel=" noopener">Understanding Success Criterion 1.4.4 | W3C Understanding WCAG 2.0</a></li> </ul>
+</div></section><section aria-labelledby="formal_definition"><h2 id="formal_definition">Formal definition</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements but non-replaced inline elements, table rows, and row groups</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row">Percentages</th>
+<td>refer to the width of the containing block</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>a percentage or <code>auto</code> or the absolute length</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>a <a href="length#interpolation">length</a>, <a href="percentage#interpolation">percentage</a> or calc();</td>
+</tr>
+</tbody></table></div></div></div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="width">width = </span><br>  <span class="token keyword">auto</span>                                      <a href="value_definition_syntax#single_bar">|</a><br>  <a href="length-percentage"><span class="token property">&lt;length-percentage [0,∞]&gt;</span></a>                 <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">min-content</span>                               <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">max-content</span>                               <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token function">fit-content(</span> <a href="length-percentage"><span class="token property">&lt;length-percentage [0,∞]&gt;</span></a> <span class="token function">)</span>  <br><br><span class="token property" id="&lt;length-percentage&gt;">&lt;length-percentage&gt; = </span><br>  <a href="length"><span class="token property">&lt;length&gt;</span></a>      <a href="value_definition_syntax#single_bar">|</a><br>  <a href="percentage"><span class="token property">&lt;percentage&gt;</span></a>  <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="default_width"><h3 id="default_width">Default width</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token selector">p.goldie</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> gold<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>goldie<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The Mozilla community produces a lot of great software.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre></div>
+<iframe class="sample-code-frame" title="Default width sample" id="frame_default_width" width="500px" height="64px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/width/_sample_.default_width.html" loading="lazy"></iframe>
+</div></section><section aria-labelledby="example_using_pixels_and_ems"><h3 id="example_using_pixels_and_ems">Example using pixels and ems</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token selector">.px_length</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.em_length</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 20em<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>px_length<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Width measured in px<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>em_length<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Width measured in em<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre></div>
+<iframe class="sample-code-frame" title="Example using pixels and ems sample" id="frame_example_using_pixels_and_ems" width="500px" height="64px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/width/_sample_.example_using_pixels_and_ems.html" loading="lazy"></iframe>
+</div></section><section aria-labelledby="example_with_percentage"><h3 id="example_with_percentage">Example with percentage</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token selector">.percent</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 20%<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> silver<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>percent<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Width in percentage<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre></div>
+<iframe class="sample-code-frame" title="Example with percentage" id="frame_example_using_percentage" width="500px" height="64px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/width/_sample_.example_using_percentage.html" loading="lazy"></iframe>
+</div></section><section aria-labelledby="example_using_max-content"><h3 id="example_using_max-content">Example using "max-content"</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token selector">p.maxgreen</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> lightgreen<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> intrinsic<span class="token punctuation">;</span>           <span class="token comment">/* Safari/WebKit uses a non-standard name */</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> -moz-max-content<span class="token punctuation">;</span>    <span class="token comment">/* Firefox/Gecko */</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> -webkit-max-content<span class="token punctuation">;</span> <span class="token comment">/* Chrome */</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> max-content<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>maxgreen<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The Mozilla community produces a lot of great software.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre></div>
+<iframe class="sample-code-frame" title='Example using "max-content" sample' id="frame_example_using_max-content" width="500px" height="64px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/width/_sample_.example_using_max-content.html" loading="lazy"></iframe>
+</div></section><section aria-labelledby="example_using_min-content"><h3 id="example_using_min-content">Example using "min-content"</h3>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token selector">p.minblue</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> lightblue<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> -moz-min-content<span class="token punctuation">;</span>    <span class="token comment">/* Firefox */</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> -webkit-min-content<span class="token punctuation">;</span> <span class="token comment">/* Chrome */</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> min-content<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>minblue<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The Mozilla community produces a lot of great software.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre></div>
+<iframe class="sample-code-frame" title='Example using "min-content" sample' id="frame_example_using_min-content" width="500px" height="155px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/width/_sample_.example_using_min-content.html" loading="lazy"></iframe>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-sizing-4/#width-height-keywords">CSS Box Sizing Module Level 4 <br><small># width-height-keywords</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>width</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>animatable</code></th>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>fill</code></th>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>fit-content</code></th>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>22</div>
+<div>1-48</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>79</div>
+</td>
+<td class="bc-supports-yes">
+<div>94</div>
+<div>3</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>15</div>
+<div>15-35</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>7</div>
+<div>2</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>4.4</div>
+<div>4.4-48</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>25</div>
+<div>18-48</div>
+</td>
+<td class="bc-supports-yes">
+<div>94</div>
+<div>4</div>
+</td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>14</div>
+<div>14-35</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>7</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>1.5</div>
+<div>1.0-5.0</div>
+</td>
+</tr>
+<tr>
+<th><code>fit-content_function</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>91</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>max-content</code></th>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>22</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>79</div>
+</td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>3</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>2</div>
+</td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>4</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>min-content</code></th>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>1-48</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>3</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>15-35</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>2</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>4.4-48</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>18-48</div>
+</td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>4</div>
+</td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>14-35</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>1.0-5.0</div>
+</td>
+</tr>
+<tr>
+<th><code>stretch</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="css_box_model/introduction_to_the_css_box_model">The box model</a></li> <li><a href="height"><code>height</code></a></li> <li><a href="box-sizing"><code>box-sizing</code></a></li> <li>
+<a href="min-width"><code>min-width</code></a>, <a href="max-width"><code>max-width</code></a>
+</li> <li>The mapped logical properties: <a href="block-size"><code>block-size</code></a>, <a href="inline-size"><code>inline-size</code></a>
+</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/width/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/width/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fwidth&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Fwidth%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fwidth%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fwidth%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fabcebf471d56ef12239e2565f26d952e8a8cab2e%0A*+Document+last+modified:+2022-05-17T13:23:31.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-05-17T13:23:31.000Z">May 17, 2022</time>, <a href="width/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/width</a>
+  </p>
+</div>

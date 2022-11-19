@@ -1,0 +1,116 @@
+<h1>KeyframeEffect()</h1>
+<div class="section-content"><p>The <code>KeyframeEffect()</code> constructor of the <a href="../web_animations_api">Web Animations API</a> returns a new <code><a href="../keyframeeffect"><code>KeyframeEffect</code></a></code> object instance, and also allows you to clone an existing keyframe effect object instance.</p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">KeyframeEffect</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> keyframes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">KeyframeEffect</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> keyframes<span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">KeyframeEffect</span><span class="token punctuation">(</span>source<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content">
+<p>The multi-argument constructor (see above) creates a completely new <a href="../keyframeeffect"><code>KeyframeEffect</code></a> object instance. Its parameters are:</p> <dl> <dt id="target">target</dt> <dd> <p>The DOM element to be animated, or <code>null</code>.</p> </dd> <dt id="keyframes">keyframes</dt> <dd> <p>A <a href="../web_animations_api/keyframe_formats">keyframes object</a> or <code>null</code>.</p> </dd> <dt id="options">options <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Either an integer representing the animation's duration (in milliseconds), or an object containing one or more of the following:</p> <dl> <dt id="delay">
+<code>delay</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>The number of milliseconds to delay the start of the animation. Defaults to 0.</p> </dd> <dt id="direction">
+<code>direction</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Whether the animation runs forwards (<code>normal</code>), backwards (<code>reverse</code>), switches direction after each iteration (<code>alternate</code>), or runs backwards and switches direction after each iteration (<code>alternate-reverse</code>). Defaults to <code>"normal"</code>.</p> </dd> <dt id="duration">
+<code>duration</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>The number of milliseconds each iteration of the animation takes to complete. Defaults to 0. Although this is technically optional, keep in mind that your animation will not run if this value is 0.</p> </dd> <dt id="easing">
+<code>easing</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>The rate of the animation's change over time. Accepts the pre-defined values <code>"linear"</code>, <code>"ease"</code>, <code>"ease-in"</code>, <code>"ease-out"</code>, and <code>"ease-in-out"</code>, or a custom <code>"cubic-bezier"</code> value like <code>"cubic-bezier(0.42, 0, 0.58, 1)"</code>. Defaults to <code>"linear"</code>.</p> </dd> <dt id="enddelay">
+<code>endDelay</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>The number of milliseconds to delay after the end of an animation. This is primarily of use when sequencing animations based on the end time of another animation. Defaults to 0.</p> </dd> <dt id="fill">
+<code>fill</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Dictates whether the animation's effects should be reflected by the element(s) prior to playing (<code>"backwards"</code>), retained after the animation has completed playing (<code>"forwards"</code>), or <code>both</code>. Defaults to <code>"none"</code>.</p> </dd> <dt id="iterationstart">
+<code>iterationStart</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Describes at what point in the iteration the animation should start. 0.5 would indicate starting halfway through the first iteration for example, and with this value set, an animation with 2 iterations would end halfway through a third iteration. Defaults to 0.0.</p> </dd> <dt id="iterations">
+<code>iterations</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>The number of times the animation should repeat. Defaults to <code>1</code>, and can also take a value of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity"><code>Infinity</code></a> to make it repeat for as long as the element exists.</p> </dd> <dt id="composite">
+<code>composite</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> Determines how values are combined between this animation and other, separate animations that do not specify their own specific composite operation. Defaults to <code>replace</code>. </p> <ul> <li> <code>add</code> dictates an additive effect, where each successive iteration builds on the last. For instance with <code>transform</code>, a <code>translateX(-200px)</code> would not override an earlier <code>rotate(20deg)</code> value but result in <code>translateX(-200px) rotate(20deg)</code>. </li> <li> <code>accumulate</code> is similar but a little smarter: <code>blur(2)</code> and <code>blur(5)</code> become <code>blur(7)</code>, not <code>blur(2) blur(5)</code>. </li> <li>
+<code>replace</code> overwrites the previous value with the new one.</li> </ul> </dd> <dt id="iterationcomposite">
+<code>iterationComposite</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> Determines how values build from iteration to iteration in this animation. Can be set to <code>accumulate</code> or <code>replace</code> (see above). Defaults to <code>replace</code>. </p> </dd> </dl> </dd> </dl> <p>The single argument constructor (see above) creates a clone of an existing <a href="../keyframeeffect"><code>KeyframeEffect</code></a> object instance. Its parameter is as follows:</p> <dl> <dt id="sourcekeyframes">sourceKeyFrames</dt> <dd> <p>A <a href="../keyframeeffect"><code>KeyframeEffect</code></a> object that you want to clone.</p> </dd> </dl>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p>In the <a href="https://codepen.io/rachelnabors/pen/eJyWzm/?editors=0010" rel=" noopener">Follow the White Rabbit example</a>, the <code>KeyframeEffect</code> constructor is used to create a set of keyframes that dictate how the White Rabbit should animate down the hole:</p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> whiteRabbit <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'rabbit'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> rabbitDownKeyframes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">KeyframeEffect</span><span class="token punctuation">(</span>
+    whiteRabbit<span class="token punctuation">,</span> <span class="token comment">// element to animate</span>
+    <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">transform</span><span class="token operator">:</span> <span class="token string">'translateY(0%)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// keyframe</span>
+      <span class="token punctuation">{</span> <span class="token literal-property property">transform</span><span class="token operator">:</span> <span class="token string">'translateY(100%)'</span> <span class="token punctuation">}</span> <span class="token comment">// keyframe</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token literal-property property">duration</span><span class="token operator">:</span> <span class="token number">3000</span><span class="token punctuation">,</span> <span class="token literal-property property">fill</span><span class="token operator">:</span> <span class="token string">'forwards'</span> <span class="token punctuation">}</span> <span class="token comment">// keyframe options</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+<span class="token keyword">const</span> rabbitDownAnimation <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Animation</span><span class="token punctuation">(</span>rabbitDownKeyframes<span class="token punctuation">,</span> document<span class="token punctuation">.</span>timeline<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+<span class="token comment">// Play rabbit animation</span>
+rabbitDownAnimation<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/web-animations-1/#dom-keyframeeffect-keyframeeffect">Web Animations <br><small># dom-keyframeeffect-keyframeeffect</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>KeyframeEffect</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../keyframeeffect">KeyframeEffect Interface</a></li> <li><a href="../web_animations_api">Web Animations API</a></li> <li><a href="../animation"><code>Animation</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/keyframeeffect/keyframeeffect/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/keyframeeffect/keyframeeffect/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FKeyframeEffect%2FKeyframeEffect&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fkeyframeeffect%2Fkeyframeeffect%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FKeyframeEffect%2FKeyframeEffect%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fkeyframeeffect%2Fkeyframeeffect%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F3361f0a3fbb2d14c95401fdba97222cff6181d73%0A*+Document+last+modified%3A+2022-03-29T04%3A41%3A36.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-29T04:41:36.000Z">Mar 29, 2022</time>, <a href="keyframeeffect/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect</a>
+  </p>
+</div>

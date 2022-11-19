@@ -1,0 +1,83 @@
+<h1>MerchantValidationEvent()</h1>
+<div class="section-content">
+<div class="notecard deprecated" id="sect1"><p><strong>Deprecated:</strong> This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p></div>
+<div class="notecard nonstandard" id="sect2"><p><strong>Non-standard:</strong> This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p></div>
+<div class="notecard secure" id="sect3"><p><strong>Secure context:</strong> This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div> <p>The <code>MerchantValidationEvent()</code> constructor creates a new <a href="../merchantvalidationevent"><code>MerchantValidationEvent</code></a> object. You should not have to create these events yourself; instead, just handle the <a href="../paymentrequest/merchantvalidation_event"><code>merchantvalidation</code></a> event.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">MerchantValidationEvent</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="type"><code>type</code></dt> <dd> <p>A <a href="../domstring"><code>DOMString</code></a> which must be <code>merchantvalidation</code>, the only type of event which uses the <code>MerchantValidationEvent</code> interface.</p> </dd> <dt id="options">
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An optional dictionary which may contain zero or more of the following properties:</p> <dl> <dt id="methodname">
+<code>methodName</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>A <a href="../domstring"><code>DOMString</code></a> containing the payment method identifier for the payment handler being used. This is an empty string by default.</p> </dd> <dt id="validationurl">
+<code>validationURL</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>The URL from which to retrieve payment handler specific verification information used to validate the merchant. This is an empty string by default.</p> </dd> </dl> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><p>A newly-created <a href="../merchantvalidationevent"><code>MerchantValidationEvent</code></a> providing the information that needs to be delivered to the client-side code to present to the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> by calling <a href="complete"><code>complete()</code></a>.</p></div>
+<h3 id="exceptions">Exceptions</h3>
+<div class="section-content"><dl> <dt id="typeerror"><code>TypeError</code></dt> <dd> <p>The string specified as <code>validationURL</code> could not be parsed as a URL.</p> </dd> <dt id="rangeerror"><code>RangeError</code></dt> <dd> <p>The specified <code>methodName</code> does not correspond to a known and supported merchant or is not a well-formed standard payment method identifier.</p> </dd> </dl></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>MerchantValidationEvent</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>Available only in Nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../payment_request_api">Payment Request API</a></li> <li><a href="../payment_request_api/using_the_payment_request_api">Using the Payment Request API</a></li> <li><a href="../payment_request_api/concepts">Payment processing concepts</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/merchantvalidationevent/merchantvalidationevent/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/merchantvalidationevent/merchantvalidationevent/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMerchantValidationEvent%2FMerchantValidationEvent&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fmerchantvalidationevent%2Fmerchantvalidationevent%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMerchantValidationEvent%2FMerchantValidationEvent%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fmerchantvalidationevent%2Fmerchantvalidationevent%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fac7a7a70f78363ad8b1196e6a938a60bbb8952ff%0A*+Document+last+modified%3A+2022-04-01T08%3A08%3A22.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-01T08:08:22.000Z">Apr 1, 2022</time>, <a href="merchantvalidationevent/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/MerchantValidationEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/MerchantValidationEvent</a>
+  </p>
+</div>

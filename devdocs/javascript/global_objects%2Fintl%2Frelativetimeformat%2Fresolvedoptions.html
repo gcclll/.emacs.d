@@ -1,0 +1,111 @@
+<h1>Intl.RelativeTimeFormat.prototype.resolvedOptions()</h1>
+<div class="section-content"><p>The <code>Intl.RelativeTimeFormat.prototype.resolvedOptions()</code> method returns a new object with properties reflecting the locale and relative time formatting options computed during initialization of this <a href="../relativetimeformat"><code>Intl.RelativeTimeFormat</code></a> object.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-js-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/js/intl-relativetimeformat-prototype-resolvedoptions.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">resolvedOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre></div></div></section><section aria-labelledby="return_value"><h3 id="return_value">Return value</h3>
+<div class="section-content"><p>A new object with properties reflecting the locale and number formatting options computed during the initialization of the given <a href="../relativetimeformat"><code>Intl.RelativeTimeFormat</code></a> object.</p></div></section><section aria-labelledby="description"><h2 id="description">Description</h2>
+<div class="section-content">
+<p>The resulting object has the following properties:</p> <dl> <dt id="locale"><code>locale</code></dt> <dd> <p>The BCP 47 language tag for the locale actually used. If any Unicode extension values were requested in the input BCP 47 language tag that led to this locale, the key-value pairs that were requested and are supported for this locale are included in <code>locale</code>.</p> </dd> <dt id="style"><code>style</code></dt> <dd> <p>The length of the internationalized message. Possible values are:</p> <ul> <li>
+<code>"long"</code> (default, e.g., <code>in 1 month</code>)</li> <li>
+<code>"short"</code> (e.g., <code>in 1 mo.</code>),</li> <li>or <code>"narrow"</code> (e.g., <code>in 1 mo.</code>). The narrow style could be similar to the short style for some locales.</li> </ul> </dd> <dt id="numeric"><code>numeric</code></dt> <dd> <p>The format of output message. Possible values are:</p> <ul> <li>
+<code>"always"</code> (default, e.g., <code>1 day ago</code>),</li> <li>or <code>"auto"</code> (e.g., <code>yesterday</code>). The <code>"auto"</code> value allows to not always have to use numeric values in the output.</li> </ul> </dd> <dt id="numberingsystem"><code>numberingSystem</code></dt> <dd> <p>The value requested using the Unicode extension key <code>"nu"</code> or filled in as a default.</p> </dd> </dl>
+</div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="using_the_resolvedoptions_method"><h3 id="using_the_resolvedoptions_method">Using the resolvedOptions() method</h3>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">const</span> de <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>RelativeTimeFormat</span><span class="token punctuation">(</span><span class="token string">'de-DE'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> usedOptions <span class="token operator">=</span> de<span class="token punctuation">.</span><span class="token function">resolvedOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+usedOptions<span class="token punctuation">.</span>locale<span class="token punctuation">;</span>          <span class="token comment">// "de-DE"</span>
+usedOptions<span class="token punctuation">.</span>style<span class="token punctuation">;</span>           <span class="token comment">// "long"</span>
+usedOptions<span class="token punctuation">.</span>numeric<span class="token punctuation">;</span>         <span class="token comment">// "always"</span>
+usedOptions<span class="token punctuation">.</span>numberingSystem<span class="token punctuation">;</span> <span class="token comment">// "latn"</span>
+</pre></div></div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma402/#sec-intl.relativetimeformat.prototype.resolvedoptions">ECMAScript Internationalization API Specification <br><small># sec-intl.relativetimeformat.prototype.resolvedoptions</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+<th colspan="2">Server</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+<th>Deno</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>resolvedOptions</code></th>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+<td class="bc-supports-yes"><div>1.8</div></td>
+<td class="bc-supports-yes">
+<div>12.0.0</div>
+<div>Before version 13.0.0, only the locale data for <code>en-US</code> is available by default. See <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat">the <code>RelativeTimeFormat()</code> constructor</a> for more details.</div>
+</td>
+</tr>
+<tr>
+<th><code>numberingSystem</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+<td class="bc-supports-yes"><div>1.8</div></td>
+<td class="bc-supports-yes"><div>12.0.0</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../relativetimeformat"><code>Intl.RelativeTimeFormat</code></a></li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/javascript/reference/global_objects/intl/relativetimeformat/resolvedoptions/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/javascript/reference/global_objects/intl/relativetimeformat/resolvedoptions/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FIntl%2FRelativeTimeFormat%2FresolvedOptions&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Fintl%2Frelativetimeformat%2Fresolvedoptions%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FGlobal_Objects%2FIntl%2FRelativeTimeFormat%2FresolvedOptions%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fjavascript%2Freference%2Fglobal_objects%2Fintl%2Frelativetimeformat%2Fresolvedoptions%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F2d6d6a1d9f8ba2073c9f8e1bbc6b4e20204fb53c%0A*+Document+last+modified%3A+2022-08-07T06%3A13%3A17.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-08-07T06:13:17.000Z">Aug 7, 2022</time>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/resolvedOptions</a>
+  </p>
+</div>

@@ -1,0 +1,91 @@
+<h1>ImageDecoder.ImageDecoder()</h1>
+<div class="section-content">
+<div class="notecard secure" id="sect1"><p><strong>Secure context:</strong> This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div> <p>The <code>ImageDecoder()</code> constructor creates a new <a href="../imagedecoder"><code>ImageDecoder</code></a> object which unpacks and decodes image data.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">ImageDecoder</span><span class="token punctuation">(</span>init<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="init"><code>init</code></dt> <dd> <p>An object containing the following members:</p> <dl> <dt id="type"><code>type</code></dt> <dd> <p>A <a href="../domstring"><code>string</code></a> containing the MIME type of the image file to be decoded.</p> </dd> <dt id="data"><code>data</code></dt> <dd> <p>A <a href="../buffersource"><code>BufferSource</code></a> or <a href="../readablestream"><code>ReadableStream</code></a> of bytes representing an encoded image type as described by <code>type</code>.</p> </dd> <dt id="premultiplyalpha">
+<code>premultiplyAlpha</code><span class="badge inline optional">Optional</span>
+</dt> <dd> <p>One of the following, if not provided set as <code>"default"</code>:</p> <ul> <li><code>"none"</code></li> <li><code>"premultiply"</code></li> <li><code>"default"</code></li> </ul> </dd> <dt id="colorspaceconversion">
+<code>colorSpaceConversion</code><span class="badge inline optional">Optional</span>
+</dt> <dd> <p>One of the following, if not provided set as <code>"default"</code>:</p> <ul> <li><code>"none"</code></li> <li><code>"default"</code></li> </ul> </dd> <dt id="desiredwidth">
+<code>desiredWidth</code><span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An integer indicating the desired width for the decoded output.</p> </dd> <dt id="desiredheight">
+<code>desiredHeight</code><span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An integer indicating the desired height for the decoded output.</p> </dd> <dt id="preferanimation">
+<code>preferAnimation</code><span class="badge inline optional">Optional</span>
+</dt> <dd> <p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether the initial track selection should prefer an animated track.</p> </dd> </dl> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p>The following example creates a new <code>ImageDecoder</code> with the required options.</p> <div class="code-example"><pre data-language="js"><span class="token keyword">let</span> init <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"image/png"</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">data</span><span class="token operator">:</span> imageByteStream
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> imageDecoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ImageDecoder</span><span class="token punctuation">(</span>init<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/webcodecs/#dom-imagedecoder-imagedecoder">WebCodecs <br><small># dom-imagedecoder-imagedecoder</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>ImageDecoder</code></th>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>17.0</div></td>
+</tr></tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/imagedecoder/imagedecoder/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/imagedecoder/imagedecoder/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FImageDecoder%2FImageDecoder&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fimagedecoder%2Fimagedecoder%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FImageDecoder%2FImageDecoder%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fimagedecoder%2Fimagedecoder%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F43b0e8529065cc4f0f22497d1d2eadecd3d77dbc%0A*+Document+last+modified%3A+2022-04-02T04%3A30%3A46.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-02T04:30:46.000Z">Apr 2, 2022</time>, <a href="imagedecoder/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ImageDecoder/ImageDecoder" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ImageDecoder/ImageDecoder</a>
+  </p>
+</div>

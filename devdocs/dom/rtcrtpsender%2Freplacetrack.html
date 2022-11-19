@@ -1,0 +1,122 @@
+<h1>RTCRtpSender.replaceTrack()</h1>
+<div class="section-content">
+<p> The <a href="../rtcrtpsender"><code>RTCRtpSender</code></a> method <code>replaceTrack()</code> replaces the track currently being used as the sender's source with a new <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a>. </p> <p> The new track must be of the same media kind (audio, video, etc) and switching the track should not require negotiation. </p> <p> Among the use cases for <code>replaceTrack()</code> is the common need to switch between the rear- and front-facing cameras on a phone. With <code>replaceTrack()</code>, you can have a track object for each camera and switch between the two as needed. See the example <a href="#switching_cameras">Switching cameras</a> below. </p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js">trackReplacedPromise <span class="token operator">=</span> sender<span class="token punctuation">.</span><span class="token function">replaceTrack</span><span class="token punctuation">(</span>newTrack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="newtrack">
+<code>newTrack</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> A <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> specifying the track with which to replace the <code>RTCRtpSender</code>'s current source track. The new track's <a href="../mediastreamtrack/kind"><code>kind</code></a> must be the same as the current track's, or the replace track request will fail. </p> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content">
+<p> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is fulfilled once the track has been successfully replaced. The promise is rejected if the track cannot be replaced for any reason; this is commonly because the change would require renegotiation of the codec, which is not allowed (see <a href="#things_that_require_negotiation">Things that require negotiation</a>). </p> <p> If <code>newTrack</code> was omitted or was <code>null</code>, <code>replaceTrack()</code> stops the sender. No negotiation is required in this case. </p> <p> When the promise is fulfilled, the fulfillment handler receives a value of <code>undefined</code>. </p>
+</div>
+<h3 id="exceptions">Exceptions</h3>
+<div class="section-content">
+<p> If the returned promise is rejected, one of the following exceptions is provided to the rejection handler: </p> <dl> <dt id="invalidmodificationerror">
+<code>InvalidModificationError</code> <a href="../domexception"><code>DOMException</code></a>
+</dt> <dd> <p> Returned if replacing the <code>RTCRtpSender</code>'s current track with the new one would require negotiation. </p> </dd> <dt id="invalidstateerror">
+<code>InvalidStateError</code> <a href="../domexception"><code>DOMException</code></a>
+</dt> <dd> <p>Returned if the track on which this method was called is stopped rather than running.</p> </dd> <dt id="typeerror">
+<code>TypeError</code> <a href="../domexception"><code>DOMException</code></a>
+</dt> <dd> <p>Returned if the new track's <code>kind</code> doesn't match the original track.</p> </dd> </dl>
+</div>
+<h2 id="usage_notes">Usage notes</h2>
+
+<h3 id="things_that_trigger_negotiation">Things that trigger negotiation</h3>
+<div class="section-content">
+<p> Not all track replacements require renegotiation. In fact, even changes that seem huge can be done without requiring negotiation. Here are the changes that can trigger negotiation: </p> <ul> <li> The new track has a resolution which is outside the bounds of the current track; that is, the new track is either wider or taller than the current one. </li> <li> The new track's frame rate is high enough to cause the codec's block rate to be exceeded. </li> <li> The new track is a video track and its raw or pre-encoded state differs from that of the original track. </li> <li> The new track is an audio track with a different number of channels fom the original. </li> <li> Media sources that have built-in encoders — such as hardware encoders — may not be able to provide the negotiated codec. Software sources may not implement the negotiated codec. </li> </ul>
+</div>
+<h2 id="examples">Examples</h2>
+
+<h3 id="switching_video_cameras">Switching video cameras</h3>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token comment">// example to change video camera, suppose selected value saved into window.selectedCamera</span>
+
+navigator<span class="token punctuation">.</span>mediaDevices
+  <span class="token punctuation">.</span><span class="token function">getUserMedia</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">video</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">deviceId</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">exact</span><span class="token operator">:</span> window<span class="token punctuation">.</span>selectedCamera
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> videoTrack <span class="token operator">=</span> stream<span class="token punctuation">.</span><span class="token function">getVideoTracks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    PCs<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">pc</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> sender <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">getSenders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> s<span class="token punctuation">.</span>track<span class="token punctuation">.</span>kind <span class="token operator">==</span> videoTrack<span class="token punctuation">.</span>kind<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'found sender:'</span><span class="token punctuation">,</span> sender<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sender<span class="token punctuation">.</span><span class="token function">replaceTrack</span><span class="token punctuation">(</span>videoTrack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Error happens:'</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcrtpsender-replacetrack">WebRTC 1.0: Real-Time Communication Between Browsers <br><small># dom-rtcrtpsender-replacetrack</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>replaceTrack</code></th>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../webrtc_api">WebRTC API</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/rtcrtpsender/replacetrack/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/rtcrtpsender/replacetrack/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FRTCRtpSender%2FreplaceTrack&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Frtcrtpsender%2Freplacetrack%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FRTCRtpSender%2FreplaceTrack%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Frtcrtpsender%2Freplacetrack%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F672bace59f60c4931e5cdde8eb32919c924bd191%0A*+Document+last+modified%3A+2022-03-14T00%3A26%3A56.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-14T00:26:56.000Z">Mar 14, 2022</time>, <a href="replacetrack/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/replaceTrack" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/replaceTrack</a>
+  </p>
+</div>

@@ -1,0 +1,147 @@
+<h1>text-decoration-style</h1>
+<div class="section-content"><p>The <code>text-decoration-style</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> property sets the style of the lines specified by <a href="text-decoration-line"><code>text-decoration-line</code></a>. The style applies to all lines that are set with <code>text-decoration-line</code>.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content">
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/text-decoration-style.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>If the specified decoration has a specific semantic meaning, like a line-through line meaning that some text has been deleted, authors are encouraged to denote this meaning using an HTML tag, like <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del"><code>&lt;del&gt;</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s"><code>&lt;s&gt;</code></a>. As browsers can disable styling in some cases, the semantic meaning won't disappear in such a situation.</p> <p>When setting multiple line-decoration properties at once, it may be more convenient to use the <a href="text-decoration"><code>text-decoration</code></a> shorthand property instead.</p>
+</div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> solid<span class="token punctuation">;</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> double<span class="token punctuation">;</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> dotted<span class="token punctuation">;</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> dashed<span class="token punctuation">;</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> wavy<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> revert-layer<span class="token punctuation">;</span>
+<span class="token property">text-decoration-style</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre></div></div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content"><dl> <dt id="solid">solid</dt> <dd> <p>Draws a single line.</p> </dd> <dt id="double">double</dt> <dd> <p>Draws a double line.</p> </dd> <dt id="dotted">dotted</dt> <dd> <p>Draws a dotted line.</p> </dd> <dt id="dashed">dashed</dt> <dd> <p>Draws a dashed line.</p> </dd> <dt id="wavy">wavy</dt> <dd> <p>Draws a wavy line.</p> </dd> <dt id="-moz-none">-moz-none <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."> <span class="visually-hidden">Non-standard</span> </abbr>
+</dt> <dd> <p>Draws no line. Use <a href="text-decoration-line"><code>text-decoration-line</code></a><code>: none</code> instead.</p> </dd> </dl></div></section><section aria-labelledby="formal_definition"><h2 id="formal_definition">Formal definition</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>solid</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements. It also applies to <a href="::first-letter"><code>::first-letter</code></a> and <a href="::first-line"><code>::first-line</code></a>.</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div></div></div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="text-decoration-style">text-decoration-style = </span><br>  <span class="token keyword">solid</span>   <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">double</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">dotted</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">dashed</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">wavy</span>    <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="setting_a_wavy_underline"><h3 id="setting_a_wavy_underline">Setting a wavy underline</h3>
+<div class="section-content">
+<p>The following creates a red wavy underline:</p> <h4 id="css">CSS</h4> <div class="code-example"><pre data-language="css"><span class="token selector">.wavy</span> <span class="token punctuation">{</span>
+  <span class="token property">text-decoration-line</span><span class="token punctuation">:</span> underline<span class="token punctuation">;</span>
+  <span class="token property">text-decoration-style</span><span class="token punctuation">:</span> wavy<span class="token punctuation">;</span>
+  <span class="token property">text-decoration-color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <h4 id="html">HTML</h4> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>wavy<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>This text has a wavy red line beneath it.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="results">Results</h4>
+<iframe class="sample-code-frame" title="Setting a wavy underline sample" id="frame_setting_a_wavy_underline" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-decoration-style/_sample_.setting_a_wavy_underline.html" loading="lazy"></iframe>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-text-decor/#text-decoration-style-property">CSS Text Decoration Module Level 3 <br><small># text-decoration-style-property</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>text-decoration-style</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>6-39</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>12.1</div>
+<div>8</div>
+</td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>6-39</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes">
+<div>12.2</div>
+<div>8</div>
+</td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>wavy</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>When setting multiple line-decoration properties at once, it may be more convenient to use the <a href="text-decoration"><code>text-decoration</code></a> shorthand property instead.</li> <li><a href="text-decoration-line"><code>text-decoration-line</code></a></li> <li><a href="text-decoration-color"><code>text-decoration-color</code></a></li> <li><a href="text-decoration-thickness"><code>text-decoration-thickness</code></a></li> <li><a href="text-underline-offset"><code>text-underline-offset</code></a></li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/text-decoration-style/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/text-decoration-style/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Ftext-decoration-style&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Ftext-decoration-style%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Ftext-decoration-style%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Ftext-decoration-style%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Ff78eb4d51072e4a7b502fc7b626367e25c00dcce%0A*+Document+last+modified:+2022-07-12T05:03:00.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-07-12T05:03:00.000Z">Jul 12, 2022</time>, <a href="text-decoration-style/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-style</a>
+  </p>
+</div>

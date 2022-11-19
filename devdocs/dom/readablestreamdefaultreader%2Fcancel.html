@@ -1,0 +1,111 @@
+<h1>ReadableStreamDefaultReader.cancel()</h1>
+<div class="section-content">
+<p> The <code>cancel()</code> method of the <a href="../readablestreamdefaultreader"><code>ReadableStreamDefaultReader</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves when the stream is canceled. Calling this method signals a loss of interest in the stream by a consumer. </p> <p> Cancel is used when you've completely finished with the stream and don't need any more data from it, even if there are chunks enqueued waiting to be read. That data is lost after cancel is called, and the stream is not readable any more. To read those chunks still and not completely get rid of the stream, you'd use <a href="../readablestreamdefaultcontroller/close"><code>ReadableStreamDefaultController.close()</code></a>. </p> <div class="notecard note" id="sect1"> <p> <strong>Note:</strong> If the reader is active, the <code>cancel()</code> method behaves the same as that for the associated stream (<a href="../readablestream/cancel"><code>ReadableStream.cancel()</code></a>). </p> </div>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">cancel</span><span class="token punctuation">(</span>reason<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="reason">reason <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>A human-readable reason for the cancellation. This value may or may not be used.</p> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><p> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>, which fulfills with the value given in the <code>reason</code> parameter. </p></div>
+<h3 id="exceptions">Exceptions</h3>
+<div class="section-content"><dl> <dt id="typeerror">TypeError</dt> <dd> <p> The source object is not a <code>ReadableStreamDefaultReader</code>, or the stream has no owner. </p> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p> In the following simple example, a previously-created custom <code>ReadableStream</code> is read using a <a href="../readablestreamdefaultreader"><code>ReadableStreamDefaultReader</code></a> created using <code>getReader()</code>. (this code is based on our <a href="https://mdn.github.io/dom-examples/streams/simple-random-stream/" rel=" noopener">Simple random stream example</a>). Each chunk is read sequentially and output to the UI, until the stream has finished being read, at which point we return out of the recursive function and print the entire stream to another part of the UI. </p> <p> When the stream is done (<code>if (done)</code>), we run <code>reader.cancel()</code> to cancel the stream, signalling that we don't need to use it any more. </p> <div class="code-example"><pre data-language="js"><span class="token keyword">function</span> <span class="token function">fetchStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> reader <span class="token operator">=</span> stream<span class="token punctuation">.</span><span class="token function">getReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> charsReceived <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// read() returns a promise that resolves</span>
+  <span class="token comment">// when a value has been received</span>
+  reader<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">processText</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> done<span class="token punctuation">,</span> value <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Result objects contain two properties:</span>
+    <span class="token comment">// done  - true if the stream has already given you all its data.</span>
+    <span class="token comment">// value - some data. Always undefined when done is true.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>done<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Stream complete"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      reader<span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      para<span class="token punctuation">.</span>textContent <span class="token operator">=</span> result<span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// value for fetch streams is a Uint8Array</span>
+    charsReceived <span class="token operator">+=</span> value<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> chunk <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    listItem<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Received '</span> <span class="token operator">+</span> charsReceived <span class="token operator">+</span> <span class="token string">' characters so far. Current chunk = '</span> <span class="token operator">+</span> chunk<span class="token punctuation">;</span>
+    list2<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    result <span class="token operator">+=</span> chunk<span class="token punctuation">;</span>
+
+    <span class="token comment">// Read some more, and call this function again</span>
+    <span class="token keyword">return</span> reader<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>processText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="#">Streams Standard <br><small># ref-for-generic-reader-cancel②</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>cancel</code></th>
+<td class="bc-supports-yes"><div>78</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>78</div></td>
+<td class="bc-supports-yes"><div>78</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr></tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/readablestreamdefaultreader/cancel/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/readablestreamdefaultreader/cancel/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FReadableStreamDefaultReader%2Fcancel&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Freadablestreamdefaultreader%2Fcancel%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FReadableStreamDefaultReader%2Fcancel%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Freadablestreamdefaultreader%2Fcancel%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fb20ad4fcbe667474c11157768bc263a299bf8515%0A*+Document+last+modified%3A+2022-04-20T07%3A31%3A42.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-20T07:31:42.000Z">Apr 20, 2022</time>, <a href="cancel/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStreamDefaultReader/cancel" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReadableStreamDefaultReader/cancel</a>
+  </p>
+</div>

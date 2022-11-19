@@ -1,0 +1,152 @@
+<h1>Element.scrollIntoView()</h1>
+<div class="section-content"><p> The <a href="../element"><code>Element</code></a> interface's <code>scrollIntoView()</code> method scrolls the element's parent container such that the element on which <code>scrollIntoView()</code> is called is visible to the user. </p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">scrollIntoView</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">scrollIntoView</span><span class="token punctuation">(</span>alignToTop<span class="token punctuation">)</span>
+<span class="token function">scrollIntoView</span><span class="token punctuation">(</span>scrollIntoViewOptions<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="aligntotop">
+<code>alignToTop</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Is a boolean value:</p> <ul> <li> If <code>true</code>, the top of the element will be aligned to the top of the visible area of the scrollable ancestor. Corresponds to <code>scrollIntoViewOptions: {block: "start", inline: "nearest"}</code>. This is the default value. </li> <li> If <code>false</code>, the bottom of the element will be aligned to the bottom of the visible area of the scrollable ancestor. Corresponds to <code>scrollIntoViewOptions: {block: "end", inline: "nearest"}</code>. </li> </ul> </dd> <dt id="sect1"> <code>scrollIntoViewOptions</code> <span class="badge inline optional">Optional</span> <abbr class="icon icon-experimental" title="Experimental. Expect behavior to change in the future."> <span class="visually-hidden">Experimental</span> </abbr> </dt> <dd> <p>Is an Object with the following properties:</p> <dl> <dt id="behavior">
+<code>behavior</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> Defines the transition animation. One of <code>auto</code> or <code>smooth</code>. Defaults to <code>auto</code>. </p> </dd> <dt id="block">
+<code>block</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> Defines vertical alignment. One of <code>start</code>, <code>center</code>, <code>end</code>, or <code>nearest</code>. Defaults to <code>start</code>. </p> </dd> <dt id="inline">
+<code>inline</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> Defines horizontal alignment. One of <code>start</code>, <code>center</code>, <code>end</code>, or <code>nearest</code>. Defaults to <code>nearest</code>. </p> </dd> </dl> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">var</span> element <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"box"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+element<span class="token punctuation">.</span><span class="token function">scrollIntoView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+element<span class="token punctuation">.</span><span class="token function">scrollIntoView</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+element<span class="token punctuation">.</span><span class="token function">scrollIntoView</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">block</span><span class="token operator">:</span> <span class="token string">"end"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+element<span class="token punctuation">.</span><span class="token function">scrollIntoView</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token literal-property property">behavior</span><span class="token operator">:</span> <span class="token string">"smooth"</span><span class="token punctuation">,</span> <span class="token literal-property property">block</span><span class="token operator">:</span> <span class="token string">"end"</span><span class="token punctuation">,</span> <span class="token literal-property property">inline</span><span class="token operator">:</span> <span class="token string">"nearest"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="notes">Notes</h2>
+<div class="section-content"><p> The element may not be scrolled completely to the top or bottom depending on the layout of other elements. </p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/cssom-view/#dom-element-scrollintoview">CSSOM View Module <br><small># dom-element-scrollintoview</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>scrollIntoView</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>17-79</div>
+<div>The only parameter supported is <code>alignToTop</code>.</div>
+<div>12-17</div>
+<div>["Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.", "No support for <code>smooth</code> behavior."]</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>5</div>
+<div>["Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.", "No support for <code>smooth</code> behavior or <code>center</code> options."]</div>
+</td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>["No support for <code>center</code> option.", "Before Safari 15.4, there was no support for the <code>smooth</code> behavior."]</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>["No support for <code>center</code> option.", "Before iOS 15.4, there was no support for the <code>smooth</code> behavior."]</div>
+</td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>options_parameter</code></th>
+<td class="bc-supports-yes">
+<div>61</div>
+<div>The <code>block</code> and <code>inline</code> options support the values <code>start</code>, <code>center</code>, <code>end</code>, <code>nearest</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>The <code>block</code> and <code>inline</code> options support the values <code>start</code>, <code>center</code>, <code>end</code>, <code>nearest</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>["No support for <code>inline</code> option.", "Before Firefox 58, <code>nearest</code> and <code>center</code> values for the <code>block</code> option was unsupported. See <a href="https://bugzil.la/1389274">bug 1389274</a>."]</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>The <code>block</code> and <code>inline</code> options support the values <code>start</code>, <code>center</code>, <code>end</code>, <code>nearest</code>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>61</div>
+<div>The <code>block</code> and <code>inline</code> options support the values <code>start</code>, <code>center</code>, <code>end</code>, <code>nearest</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>61</div>
+<div>The <code>block</code> and <code>inline</code> options support the values <code>start</code>, <code>center</code>, <code>end</code>, <code>nearest</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>["No support for <code>inline</code> option.", "Before Firefox 58, <code>nearest</code> and <code>center</code> values for the <code>block</code> option was unsupported. See <a href="https://bugzil.la/1389274">bug 1389274</a>."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>The <code>block</code> and <code>inline</code> options support the values <code>start</code>, <code>center</code>, <code>end</code>, <code>nearest</code>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>8.0</div>
+<div>The <code>block</code> and <code>inline</code> options support the values <code>start</code>, <code>center</code>, <code>end</code>, <code>nearest</code>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>
+<a href="scrollintoviewifneeded"><code>Element.scrollIntoViewIfNeeded()</code></a> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."> <span class="visually-hidden">Non-Standard</span> </abbr>
+</li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/element/scrollintoview/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/element/scrollintoview/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FElement%2FscrollIntoView&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Felement%2Fscrollintoview%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FElement%2FscrollIntoView%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Felement%2Fscrollintoview%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F35fc6f203052625260151c4f0cbfd3f84a9516ae%0A*+Document+last+modified%3A+2022-04-19T06%3A17%3A43.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-19T06:17:43.000Z">Apr 19, 2022</time>, <a href="scrollintoview/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView</a>
+  </p>
+</div>

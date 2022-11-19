@@ -1,0 +1,381 @@
+<h1>FontFace</h1>
+<div class="section-content"><p>The <code>FontFace</code> interface represents a single usable font face. It allows control of the source of the font face, being a URL to an external resource, or a buffer; it also allows control of when the font face is loaded and its current status.</p></div>
+<h2 id="constructor">Constructor</h2>
+<div class="section-content"><dl> <dt id="fontface"><a href="fontface/fontface"><code>FontFace()</code></a></dt> <dd> <p>Constructs and returns a new <code>FontFace</code> object, built from an external resource described by a URL or from an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>.</p> </dd> </dl></div>
+<h2 id="properties">Properties</h2>
+<div class="section-content">
+<dl> <dt id="fontface.ascentoverride"><a href="fontface/ascentoverride"><code>FontFace.ascentOverride</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets the <em>ascent metric</em> of the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/ascent-override"><code>ascent-override</code></a> descriptor.</p> </dd> <dt id="fontface.descentoverride"><a href="fontface/descentoverride"><code>FontFace.descentOverride</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets the <em>descent metric</em> of the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/descent-override"><code>descent-override</code></a> descriptor.</p> </dd> <dt id="fontface.display"><a href="fontface/display"><code>FontFace.display</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that determines how a font face is displayed based on whether and when it is downloaded and ready to use.</p> </dd> <dt id="fontface.family"><a href="fontface/family"><code>FontFace.family</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets the <em>family</em> of the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-family"><code>font-family</code></a> descriptor.</p> </dd> <dt id="fontface.featuresettings"><a href="fontface/featuresettings"><code>FontFace.featureSettings</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets infrequently used font features that are not available from a font's variant properties. It is equivalent to the <a class="page-not-created"><code>font-feature-settings</code></a> descriptor.</p> </dd> <dt id="fontface.linegapoverride"><a href="fontface/linegapoverride"><code>FontFace.lineGapOverride</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets the <em>line-gap metric</em> of the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/line-gap-override"><code>line-gap-override</code></a> descriptor.</p> </dd> <dt id="fontface.loaded">
+<a href="fontface/loaded"><code>FontFace.loaded</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with the current <code>FontFace</code> object when the font specified in the object's constructor is done loading or rejects with a <code>SyntaxError</code>.</p> </dd> <dt id="fontface.status">
+<a href="fontface/status"><code>FontFace.status</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>Returns an enumerated value indicating the status of the font, one of <code>"unloaded"</code>, <code>"loading"</code>, <code>"loaded"</code>, or <code>"error"</code>.</p> </dd> <dt id="fontface.stretch"><a href="fontface/stretch"><code>FontFace.stretch</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets how the font <em>stretches</em>. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-stretch"><code>font-stretch</code></a> descriptor.</p> </dd> <dt id="fontface.style"><a href="fontface/style"><code>FontFace.style</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets the <em>style</em> of the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-style"><code>font-style</code></a> descriptor.</p> </dd> <dt id="fontface.unicoderange"><a href="fontface/unicoderange"><code>FontFace.unicodeRange</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets the <em>range of unicode codepoints</em> encompassing the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/unicode-range"><code>unicode-range</code></a> descriptor.</p> </dd> <dt id="fontface.variant"><a href="fontface/variant"><code>FontFace.variant</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets the <em>variant</em> of the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-variant"><code>font-variant</code></a> descriptor.</p> </dd> <dt id="fontface.variationsettings"><a href="fontface/variationsettings"><code>FontFace.variationSettings</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that retrieves or sets the <em>variation settings</em> of the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-variation-settings"><code>font-variation-settings</code></a> descriptor.</p> </dd> <dt id="fontface.weight"><a href="fontface/weight"><code>FontFace.weight</code></a></dt> <dd> <p>A <a href="cssomstring"><code>CSSOMString</code></a> that contains the <em>weight</em> of the font. It is equivalent to the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-weight"><code>font-weight</code></a> descriptor.</p> </dd> </dl> <dl> <dt id="fontface.load"><a href="fontface/load"><code>FontFace.load()</code></a></dt> <dd> <p>Loads a font based on current object's constructor-passed requirements, including a location or source buffer, and returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with the current FontFace object.</p> </dd> </dl>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-font-loading/#fontface-interface">CSS Font Loading Module Level 3 <br><small># fontface-interface</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>FontFace</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>FontFace</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>ascentOverride</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>descentOverride</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>display</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>family</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>featureSettings</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>lineGapOverride</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>load</code></th>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>35-45</div>
+<div>Before Chrome 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>32</div>
+<div>22-32</div>
+<div>Before Opera 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>37-45</div>
+<div>Before WebView 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>35-45</div>
+<div>Before Chrome 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes">
+<div>32</div>
+<div>22-32</div>
+<div>Before Opera 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>4.0-5.0</div>
+<div>Before Samsung Internet 5.0, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+</tr>
+<tr>
+<th><code>loaded</code></th>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>35-45</div>
+<div>Before Chrome 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>32</div>
+<div>22-32</div>
+<div>Before Opera 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>37-45</div>
+<div>Before WebView 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>35-45</div>
+<div>Before Chrome 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes">
+<div>32</div>
+<div>22-32</div>
+<div>Before Opera 45, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>4.0-5.0</div>
+<div>Before Samsung Internet 5.0, the returned promise resolved with void instead of a <code>FontFace</code> object as required by the specification.</div>
+</td>
+</tr>
+<tr>
+<th><code>status</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>stretch</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>style</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>unicodeRange</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>variant</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>variationSettings</code></th>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>weight</code></th>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face">@font-face</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/fontface/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/fontface/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FFontFace&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Ffontface%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FFontFace%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Ffontface%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F68db6cb079399e4334eeeefc8e636ef76665ca7d%0A*+Document+last+modified%3A+2022-03-28T14%3A08%3A00.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-28T14:08:00.000Z">Mar 28, 2022</time>, <a href="fontface/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FontFace" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FontFace</a>
+  </p>
+</div>

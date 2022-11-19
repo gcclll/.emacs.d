@@ -1,0 +1,87 @@
+<h1>CharacterData.replaceData()</h1>
+<div class="section-content"><p>The <code>replaceData()</code> method of the <a href="../characterdata"><code>CharacterData</code></a> interface removes a certain number of characters of the existing text in a given <code>CharacterData</code> node and replaces those characters with the text provided.</p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js">characterData<span class="token punctuation">.</span><span class="token function">replaceData</span><span class="token punctuation">(</span>offset<span class="token punctuation">,</span> count<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="offset"><code>offset</code></dt> <dd> <p> The number of characters from the start of the data to insert at. <code>0</code> is the first character of the string. </p> </dd> <dt id="count"><code>count</code></dt> <dd> <p>The number of characters to replace with the provided data.</p> </dd> <dt id="data"><code>data</code></dt> <dd> <p>The data to insert.</p> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><p>None.</p></div>
+<h2 id="exceptions">Exceptions</h2>
+<div class="section-content"><dl> <dt id="indexsizeerror">
+<code>IndexSizeError</code> <a href="../domexception"><code>DOMException</code></a>
+</dt> <dd> <p>Thrown if <code>offset</code> or <code>count</code> is negative or <code>offset</code> is greater than the length of the contained data.</p> </dd> </dl></div>
+<h2 id="example">Example</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Result: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>A long string.
+</pre></div> <div class="code-example"><pre data-language="js"><span class="token keyword">let</span> span <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"span"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> textnode <span class="token operator">=</span> span<span class="token punctuation">.</span>nextSibling<span class="token punctuation">;</span>
+
+textnode<span class="token punctuation">.</span><span class="token function">replaceData</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"replaced"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div>
+<iframe class="sample-code-frame" title="Example sample" id="frame_example" width="100%" height="60" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CharacterData/replaceData/_sample_.example.html" loading="lazy"></iframe>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://dom.spec.whatwg.org/#dom-characterdata-replacedata">DOM Standard <br><small># dom-characterdata-replacedata</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>replaceData</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="appenddata"><code>CharacterData.appendData()</code></a></li> <li><a href="deletedata"><code>CharacterData.deleteData()</code></a></li> <li><a href="insertdata"><code>CharacterData.insertData()</code></a></li> <li><a href="data"><code>CharacterData.data</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/characterdata/replacedata/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/characterdata/replacedata/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FCharacterData%2FreplaceData&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fcharacterdata%2Freplacedata%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FCharacterData%2FreplaceData%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fcharacterdata%2Freplacedata%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F7e27908bac7eb58981a511c1a859e3b998ac52fc%0A*+Document+last+modified%3A+2022-01-21T22%3A19%3A43.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-01-21T22:19:43.000Z">Jan 21, 2022</time>, <a href="replacedata/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CharacterData/replaceData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CharacterData/replaceData</a>
+  </p>
+</div>

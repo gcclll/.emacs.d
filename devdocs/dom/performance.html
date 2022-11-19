@@ -1,0 +1,487 @@
+<h1>Performance</h1>
+<div class="section-content">
+<p>The <code>Performance</code> interface provides access to performance-related information for the current page. It's part of the High Resolution Time API, but is enhanced by the <a href="performance_timeline">Performance Timeline API</a>, the <a href="navigation_timing_api">Navigation Timing API</a>, the <a href="user_timing_api">User Timing API</a>, and the <a href="resource_timing_api">Resource Timing API</a>.</p> <p>An object of this type can be obtained by calling the <a href="performance_property"><code>window.performance</code></a> read-only attribute.</p> <div class="notecard note" id="sect1"> <p><strong>Note:</strong> This interface and its members are available in <a href="web_workers_api">Web Workers</a> via <a href="performance_property"><code>WorkerGlobalScope.performance</code></a> , except where indicated below. Also, note that performance markers and measures are per context. If you create a mark on the main thread (or other worker), you cannot see it in a worker thread, and vice versa.</p> </div>
+<svg viewbox="-1 -1 650 42" preserveaspectratio="xMinYMin meet"> <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/EventTarget">  <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> EventTarget </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/Performance" aria-current="page">  <text x="162" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> Performance </text> </a></svg>
+</div>
+<h2 id="properties">Properties</h2>
+<div class="section-content">
+<p><em>The <code>Performance</code> interface doesn't inherit any properties.</em></p> <dl> <dt id="performance.navigation">
+<a href="performance/navigation"><code>Performance.navigation</code></a> <span class="badge inline readonly">Read only </span> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."> <span class="visually-hidden">Deprecated</span> </abbr>
+</dt> <dd> <p>A legacy <a href="performancenavigation"><code>PerformanceNavigation</code></a> object that provides useful context about the operations included in the times listed in <code>timing</code>, including whether the page was a load or a refresh, how many redirections occurred, and so forth.</p> <div class="notecard note" id="sect2"> <p><strong>Note:</strong> Not available in workers.</p> </div> </dd> <dt id="performance.timing">
+<a href="performance/timing"><code>Performance.timing</code></a> <span class="badge inline readonly">Read only </span> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."> <span class="visually-hidden">Deprecated</span> </abbr>
+</dt> <dd> <p>A legacy <a href="performancetiming"><code>PerformanceTiming</code></a> object containing latency-related performance information.</p> <div class="notecard note" id="sect3"> <p><strong>Note:</strong> Not available in workers.</p> </div> </dd> <dt id="performance.memory">
+<a href="performance/memory"><code>Performance.memory</code></a> <span class="badge inline readonly">Read only </span> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."> <span class="visually-hidden">Non-Standard</span> </abbr>
+</dt> <dd> <p>A <em>non-standard</em> extension added in Chrome, this property provides an object with basic memory usage information. <em>You <strong>should not use</strong> this non-standard API.</em></p> </dd> <dt id="performance.timeorigin">
+<a href="performance/timeorigin"><code>Performance.timeOrigin</code></a> <span class="badge inline readonly">Read only </span> <abbr class="icon icon-nonstandard" title="Non-standard. Check cross-browser support before using."> <span class="visually-hidden">Non-Standard</span> </abbr>
+</dt> <dd> <p>Returns the high resolution timestamp of the start time of the performance measurement.</p> </dd> </dl>
+</div>
+<h2 id="methods">Methods</h2>
+<div class="section-content">
+<p><em>The <code>Performance</code> interface doesn't inherit any methods.</em></p> <dl> <dt id="performance.clearmarks"><a href="performance/clearmarks"><code>Performance.clearMarks()</code></a></dt> <dd> <p>Removes the given <em>mark</em> from the browser's performance entry buffer.</p> </dd> <dt id="performance.clearmeasures"><a href="performance/clearmeasures"><code>Performance.clearMeasures()</code></a></dt> <dd> <p>Removes the given <em>measure</em> from the browser's performance entry buffer.</p> </dd> <dt id="performance.clearresourcetimings"><a href="performance/clearresourcetimings"><code>Performance.clearResourceTimings()</code></a></dt> <dd> <p>Removes all <a href="performanceentry"><code>performance entries</code></a> with a <a href="performanceentry/entrytype"><code>entryType</code></a> of "<code>resource</code>" from the browser's performance data buffer.</p> </dd> <dt id="performance.getentries"><a href="performance/getentries"><code>Performance.getEntries()</code></a></dt> <dd> <p>Returns a list of <a href="performanceentry"><code>PerformanceEntry</code></a> objects based on the given <em>filter</em>.</p> </dd> <dt id="performance.getentriesbyname"><a href="performance/getentriesbyname"><code>Performance.getEntriesByName()</code></a></dt> <dd> <p>Returns a list of <a href="performanceentry"><code>PerformanceEntry</code></a> objects based on the given <em>name</em> and <em>entry type</em>.</p> </dd> <dt id="performance.getentriesbytype"><a href="performance/getentriesbytype"><code>Performance.getEntriesByType()</code></a></dt> <dd> <p>Returns a list of <a href="performanceentry"><code>PerformanceEntry</code></a> objects of the given <em>entry type</em>.</p> </dd> <dt id="performance.mark"><a href="performance/mark"><code>Performance.mark()</code></a></dt> <dd> <p>Creates a <a href="domhighrestimestamp"><code>timestamp</code></a> in the browser's <em>performance entry buffer</em> with the given name.</p> </dd> <dt id="performance.measure"><a href="performance/measure"><code>Performance.measure()</code></a></dt> <dd> <p>Creates a named <a href="domhighrestimestamp"><code>timestamp</code></a> in the browser's performance entry buffer between two specified marks (known as the <em>start mark</em> and <em>end mark</em>, respectively).</p> </dd> <dt id="performance.now"><a href="performance/now"><code>Performance.now()</code></a></dt> <dd> <p>Returns a <a href="domhighrestimestamp"><code>DOMHighResTimeStamp</code></a> representing the number of milliseconds elapsed since a reference instant.</p> </dd> <dt id="performance.setresourcetimingbuffersize"><a href="performance/setresourcetimingbuffersize"><code>Performance.setResourceTimingBufferSize()</code></a></dt> <dd> <p>Sets the browser's resource timing buffer size to the specified number of "<code>resource</code>" <a href="performanceentry/entrytype"><code>type</code></a> <a href="performanceentry"><code>performance entry</code></a> objects.</p> </dd> <dt id="performance.tojson"><a href="performance/tojson"><code>Performance.toJSON()</code></a></dt> <dd> <p>Is a jsonizer returning a JSON object representing the <code>Performance</code> object.</p> </dd> </dl>
+</div>
+<h2 id="events">Events</h2>
+<div class="section-content">
+<p>Listen to these events using <code>addEventListener()</code> or by assigning an event listener to the <code>oneventname</code> property of this interface.</p> <dl> <dt id="resourcetimingbufferfull"><a href="performance/resourcetimingbufferfull_event"><code>resourcetimingbufferfull</code></a></dt> <dd> <p>Fired when the browser's <a href="performance/setresourcetimingbuffersize">resource timing buffer</a> is full.</p> </dd> </dl>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody>
+<tr><td><a href="https://w3c.github.io/hr-time/#sec-performance">High Resolution Time <br><small># sec-performance</small></a></td></tr>
+<tr><td><a href="https://w3c.github.io/performance-timeline/#extensions-to-the-performance-interface">Performance Timeline <br><small># extensions-to-the-performance-interface</small></a></td></tr>
+<tr><td><a href="https://w3c.github.io/resource-timing/#sec-extensions-performance-interface">Resource Timing Level 2 <br><small># sec-extensions-performance-interface</small></a></td></tr>
+<tr><td><a href="https://w3c.github.io/user-timing/#extensions-performance-interface">User Timing <br><small># extensions-performance-interface</small></a></td></tr>
+</tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Performance</code></th>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>clearMarks</code></th>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25-29</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25-29</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>2.0</div>
+<div>1.5-2.0</div>
+</td>
+</tr>
+<tr>
+<th><code>clearMeasures</code></th>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25-29</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25-29</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>2.0</div>
+<div>1.5-2.0</div>
+</td>
+</tr>
+<tr>
+<th><code>clearResourceTimings</code></th>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>22-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>15-44</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>25-57</div>
+</td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>14-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>1.5-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>eventCounts</code></th>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>getEntries</code></th>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-36</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-36</div>
+</td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.5-3.0</div>
+</td>
+</tr>
+<tr>
+<th><code>getEntriesByName</code></th>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-36</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-36</div>
+</td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.5-3.0</div>
+</td>
+</tr>
+<tr>
+<th><code>getEntriesByType</code></th>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-36</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>15-23</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-36</div>
+</td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>14-24</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.5-3.0</div>
+</td>
+</tr>
+<tr>
+<th><code>mark</code></th>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-28</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-28</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>measure</code></th>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-28</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes">
+<div>28</div>
+<div>25-28</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>measureUserAgentSpecificMemory</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15.0</div></td>
+</tr>
+<tr>
+<th><code>memory</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>navigation</code></th>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>now</code></th>
+<td class="bc-supports-yes">
+<div>24</div>
+<div>21-24</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>["In Firefox 57.0.4 the accuracy was reduced to 20 microseconds.", "In Firefox 59 the accuracy was reduced to 2 milliseconds.", "In Firefox 60 the accuracy was increased to 1 millisecond."]</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>["In Firefox 57.0.4 the accuracy was reduced to 20 microseconds.", "In Firefox 59 the accuracy was reduced to 2 milliseconds.", "In Firefox 60 the accuracy was increased to 1 millisecond."]</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>resourcetimingbufferfull_event</code></th>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>22-57</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>25-57</div>
+</td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>14-43</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>1.5-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>setResourceTimingBufferSize</code></th>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>22-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>15-44</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>25-57</div>
+</td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>14-43</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>1.5-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>timeOrigin</code></th>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>timing</code></th>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>toJSON</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+</tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/performance/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/performance/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FPerformance&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fperformance%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FPerformance%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fperformance%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fe36ab31479b957d8cb4862d19eceec05e81b6be4%0A*+Document+last+modified%3A+2022-04-15T05%3A44%3A51.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-15T05:44:51.000Z">Apr 15, 2022</time>, <a href="performance/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Performance</a>
+  </p>
+</div>

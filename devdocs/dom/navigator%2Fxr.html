@@ -1,0 +1,80 @@
+<h1>Navigator.xr</h1>
+<div class="section-content">
+<div class="notecard secure" id="sect1"><p><strong>Secure context:</strong> This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div> <p> The read-only <code>xr</code> property provided by the <a href="../navigator"><code>Navigator</code></a> interface returns an <a href="../xrsystem"><code>XRSystem</code></a> object which can be used to access the <a href="../webxr_device_api">WebXR Device API</a>. </p>
+</div>
+<h2 id="value">Value</h2>
+<div class="section-content"><p> The <a href="../xrsystem"><code>XRSystem</code></a> object used to interface with the <a href="../webxr_device_api">WebXR Device API</a> in the current context. This can be used to present augmented and/or virtual reality imagery to the user. </p></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p> Each <a href="../window"><code>Window</code></a> has its own instance of <a href="../navigator"><code>Navigator</code></a>, which can be accessed as <a href="../window/navigator"><code>window.navigator</code></a> or as <a href="../window/navigator"><code>navigator</code></a>. At the same time, a new <a href="../xrsystem"><code>XRSystem</code></a> instance is also created and attached to the <code>navigator</code> instance as <a href="xr" aria-current="page"><code>navigator.xr</code></a>. If the <code>xr</code> property exists, you can use it to access the <a href="../webxr_device_api">WebXR Device API</a>. </p> <p>To determine if WebXR is available, you can do something like this:</p> <div class="code-example"><pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"xr"</span> <span class="token keyword">in</span> window<span class="token punctuation">.</span>navigator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* WebXR can be used! */</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* WebXR isn't available */</span>
+<span class="token punctuation">}</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://immersive-web.github.io/webxr/#navigator-xr-attribute">WebXR Device API <br><small># navigator-xr-attribute</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>xr</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li> <a href="../webgl_api">WebGL API</a>: 2D and 3D accelerated graphics for the web </li> <li>
+<a href="../canvas_api">Canvas API</a>: 2D graphics API</li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/navigator/xr/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/navigator/xr/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FNavigator%2Fxr&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fnavigator%2Fxr%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FNavigator%2Fxr%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fnavigator%2Fxr%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fdc13bbc18ba23a2d86e15ff8deff8e6825ae9934%0A*+Document+last+modified%3A+2022-03-31T05%3A23%3A18.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-31T05:23:18.000Z">Mar 31, 2022</time>, <a href="xr/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/xr" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/xr</a>
+  </p>
+</div>

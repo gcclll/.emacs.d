@@ -1,0 +1,102 @@
+<h1>MediaCapabilities.decodingInfo()</h1>
+<div class="section-content"><p>The <code>MediaCapabilities.decodingInfo()</code> method, part of the <a href="../mediacapabilities">Media Capabilities API</a>, returns a promise with the tested media configuration's capabilities info; this contains the three Boolean properties <code>supported</code>, <code>smooth</code>, and <code>powerefficient</code>, which describe whether decoding the media described would be supported, smooth, and powerefficient.</p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">decodingInfo</span><span class="token punctuation">(</span>MediaDecodingConfiguration<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="mediadecodingconfiguration">MediaDecodingConfiguration</dt> <dd> <p>A valid <a href="../mediadecodingconfiguration"><code>MediaDecodingConfiguration</code></a> dictionary containing a valid media decoding <code>type</code> of <code>file</code> or <code>media-source</code> and a valid media configuration: either an <a href="../audioconfiguration"><code>AudioConfiguration</code></a> or a <a href="../videoconfiguration"><code>VideoConfiguration</code></a>.</p> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content">
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> fulfilling with an object containing three Boolean attributes:</p> <ul> <li>
+<code>supported</code>: Given the properties defined in the <a href="../mediaconfiguration"><code>MediaConfiguration</code></a>, can the specified piece of media content be encoded (if <a href="../mediaencodingconfiguration"><code>MediaEncodingConfiguration</code></a> is set) or decode (if <a href="../mediadecodingconfiguration"><code>MediaDecodingConfiguration</code></a> is set) at all? If yes, <code>supported</code> is <em>true</em>. Otherwise, it is <em>false</em>.</li> <li>
+<code>smooth</code>: Given the properties defined in the <a href="../mediaconfiguration"><code>MediaConfiguration</code></a>, will the playback of the specified piece of media be high quality? Will it be smooth? If <code>supported</code> is <code>true</code>, and playback will be smooth, <code>smooth</code> is <em>true</em>, Otherwise, is it <em>false.</em>
+</li> <li>
+<code>powerEfficient</code>: Given the properties defined in the <a href="../mediaconfiguration"><code>MediaConfiguration</code></a>, will the playback of the specified piece of media be power efficient? If <code>supported</code> is <code>true</code>, and playback will be power efficient, <code>powerEfficient</code> is <em>true</em>, Otherwise, is it <em>false.</em>
+</li> </ul> <p>Browsers will report a supported media configuration as <code>smooth</code> and <code>powerEfficient</code> until stats on this device have been recorded. All supported audio codecs are reported to be power efficient.</p>
+</div>
+<h3 id="exceptions">Exceptions</h3>
+<div class="section-content"><p>A <code>TypeError</code> is raised if the <code>MediaConfiguration</code> passed to the <code>decodingInfo()</code> method is invalid, either because the type is not video or audio, the <code>contentType</code> is not a valid codec MIME type, the media decoding configuration is not a valid value for the <a href="../mediadecodingtype" class="page-not-created">media decoding type</a>, or any other error in the media configuration passed to the method, including omitting values required in the <a href="../mediadecodingconfiguration">media decoding configuration</a>.</p></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token comment">//Create media configuration to be tested</span>
+<span class="token keyword">const</span> mediaConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">type</span> <span class="token operator">:</span> <span class="token string">'file'</span><span class="token punctuation">,</span> <span class="token comment">// or 'media-source'</span>
+    <span class="token literal-property property">audio</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">contentType</span> <span class="token operator">:</span> <span class="token string">"audio/ogg; codecs=vorbis"</span><span class="token punctuation">,</span> <span class="token comment">// valid content type</span>
+        <span class="token literal-property property">channels</span> <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>     <span class="token comment">// audio channels used by the track</span>
+        <span class="token literal-property property">bitrate</span> <span class="token operator">:</span> <span class="token number">132700</span><span class="token punctuation">,</span> <span class="token comment">// number of bits used to encode 1s of audio</span>
+        <span class="token literal-property property">samplerate</span> <span class="token operator">:</span> <span class="token number">5200</span> <span class="token comment">// number of audio samples making up that 1s.</span>
+     <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// check support and performance</span>
+navigator<span class="token punctuation">.</span>mediaCapabilities<span class="token punctuation">.</span><span class="token function">decodingInfo</span><span class="token punctuation">(</span>mediaConfig<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">result</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'This configuration is '</span> <span class="token operator">+</span>
+        <span class="token punctuation">(</span>result<span class="token punctuation">.</span>supported <span class="token operator">?</span> <span class="token string">''</span> <span class="token operator">:</span> <span class="token string">'not '</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'supported, '</span> <span class="token operator">+</span>
+        <span class="token punctuation">(</span>result<span class="token punctuation">.</span>smooth <span class="token operator">?</span> <span class="token string">''</span> <span class="token operator">:</span> <span class="token string">'not '</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'smooth, and '</span> <span class="token operator">+</span>
+        <span class="token punctuation">(</span>result<span class="token punctuation">.</span>powerEfficient <span class="token operator">?</span> <span class="token string">''</span> <span class="token operator">:</span> <span class="token string">'not '</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'power efficient.'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/media-capabilities/#ref-for-dom-mediacapabilities-decodinginfo">Media Capabilities <br><small># ref-for-dom-mediacapabilities-decodinginfo</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>decodingInfo</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../mediadecodingconfiguration"><code>MediaDecodingConfiguration</code></a></li> <li><a href="../videoconfiguration"><code>VideoConfiguration</code></a></li> <li><a href="../audioconfiguration"><code>AudioConfiguration</code></a></li> <li><a href="encodinginfo"><code>MediaCapabilities.encodingInfo()</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/mediacapabilities/decodinginfo/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/mediacapabilities/decodinginfo/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMediaCapabilities%2FdecodingInfo&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fmediacapabilities%2Fdecodinginfo%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FMediaCapabilities%2FdecodingInfo%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fmediacapabilities%2Fdecodinginfo%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F12a31b91b20f07b6d43a03cf125edc0a289d3301%0A*+Document+last+modified%3A+2022-04-18T05%3A46%3A31.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-18T05:46:31.000Z">Apr 18, 2022</time>, <a href="decodinginfo/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilities/decodingInfo" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilities/decodingInfo</a>
+  </p>
+</div>

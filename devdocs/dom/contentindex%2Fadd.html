@@ -1,0 +1,127 @@
+<h1>ContentIndex.add()</h1>
+<div class="section-content"><p> The <code>add()</code> method of the <a href="../contentindex"><code>ContentIndex</code></a> interface registers an item with the <a class="page-not-created"><code>content index</code></a>. </p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js">ContentIndex<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>ContentDescription<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="contentdescription"><em>ContentDescription</em></dt> <dd> <p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> containing the following data:</p> <ul> <li>
+<code>id</code>: A unique <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> identifier.</li> <li> <code>title</code>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> title for the item. Used in user-visible lists of content. </li> <li> <code>title</code>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> title of the item. Used in user-visible lists of content. </li> <li> <code>description</code>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> description of the item. Used in user-visible lists of content. </li> <li> <code>url</code>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> containing the URL of the corresponding HTML document. Needs to be under the scope of the current <a href="../serviceworker"><code>service worker</code></a>. </li> <li> <code>category</code>: <span class="badge inline optional">Optional</span> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> defining the category of content. Can be: <ul> <li>
+<code>''</code> An empty <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a>, this is the default.</li> <li><code>homepage</code></li> <li><code>article</code></li> <li><code>video</code></li> <li><code>audio</code></li> </ul> </li> <li> <code>icons</code>: <span class="badge inline optional">Optional</span> An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of image resources, defined as an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> with the following data: <ul> <li>
+<code>src:</code> A URL <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> of the source image.</li> <li> <code>sizes:</code> <span class="badge inline optional">Optional</span> A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> representation of the image size. </li> <li> <code>type:</code> <span class="badge inline optional">Optional</span> The <a href="https://developer.mozilla.org/en-US/docs/Glossary/MIME_type">MIME type</a> of the image. </li> </ul> </li> </ul> </dd> </dl></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with <code>undefined</code></p></div>
+<h3 id="exceptions">Exceptions</h3>
+<div class="section-content"><dl> <dt id="typeerror"><code>TypeError</code></dt> <dd> <p>This exception is thrown in the following conditions:</p> <ul> <li> The service worker's registration is not present or the service worker does not contain a <a href="../fetchevent"><code>FetchEvent</code></a>. </li> <li> The <code>id</code>, <code>title</code>, <code>description</code> or <code>url</code> are missing, not of type <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a>, or an empty <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a>. </li> <li>The items referenced by <code>icons</code> are not of image type.</li> </ul> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p> Here we're declaring an item in the correct format and creating an asynchronous function which uses the <code>add</code> method to register it with the <a href="../content_index_api"><code>content index</code></a>. </p> <div class="code-example"><pre data-language="js"><span class="token comment">// our content</span>
+<span class="token keyword">const</span> item <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">'post-1'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token string">'/posts/amet.html'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'Amet consectetur adipisicing'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">description</span><span class="token operator">:</span> <span class="token string">'Repellat et quia iste possimus ducimus aliquid a aut eaque nostrum.'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">icons</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">'/media/dark.png'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">sizes</span><span class="token operator">:</span> <span class="token string">'128x128'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'image/png'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">category</span><span class="token operator">:</span> <span class="token string">'article'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// our asynchronous function to add indexed content</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">registerContent</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> registration <span class="token operator">=</span> <span class="token keyword">await</span> navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span>ready<span class="token punctuation">;</span>
+
+  <span class="token comment">// feature detect Content Index</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>registration<span class="token punctuation">.</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// register content</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> registration<span class="token punctuation">.</span>index<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Failed to register content: '</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></div> <p> The <code>add</code> method can also be used within the <a href="../serviceworker"><code>service worker</code></a> scope. </p> <div class="code-example"><pre data-language="js"><span class="token comment">// our content</span>
+<span class="token keyword">const</span> item <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">'post-1'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">url</span><span class="token operator">:</span> <span class="token string">'/posts/amet.html'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">'Amet consectetur adipisicing'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">description</span><span class="token operator">:</span> <span class="token string">'Repellat et quia iste possimus ducimus aliquid a aut eaque nostrum.'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">icons</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">'/media/dark.png'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">sizes</span><span class="token operator">:</span> <span class="token string">'128x128'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'image/png'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">category</span><span class="token operator">:</span> <span class="token string">'article'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+self<span class="token punctuation">.</span>registration<span class="token punctuation">.</span>index<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://wicg.github.io/content-index/spec/#content-index-add">Content Index <br><small># content-index-add</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>add</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://web.dev/content-indexing-api/" rel=" noopener">An introductory article on the Content Index API</a></li> <li><a href="https://contentindex.dev/" rel=" noopener">An app which uses the Content Index API to list and remove 'save for later' content</a></li> <li><a href="../service_worker_api">Service Worker API, along with information about Cache and CacheStorage</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/contentindex/add/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/contentindex/add/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FContentIndex%2Fadd&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fcontentindex%2Fadd%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FContentIndex%2Fadd%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fcontentindex%2Fadd%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fe36ab31479b957d8cb4862d19eceec05e81b6be4%0A*+Document+last+modified%3A+2022-04-15T05%3A44%3A51.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-15T05:44:51.000Z">Apr 15, 2022</time>, <a href="add/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ContentIndex/add" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ContentIndex/add</a>
+  </p>
+</div>

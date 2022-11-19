@@ -1,0 +1,200 @@
+<h1>RTCSctpTransport</h1>
+<div class="section-content">
+<div class="notecard experimental" id="sect1"><p><strong>Experimental:</strong> <strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p></div> <p>The <code>RTCSctpTransport</code> interface provides information which describes a Stream Control Transmission Protocol (<strong><a href="https://developer.mozilla.org/en-US/docs/Glossary/SCTP">SCTP</a></strong>) transport. This provides information about limitations of the transport, but also provides a way to access the underlying Datagram Transport Layer Security (<strong><a href="https://developer.mozilla.org/en-US/docs/Glossary/DTLS">DTLS</a></strong>) transport over which SCTP packets for all of an <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a>'s data channels are sent and received.</p> <p>You don't create <a href="rtcsctptransport" aria-current="page"><code>RTCSctpTransport</code></a> objects yourself; instead, you get access to the <code>RTCSctpTransport</code> for a given <code>RTCPeerConnection</code> through its <strong><a href="rtcpeerconnection/sctp"><code>sctp</code></a></strong> property.</p> <p>Possibly the most useful property on this interface is its <a class="page-not-created"><code>maxMessageSize</code></a> property, which you can use to determine the upper limit on the size of messages you can send over a data channel on the peer connection.</p>
+<svg viewbox="-1 -1 650 42" preserveaspectratio="xMinYMin meet"> <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/EventTarget">  <text x="44" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> EventTarget </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/RTCSctpTransport" aria-current="page">  <text x="182" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> RTCSctpTransport </text> </a></svg>
+</div>
+<h2 id="properties">Properties</h2>
+<div class="section-content">
+<p><em>Also inherits properties from: <a href="eventtarget"><code>EventTarget</code></a></em></p> <dl> <dt id="rtcsctptransport.maxchannels">
+<a class="page-not-created"><code>RTCSctpTransport.maxChannels</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>An integer value indicating the maximum number of <a href="rtcdatachannel"><code>RTCDataChannel</code>s</a> that can be open simultaneously.</p> </dd> <dt id="rtcsctptransport.maxmessagesize">
+<a class="page-not-created"><code>RTCSctpTransport.maxMessageSize</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>An integer value indicating the maximum size, in bytes, of a message which can be sent using the <a href="rtcdatachannel/send"><code>RTCDataChannel.send()</code></a> method.</p> </dd> <dt id="rtcsctptransport.state">
+<a href="rtcsctptransport/state"><code>RTCSctpTransport.state</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>A <a href="domstring"><code>DOMString</code></a> enumerated value indicating the state of the SCTP transport.</p> </dd> <dt id="rtcsctptransport.transport">
+<a class="page-not-created"><code>RTCSctpTransport.transport</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>An <a href="rtcdtlstransport"><code>RTCDtlsTransport</code></a> object representing the <a href="https://developer.mozilla.org/en-US/docs/Glossary/DTLS">DTLS</a> transport used for the transmission and receipt of data packets.</p> </dd> </dl>
+</div>
+<h3 id="event_handlers">Event handlers</h3>
+<div class="section-content"><dl> <dt id="rtcsctptransport.onstatechange"><a class="page-not-created"><code>RTCSctpTransport.onstatechange</code></a></dt> <dd> <p>Fired when the <a href="rtcsctptransport/state"><code>RTCSctpTransport.state</code></a> changes.</p> </dd> </dl></div>
+<h2 id="methods">Methods</h2>
+<div class="section-content"><p><em>This interface has no methods, but inherits methods from: <a href="eventtarget"><code>EventTarget</code></a></em></p></div>
+<h2 id="example">Example</h2>
+<div class="section-content"><p>TBD</p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/webrtc-pc/#rtcsctptransport-interface">WebRTC 1.0: Real-Time Communication Between Browsers <br><small># rtcsctptransport-interface</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>RTCSctpTransport</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>maxChannels</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>maxMessageSize</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>state</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>statechange_event</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>transport</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="webrtc_api">WebRTC</a></li> <li><a href="rtcpeerconnection"><code>RTCPeerConnection</code></a></li> <li><a href="rtcpeerconnection/sctp"><code>RTCPeerConnection.sctp</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/rtcsctptransport/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/rtcsctptransport/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FRTCSctpTransport&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Frtcsctptransport%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FRTCSctpTransport%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Frtcsctptransport%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fcaaae4e675413aa1c44054883d7e1baa3fa910ff%0A*+Document+last+modified%3A+2022-02-03T16%3A33%3A06.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-02-03T16:33:06.000Z">Feb 3, 2022</time>, <a href="rtcsctptransport/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCSctpTransport" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCSctpTransport</a>
+  </p>
+</div>

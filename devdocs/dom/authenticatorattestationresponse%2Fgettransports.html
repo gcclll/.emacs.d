@@ -1,0 +1,108 @@
+<h1>AuthenticatorAttestationResponse.getTransports()</h1>
+<div class="section-content">
+<div class="notecard secure" id="sect1"><p><strong>Secure context:</strong> This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div> <p> <code>getTransports()</code> is a method of the <a href="../authenticatorattestationresponse"><code>AuthenticatorAttestationResponse</code></a> interface that returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> containing strings describing the different transports which may be used by the authenticator. </p> <p> Such transports may be USB, NFC, BLE or internal (applicable when the authenticator is not removable from the device). </p> <div class="notecard note" id="sect2"> <p> <strong>Note:</strong> An <code>AuthenticatorAttestationResponse</code> instance is available on <a href="../publickeycredential/response"><code>PublicKeyCredential.response</code></a> after calling <a href="../credentialscontainer/create"><code>navigator.credentials.create()</code></a>. </p> </div> <div class="notecard note" id="sect3"> <p> <strong>Note:</strong> This method may only be used in top-level contexts and will not be available in an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> for example. </p> </div>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">getTransports</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><p>None.</p></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content">
+<p> An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> containing the different transports supported by the authenticator or nothing if this information is not available. The elements of this array are supposed to be in lexicographical order. Their values may be : </p> <ul> <li>
+<code>"usb"</code>: the authenticator can be contacted via a removable USB link</li> <li>
+<code>"nfc"</code>: the authenticator may be used over <a href="https://en.wikipedia.org/wiki/Near-field_communication" rel=" noopener">NFC (Near Field Communication)</a>
+</li> <li>
+<code>"ble"</code>: the authenticator may be used over <a href="https://en.wikipedia.org/wiki/Bluetooth_Low_Energy" rel=" noopener">BLE (Bluetooth Low Energy)</a>
+</li> <li> <code>"internal"</code>: the authenticator is specifically bound to the client device (cannot be removed). </li> </ul>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">var</span> publicKey <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">challenge</span><span class="token operator">:</span> <span class="token comment">/* from the server */</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">rp</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Example CORP"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">id</span>  <span class="token operator">:</span> <span class="token string">"login.example.com"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">user</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"jdoe@example.com"</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">displayName</span><span class="token operator">:</span> <span class="token string">"John Doe"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">pubKeyCredParams</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">"public-key"</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">alg</span><span class="token operator">:</span> <span class="token operator">-</span><span class="token number">7</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>credentials<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> publicKey <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">newCredentialInfo</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> transports <span class="token operator">=</span> newCredentialInfo<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">getTransports</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">table</span><span class="token punctuation">(</span>transports<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// may be something like ["internal", "nfc", "usb"]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-gettransports">Web Authentication: An API for accessing Public Key Credentials - Level 3 <br><small># dom-authenticatorattestationresponse-gettransports</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getTransports</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/authenticatorattestationresponse/gettransports/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/authenticatorattestationresponse/gettransports/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FAuthenticatorAttestationResponse%2FgetTransports&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fauthenticatorattestationresponse%2Fgettransports%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FAuthenticatorAttestationResponse%2FgetTransports%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fauthenticatorattestationresponse%2Fgettransports%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F8a27b1d996de03a8cb687d8b5a0fd9fb04f2ab8d%0A*+Document+last+modified%3A+2022-04-16T05%3A53%3A55.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-16T05:53:55.000Z">Apr 16, 2022</time>, <a href="gettransports/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AuthenticatorAttestationResponse/getTransports" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AuthenticatorAttestationResponse/getTransports</a>
+  </p>
+</div>

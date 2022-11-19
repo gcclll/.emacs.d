@@ -1,0 +1,121 @@
+<h1>Web Crypto API</h1>
+<div class="section-content">
+<p>The <strong>Web Crypto API</strong> is an interface allowing a script to use cryptographic primitives in order to build systems using cryptography.</p>
+<div class="notecard note" id="sect1"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a></p> </div> <div class="notecard warning" id="sect2"> <p><strong>Warning:</strong> The Web Crypto API provides a number of low-level cryptographic primitives. It's very easy to misuse them, and the pitfalls involved can be very subtle.</p> <p>Even assuming you use the basic cryptographic functions correctly, secure key management and overall security system design are extremely hard to get right, and are generally the domain of specialist security experts.</p> <p>Errors in security system design and implementation can make the security of the system completely ineffective.</p> <p>Please learn and experiment, but don't guarantee or imply the security of your work before an individual knowledgeable in this subject matter thoroughly reviews it. The <a href="https://www.crypto101.io/" rel=" noopener">Crypto 101 Course</a> can be a great place to start learning about the design and implementation of secure systems.</p> </div>
+</div>
+<h2 id="interfaces">Interfaces</h2>
+<div class="section-content"><p>Some browsers implemented an interface called <a href="crypto"><code>Crypto</code></a> without having it well defined or being cryptographically sound. In order to avoid confusion, methods and properties of this interface have been removed from browsers implementing the Web Crypto API, and all Web Crypto API methods are available on a new interface: <a href="subtlecrypto"><code>SubtleCrypto</code></a>. The <a href="crypto/subtle"><code>Crypto.subtle</code></a> property gives access to an object implementing it.</p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table> <thead> <tr> <th>Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webcrypto/" rel=" noopener">Web Cryptography API</a></td> </tr> </tbody> </table></div></div></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Web_Crypto_API</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getRandomValues</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>randomUUID</code></th>
+<td class="bc-supports-yes"><div>92</div></td>
+<td class="bc-supports-yes"><div>92</div></td>
+<td class="bc-supports-yes"><div>95</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>78</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>92</div></td>
+<td class="bc-supports-yes"><div>92</div></td>
+<td class="bc-supports-yes"><div>95</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>16.0</div></td>
+</tr>
+<tr>
+<th><code>subtle</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>7-11.1</div>
+</td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>7-11.3</div>
+</td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+</tbody>
+</table>
+<h3 id="crypto">Crypto</h3>
+<p>BCD tables only load in the browser</p>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/web_crypto_api/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/web_crypto_api/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWeb_Crypto_API&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fweb_crypto_api%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FWeb_Crypto_API%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fweb_crypto_api%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F9500fbc524120cf223924f6431c775d5df8855bc%0A*+Document+last+modified%3A+2021-11-30T02%3A02%3A46.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2021-11-30T02:02:46.000Z">Nov 30, 2021</time>, <a href="web_crypto_api/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API</a>
+  </p>
+</div>

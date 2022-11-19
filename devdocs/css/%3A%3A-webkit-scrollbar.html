@@ -1,0 +1,417 @@
+<h1>::-webkit-scrollbar</h1>
+<div class="section-content">
+<div class="notecard nonstandard" id="sect1"><p><strong>Non-standard:</strong> This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p></div> <p>The <code>::-webkit-scrollbar</code> CSS pseudo-element affects the style of an element's scrollbar when it has <code>overflow:scroll;</code> set.</p> <div class="notecard note" id="sect2"> <p><strong>Note:</strong> If <code>overflow:scroll;</code> is not set, no scrollbar is displayed.</p> </div> <div class="notecard note" id="sect3"> <p><strong>Note:</strong> <code>::-webkit-scrollbar</code> is only available in <a href="https://www.chromium.org/blink/" rel=" noopener">Blink</a>- and <a href="https://webkit.org" rel=" noopener">WebKit</a>-based browsers (e.g., Chrome, Edge, Opera, Safari, all browsers on iOS, and <a href="https://en.wikipedia.org/wiki/List_of_web_browsers#WebKit-based" rel=" noopener">others</a>). A standardized method of styling scrollbars is available with <a href="scrollbar-color"><code>scrollbar-color</code></a> and <a href="scrollbar-width"><code>scrollbar-width</code></a>.</p> </div>
+</div>
+<section aria-labelledby="css_scrollbar_selectors"><h2 id="css_scrollbar_selectors">CSS Scrollbar Selectors</h2>
+<div class="section-content">
+<p>You can use the following pseudo-elements to customize various parts of the scrollbar for WebKit browsers:</p> <ul> <li>
+<code>::-webkit-scrollbar</code> — the entire scrollbar.</li> <li>
+<code>::-webkit-scrollbar-button</code> — the buttons on the scrollbar (arrows pointing upwards and downwards that scroll one line at a time).</li> <li>
+<code>::-webkit-scrollbar-thumb</code> — the draggable scrolling handle.</li> <li>
+<code>::-webkit-scrollbar-track</code> — the track (progress bar) of the scrollbar, where there is a gray bar on top of a white bar.</li> <li>
+<code>::-webkit-scrollbar-track-piece</code> — the part of the track (progress bar) not covered by the handle.</li> <li>
+<code>::-webkit-scrollbar-corner</code> — the bottom corner of the scrollbar, where both horizontal and vertical scrollbars meet. This is often the bottom-right corner of the browser window.</li> <li>
+<code>::-webkit-resizer</code> — the draggable resizing handle that appears at the bottom corner of some elements.</li> </ul>
+</div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="css"><h3 id="css">CSS</h3>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token selector">.visible-scrollbar, .invisible-scrollbar, .mostly-customized-scrollbar</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 10em<span class="token punctuation">;</span>
+  <span class="token property">overflow</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.invisible-scrollbar::-webkit-scrollbar</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Demonstrate a "mostly customized" scrollbar
+ * (won't be visible otherwise if width/height is specified) */</span>
+<span class="token selector">.mostly-customized-scrollbar::-webkit-scrollbar</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 8px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #aaa<span class="token punctuation">;</span> <span class="token comment">/* or add it to the track */</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Add a thumb */</span>
+<span class="token selector">.mostly-customized-scrollbar::-webkit-scrollbar-thumb</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #000<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div></div></section><section aria-labelledby="html"><h3 id="html">HTML</h3>
+<div class="section-content"><div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>visible-scrollbar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  Etiam sagittis sem sed lacus laoreet, eu fermentum eros auctor.
+  Proin at nulla elementum, consectetur ex eget, commodo ante.
+  Sed eros mi, bibendum ut dignissim et, maximus eget nibh. Phasellus
+  blandit quam turpis, at mollis velit pretium ut. Nunc consequat
+  efficitur ultrices. Nullam hendrerit posuere est. Nulla libero
+  sapien, egestas ac felis porta, cursus ultricies quam. Vestibulum
+  tincidunt accumsan sapien, a fringilla dui semper in. Vivamus
+  consectetur ipsum a ornare blandit. Aenean tempus at lorem sit
+  amet faucibus. Curabitur nibh justo, faucibus sed velit cursus,
+  mattis cursus dolor. Pellentesque id pretium est. Quisque
+  convallis nisi a diam malesuada mollis. Aliquam at enim ligula.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>invisible-scrollbar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+Thisisaveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerylongword
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mostly-customized-scrollbar<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+Thisisaveeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerylongword<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+And pretty tall<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+thing with weird scrollbars.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+Who thought scrollbars could be made weeeeird?
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre></div></div></section><section aria-labelledby="result"><h3 id="result">Result</h3>
+<div class="section-content"><iframe class="sample-code-frame" title="Examples sample" id="frame_examples" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/::-webkit-scrollbar/_sample_.examples.html" loading="lazy"></iframe></div></section><section aria-labelledby="specifications"><h2 id="specifications">Specifications</h2>
+<div class="section-content"><p>Not part of any standard.</p></div></section><section aria-labelledby="browser_compatibility"><h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>::-webkit-scrollbar</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>::-webkit-scrollbar</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>3-13</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>::-webkit-scrollbar</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>3-13</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>::-webkit-scrollbar</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>3-13</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>::-webkit-scrollbar</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>3-13</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>::-webkit-scrollbar</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>3-13</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>::-webkit-scrollbar</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1432935">bug 1432935</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>From Safari 13, only <code>display: none</code> works with this pseudo-element. Other styles have no effect.</div>
+</td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table></section><h3 id="css.selectors.-webkit-scrollbar">css.selectors.-webkit-scrollbar</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.selectors.-webkit-scrollbar-button">css.selectors.-webkit-scrollbar-button</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.selectors.-webkit-scrollbar-thumb">css.selectors.-webkit-scrollbar-thumb</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.selectors.-webkit-scrollbar-track">css.selectors.-webkit-scrollbar-track</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.selectors.-webkit-scrollbar-track-piece">css.selectors.-webkit-scrollbar-track-piece</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.selectors.-webkit-scrollbar-corner">css.selectors.-webkit-scrollbar-corner</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<h3 id="css.selectors.-webkit-resizer">css.selectors.-webkit-resizer</h3>
+<p>BCD tables only load in the browser<noscript> with JavaScript enabled. Enable JavaScript to view data.</noscript></p>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>WebKit blog on <a href="https://webkit.org/blog/363/styling-scrollbars/" rel=" noopener">Styling Scrollbars</a>
+</li> <li><a href="scrollbar-width"><code>scrollbar-width</code></a></li> <li><a href="scrollbar-color"><code>scrollbar-color</code></a></li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/_doublecolon_-webkit-scrollbar/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/_doublecolon_-webkit-scrollbar/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2F::-webkit-scrollbar&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2F_doublecolon_-webkit-scrollbar%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2F::-webkit-scrollbar%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2F_doublecolon_-webkit-scrollbar%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F54e3339c1e6036a74d27bcaf927942c4b2315dd7%0A*+Document+last+modified:+2022-06-21T06:33:12.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-06-21T06:33:12.000Z">Jun 21, 2022</time>, <a href="::-webkit-scrollbar/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar</a>
+  </p>
+</div>

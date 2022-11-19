@@ -1,0 +1,121 @@
+<h1>direction</h1>
+<div class="section-content"><p>The <code>direction</code> CSS property sets the direction of text, table columns, and horizontal overflow. Use <code>rtl</code> for languages written from right to left (like Hebrew or Arabic), and <code>ltr</code> for those written from left to right (like English and most other languages).</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content">
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/direction.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>Note that text direction is usually defined within a document (e.g., with <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir">HTML's <code>dir</code> attribute</a>) rather than through direct use of the <code>direction</code> property.</p> <p>The property sets the base text direction of block-level elements and the direction of embeddings created by the <a href="unicode-bidi"><code>unicode-bidi</code></a> property. It also sets the default alignment of text, block-level elements, and the direction that cells flow within a table row.</p> <p>Unlike the <code>dir</code> attribute in HTML, the <code>direction</code> property is not inherited from table columns into table cells, since CSS inheritance follows the document tree, and table cells are inside of rows but not inside of columns.</p> <p>The <code>direction</code> and <a href="unicode-bidi"><code>unicode-bidi</code></a> properties are the two only properties which are not affected by the <a href="all"><code>all</code></a> shorthand property.</p>
+</div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">direction</span><span class="token punctuation">:</span> ltr<span class="token punctuation">;</span>
+<span class="token property">direction</span><span class="token punctuation">:</span> rtl<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">direction</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">direction</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">direction</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span>
+<span class="token property">direction</span><span class="token punctuation">:</span> revert-layer<span class="token punctuation">;</span>
+<span class="token property">direction</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre></div></div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content">
+<dl> <dt id="ltr"><code>ltr</code></dt> <dd> <p>Text and other elements go from left to right. This is the default value.</p> </dd> <dt id="rtl"><code>rtl</code></dt> <dd> <p>Text and other elements go from right to left.</p> </dd> </dl> <p>For the <code>direction</code> property to have any effect on inline-level elements, the <a href="unicode-bidi"><code>unicode-bidi</code></a> property's value must be <code>embed</code> or <code>override</code>.</p>
+</div></section><section aria-labelledby="formal_definition"><h2 id="formal_definition">Formal definition</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>ltr</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>yes</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div></div></div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="direction">direction = </span><br>  <span class="token keyword">ltr</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">rtl</span>  <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="setting_right-to-left_direction"><h3 id="setting_right-to-left_direction">Setting right-to-left direction</h3>
+<div class="section-content">
+<p>In the example below are two strings of text, both which are displaying using <code>direction: rtl</code>. While the Arabic text is displayed correctly with this setting, the English text now has a full stop in an unusual location.</p> <div class="code-example"><pre data-language="css"><span class="token selector">blockquote</span> <span class="token punctuation">{</span>
+  <span class="token property">direction</span><span class="token punctuation">:</span> rtl<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>blockquote</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This paragraph is in English but incorrectly goes right to left.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>blockquote</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>blockquote</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>هذه الفقرة باللغة العربية ، لذا يجب الانتقال من اليمين إلى اليسار.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>blockquote</span><span class="token punctuation">&gt;</span></span>
+</pre></div>
+<iframe class="sample-code-frame" title="Setting right-to-left direction sample" id="frame_setting_right-to-left_direction" width="100%" height="200" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/direction/_sample_.setting_right-to-left_direction.html" loading="lazy"></iframe>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-writing-modes/#direction">CSS Writing Modes Level 4 <br><small># direction</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>direction</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>9.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="unicode-bidi"><code>unicode-bidi</code></a></li> <li><a href="writing-mode"><code>writing-mode</code></a></li> <li>The HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes#attr-dir"><code>dir</code></a> global attribute</li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/direction/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/direction/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fdirection&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Fdirection%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Fdirection%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Fdirection%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Facaaf77a8762dcfaf19716ffbd8879a1d1a190df%0A*+Document+last+modified:+2022-04-04T17:11:50.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-04T17:11:50.000Z">Apr 4, 2022</time>, <a href="direction/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/direction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/direction</a>
+  </p>
+</div>

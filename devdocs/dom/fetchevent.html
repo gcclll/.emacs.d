@@ -1,0 +1,310 @@
+<h1>FetchEvent</h1>
+<div class="section-content">
+<p>This is the event type for <code>fetch</code> events dispatched on the <a href="serviceworkerglobalscope">service worker global scope</a>. It contains information about the fetch, including the request and how the receiver will treat the response. It provides the <a href="fetchevent/respondwith"><code>event.respondWith()</code></a> method, which allows us to provide a response to this fetch.</p>
+<svg viewbox="-1 -1 650 42" preserveaspectratio="xMinYMin meet"> <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/Event">  <text x="37.5" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> Event </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/ExtendableEvent">  <text x="165" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> ExtendableEvent </text> </a>   <a style="text-decoration: none;" xlink:href="/en-US/docs/Web/API/FetchEvent" aria-current="page">  <text x="295" y="16" font-size="10px" fill="#4D4E53" text-anchor="middle"> FetchEvent </text> </a></svg>
+</div>
+<h2 id="constructor">Constructor</h2>
+<div class="section-content"><dl> <dt id="fetchevent"><a href="fetchevent/fetchevent"><code>FetchEvent()</code></a></dt> <dd> <p>Creates a new <code>FetchEvent</code> object. This constructor is not typically used. The browser creates these objects itself and provides them to <code>fetch</code> event callbacks.</p> </dd> </dl></div>
+<h2 id="properties">Properties</h2>
+<div class="section-content">
+<p><em>Inherits properties from its ancestor, <a href="event"><code>Event</code></a></em>.</p> <dl> <dt id="fetchevent.clientid">
+<a href="fetchevent/clientid"><code>FetchEvent.clientId</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>The <a href="client/id"><code>id</code></a> of the same-origin <a href="client"><code>client</code></a> that initiated the fetch.</p> </dd> <dt id="fetchevent.preloadresponse">
+<a href="fetchevent/preloadresponse"><code>FetchEvent.preloadResponse</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> for a <a href="response"><code>Response</code></a>, or <code>undefined</code> if this fetch is not a navigation, or <a href="navigationpreloadmanager">navigation preload</a> is not enabled.</p> </dd> <dt id="fetchevent.replacesclientid">
+<a href="fetchevent/replacesclientid"><code>FetchEvent.replacesClientId</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>The <a href="client/id"><code>id</code></a> of the <a href="client"><code>client</code></a> that is being replaced during a page navigation.</p> </dd> <dt id="fetchevent.resultingclientid">
+<a href="fetchevent/resultingclientid"><code>FetchEvent.resultingClientId</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>The <a href="client/id"><code>id</code></a> of the <a href="client"><code>client</code></a> that replaces the previous client during a page navigation.</p> </dd> <dt id="fetchevent.request">
+<a href="fetchevent/request"><code>FetchEvent.request</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd> <p>The <a href="request"><code>Request</code></a> the browser intends to make.</p> </dd> </dl>
+</div>
+<h2 id="methods">Methods</h2>
+<div class="section-content">
+<p><em>Inherits methods from its parent, <a href="extendableevent"><code>ExtendableEvent</code></a></em>.</p> <dl> <dt id="fetchevent.respondwith"><a href="fetchevent/respondwith"><code>FetchEvent.respondWith()</code></a></dt> <dd> <p>Prevent the browser's default fetch handling, and provide (a promise for) a response yourself.</p> </dd> <dt id="extendableevent.waituntil"><a href="extendableevent/waituntil"><code>ExtendableEvent.waitUntil()</code></a></dt> <dd> <p>Extends the lifetime of the event. Used to notify the browser of tasks that extend beyond the returning of a response, such as streaming and caching.</p> </dd> </dl>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p> This fetch event uses the browser default for non-GET requests. For GET requests it tries to return a match in the cache, and falls back to the network. If it finds a match in the cache, it asynchronously updates the cache for next time. </p> <div class="code-example"><pre data-language="js">self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"fetch"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Let the browser do its default thing</span>
+  <span class="token comment">// for non-GET requests.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">.</span>method <span class="token operator">!=</span> <span class="token string">"GET"</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Prevent the default, and handle the request ourselves.</span>
+  event<span class="token punctuation">.</span><span class="token function">respondWith</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Try to get the response from a cache.</span>
+      <span class="token keyword">const</span> cache <span class="token operator">=</span> <span class="token keyword">await</span> caches<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"dynamic-v1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> cachedResponse <span class="token operator">=</span> <span class="token keyword">await</span> cache<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>cachedResponse<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// If we found a match in the cache, return it, but also</span>
+        <span class="token comment">// update the entry in the cache in the background.</span>
+        event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>cache<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> cachedResponse<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// If we didn't find a match in the cache, use the network.</span>
+      <span class="token keyword">return</span> <span class="token function">fetch</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/ServiceWorker/#fetchevent-interface">Service Workers 1 <br><small># fetchevent-interface</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>FetchEvent</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>FetchEvent</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>clientId</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>handled</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/208185">bug 208185</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/208185">bug 208185</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>isReload</code></th>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-no">
+<div>44-74</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>preloadResponse</code></th>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>15.4</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>replacesClientId</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>11.1</div>
+<div>See <a href="https://webkit.org/b/226638">bug 226638</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>11.3</div>
+<div>See <a href="https://webkit.org/b/226638">bug 226638</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>request</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>respondWith</code></th>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>NetworkError thrown if request mode is same-origin and response type is cors (see <a href="https://bugzil.la/1222008">bug 1222008</a>). This is being worked on - see <a href="https://www.chromestatus.com/feature/5694278818856960">https://www.chromestatus.com/feature/5694278818856960</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>NetworkError thrown if request mode is same-origin and response type is cors (see <a href="https://bugzil.la/1222008">bug 1222008</a>). This is being worked on - see <a href="https://www.chromestatus.com/feature/5694278818856960">https://www.chromestatus.com/feature/5694278818856960</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>NetworkError thrown if request mode is same-origin and response type is cors (see <a href="https://bugzil.la/1222008">bug 1222008</a>).</div>
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>NetworkError thrown if request mode is same-origin and response type is cors (see <a href="https://bugzil.la/1222008">bug 1222008</a>). This is being worked on - see <a href="https://www.chromestatus.com/feature/5694278818856960">https://www.chromestatus.com/feature/5694278818856960</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>NetworkError thrown if request mode is same-origin and response type is cors (see <a href="https://bugzil.la/1222008">bug 1222008</a>). This is being worked on - see <a href="https://www.chromestatus.com/feature/5694278818856960">https://www.chromestatus.com/feature/5694278818856960</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>NetworkError thrown if request mode is same-origin and response type is cors (see <a href="https://bugzil.la/1222008">bug 1222008</a>).</div>
+<div>44</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>resultingClientId</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/190313">bug 190313</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/190313">bug 190313</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a></li> <li><a href="fetch_api">Fetch API</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/fetchevent/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/fetchevent/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FFetchEvent&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Ffetchevent%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FFetchEvent%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Ffetchevent%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F470d109db0471c409153293df5c4a48045b4e35e%0A*+Document+last+modified%3A+2022-03-21T00%3A50%3A56.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-21T00:50:56.000Z">Mar 21, 2022</time>, <a href="fetchevent/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FetchEvent</a>
+  </p>
+</div>

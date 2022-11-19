@@ -1,0 +1,126 @@
+<h1>DataTransfer.effectAllowed</h1>
+<div class="section-content">
+<p> The <code>DataTransfer.effectAllowed</code> property specifies the effect that is allowed for a drag operation. The <em>copy</em> operation is used to indicate that the data being dragged will be copied from its present location to the drop location. The <em>move</em> operation is used to indicate that the data being dragged will be moved, and the <em>link</em> operation is used to indicate that some form of relationship or connection will be created between the source and drop locations. </p> <p> This property should be set in the <code><a href="../document/dragstart_event">dragstart</a></code> event to set the desired drag effect for the drag source. Within the <code><a href="../document/dragenter_event">dragenter</a></code> and <code><a href="../document/dragover_event">dragover</a></code> event handlers, this property will be set to whatever value was assigned during the <code><a href="../document/dragstart_event">dragstart</a></code> event, thus <code>effectAllowed</code> may be used to determine which effect is permitted. </p> <p> Assigning a value to <code>effectAllowed</code> in events other than <code><a href="../document/dragstart_event">dragstart</a></code> has no effect. </p>
+</div>
+<h2 id="value">Value</h2>
+<div class="section-content">
+<p> A <a href="../domstring"><code>DOMString</code></a> representing the drag operation that is allowed. The possible values are: </p> <dl> <dt id="none">none</dt> <dd> <p>The item may not be dropped.</p> </dd> <dt id="copy">copy</dt> <dd> <p>A copy of the source item may be made at the new location.</p> </dd> <dt id="copylink">copyLink</dt> <dd> <p>A copy or link operation is permitted.</p> </dd> <dt id="copymove">copyMove</dt> <dd> <p>A copy or move operation is permitted.</p> </dd> <dt id="link">link</dt> <dd> <p>A link may be established to the source at the new location.</p> </dd> <dt id="linkmove">linkMove</dt> <dd> <p>A link or move operation is permitted.</p> </dd> <dt id="move">move</dt> <dd> <p>An item may be moved to a new location.</p> </dd> <dt id="all">all</dt> <dd> <p>All operations are permitted.</p> </dd> <dt id="uninitialized">uninitialized</dt> <dd> <p>The default value when the effect has not been set, equivalent to all.</p> </dd> </dl> <p> Assigning any other value to <code>effectAllowed</code> has no effect and the old value is retained. </p> <p> Internet Explorer will change the value to be lowercased; thus, <code>linkMove</code> will become <code>linkmove</code>, and so on. </p>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p> This example shows the use of the <code>effectAllowed</code> and <a href="dropeffect"><code>dropEffect</code></a> properties. </p> <div class="code-example"><pre data-language="js"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>html lang<span class="token operator">=</span>en<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>title<span class="token operator">&gt;</span>Examples <span class="token keyword">of</span> DataTransfer<span class="token punctuation">.</span><span class="token punctuation">{</span>dropEffect<span class="token punctuation">,</span>effectAllowed<span class="token punctuation">}</span> properties<span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>meta content<span class="token operator">=</span><span class="token string">"width=device-width"</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>style<span class="token operator">&gt;</span>
+  div <span class="token punctuation">{</span>
+    <span class="token literal-property property">margin</span><span class="token operator">:</span> 0em<span class="token punctuation">;</span>
+    <span class="token literal-property property">padding</span><span class="token operator">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  #source <span class="token punctuation">{</span>
+    <span class="token literal-property property">color</span><span class="token operator">:</span> blue<span class="token punctuation">;</span>
+    <span class="token literal-property property">border</span><span class="token operator">:</span> 1px solid black<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  #target <span class="token punctuation">{</span>
+    <span class="token literal-property property">border</span><span class="token operator">:</span> 1px solid black<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>style<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+<span class="token keyword">function</span> <span class="token function">dragstart_handler</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"dragStart: dropEffect = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span>dropEffect <span class="token operator">+</span> <span class="token string">" ; effectAllowed = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span>effectAllowed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token comment">// Add this element's id to the drag payload so the drop handler will</span>
+ <span class="token comment">// know which element to add to its tree</span>
+ ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">,</span> ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span>effectAllowed <span class="token operator">=</span> <span class="token string">"move"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">drop_handler</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"drop: dropEffect = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span>dropEffect <span class="token operator">+</span> <span class="token string">" ; effectAllowed = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span>effectAllowed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ ev<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token comment">// Get the id of the target and add the moved element to the target's DOM</span>
+ <span class="token keyword">var</span> data <span class="token operator">=</span> ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">dragover_handler</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"dragOver: dropEffect = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span>dropEffect <span class="token operator">+</span> <span class="token string">" ; effectAllowed = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span>effectAllowed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ ev<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token comment">// Set the dropEffect to move</span>
+ ev<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span>dropEffect <span class="token operator">=</span> <span class="token string">"move"</span>
+<span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>body<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>Examples <span class="token operator">&lt;</span>code<span class="token operator">&gt;</span>DataTransfer<span class="token operator">&lt;</span><span class="token operator">/</span>code<span class="token operator">&gt;</span><span class="token punctuation">.</span><span class="token punctuation">{</span><span class="token operator">&lt;</span>code<span class="token operator">&gt;</span>dropEffect<span class="token operator">&lt;</span><span class="token operator">/</span>code<span class="token operator">&gt;</span><span class="token punctuation">,</span> <span class="token operator">&lt;</span>code<span class="token operator">&gt;</span>effectAllowed<span class="token operator">&lt;</span><span class="token operator">/</span>code<span class="token operator">&gt;</span><span class="token punctuation">}</span> properties<span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+   <span class="token operator">&lt;</span>p id<span class="token operator">=</span><span class="token string">"source"</span> ondragstart<span class="token operator">=</span><span class="token string">"dragstart_handler(event);"</span> draggable<span class="token operator">=</span><span class="token string">"true"</span><span class="token operator">&gt;</span>
+     Select <span class="token keyword">this</span> element<span class="token punctuation">,</span> drag it to the Drop Zone and then release the selection to move the element<span class="token punctuation">.</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"target"</span> ondrop<span class="token operator">=</span><span class="token string">"drop_handler(event);"</span> ondragover<span class="token operator">=</span><span class="token string">"dragover_handler(event);"</span><span class="token operator">&gt;</span>Drop Zone<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">&gt;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://html.spec.whatwg.org/multipage/dnd.html#dom-datatransfer-effectallowed-dev">HTML Standard <br><small># dom-datatransfer-effectallowed-dev</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>effectAllowed</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../html_drag_and_drop_api">Drag and drop</a></li> <li><a href="../html_drag_and_drop_api/drag_operations">Drag Operations</a></li> <li><a href="../html_drag_and_drop_api/recommended_drag_types">Recommended Drag Types</a></li> <li><a href="../html_drag_and_drop_api/multiple_items">Dragging and Dropping Multiple Items</a></li> <li><a href="https://codepen.io/tech_query/pen/MqGgap" rel=" noopener">DataTransfer test - Paste or Drag</a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/datatransfer/effectallowed/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/datatransfer/effectallowed/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FDataTransfer%2FeffectAllowed&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fdatatransfer%2Feffectallowed%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FDataTransfer%2FeffectAllowed%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fdatatransfer%2Feffectallowed%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fab80ffc1325166d4094446222604012d2af10c84%0A*+Document+last+modified%3A+2022-03-28T06%3A22%3A43.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-03-28T06:22:43.000Z">Mar 28, 2022</time>, <a href="effectallowed/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/effectAllowed" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/effectAllowed</a>
+  </p>
+</div>

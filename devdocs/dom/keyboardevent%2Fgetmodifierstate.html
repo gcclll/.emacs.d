@@ -1,0 +1,392 @@
+<h1>KeyboardEvent.getModifierState()</h1>
+<div class="section-content"><p> The <code>KeyboardEvent.getModifierState()</code> method returns the current state of the specified modifier key: <code>true</code> if the modifier is active (that is the modifier key is pressed or locked), otherwise, <code>false</code>. </p></div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token function">getModifierState</span><span class="token punctuation">(</span>keyArg<span class="token punctuation">)</span>
+</pre></div></div>
+<h3 id="return_value">Return value</h3>
+<div class="section-content"><p>A boolean value</p></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="keyarg"><em><code>keyArg</code></em></dt> <dd> <p> A modifier key value. The value must be one of the <a href="key"><code>KeyboardEvent.key</code></a> values which represent modifier keys, or the string <code>"Accel"</code> <abbr class="icon icon-deprecated" title="Deprecated. Not for use in new websites."> <span class="visually-hidden">Deprecated</span> </abbr>. This is case-sensitive. </p> </dd> </dl></div>
+<h2 id="modifier_keys_on_internet_explorer">Modifier keys on Internet Explorer</h2>
+<div class="section-content"><p> IE9 uses <code>"Scroll"</code> for <code>"ScrollLock"</code> and <code>"Win"</code> for <code>"OS"</code>. </p></div>
+<h2 id="modifier_keys_on_gecko">Modifier keys on Gecko</h2>
+<div class="section-content">
+<p>When <code>getModifierState()</code> returns true on Gecko?</p> <div class="table-scroll"><div class="_table"><table class="standard-table"> <thead> <tr> <th scope="row"></th> <th scope="col">Windows</th> <th scope="col">Linux (GTK)</th> <th scope="col">Mac</th> <th scope="col">Android 2.3</th> <th scope="col">Android 3.0 or latter</th> </tr> </thead> <tbody> <tr> <th scope="row"><code>"Alt"</code></th> <td>Either <kbd>Alt</kbd> key or <kbd>AltGr</kbd> key pressed</td> <td>
+<kbd>Alt</kbd> key pressed</td> <td>
+<kbd>⌥ Option</kbd> key pressed</td> <td colspan="2">
+<kbd>Alt</kbd> key or <kbd>option</kbd> key pressed</td> </tr> <tr> <th scope="row"><code>"AltGraph"</code></th> <td> <p> Both <kbd>Alt</kbd> and <kbd>Ctrl</kbd> keys are pressed, or <kbd>AltGr</kbd> key is pressed </p> </td> <td>
+<kbd>Level 3 Shift</kbd> key (or <kbd>Level 5 Shift</kbd> key) pressed</td> <td>
+<kbd>⌥ Option</kbd> key pressed</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> </tr> <tr> <th scope="row"><code>"CapsLock"</code></th> <td colspan="3">During LED for <kbd>⇪ Caps Lock</kbd> turned on</td> <td>❌ <em>Not supported</em>
+</td> <td>While <kbd>CapsLock</kbd> is locked</td> </tr> <tr> <th scope="row"><code>"Control"</code></th> <td>Either <kbd>Ctrl</kbd> key or <kbd>AltGr</kbd> key pressed</td> <td>
+<kbd>Ctrl</kbd> key pressed</td> <td>
+<kbd>control</kbd> key pressed</td> <td>
+<kbd>menu</kbd> key pressed.</td> <td> <kbd>Ctrl</kbd> key, <kbd>control</kbd> key or <kbd>menu</kbd> key pressed. </td> </tr> <tr> <th scope="row"><code>"Fn"</code></th> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td> <kbd>Function</kbd> key is pressed, but we're not sure what key makes the modifier state active. <kbd>Fn</kbd> key on Mac keyboard doesn't cause this active. </td> </tr> <tr> <th scope="row"><code>"FnLock"</code></th> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> </tr> <tr> <th scope="row"><code>"Hyper"</code></th> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> </tr> <tr> <th scope="row"><code>"Meta"</code></th> <td>❌ <em>Not supported</em>
+</td> <td>
+<kbd>Meta</kbd> key pressed</td> <td>
+<kbd>⌘ Command</kbd> key pressed</td> <td>❌ <em>Not supported</em>
+</td> <td>
+<kbd>⊞ Windows Logo</kbd> key or <kbd>command</kbd> key pressed</td> </tr> <tr> <th scope="row"><code>"NumLock"</code></th> <td colspan="2">During LED for <kbd>Num Lock</kbd> turned on</td> <td>A key on numpad pressed</td> <td>❌ <em>Not supported</em>
+</td> <td>While <kbd>NumLock</kbd> is locked</td> </tr> <tr> <th scope="row"><code>"OS"</code></th> <td>
+<kbd>⊞ Windows Logo</kbd> key pressed</td> <td> <kbd>Super</kbd> key or <kbd>Hyper</kbd> key pressed (typically, mapped to <kbd>⊞ Windows Logo</kbd> key) </td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> </tr> <tr> <th scope="row"><code>"ScrollLock"</code></th> <td>During LED for <kbd>Scroll Lock</kbd> turned on</td> <td> During LED for <kbd>Scroll Lock</kbd> turned on, but typically this isn't supported by platform </td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>While <kbd>ScrollLock</kbd> is locked</td> </tr> <tr> <th scope="row"><code>"Shift"</code></th> <td colspan="5">
+<kbd>⇧ Shift</kbd> key pressed</td> </tr> <tr> <th scope="row"><code>"Super"</code></th> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> </tr> <tr> <th scope="row"><code>"Symbol"</code></th> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> </tr> <tr> <th scope="row"><code>"SymbolLock"</code></th> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> <td>❌ <em>Not supported</em>
+</td> </tr> </tbody> </table></div></div> <ul> <li>On the other platforms, "Alt", "Control" and "Shift" may be supported.</li> <li> All modifiers (except <code>"FnLock"</code>, <code>"Hyper"</code>, <code>"Super"</code> and <code>"Symbol"</code> which are defined after Gecko implements this) are always supported for untrusted events on Gecko. This doesn't depend on the platform. </li> </ul>
+</div>
+<h2 id="accel_virtual_modifier">
+<code>"Accel"</code> virtual modifier</h2>
+<div class="section-content">
+<div class="notecard note" id="sect1"> <p> <strong>Note:</strong> The <code>"Accel"</code> virtual modifier has been effectively <strong>deprecated</strong> in current drafts of the DOM3 Events specification. </p> </div> <p> <code>getModifierState()</code> also accepts a deprecated virtual modifier named <code>"Accel"</code>. <code>event.getModifierState("Accel")</code> returns <code>true</code> when at least one of <a href="ctrlkey"><code>KeyboardEvent.ctrlKey</code></a> or <a href="metakey"><code>KeyboardEvent.metaKey</code></a> is <code>true</code>. </p> <p> In old implementations and outdated specifications, it returned <code>true</code> when a modifier which is the typical modifier key for the shortcut key is pressed. For example, on Windows, pressing <kbd>Ctrl</kbd> key may make it return <code>true</code>. However, on Mac, pressing <kbd>⌘ Command</kbd> key may make it return <code>true</code>. Note that which modifier key makes it return true depends on platforms, browsers, and user settings. For example, Firefox users can customize this with a pref, <code>"ui.key.accelKey"</code>. </p>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="js"><span class="token comment">// Ignore if following modifier is active.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Fn"</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+    event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Hyper"</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+    event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"OS"</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+    event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Super"</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+    event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Win"</span><span class="token punctuation">)</span> <span class="token comment">/* hack for IE */</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Also ignore if two or more modifiers except Shift are active.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Control"</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+    event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Alt"</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+    event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Meta"</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Handle shortcut key with standard modifier</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Accel"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>key<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"c"</span><span class="token operator">:</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Shift"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Handle Accel + Shift + C</span>
+        event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// consume the key event</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"k"</span><span class="token operator">:</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Shift"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Handle Accel + K</span>
+        event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// consume the key event</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Do something different for arrow keys if ScrollLock is locked.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"ScrollLock"</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+       event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Scroll"</span><span class="token punctuation">)</span> <span class="token comment">/* hack for IE */</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+    <span class="token operator">!</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Control"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+    <span class="token operator">!</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Alt"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+    <span class="token operator">!</span>event<span class="token punctuation">.</span><span class="token function">getModifierState</span><span class="token punctuation">(</span><span class="token string">"Meta"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"ArrowDown"</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token string">"Down"</span><span class="token operator">:</span> <span class="token comment">// hack for IE and old Gecko</span>
+      event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// consume the key event</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"ArrowLeft"</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token string">"Left"</span><span class="token operator">:</span> <span class="token comment">// hack for IE and old Gecko</span>
+      <span class="token comment">// Do something different if ScrollLock is locked.</span>
+      event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// consume the key event</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"ArrowRight"</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token string">"Right"</span><span class="token operator">:</span> <span class="token comment">// hack for IE and old Gecko</span>
+      <span class="token comment">// Do something different if ScrollLock is locked.</span>
+      event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// consume the key event</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"ArrowUp"</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token string">"Up"</span><span class="token operator">:</span> <span class="token comment">// hack for IE and old Gecko</span>
+      <span class="token comment">// Do something different if ScrollLock is locked.</span>
+      event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// consume the key event</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre></div> <div class="notecard note" id="sect2"> <p> <strong>Note:</strong> Although this example uses <code>.getModifierState()</code> with <code>"Alt"</code>, <code>"Control"</code>, <code>"Meta"</code> and <code>"Shift"</code>, using <code>event.altKey</code>, <code>event.ctrlKey</code>, <code>event.metaKey</code> and <code>event.shiftKey</code> may be more preferable. </p> </div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/uievents/#dom-keyboardevent-getmodifierstate">UI Events <br><small># dom-keyboardevent-getmodifierstate</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>getModifierState</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>accel_parameter</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>alt_parameter</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>altgraph_parameter</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>capslock_parameter</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>control_parameter</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>fn_parameter</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>meta_parameter</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>numlock_parameter</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>os_parameter</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>12-79</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>scrolllock_parameter</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>12-79</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>shift_parameter</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>symbol_parameter</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>The <a href="../keyboardevent"><code>KeyboardEvent</code></a> this method belongs to.</li> <li><a href="../mouseevent/getmodifierstate"><code>MouseEvent.getModifierState</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/keyboardevent/getmodifierstate/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/keyboardevent/getmodifierstate/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FKeyboardEvent%2FgetModifierState&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fkeyboardevent%2Fgetmodifierstate%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FKeyboardEvent%2FgetModifierState%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fkeyboardevent%2Fgetmodifierstate%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F12a31b91b20f07b6d43a03cf125edc0a289d3301%0A*+Document+last+modified%3A+2022-04-18T05%3A46%3A31.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-04-18T05:46:31.000Z">Apr 18, 2022</time>, <a href="getmodifierstate/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/getModifierState</a>
+  </p>
+</div>

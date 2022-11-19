@@ -1,0 +1,42 @@
+<h1>SyntaxError: identifier starts immediately after numeric literal</h1>
+<div class="section-content"><p> The JavaScript exception "identifier starts immediately after numeric literal" occurs when an identifier started with a digit. Identifiers can only start with a letter, underscore (_), or dollar sign ($). </p></div>
+<section aria-labelledby="message"><h2 id="message">Message</h2>
+<div class="section-content"><pre class="notranslate">SyntaxError: Unexpected identifier after numeric literal (Edge)
+SyntaxError: identifier starts immediately after numeric literal (Firefox)
+SyntaxError: Unexpected number (Chrome)
+</pre></div></section><section aria-labelledby="error_type"><h2 id="error_type">Error type</h2>
+<div class="section-content"><a href="../global_objects/syntaxerror"><code>SyntaxError</code></a></div></section><section aria-labelledby="what_went_wrong"><h2 id="what_went_wrong">What went wrong?</h2>
+<div class="section-content">
+<p> The names of variables, called <a href="https://developer.mozilla.org/en-US/docs/Glossary/Identifier">identifiers</a>, conform to certain rules, which your code must adhere to! </p> <p> A JavaScript identifier must start with a letter, underscore (_), or dollar sign ($). They can't start with a digit! Only subsequent characters can be digits (0-9). </p>
+</div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="variable_names_starting_with_numeric_literals"><h3 id="variable_names_starting_with_numeric_literals">Variable names starting with numeric literals</h3>
+<div class="section-content">
+<p>Variable names can't start with numbers in JavaScript. The following fails:</p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> 1life <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>
+<span class="token comment">// SyntaxError: identifier starts immediately after numeric literal</span>
+
+<span class="token keyword">const</span> foo <span class="token operator">=</span> 1life<span class="token punctuation">;</span>
+<span class="token comment">// SyntaxError: identifier starts immediately after numeric literal</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">.</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// SyntaxError: identifier starts immediately after numeric literal</span>
+</pre></div> <p>You will need to rename your variable to avoid the leading number.</p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> life1 <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> foo <span class="token operator">=</span> life1<span class="token punctuation">;</span>
+</pre></div>
+</div></section><section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../lexical_grammar">Lexical grammar</a></li> <li> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#variables">Variables</a> in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">JavaScript Guide</a> </li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/javascript/reference/errors/identifier_after_number/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/javascript/reference/errors/identifier_after_number/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FErrors%2FIdentifier_after_number&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fjavascript%2Freference%2Ferrors%2Fidentifier_after_number%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FJavaScript%2FReference%2FErrors%2FIdentifier_after_number%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fjavascript%2Freference%2Ferrors%2Fidentifier_after_number%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fdfd1000c1a860bdeeec7751a23eda8a7dc404502%0A*+Document+last+modified%3A+2022-07-14T05%3A05%3A05.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-07-14T05:05:05.000Z">Jul 14, 2022</time>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Identifier_after_number/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Identifier_after_number" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Identifier_after_number</a>
+  </p>
+</div>

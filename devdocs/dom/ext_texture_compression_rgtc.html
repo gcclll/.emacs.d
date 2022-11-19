@@ -1,0 +1,83 @@
+<h1>EXT_texture_compression_rgtc</h1>
+<div class="section-content">
+<p>The <code>EXT_texture_compression_rgtc</code> extension is part of the <a href="webgl_api">WebGL API</a> and exposes 4 RGTC compressed texture formats. RGTC is a block-based texture compression format suited for unsigned and signed red and red-green textures (<strong>R</strong>ed-<strong>G</strong>reen <strong>T</strong>exture <strong>C</strong>ompression).</p> <p>WebGL extensions are available using the <a href="webglrenderingcontext/getextension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="webgl_api/using_extensions">Using Extensions</a> in the <a href="webgl_api/tutorial">WebGL tutorial</a>.</p> <div class="notecard note" id="sect1"> <p><strong>Note:</strong> Support depends on the system's graphics driver. There is no support on Windows.</p> <p>This extension is available to both, <a href="webglrenderingcontext">WebGL1</a> and <a href="webgl2renderingcontext">WebGL2</a> contexts.</p> </div>
+</div>
+<h2 id="constants">Constants</h2>
+<div class="section-content">
+<p>The compressed texture formats are exposed by 4 constants and can be used in two functions: <a href="webglrenderingcontext/compressedteximage2d"><code>compressedTexImage2D()</code></a> and <a href="webglrenderingcontext/compressedtexsubimage2d"><code>compressedTexSubImage2D()</code></a>.</p> <dl> <dt id="ext.compressed_red_rgtc1_ext"><code>ext.COMPRESSED_RED_RGTC1_EXT</code></dt> <dd> <p>Each 4x4 block of texels consists of 64 bits of unsigned red image data. See also <a href="https://docs.microsoft.com/windows/desktop/direct3d10/d3d10-graphics-programming-guide-resources-block-compression#bc4" rel=" noopener">BC4 unsigned</a>.</p> </dd> <dt id="ext.compressed_signed_red_rgtc1_ext"><code>ext.COMPRESSED_SIGNED_RED_RGTC1_EXT</code></dt> <dd> <p>Each 4x4 block of texels consists of 64 bits of signed red image data. See also <a href="https://docs.microsoft.com/windows/desktop/direct3d10/d3d10-graphics-programming-guide-resources-block-compression#bc4" rel=" noopener">BC4 signed</a>.</p> </dd> <dt id="ext.compressed_red_green_rgtc2_ext"><code>ext.COMPRESSED_RED_GREEN_RGTC2_EXT</code></dt> <dd> <p>Each 4x4 block of texels consists of 64 bits of compressed unsigned red image data followed by 64 bits of compressed unsigned green image data. See also <a href="https://docs.microsoft.com/windows/desktop/direct3d10/d3d10-graphics-programming-guide-resources-block-compression#bc5" rel=" noopener">BC5 unsigned</a>.</p> </dd> <dt id="ext.compressed_signed_red_green_rgtc2_ext"><code>ext.COMPRESSED_SIGNED_RED_GREEN_RGTC2_EXT</code></dt> <dd> <p>Each 4x4 block of texels consists of 64 bits of compressed signed red image data followed by 64 bits of compressed signed green image data. See also <a href="https://docs.microsoft.com/windows/desktop/direct3d10/d3d10-graphics-programming-guide-resources-block-compression#bc5" rel=" noopener">BC5 signed</a>.</p> </dd> </dl>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">var</span> ext <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">getExtension</span><span class="token punctuation">(</span><span class="token string">'EXT_texture_compression_rgtc'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> texture <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">createTexture</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">bindTexture</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">TEXTURE_2D</span><span class="token punctuation">,</span> texture<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gl<span class="token punctuation">.</span><span class="token function">compressedTexImage2D</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">TEXTURE_2D</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> ext<span class="token punctuation">.</span><span class="token constant">COMPRESSED_RED_RGTC1_EXT</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">128</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> textureData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://www.khronos.org/registry/webgl/extensions/EXT_texture_compression_rgtc/">WebGL EXT_texture_compression_rgtc Extension Specification <br></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>EXT_texture_compression_rgtc</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>65</div>
+<div>Only supported on macOS.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="webglrenderingcontext/getextension"><code>WebGLRenderingContext.getExtension()</code></a></li> <li><a href="webglrenderingcontext/compressedteximage2d"><code>WebGLRenderingContext.compressedTexImage2D()</code></a></li> <li><a href="webglrenderingcontext/compressedtexsubimage2d"><code>WebGLRenderingContext.compressedTexSubImage2D()</code></a></li> <li><a href="webglrenderingcontext/getparameter"><code>WebGLRenderingContext.getParameter()</code></a></li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/ext_texture_compression_rgtc/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/ext_texture_compression_rgtc/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FEXT_texture_compression_rgtc&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fext_texture_compression_rgtc%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FEXT_texture_compression_rgtc%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fext_texture_compression_rgtc%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fadfe2d673e0d66982e1dcccde2da0f73c22c356e%0A*+Document+last+modified%3A+2022-02-07T11%3A41%3A24.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-02-07T11:41:24.000Z">Feb 7, 2022</time>, <a href="ext_texture_compression_rgtc/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/EXT_texture_compression_rgtc" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EXT_texture_compression_rgtc</a>
+  </p>
+</div>

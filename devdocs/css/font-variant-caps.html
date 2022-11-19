@@ -1,0 +1,131 @@
+<h1>font-variant-caps</h1>
+<div class="section-content"><p>The <code>font-variant-caps</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> property controls the use of alternate glyphs for capital letters.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content">
+<iframe class="interactive is-default-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/css/font-variant-caps.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>When a given font includes capital letter glyphs of multiple different sizes, this property selects the most appropriate ones. If petite capital glyphs are not available, they are rendered using small capital glyphs. If these are not present, the browser synthesizes them from the uppercase glyphs.</p> <p>Fonts sometimes include special glyphs for various caseless characters (such as punctuation marks) to better match the capitalized characters around them. However, small capital glyphs are never synthesized for caseless characters.</p>
+</div></section><section aria-labelledby="language-specific_rules"><h3 id="language-specific_rules">Language-specific rules</h3>
+<div class="section-content">
+<p>This property accounts for language-specific case mapping rules. For example:</p> <ul> <li>In Turkic languages, such as Turkish (tr), Azerbaijani (az), Crimean Tatar (crh), Volga Tatar (tt), and Bashkir (ba), there are two kinds of <code>i</code> (one with the dot, one without) and two case pairings: <code>i</code>/<code>İ</code> and <code>ı</code>/<code>I</code>.</li> <li>In German (de), the <code>ß</code> may become <code>ẞ</code> (U+1E9E) in uppercase.</li> <li>In Greek (el), vowels lose their accent when the whole word is in uppercase (<code>ά</code>/<code>Α</code>), except for the disjunctive eta (<code>ή</code>/<code>Ή</code>). Also, diphthongs with an accent on the first vowel lose the accent and gain a diacritic on the second vowel (<code>άι</code>/<code>ΑΪ</code>).</li> </ul>
+</div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content">
+<div class="code-example"><pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> small-caps<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> all-small-caps<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> petite-caps<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> all-petite-caps<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> unicase<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> titling-caps<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> revert-layer<span class="token punctuation">;</span>
+<span class="token property">font-variant-caps</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre></div> <p>The <code>font-variant-caps</code> property is specified using a single keyword value from the list below. In each case, if the font doesn't support the OpenType value, then it synthesizes the glyphs.</p>
+</div></section><section aria-labelledby="values"><h3 id="values">Values</h3>
+<div class="section-content"><dl> <dt id="normal"><code>normal</code></dt> <dd> <p>Deactivates of the use of alternate glyphs.</p> </dd> <dt id="small-caps"><code>small-caps</code></dt> <dd> <p>Enables display of small capitals (OpenType feature: <code>smcp</code>). Small-caps glyphs typically use the form of uppercase letters but are reduced to the size of lowercase letters.</p> </dd> <dt id="all-small-caps"><code>all-small-caps</code></dt> <dd> <p>Enables display of small capitals for both upper and lowercase letters (OpenType features: <code>c2sc</code>, <code>smcp</code>).</p> </dd> <dt id="petite-caps"><code>petite-caps</code></dt> <dd> <p>Enables display of petite capitals (OpenType feature: <code>pcap</code>).</p> </dd> <dt id="all-petite-caps"><code>all-petite-caps</code></dt> <dd> <p>Enables display of petite capitals for both upper and lowercase letters (OpenType features: <code>c2pc</code>, <code>pcap</code>).</p> </dd> <dt id="unicase"><code>unicase</code></dt> <dd> <p>Enables display of mixture of small capitals for uppercase letters with normal lowercase letters (OpenType feature: <code>unic</code>).</p> </dd> <dt id="titling-caps"><code>titling-caps</code></dt> <dd> <p>Enables display of titling capitals (OpenType feature: <code>titl</code>). Uppercase letter glyphs are often designed for use with lowercase letters. When used in all uppercase titling sequences they can appear too strong. Titling capitals are designed specifically for this situation.</p> </dd> </dl></div></section><section aria-labelledby="accessibility_concerns"><h2 id="accessibility_concerns">Accessibility concerns</h2>
+<div class="section-content">
+<p>Large sections of text set with a <code>font-variant</code> value of <code>all-small-caps</code> or <code>all-petite-caps</code> may be difficult for people with cognitive concerns such as Dyslexia to read.</p> <ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#guideline_1.4_make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background">MDN Understanding WCAG, Guideline 1.4 explanations</a></li> <li><a href="https://www.w3.org/TR/WCAG21/#visual-presentation" rel=" noopener">W3C Understanding WCAG 2.1</a></li> </ul>
+</div></section><section aria-labelledby="formal_definition"><h2 id="formal_definition">Formal definition</h2>
+<div class="section-content"><div class="table-scroll"><div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>normal</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements. It also applies to <a href="::first-letter"><code>::first-letter</code></a> and <a href="::first-line"><code>::first-line</code></a>.</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>yes</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div></div></div></section><section aria-labelledby="formal_syntax"><h2 id="formal_syntax">Formal syntax</h2>
+<div class="section-content"><pre class="notranslate"><span class="token property" id="font-variant-caps">font-variant-caps = </span><br>  <span class="token keyword">normal</span>           <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">small-caps</span>       <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">all-small-caps</span>   <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">petite-caps</span>      <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">all-petite-caps</span>  <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">unicase</span>          <a href="value_definition_syntax#single_bar">|</a><br>  <span class="token keyword">titling-caps</span>     <br><br></pre></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="setting_the_small-caps_font_variant"><h3 id="setting_the_small-caps_font_variant">Setting the small-caps font variant</h3>
+<div class="section-content">
+<h4 id="html">HTML</h4> <div class="code-example"><pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>small-caps<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Firefox rocks, small caps!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>normal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Firefox rocks, normal caps!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre></div> <h4 id="css">CSS</h4> <div class="code-example"><pre data-language="css"><span class="token selector">.small-caps</span> <span class="token punctuation">{</span>
+  <span class="token property">font-variant-caps</span><span class="token punctuation">:</span> small-caps<span class="token punctuation">;</span>
+  <span class="token property">font-style</span><span class="token punctuation">:</span> italic<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.normal</span> <span class="token punctuation">{</span>
+  <span class="token property">font-variant-caps</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+  <span class="token property">font-style</span><span class="token punctuation">:</span> italic<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre></div> <h4 id="result">Result</h4>
+<iframe class="sample-code-frame" title="Setting the small-caps font variant sample" id="frame_setting_the_small-caps_font_variant" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/font-variant-caps/_sample_.setting_the_small-caps_font_variant.html" loading="lazy"></iframe>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://drafts.csswg.org/css-fonts/#font-variant-caps-prop">CSS Fonts Module Level 4 <br><small># font-variant-caps-prop</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>font-variant-caps</code></th>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>9.1</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>9.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+<section aria-labelledby="see_also"><h2 id="see_also">See Also</h2>
+<div class="section-content"><ul> <li><a href="font-variant-alternates"><code>font-variant-alternates</code></a></li> <li><a href="font-variant"><code>font-variant</code></a></li> <li><a href="font-variant-east-asian"><code>font-variant-east-asian</code></a></li> <li><a href="font-variant-ligatures"><code>font-variant-ligatures</code></a></li> <li><a href="font-variant-numeric"><code>font-variant-numeric</code></a></li> </ul></div></section><aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/css/font-variant-caps/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/css/font-variant-caps/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Ffont-variant-caps&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder:+%60en-us%2Fweb%2Fcss%2Ffont-variant-caps%60%0A*+MDN+URL:+https:%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FCSS%2Ffont-variant-caps%0A*+GitHub+URL:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fcss%2Ffont-variant-caps%2Findex.md%0A*+Last+commit:+https:%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fabcebf471d56ef12239e2565f26d952e8a8cab2e%0A*+Document+last+modified:+2022-05-17T13:23:31.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-05-17T13:23:31.000Z">May 17, 2022</time>, <a href="font-variant-caps/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2022 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-caps" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/font-variant-caps</a>
+  </p>
+</div>

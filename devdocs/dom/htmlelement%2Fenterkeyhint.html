@@ -1,0 +1,88 @@
+<h1>HTMLElement.enterKeyHint</h1>
+<div class="section-content">
+<p> The <code>enterKeyHint</code> property is an enumerated property defining what action label (or icon) to present for the enter key on virtual keyboards. It reflects the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint"><code>enterkeyhint</code></a> HTML global attribute and is an enumerated property, only accepting the following values as a <a href="../domstring"><code>DOMString</code></a>: </p> <ul> <li>
+<code>'enter'</code> typically indicating inserting a new line.</li> <li>
+<code>'done'</code> typically meaning there is nothing more to input and the input method editor (IME) will be closed.</li> <li>
+<code>'go'</code> typically meaning to take the user to the target of the text they typed.</li> <li>
+<code>'next'</code> typically taking the user to the next field that will accept text.</li> <li>
+<code>'previous'</code> typically taking the user to the previous field that will accept text.</li> <li>
+<code>'search'</code> typically taking the user to the results of searching for the text they have typed.</li> <li>
+<code>'send'</code> typically delivering the text to its target.</li> </ul> <p>If no <code>enterKeyHint</code> value has been specified or if it was set to a different value than the allowed ones, it will return an empty string.</p>
+</div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p>Give a virtual keyboard a hint how to label the enter key (might render as <kbd>Send</kbd> and <kbd>Search</kbd>, depending on the OS or the user's language).</p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> send <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'sendInput'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> search <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'searchInput'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+send<span class="token punctuation">.</span>enterKeyHint <span class="token operator">=</span> <span class="token string">'send'</span><span class="token punctuation">;</span>
+search<span class="token punctuation">.</span>enterKeyHint <span class="token operator">=</span> <span class="token string">'search'</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://html.spec.whatwg.org/multipage/interaction.html#dom-enterkeyhint">HTML Standard <br><small># dom-enterkeyhint</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>enterKeyHint</code></th>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>94</div>
+<div>79-94</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/enterkeyhint"><code>enterkeyhint</code></a> HTML global attribute</li> </ul></div>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/htmlelement/enterkeyhint/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/htmlelement/enterkeyhint/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FHTMLElement%2FenterKeyHint&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Fhtmlelement%2Fenterkeyhint%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FHTMLElement%2FenterKeyHint%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Fhtmlelement%2Fenterkeyhint%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2F2279e5ae6c229c707a014a22aa1ec4635a0f981f%0A*+Document+last+modified%3A+2021-09-14T18%3A08%3A09.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2021-09-14T18:08:09.000Z">Sep 14, 2021</time>, <a href="enterkeyhint/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/enterKeyHint</a>
+  </p>
+</div>

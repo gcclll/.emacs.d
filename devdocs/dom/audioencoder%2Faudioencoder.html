@@ -1,0 +1,81 @@
+<h1>AudioEncoder.AudioEncoder()</h1>
+<div class="section-content">
+<div class="notecard secure" id="sect1"><p><strong>Secure context:</strong> This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p></div> <p>The <code>AudioEncoder()</code> constructor creates a new <a href="../audioencoder"><code>AudioEncoder</code></a> object with the provided <code>init.output</code> callback assigned as the output callback, the provided <code>init.error</code> callback as the error callback, and the <a href="state"><code>AudioEncoder.state</code></a> set to <code>"unconfigured"</code>.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example"><pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">AudioEncoder</span><span class="token punctuation">(</span>init<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div></div>
+<h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="init"><code>init</code></dt> <dd> <p>An object containing two required callbacks.</p> <dl> <dt id="output"><code>output</code></dt> <dd> <p>A callback which takes a <a href="../encodedaudiochunk"><code>EncodedAudioChunk</code></a> object as the first argument, and an optional metadata object as the second. The metadata object has one member, <code>decoderConfig</code> which has an object as its value containing:</p> <dl> <dt id="codec"><code>codec</code></dt> <dd> <p>A <a href="../domstring"><code>string</code></a> containing a <a href="https://www.w3.org/TR/webcodecs-codec-registry/#audio-codec-registry" rel=" noopener">valid codec string</a>.</p> </dd> <dt id="samplerate"><code>sampleRate</code></dt> <dd> <p>An integer representing the number of frame samples per second.</p> </dd> <dt id="numberofchannels"><code>numberOfChannels</code></dt> <dd> <p>An integer representing the number of audio channels.</p> </dd> <dt id="description">
+<code>description</code><span class="badge inline optional">Optional</span>
+</dt> <dd> <p>A <a href="../buffersource"><code>BufferSource</code></a> containing a sequence of codec specific bytes, commonly known as extradata.</p> </dd> </dl> </dd> <dt id="error"><code>error</code></dt> <dd> <p>A callback which takes an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error"><code>Error</code></a> object as its only argument.</p> </dd> </dl> </dd> </dl></div>
+<h2 id="examples">Examples</h2>
+<div class="section-content">
+<p>In the following example an <code>AudioEncoder</code> is created with the two required callback functions, one to deal with the decoded frame and the other to handle errors.</p> <div class="code-example"><pre data-language="js"><span class="token keyword">const</span> audioEncoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioEncoder</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token literal-property property">output</span><span class="token operator">:</span> processAudio<span class="token punctuation">,</span>
+  <span class="token literal-property property">error</span><span class="token operator">:</span> onEncoderError<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre></div>
+</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://w3c.github.io/webcodecs/#dom-audioencoder-audioencoder">WebCodecs <br><small># dom-audioencoder-audioencoder</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>AudioEncoder</code></th>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-yes"><div>94</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>17.0</div></td>
+</tr></tbody>
+</table>
+<aside class="metadata"><div class="metadata-content-container">
+<div id="on-github" class="on-github">
+<h3>Found a problem with this page?</h3>
+<ul>
+<li><a href="https://github.com/mdn/content/edit/main/files/en-us/web/api/audioencoder/audioencoder/index.md" target="_blank" rel="noopener noreferrer">Edit on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/blob/main/files/en-us/web/api/audioencoder/audioencoder/index.md?plain=1" target="_blank" rel="noopener noreferrer">Source on <b>GitHub</b></a></li>
+<li><a href="https://github.com/mdn/content/issues/new?template=page-report.yml&amp;mdn-url=https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FAudioEncoder%2FAudioEncoder&amp;metadata=%3C%21--+Do+not+make+changes+below+this+line+--%3E%0A%3Cdetails%3E%0A%3Csummary%3EPage+report+details%3C%2Fsummary%3E%0A%0A*+Folder%3A+%60en-us%2Fweb%2Fapi%2Faudioencoder%2Faudioencoder%60%0A*+MDN+URL%3A+https%3A%2F%2Fdeveloper.mozilla.org%2Fen-US%2Fdocs%2FWeb%2FAPI%2FAudioEncoder%2FAudioEncoder%0A*+GitHub+URL%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fblob%2Fmain%2Ffiles%2Fen-us%2Fweb%2Fapi%2Faudioencoder%2Faudioencoder%2Findex.md%0A*+Last+commit%3A+https%3A%2F%2Fgithub.com%2Fmdn%2Fcontent%2Fcommit%2Fe752a8fe731fbdb9061e39a6e2b797a7ccb7e2b5%0A*+Document+last+modified%3A+2022-01-19T17%3A57%3A58.000Z%0A%0A%3C%2Fdetails%3E" target="_blank" rel="noopener noreferrer">Report a problem with this content on <b>GitHub</b></a></li>
+<li>Want to fix the problem yourself? See <a href="https://github.com/mdn/content/blob/main/README.md" target="_blank" rel="noopener noreferrer">our Contribution guide</a>.</li>
+</ul>
+</div>
+<p class="last-modified-date"><b>Last modified:</b> <time datetime="2022-01-19T17:57:58.000Z">Jan 19, 2022</time>, <a href="audioencoder/contributors.txt">by MDN contributors</a></p>
+</div></aside><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioEncoder/AudioEncoder" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioEncoder/AudioEncoder</a>
+  </p>
+</div>
