@@ -635,19 +635,29 @@ one, an error is signaled."
    "C-c b" 'consult-bookmark
    "C-c h" 'consult-history
    "C-c o" 'consult-outline
-   "C-c y" 'fanyi-dwim2
    "C-c t" 'gcl/insert-current-time
    "C-c d" 'gcl/insert-standard-date
    ;; "C-c c" 'copy-buffer-file-name-as-kill
-   "C-c i" 'org-mac-link-get-link
    "C-c e" 'consult-flycheck
    "C-c r" 'vr/replace
    "C-c q" 'vr/query-replace
    "C-c m" 'vr/mc-mark
    "C-c u" 'uuidgen
 
+   ;; C-c i, insert
+   "C-c i u" 'org-mac-link-get-link
+   "C-c i s" 'yas-insert-snippet
+   "C-c i y" 'consult-yasnippet
+
    ;; C-c g, git
    ;; ...
+
+   ;; yas & fanyi
+   "C-c y y" 'fanyi-dwim2
+   "C-c y n" 'yas-new-snippet
+   "C-c y r" 'yas-reload-all
+   "C-c y v" 'yas-visit-snippet-file
+   "C-c y V" 'consult-yasnippet-visit-snippet-file
    )
 
   (general-define-key
@@ -693,7 +703,7 @@ one, an error is signaled."
    "M-#" 'consult-register-load
    "M-;" 'evilnc-comment-or-uncomment-lines
    ;; "M-e" 'emojify-insert-emoji
-   "M-d" 'consult-dash
+   "M-d" 'dash-at-point
    ;; "M-j" 'rime-inline-ascii
    "M-i" 'consult-imenu
    ;; "M-m" 'blamer-show-posframe-commit-info
@@ -850,6 +860,8 @@ one, an error is signaled."
 (use-package diredfl
   :hook ((dired-mode . diredfl-mode)))
 
+(use-package dash-at-point)
+
 (setenv "NODE_PATH" "/usr/local/lib/node_modules")
 
 (use-package editorconfig
@@ -971,7 +983,7 @@ one, an error is signaled."
     (lsp-completion-provider :none)
     :commands lsp
     :config
-    (setq lsp-disabled-clients '(vls))
+    (setq lsp-disabled-clients '(vls eslint))
     ;; (setq lsp-enabled-clients '(lsp-volar))
     )
 
@@ -1736,38 +1748,14 @@ _k_: down      _a_: combine       _q_: quit
 	org-roam-ui-browser-function #'browse-url
 	))
 
-(use-package consult-org-roam
-  :ensure t
-  :after org-roam
-  :init
-  (require 'consult-org-roam)
-  ;; Activate the minor mode
-  (consult-org-roam-mode 1)
-  :custom
-  ;; Use `ripgrep' for searching with `consult-org-roam-search'
-  (consult-org-roam-grep-func #'consult-ripgrep)
-  ;; Configure a custom narrow key for `consult-buffer'
-  (consult-org-roam-buffer-narrow-key ?r)
-  ;; Display org-roam buffers right after non-org-roam buffers
-  ;; in consult-buffer (and not down at the bottom)
-  (consult-org-roam-buffer-after-buffers t)
-  :config
-  ;; Eventually suppress previewing for certain functions
-  (consult-customize
-   consult-org-roam-forward-links
-   :preview-key (kbd "M-."))
-  :bind
-  ;; Define some convenient keybindings as an addition
-  )
-
 (general-define-key
- "C-c n f" 'org-roam-node-find
+ "C-c n n" 'org-roam-node-find
  "C-c n g" 'org-roam-graph
  "C-c n r" 'org-roam-node-random
  "C-c n c" 'org-roam-capture
  "C-c n d" 'org-roam-dailies-capture-today
  "C-c n u" 'org-roam-ui-open
- "C-c n e" 'consult-org-roam-file-find
+ "C-c n f" 'consult-org-roam-file-find
  "C-c n b" 'consult-org-roam-backlinks
  "C-c n l" 'consult-org-roam-forward-links
  "C-c n s" 'consult-org-roam-search
@@ -1956,10 +1944,6 @@ _k_: down      _a_: combine       _q_: quit
     :keybinding "y")
   )
 
-(use-package saveplace
-  :hook (after-init . save-place-mode))
-
-;; Example configuration for Consult
 (use-package consult
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
@@ -1983,6 +1967,9 @@ _k_: down      _a_: combine       _q_: quit
   ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
   )
 
+(use-package saveplace
+  :hook (after-init . save-place-mode))
+
 (use-package consult-dir
   :ensure t
   :bind (("C-x C-d" . consult-dir)
@@ -2002,10 +1989,51 @@ _k_: down      _a_: combine       _q_: quit
   (("C-c g f" . #'consult-ls-git)
    ("C-c g F" . #'consult-ls-git-other-window)))
 
-(use-package consult-dash
+(use-package consult-notes
+  :straight (:type git :host github :repo "mclear-tools/consult-notes")
+  :commands (consult-notes
+             consult-notes-search-in-all-notes
+             ;; if using org-roam
+             consult-notes-org-roam-find-node
+             consult-notes-org-roam-find-node-relation)
+  :bind
+  (("C-c n /" . consult-notes-search-in-all-notes)
+   ("C-c n <" . consult-notes-org-roam-find-node)
+   ("C-c n >" . consult-notes-org-roam-find-node-relation)
+   )
   :config
-  ;; Use the symbol at point as initial search term
-  (consult-customize consult-dash :initial (thing-at-point 'symbol)))
+  (setq consult-notes-sources
+        '(("Posts"             ?p "~/.posts")
+          ("Org"      ?r "~/.gclrc/org")))
+  ;; Set org-roam integration OR denote integration
+  (when (locate-library "denote")
+    (consult-notes-denote-mode)))
+
+(use-package consult-org-roam
+  :ensure t
+  :after org-roam
+  :init
+  (require 'consult-org-roam)
+  ;; Activate the minor mode
+  (consult-org-roam-mode 1)
+  :custom
+  ;; Use `ripgrep' for searching with `consult-org-roam-search'
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  ;; Configure a custom narrow key for `consult-buffer'
+  (consult-org-roam-buffer-narrow-key ?r)
+  ;; Display org-roam buffers right after non-org-roam buffers
+  ;; in consult-buffer (and not down at the bottom)
+  (consult-org-roam-buffer-after-buffers t)
+  :config
+  ;; Eventually suppress previewing for certain functions
+  (consult-customize
+   consult-org-roam-forward-links
+   :preview-key (kbd "M-."))
+  )
+
+(use-package consult-projectile)
+
+(use-package consult-yasnippet)
 
 (use-package wgrep
   :config
@@ -2025,8 +2053,6 @@ _k_: down      _a_: combine       _q_: quit
   ;; alien, hybrid
   (setq projectile-indexing-method 'alien projectile-enable-caching t)
   )
-
-(use-package consult-projectile)
 
 (use-package perspective
   :bind

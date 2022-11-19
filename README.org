@@ -736,19 +736,29 @@ so-long
    "C-c b" 'consult-bookmark
    "C-c h" 'consult-history
    "C-c o" 'consult-outline
-   "C-c y" 'fanyi-dwim2
    "C-c t" 'gcl/insert-current-time
    "C-c d" 'gcl/insert-standard-date
    ;; "C-c c" 'copy-buffer-file-name-as-kill
-   "C-c i" 'org-mac-link-get-link
    "C-c e" 'consult-flycheck
    "C-c r" 'vr/replace
    "C-c q" 'vr/query-replace
    "C-c m" 'vr/mc-mark
    "C-c u" 'uuidgen
 
+   ;; C-c i, insert
+   "C-c i u" 'org-mac-link-get-link
+   "C-c i s" 'yas-insert-snippet
+   "C-c i y" 'consult-yasnippet
+
    ;; C-c g, git
    ;; ...
+
+   ;; yas & fanyi
+   "C-c y y" 'fanyi-dwim2
+   "C-c y n" 'yas-new-snippet
+   "C-c y r" 'yas-reload-all
+   "C-c y v" 'yas-visit-snippet-file
+   "C-c y V" 'consult-yasnippet-visit-snippet-file
    )
 #+end_src
 
@@ -802,7 +812,7 @@ so-long
    "M-#" 'consult-register-load
    "M-;" 'evilnc-comment-or-uncomment-lines
    ;; "M-e" 'emojify-insert-emoji
-   "M-d" 'consult-dash
+   "M-d" 'dash-at-point
    ;; "M-j" 'rime-inline-ascii
    "M-i" 'consult-imenu
    ;; "M-m" 'blamer-show-posframe-commit-info
@@ -1012,6 +1022,10 @@ Result 6.23+(3.789/(5-4)) + 6.4*(2 - (5+3) *736.83 ) /2000
 (use-package app-launcher
   :straight '(app-launcher :host github :repo "SebastienWae/app-launcher"))
 #+end_src
+** dash-at-point
+#+begin_src emacs-lisp
+(use-package dash-at-point)
+#+end_src
 * 开发设置
 
 node 包路径：
@@ -1154,7 +1168,7 @@ node 包路径：
     (lsp-completion-provider :none)
     :commands lsp
     :config
-    (setq lsp-disabled-clients '(vls))
+    (setq lsp-disabled-clients '(vls eslint))
     ;; (setq lsp-enabled-clients '(lsp-volar))
     )
 
@@ -2086,42 +2100,16 @@ kbd:C-c_C-c <kbd:C-c C-c>
 	org-roam-ui-browser-function #'browse-url
 	))
 #+end_src
-*** consult-org-roam
-#+begin_src emacs-lisp
-(use-package consult-org-roam
-  :ensure t
-  :after org-roam
-  :init
-  (require 'consult-org-roam)
-  ;; Activate the minor mode
-  (consult-org-roam-mode 1)
-  :custom
-  ;; Use `ripgrep' for searching with `consult-org-roam-search'
-  (consult-org-roam-grep-func #'consult-ripgrep)
-  ;; Configure a custom narrow key for `consult-buffer'
-  (consult-org-roam-buffer-narrow-key ?r)
-  ;; Display org-roam buffers right after non-org-roam buffers
-  ;; in consult-buffer (and not down at the bottom)
-  (consult-org-roam-buffer-after-buffers t)
-  :config
-  ;; Eventually suppress previewing for certain functions
-  (consult-customize
-   consult-org-roam-forward-links
-   :preview-key (kbd "M-."))
-  :bind
-  ;; Define some convenient keybindings as an addition
-  )
-#+end_src
-*** bindings
+*** org-roam-bindings
 #+begin_src emacs-lisp
 (general-define-key
- "C-c n f" 'org-roam-node-find
+ "C-c n n" 'org-roam-node-find
  "C-c n g" 'org-roam-graph
  "C-c n r" 'org-roam-node-random
  "C-c n c" 'org-roam-capture
  "C-c n d" 'org-roam-dailies-capture-today
  "C-c n u" 'org-roam-ui-open
- "C-c n e" 'consult-org-roam-file-find
+ "C-c n f" 'consult-org-roam-file-find
  "C-c n b" 'consult-org-roam-backlinks
  "C-c n l" 'consult-org-roam-forward-links
  "C-c n s" 'consult-org-roam-search
@@ -2339,10 +2327,6 @@ kbd:C-c_C-c <kbd:C-c C-c>
 ** consult
 
 #+begin_src emacs-lisp
-(use-package saveplace
-  :hook (after-init . save-place-mode))
-
-;; Example configuration for Consult
 (use-package consult
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :init
@@ -2365,30 +2349,95 @@ kbd:C-c_C-c <kbd:C-c C-c>
   ;; (autoload 'projectile-project-root "projectile")
   ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
   )
+#+end_src
 
+*** saveplace
+#+begin_src emacs-lisp
+(use-package saveplace
+  :hook (after-init . save-place-mode))
+#+end_src
+
+*** consult-dir
+#+begin_src emacs-lisp
 (use-package consult-dir
   :ensure t
   :bind (("C-x C-d" . consult-dir)
          :map minibuffer-local-completion-map
          ("C-x C-d" . consult-dir)
          ("C-x C-j" . consult-dir-jump-file)))
-
+#+end_src
+*** consult-lsp
+#+begin_src emacs-lisp
 (use-package consult-lsp
   :config
   (define-key lsp-mode-map [remap xref-find-apropos] #'consult-lsp-symbols))
-
+#+end_src
+*** consult-flycheck
+#+begin_src emacs-lisp
 (use-package consult-flycheck)
-
+#+end_src
+*** consult-ls-git
+#+begin_src emacs-lisp
 (use-package consult-ls-git
   :straight t
   :bind
   (("C-c g f" . #'consult-ls-git)
    ("C-c g F" . #'consult-ls-git-other-window)))
+#+end_src
 
-(use-package consult-dash
+*** consult-notes
+#+begin_src emacs-lisp
+(use-package consult-notes
+  :straight (:type git :host github :repo "mclear-tools/consult-notes")
+  :commands (consult-notes
+             consult-notes-search-in-all-notes
+             ;; if using org-roam
+             consult-notes-org-roam-find-node
+             consult-notes-org-roam-find-node-relation)
+  :bind
+  (("C-c n /" . consult-notes-search-in-all-notes)
+   ("C-c n <" . consult-notes-org-roam-find-node)
+   ("C-c n >" . consult-notes-org-roam-find-node-relation)
+   )
   :config
-  ;; Use the symbol at point as initial search term
-  (consult-customize consult-dash :initial (thing-at-point 'symbol)))
+  (setq consult-notes-sources
+        '(("Posts"             ?p "~/.posts")
+          ("Org"      ?r "~/.gclrc/org")))
+  ;; Set org-roam integration OR denote integration
+  (when (locate-library "denote")
+    (consult-notes-denote-mode)))
+#+end_src
+*** consult-org-roam
+#+begin_src emacs-lisp
+(use-package consult-org-roam
+  :ensure t
+  :after org-roam
+  :init
+  (require 'consult-org-roam)
+  ;; Activate the minor mode
+  (consult-org-roam-mode 1)
+  :custom
+  ;; Use `ripgrep' for searching with `consult-org-roam-search'
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  ;; Configure a custom narrow key for `consult-buffer'
+  (consult-org-roam-buffer-narrow-key ?r)
+  ;; Display org-roam buffers right after non-org-roam buffers
+  ;; in consult-buffer (and not down at the bottom)
+  (consult-org-roam-buffer-after-buffers t)
+  :config
+  ;; Eventually suppress previewing for certain functions
+  (consult-customize
+   consult-org-roam-forward-links
+   :preview-key (kbd "M-."))
+  )
+#+end_src
+*** consult-projectile
+#+begin_src emacs-lisp
+(use-package consult-projectile)
+#+end_src
+*** consult-yasnippet
+#+begin_src emacs-lisp
+(use-package consult-yasnippet)
 #+end_src
 ** wgrep
 #+begin_src emacs-lisp
@@ -2415,10 +2464,6 @@ kbd:C-c_C-c <kbd:C-c C-c>
   ;; alien, hybrid
   (setq projectile-indexing-method 'alien projectile-enable-caching t)
   )
-#+end_src
-** consult-projectile
-#+begin_src emacs-lisp
-(use-package consult-projectile)
 #+end_src
 ** persp
 #+begin_src emacs-lisp

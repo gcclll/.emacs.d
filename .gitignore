@@ -34,4 +34,4 @@ tramp
 /.project
 /.dap-*
 /places
-
+*.data
