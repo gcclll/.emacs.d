@@ -15,10 +15,10 @@
  package-enable-at-startup nil
  package--init-file-ensured t)
 
-;; (require 'exec-path-from-shell)
-;; (setq exec-path-from-shell-variables '("PATH" "MANPATH")
-;;       exec-path-from-shell-arguments '("-l"))
-;; (exec-path-from-shell-initialize)
+(require 'exec-path-from-shell)
+(setq exec-path-from-shell-variables '("PATH" "MANPATH")
+      exec-path-from-shell-arguments '("-l"))
+(exec-path-from-shell-initialize)
 
 ;; 定义一些启动目录，方便下次迁移修改
 (defvar gcl-emacs-root-dir (file-truename "~/.emacs.d/site-lisp"))
@@ -40,13 +40,13 @@
 
   ;; --- basic
   (require 'init-funcs)
-  (require 'init-hacking)
-  (require 'init-basic)
+;;   (require 'init-hacking)
+;;   (require 'init-basic)
 
-  (require 'init-performance)
-  (require 'init-ui)
-  (require 'init-buffer)
-  (require 'init-evil)
+;;   (require 'init-performance)
+;;   (require 'init-ui)
+;;   (require 'init-buffer)
+;;   (require 'init-evil)
 
   (setq-default bidi-display-reordering nil)
 
