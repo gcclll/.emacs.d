@@ -48,10 +48,10 @@
   ;; lsp-mode's performance suggest
   (setq read-process-output-max (* 3 1mb))
 
-  (use-package so-long
-  :straight (:host github :repo "hlissner/emacs-so-long")
-  :config
-  (add-hook 'after-init-hook #'global-so-long-mode)
-  (setq so-long-threshold 40000))
+;;   (use-package so-long
+;;   :straight (:host github :repo "hlissner/emacs-so-long")
+;;   :config
+;;   (add-hook 'after-init-hook #'global-so-long-mode)
+;;   (setq so-long-threshold 40000))
 
 (provide 'init-performance)

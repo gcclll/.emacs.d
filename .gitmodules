@@ -1,3 +1,315 @@
 [submodule "site-lisp/extensions/exec-path-from-shell"]
 	path = site-lisp/extensions/exec-path-from-shell
 	url = https://github.com/purcell/exec-path-from-shell.git
+[submodule "site-lisp/extensions/auto-save"]
+	path = site-lisp/extensions/auto-save
+	url = https://github.com/manateelazycat/auto-save.git
+[submodule "site-lisp/extensions/cache-path-from-shell"]
+	path = site-lisp/extensions/cache-path-from-shell
+	url = https://github.com/manateelazycat/cache-path-from-shell.git
+[submodule "site-lisp/extensions/winpoint"]
+	path = site-lisp/extensions/winpoint
+	url = https://github.com/jorgenschaefer/winpoint.git
+[submodule "site-lisp/extensions/one-key"]
+	path = site-lisp/extensions/one-key
+	url = https://github.com/manateelazycat/one-key.git
+[submodule "site-lisp/extensions/deno-bridge"]
+	path = site-lisp/extensions/deno-bridge
+	url = https://github.com/manateelazycat/deno-bridge.git
+[submodule "site-lisp/extensions/lazy-load"]
+	path = site-lisp/extensions/lazy-load
+	url = https://github.com/manateelazycat/lazy-load.git
+[submodule "site-lisp/extensions/highlight-parentheses"]
+	path = site-lisp/extensions/highlight-parentheses
+	url = https://github.com/emacsmirror/highlight-parentheses.git
+[submodule "site-lisp/extensions/duplicate-line"]
+	path = site-lisp/extensions/duplicate-line
+	url = https://github.com/manateelazycat/duplicate-line.git
+[submodule "site-lisp/extensions/json-mode"]
+	path = site-lisp/extensions/json-mode
+	url = https://github.com/joshwnj/json-mode.git
+[submodule "site-lisp/extensions/scss-mode"]
+	path = site-lisp/extensions/scss-mode
+	url = https://github.com/antonj/scss-mode.git
+[submodule "site-lisp/extensions/hungry-delete"]
+	path = site-lisp/extensions/hungry-delete
+	url = https://github.com/nflath/hungry-delete.git
+[submodule "site-lisp/extensions/expand-region.el"]
+	path = site-lisp/extensions/expand-region.el
+	url = https://github.com/magnars/expand-region.el.git
+[submodule "site-lisp/extensions/string-inflection"]
+	path = site-lisp/extensions/string-inflection
+	url = https://github.com/akicho8/string-inflection.git
+[submodule "site-lisp/extensions/awesome-tray"]
+	path = site-lisp/extensions/awesome-tray
+	url = https://github.com/manateelazycat/awesome-tray.git
+[submodule "site-lisp/extensions/Emacs-wgrep"]
+	path = site-lisp/extensions/Emacs-wgrep
+	url = https://github.com/mhayashi1120/Emacs-wgrep.git
+[submodule "site-lisp/extensions/emacs-rime"]
+	path = site-lisp/extensions/emacs-rime
+	url = https://github.com/DogLooksGood/emacs-rime.git
+[submodule "site-lisp/extensions/json-snatcher"]
+	path = site-lisp/extensions/json-snatcher
+	url = https://github.com/Sterlingg/json-snatcher.git
+[submodule "site-lisp/extensions/deno-bridge-jieba"]
+	path = site-lisp/extensions/deno-bridge-jieba
+	url = https://github.com/ginqi7/deno-bridge-jieba.git
+[submodule "site-lisp/extensions/symbol-overlay"]
+	path = site-lisp/extensions/symbol-overlay
+	url = https://github.com/wolray/symbol-overlay.git
+[submodule "site-lisp/extensions/yaml-mode"]
+	path = site-lisp/extensions/yaml-mode
+	url = https://github.com/yoshiki/yaml-mode.git
+[submodule "site-lisp/extensions/color-rg"]
+	path = site-lisp/extensions/color-rg
+	url = https://github.com/manateelazycat/color-rg.git
+[submodule "site-lisp/extensions/consult-flycheck"]
+	path = site-lisp/extensions/consult-flycheck
+	url = https://github.com/minad/consult-flycheck.git
+[submodule "site-lisp/extensions/elf-mode"]
+	path = site-lisp/extensions/elf-mode
+	url = https://github.com/abo-abo/elf-mode.git
+[submodule "site-lisp/extensions/popup-el"]
+	path = site-lisp/extensions/popup-el
+	url = https://github.com/auto-complete/popup-el.git
+[submodule "site-lisp/extensions/js2-mode"]
+	path = site-lisp/extensions/js2-mode
+	url = https://github.com/mooz/js2-mode.git
+[submodule "site-lisp/extensions/consult-yasnippet"]
+	path = site-lisp/extensions/consult-yasnippet
+	url = https://github.com/mohkale/consult-yasnippet.git
+[submodule "site-lisp/extensions/flymake-posframe"]
+	path = site-lisp/extensions/flymake-posframe
+	url = https://github.com/Ladicle/flymake-posframe.git
+[submodule "site-lisp/extensions/flx"]
+	path = site-lisp/extensions/flx
+	url = https://github.com/lewang/flx.git
+[submodule "site-lisp/extensions/company-flx"]
+	path = site-lisp/extensions/company-flx
+	url = https://github.com/PythonNut/company-flx.git
+[submodule "site-lisp/extensions/gcmh"]
+	path = site-lisp/extensions/gcmh
+	url = https://github.com/emacsmirror/gcmh.git
+[submodule "site-lisp/extensions/fancy-dabbrev"]
+	path = site-lisp/extensions/fancy-dabbrev
+	url = https://github.com/jrosdahl/fancy-dabbrev.git
+[submodule "site-lisp/extensions/all-the-icons-dired"]
+	path = site-lisp/extensions/all-the-icons-dired
+	url = https://github.com/jtbm37/all-the-icons-dired.git
+[submodule "site-lisp/extensions/dockerfile-mode"]
+	path = site-lisp/extensions/dockerfile-mode
+	url = https://github.com/spotify/dockerfile-mode.git
+[submodule "site-lisp/extensions/orderless"]
+	path = site-lisp/extensions/orderless
+	url = https://github.com/oantolin/orderless.git
+[submodule "site-lisp/extensions/move-text"]
+	path = site-lisp/extensions/move-text
+	url = https://github.com/manateelazycat/move-text.git
+[submodule "site-lisp/extensions/editorconfig-emacs"]
+	path = site-lisp/extensions/editorconfig-emacs
+	url = https://github.com/editorconfig/editorconfig-emacs.git
+[submodule "site-lisp/extensions/popwin"]
+	path = site-lisp/extensions/popwin
+	url = https://github.com/emacsorphanage/popwin.git
+[submodule "site-lisp/extensions/evil-org-mode"]
+	path = site-lisp/extensions/evil-org-mode
+	url = https://github.com/Somelauw/evil-org-mode.git
+[submodule "site-lisp/extensions/dash-at-point"]
+	path = site-lisp/extensions/dash-at-point
+	url = https://github.com/stanaka/dash-at-point.git
+[submodule "site-lisp/extensions/restart-emacs"]
+	path = site-lisp/extensions/restart-emacs
+	url = https://github.com/iqbalansari/restart-emacs.git
+[submodule "site-lisp/extensions/org-tempo"]
+	path = site-lisp/extensions/org-tempo
+	url = https://github.com/luotom/org-tempo.git
+[submodule "site-lisp/extensions/org-appear"]
+	path = site-lisp/extensions/org-appear
+	url = https://github.com/awth13/org-appear.git
+[submodule "site-lisp/extensions/emacs-language-id"]
+	path = site-lisp/extensions/emacs-language-id
+	url = https://github.com/lassik/emacs-language-id.git
+[submodule "site-lisp/extensions/rainbow-delimiters"]
+	path = site-lisp/extensions/rainbow-delimiters
+	url = https://github.com/Fanael/rainbow-delimiters.git
+[submodule "site-lisp/extensions/org-pomodoro"]
+	path = site-lisp/extensions/org-pomodoro
+	url = https://github.com/marcinkoziej/org-pomodoro.git
+[submodule "site-lisp/extensions/edit-indirect"]
+	path = site-lisp/extensions/edit-indirect
+	url = https://github.com/Fanael/edit-indirect.git
+[submodule "site-lisp/extensions/consult-org-roam"]
+	path = site-lisp/extensions/consult-org-roam
+	url = https://github.com/jgru/consult-org-roam.git
+[submodule "site-lisp/extensions/corfu-doc"]
+	path = site-lisp/extensions/corfu-doc
+	url = https://github.com/galeo/corfu-doc.git
+[submodule "site-lisp/extensions/toggle-quotes-plus"]
+	path = site-lisp/extensions/toggle-quotes-plus
+	url = https://github.com/jcs-elpa/toggle-quotes-plus.git
+[submodule "site-lisp/extensions/multi-vterm"]
+	path = site-lisp/extensions/multi-vterm
+	url = https://github.com/suonlight/multi-vterm.git
+[submodule "site-lisp/extensions/lua-mode"]
+	path = site-lisp/extensions/lua-mode
+	url = https://github.com/immerrr/lua-mode.git
+[submodule "site-lisp/extensions/ts.el"]
+	path = site-lisp/extensions/ts.el
+	url = https://github.com/alphapapa/ts.el.git
+[submodule "site-lisp/extensions/emacs-format-all-the-code"]
+	path = site-lisp/extensions/emacs-format-all-the-code
+	url = https://github.com/lassik/emacs-format-all-the-code.git
+[submodule "site-lisp/extensions/ace-window"]
+	path = site-lisp/extensions/ace-window
+	url = https://github.com/abo-abo/ace-window.git
+[submodule "site-lisp/extensions/alert"]
+	path = site-lisp/extensions/alert
+	url = https://github.com/jwiegley/alert.git
+[submodule "site-lisp/extensions/general.el"]
+	path = site-lisp/extensions/general.el
+	url = https://github.com/noctuid/general.el.git
+[submodule "site-lisp/extensions/emacs-maple-iedit"]
+	path = site-lisp/extensions/emacs-maple-iedit
+	url = https://github.com/honmaple/emacs-maple-iedit.git
+[submodule "site-lisp/extensions/restclient.el"]
+	path = site-lisp/extensions/restclient.el
+	url = https://github.com/pashky/restclient.el.git
+[submodule "site-lisp/extensions/evil-surround"]
+	path = site-lisp/extensions/evil-surround
+	url = https://github.com/emacs-evil/evil-surround.git
+[submodule "site-lisp/extensions/vterm-toggle"]
+	path = site-lisp/extensions/vterm-toggle
+	url = https://github.com/jixiuf/vterm-toggle.git
+[submodule "site-lisp/extensions/diredfl"]
+	path = site-lisp/extensions/diredfl
+	url = https://github.com/purcell/diredfl.git
+[submodule "site-lisp/extensions/uuidgen-el"]
+	path = site-lisp/extensions/uuidgen-el
+	url = https://github.com/kanru/uuidgen-el.git
+[submodule "site-lisp/extensions/math-at-point"]
+	path = site-lisp/extensions/math-at-point
+	url = https://github.com/shankar2k/math-at-point.git
+[submodule "site-lisp/extensions/link-hint.el"]
+	path = site-lisp/extensions/link-hint.el
+	url = https://github.com/noctuid/link-hint.el.git
+[submodule "site-lisp/extensions/consult-dir"]
+	path = site-lisp/extensions/consult-dir
+	url = https://github.com/karthink/consult-dir.git
+[submodule "site-lisp/extensions/avy"]
+	path = site-lisp/extensions/avy
+	url = https://github.com/abo-abo/avy.git
+[submodule "site-lisp/extensions/lsp-tailwindcss"]
+	path = site-lisp/extensions/lsp-tailwindcss
+	url = https://github.com/merrickluo/lsp-tailwindcss.git
+[submodule "site-lisp/extensions/vc-msg"]
+	path = site-lisp/extensions/vc-msg
+	url = https://github.com/redguardtoo/vc-msg.git
+[submodule "site-lisp/extensions/epl"]
+	path = site-lisp/extensions/epl
+	url = https://github.com/cask/epl.git
+[submodule "site-lisp/extensions/evil-nerd-commenter"]
+	path = site-lisp/extensions/evil-nerd-commenter
+	url = https://github.com/redguardtoo/evil-nerd-commenter.git
+[submodule "site-lisp/extensions/window-numbering.el"]
+	path = site-lisp/extensions/window-numbering.el
+	url = https://github.com/nschum/window-numbering.el.git
+[submodule "site-lisp/extensions/evil-smartparens"]
+	path = site-lisp/extensions/evil-smartparens
+	url = https://github.com/expez/evil-smartparens.git
+[submodule "site-lisp/extensions/marginalia"]
+	path = site-lisp/extensions/marginalia
+	url = https://github.com/minad/marginalia.git
+[submodule "site-lisp/extensions/emacs-web-server"]
+	path = site-lisp/extensions/emacs-web-server
+	url = https://github.com/skeeto/emacs-web-server.git
+[submodule "site-lisp/extensions/f.el"]
+	path = site-lisp/extensions/f.el
+	url = https://github.com/rejeep/f.el.git
+[submodule "site-lisp/extensions/csv-mode"]
+	path = site-lisp/extensions/csv-mode
+	url = https://github.com/emacsmirror/csv-mode.git
+[submodule "site-lisp/extensions/xlsp"]
+	path = site-lisp/extensions/xlsp
+	url = https://github.com/commercial-emacs/xlsp.git
+[submodule "site-lisp/extensions/emacs-so-long"]
+	path = site-lisp/extensions/emacs-so-long
+	url = https://github.com/hlissner/emacs-so-long.git
+[submodule "site-lisp/extensions/with-editor"]
+	path = site-lisp/extensions/with-editor
+	url = https://github.com/magit/with-editor.git
+[submodule "site-lisp/extensions/org-fragtog"]
+	path = site-lisp/extensions/org-fragtog
+	url = https://github.com/io12/org-fragtog.git
+[submodule "site-lisp/extensions/highlight-indent-guides"]
+	path = site-lisp/extensions/highlight-indent-guides
+	url = https://github.com/DarthFennec/highlight-indent-guides.git
+[submodule "site-lisp/extensions/lf"]
+	path = site-lisp/extensions/lf
+	url = https://github.com/alhassy/lf.git
+[submodule "site-lisp/extensions/persp-projectile"]
+	path = site-lisp/extensions/persp-projectile
+	url = https://github.com/bbatsov/persp-projectile.git
+[submodule "site-lisp/extensions/hydra"]
+	path = site-lisp/extensions/hydra
+	url = https://github.com/abo-abo/hydra.git
+[submodule "site-lisp/extensions/iedit"]
+	path = site-lisp/extensions/iedit
+	url = https://github.com/victorhge/iedit.git
+[submodule "site-lisp/extensions/org-superstar-mode"]
+	path = site-lisp/extensions/org-superstar-mode
+	url = https://github.com/integral-dw/org-superstar-mode.git
+[submodule "site-lisp/extensions/org-download"]
+	path = site-lisp/extensions/org-download
+	url = https://github.com/abo-abo/org-download.git
+[submodule "site-lisp/extensions/unicode-fonts"]
+	path = site-lisp/extensions/unicode-fonts
+	url = https://github.com/rolandwalker/unicode-fonts.git
+[submodule "site-lisp/extensions/tempel"]
+	path = site-lisp/extensions/tempel
+	url = https://github.com/minad/tempel.git
+[submodule "site-lisp/extensions/pkg-info"]
+	path = site-lisp/extensions/pkg-info
+	url = https://github.com/emacsorphanage/pkg-info.git
+[submodule "site-lisp/extensions/xr"]
+	path = site-lisp/extensions/xr
+	url = https://github.com/mattiase/xr.git
+[submodule "site-lisp/extensions/multiple-cursors.el"]
+	path = site-lisp/extensions/multiple-cursors.el
+	url = https://github.com/magnars/multiple-cursors.el.git
+[submodule "site-lisp/extensions/git-gutter"]
+	path = site-lisp/extensions/git-gutter
+	url = https://github.com/emacsorphanage/git-gutter.git
+[submodule "site-lisp/extensions/separedit.el"]
+	path = site-lisp/extensions/separedit.el
+	url = https://github.com/twlz0ne/separedit.el.git
+[submodule "site-lisp/extensions/svg-tag-mode"]
+	path = site-lisp/extensions/svg-tag-mode
+	url = https://github.com/rougier/svg-tag-mode.git
+[submodule "site-lisp/extensions/emacs-libvterm"]
+	path = site-lisp/extensions/emacs-libvterm
+	url = https://github.com/akermu/emacs-libvterm.git
+[submodule "site-lisp/extensions/yasnippet-snippets"]
+	path = site-lisp/extensions/yasnippet-snippets
+	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
+[submodule "site-lisp/extensions/js2-refactor.el"]
+	path = site-lisp/extensions/js2-refactor.el
+	url = https://github.com/js-emacs/js2-refactor.el.git
+[submodule "site-lisp/extensions/visual-regexp-steroids.el"]
+	path = site-lisp/extensions/visual-regexp-steroids.el
+	url = https://github.com/benma/visual-regexp-steroids.el.git
+[submodule "site-lisp/extensions/emacs-async"]
+	path = site-lisp/extensions/emacs-async
+	url = https://github.com/jwiegley/emacs-async.git
+[submodule "site-lisp/extensions/lsp-bridge"]
+	path = site-lisp/extensions/lsp-bridge
+	url = https://github.com/manateelazycat/lsp-bridge.git
+[submodule "site-lisp/extensions/posframe"]
+	path = site-lisp/extensions/posframe
+	url = https://github.com/tumashu/posframe.git
+[submodule "site-lisp/extensions/markdown-mode"]
+	path = site-lisp/extensions/markdown-mode
+	url = https://github.com/jrblevin/markdown-mode.git
+[submodule "site-lisp/extensions/yasnippet"]
+	path = site-lisp/extensions/yasnippet
+	url = https://github.com/joaotavora/yasnippet.git

@@ -35,13 +35,11 @@
 
   ;; --- basic
   (require 'init-funcs)
+  (require 'init-performance)
 
-    (add-hook 'minibuffer-setup-hook #'max-gc-limit)
-(add-hook 'minibuffer-exit-hook #'reset-gc-limit)
-  (require 'init-hacking)
+;;   (require 'init-hacking)
 ;;   (require 'init-basic)
 
-;;   (require 'init-performance)
 ;;   (require 'init-ui)
 ;;   (require 'init-buffer)
 ;;   (require 'init-evil)
