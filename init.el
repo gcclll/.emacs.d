@@ -148,7 +148,7 @@ one, an error is signaled."
 
   (defun gcl/open-init-file()
     (interactive)
-    (find-file (expand-file-name "config.org" user-emacs-directory)))
+    (find-file (expand-file-name "README.org" user-emacs-directory)))
 
   (global-set-key (kbd "<f5>") 'reload-init-file)
   (global-set-key (kbd "<f1>") 'gcl/open-init-file)
@@ -623,7 +623,7 @@ one, an error is signaled."
    "s-d" 'consult-dir
    "s-F" 'format-all-buffer
    ;; "s-h" 'gcl/urls/body
-   ;; "s-`" 'vterm-toggle
+   "s-`" 'vterm-toggle
    "s-'" 'vertico-repeat
 
    ;; s-g
