@@ -570,7 +570,7 @@ one, an error is signaled."
    "C-r" 'crux-rename-buffer-and-file
    "C-j" 'emmet-expand-yas
    "C-s" 'consult-line
-   ;; "C-'" 'toggle-quotes-plus
+   "C-'" 'toggle-quotes-plus
    "C-`" 'vterm-toggle
    "C-w" 'evil-delete-backward-word
    "C-p" 'previous-line
@@ -588,8 +588,7 @@ one, an error is signaled."
    "C-c b" 'consult-bookmark
    "C-c h" 'consult-history
    "C-c o" 'consult-outline
-   ;; "C-c y" nil
-   ;; "C-c Y" 'fanyi-dwim2
+   "C-c y" 'fanyi-dwim2
    "C-c t" 'gcl/insert-current-time
    "C-c d" 'gcl/insert-standard-date
    ;; "C-c c" 'copy-buffer-file-name-as-kill
@@ -730,7 +729,26 @@ one, an error is signaled."
   :config
   (editorconfig-mode 1))
 
+(use-package toggle-quotes-plus
+  :straight (:host github :repo "jcs-elpa/toggle-quotes-plus")
+  :config
+  (setq toggle-quotes-plus-chars '("\""
+                                 "'"
+                                 "`")))
+
 (use-package crux)
+
+(use-package fanyi
+  :config
+  (custom-set-variables
+   '(fanyi-providers '(fanyi-haici-provider
+                       fanyi-youdao-thesaurus-provider
+                       fanyi-etymon-provider
+                       fanyi-longman-provider
+                       fanyi-libre-provider)))
+
+  ;; 还要自动选择翻译内容 buffer
+  (setq fanyi-auto-select nil))
 
 (setenv "NODE_PATH" "/usr/local/lib/node_modules")
 
