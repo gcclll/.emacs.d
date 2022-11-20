@@ -1,6 +1,6 @@
 ;;; 参考配置
-(setq debug-on-error t)
-(setq debug-on-quit t)
+;; (setq debug-on-error t)
+;; (setq debug-on-quit t)
 
 ;;; https://github.com/purcell/emacs.d
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -57,7 +57,7 @@
   (setq-default bidi-display-reordering nil)
 
   (require 'init-modes)
-  ;; (require 'init-window)
+  (require 'init-window)
   ;; 可以延后加载的
   (run-with-idle-timer
    1 nil

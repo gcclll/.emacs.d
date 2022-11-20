@@ -1,10 +1,11 @@
 ;; --- winum
-(require 'winum)
+(use-package winum
+  :init
+  (winum-mode))
 
 ;; --- window-numbering
 (use-package window-numbering
-  :config
-  (add-hook 'after-init-hook 'window-numbering-mode))
+  :hook (after-init . window-numbering-mode))
 
 ;; --- toggle-one-window
 (require 'toggle-one-window)

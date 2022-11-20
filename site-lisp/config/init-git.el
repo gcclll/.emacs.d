@@ -14,12 +14,6 @@
   (setq magit-ellipsis (get-byte 0 "."))
   ;; 加速diff
   (setq magit-revision-insert-related-refs nil)
-  (defun show-commit-and-preserve-window ()
-    (interactive)
-    ;; NOTE(philc): I'm not sure why magit-show-commit needs to be called interactively, but just invoking it
-    ;; directly gives an argument error.
-    (gcl/preserve-selected-window (lambda ()
-                                    (call-interactively 'magit-show-commit))))
   (setq magit-diff-refine-hunk t)
   (setq magit-diff-paint-whitespace nil)
   (setq magit-ediff-dwim-show-on-hunks t)
@@ -29,6 +23,13 @@
   ;; 加速diff
   (setq magit-revision-insert-related-refs nil)
   )
+
+(defun show-commit-and-preserve-window ()
+    (interactive)
+    ;; NOTE(philc): I'm not sure why magit-show-commit needs to be called interactively, but just invoking it
+    ;; directly gives an argument error.
+    (gcl/preserve-selected-window (lambda ()
+                                    (call-interactively 'magit-show-commit))))
 
 ;; --- blamer
 (use-package blamer

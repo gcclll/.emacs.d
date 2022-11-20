@@ -30,10 +30,10 @@
 (global-definer
   "TAB" 'projectile-persp-switch-project
   "SPC" 'execute-extended-command
-  "0" 'select-window-0
-  "1" 'select-window-1
-  "2" 'select-window-2
-  "3" 'select-window-3
+  "0" 'winum-select-window-0
+  "1" 'winum-select-window-1
+  "2" 'winum-select-window-2
+  "3" 'winum-select-window-3
   "," 'delete-window
   "." 'kill-this-buffer
   ";" 'kill-other-window-buffer

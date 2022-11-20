@@ -31,3 +31,9 @@
 [submodule "site-lisp/extensions/emacs-sql-indent"]
 	path = site-lisp/extensions/emacs-sql-indent
 	url = https://github.com/alex-hhh/emacs-sql-indent.git
+[submodule "site-lisp/extensions/toggle-one-window"]
+	path = site-lisp/extensions/toggle-one-window
+	url = https://github.com/manateelazycat/toggle-one-window.git
+[submodule "site-lisp/extensions/watch-other-window"]
+	path = site-lisp/extensions/watch-other-window
+	url = https://github.com/manateelazycat/watch-other-window.git
