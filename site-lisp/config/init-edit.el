@@ -41,4 +41,7 @@
                                  "'"
                                  "`"))
 
+;; --- duplicate-line
+(require 'duplicate-line)
+
 (provide 'init-edit)

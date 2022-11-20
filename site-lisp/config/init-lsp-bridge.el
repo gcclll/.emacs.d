@@ -3,8 +3,8 @@
 (require 'lsp-bridge-jdtls)
 (require 'acm-backend-tailwind)
 
-;; (global-lsp-bridge-mode)
-(add-hook 'emacs-lisp-mode-hook 'lsp-bridge-mode)
+(global-lsp-bridge-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'lsp-bridge-mode)
 ;; (add-hook 'sh-mode-hook 'lsp-bridge-mode)
 ;; (add-hook 'python-mode-hook 'lsp-bridge-mode)
 

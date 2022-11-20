@@ -1,6 +1,6 @@
 
 ;; --- posframe
-(require 'posframe)
+(use-package posframe)
 
 ;; --- font
 (require 'font-lock+)
