@@ -69,7 +69,7 @@ The test for presence of the car of ELT-CONS is done with `equal'."
                     ("\\.vapi$" . vala-mode)
                     ("\\.rs$" . rust-mode)
                     ("\\.pro$" . qmake-mode)
-		    ;; ----------------------------->
+		                ;; ----------------------------->
                     ("\\.html?\\'" . web-mode)
                     ("\\.vue" . web-mode)
                     ("\\.wxs$" . js-mode)
@@ -78,7 +78,8 @@ The test for presence of the car of ELT-CONS is done with `equal'."
                     ("\\.jsx$" . js-mode)
                     ("\\.tsx$" . typescript-mode)
                     ("\\.ts$" . typescript-mode)
-		    ;; <-----------------------------
+                    ("_gcl$" . sh-mode)
+		                ;; <-----------------------------
                     ("\\.lua$" . lua-mode)
                     ("\\.swift$" . swift-mode)
                     ("\\.l$" . flex-mode)
@@ -96,9 +97,9 @@ The test for presence of the car of ELT-CONS is done with `equal'."
                     ("\\.json$" . json-mode)
                     ("\\.clj$" . clojure-mode)
                     ("\\.svg$" . xml-mode)
-		    ("\\.http$" . restclient-mode)
-		    ("\\.rs$" . rust-mode)
-		    ("\\Dockerfile$" . dockerfile-mode)
+		                ("\\.http$" . restclient-mode)
+		                ("\\.rs$" . rust-mode)
+		                ("\\Dockerfile$" . dockerfile-mode)
                     ))
   (add-to-alist 'auto-mode-alist elt-cons))
 
