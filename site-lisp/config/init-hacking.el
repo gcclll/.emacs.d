@@ -11,9 +11,14 @@
   (interactive)
   (find-file (expand-file-name "init.el" gcl-emacs-config-dir)))
 
+(defun gcl/open-gcl-sh-file()
+  (interactive)
+  (find-file (expand-file-name "gcl" user-dot-bin-dir)))
+
 (global-set-key (kbd "<f5>") 'reload-init-file)
 (global-set-key (kbd "<f1>") 'gcl/open-init-file)
 (global-set-key (kbd "<f2>") 'restart-emacs)
+(global-set-key (kbd "<f3>") 'gcl/open-gcl-sh-file)
 
 ;; (require 'org-auto-tangle)
 ;; (add-hook 'org-mode 'org-auto-tangle-mode)

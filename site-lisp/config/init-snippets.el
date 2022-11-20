@@ -57,6 +57,7 @@
   :hook ((prog-mode org-mode) . yas-minor-mode)
   :config
   (setq yas-snippet-dirs '("~/.emacs.d/site-lisp/snippets"))
+  (yas-global-mode 1)
   (yas-reload-all))
 
 (use-package yasnippet-snippets

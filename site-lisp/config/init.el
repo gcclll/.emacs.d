@@ -50,6 +50,7 @@
   (require 'init-markdown)
 
   ;; --- development
+  (require 'init-snippets)
   (require 'init-lsp-bridge)
   (require 'init-web)
   (require 'init-prog)
@@ -63,7 +64,6 @@
    1 nil
    #'(lambda ()
        ;; TODO
-       (require 'init-snippets)
        (require 'init-edit)
        (require 'init-hydra)
        (require 'init-tools)

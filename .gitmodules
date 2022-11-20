@@ -37,3 +37,6 @@
 [submodule "site-lisp/extensions/watch-other-window"]
 	path = site-lisp/extensions/watch-other-window
 	url = https://github.com/manateelazycat/watch-other-window.git
+[submodule "site-lisp/extensions/sdcv"]
+	path = site-lisp/extensions/sdcv
+	url = https://github.com/manateelazycat/sdcv.git

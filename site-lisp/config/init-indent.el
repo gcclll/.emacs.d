@@ -5,7 +5,7 @@
   (setq-local c-basic-offset n)
   ;; sh
   (setq-local sh-basic-offset n)
-  (setq-local sh-indentation n)
+  ;; (setq-local sh-indentation n)
   (setq-local smie-indent-basic n)
 
   (setq-local coffee-tab-width n)
