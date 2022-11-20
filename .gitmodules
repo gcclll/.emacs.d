@@ -1,0 +1,33 @@
+[submodule "site-lisp/extensions/font-lock-plus"]
+	path = site-lisp/extensions/font-lock-plus
+	url = https://github.com/emacsmirror/font-lock-plus.git
+[submodule "site-lisp/extensions/awesome-tray"]
+	path = site-lisp/extensions/awesome-tray
+	url = https://github.com/manateelazycat/awesome-tray.git
+[submodule "site-lisp/extensions/auto-save"]
+	path = site-lisp/extensions/auto-save
+	url = https://github.com/manateelazycat/auto-save.git
+[submodule "site-lisp/extensions/cache-path-from-shell"]
+	path = site-lisp/extensions/cache-path-from-shell
+	url = https://github.com/manateelazycat/cache-path-from-shell.git
+[submodule "site-lisp/extensions/deno-bridge"]
+	path = site-lisp/extensions/deno-bridge
+	url = https://github.com/manateelazycat/deno-bridge.git
+[submodule "site-lisp/extensions/vertico"]
+	path = site-lisp/extensions/vertico
+	url = https://github.com/minad/vertico.git
+[submodule "site-lisp/extensions/lsp-bridge"]
+	path = site-lisp/extensions/lsp-bridge
+	url = https://github.com/manateelazycat/lsp-bridge.git
+[submodule "site-lisp/extensions/math-at-point"]
+	path = site-lisp/extensions/math-at-point
+	url = https://github.com/shankar2k/math-at-point.git
+[submodule "site-lisp/extensions/toggle-quotes-plus"]
+	path = site-lisp/extensions/toggle-quotes-plus
+	url = https://github.com/jcs-elpa/toggle-quotes-plus.git
+[submodule "site-lisp/extensions/duplicate-line"]
+	path = site-lisp/extensions/duplicate-line
+	url = https://github.com/manateelazycat/duplicate-line.git
+[submodule "site-lisp/extensions/emacs-sql-indent"]
+	path = site-lisp/extensions/emacs-sql-indent
+	url = https://github.com/alex-hhh/emacs-sql-indent.git

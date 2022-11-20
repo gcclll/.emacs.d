@@ -7,9 +7,9 @@
 (set-face-attribute 'default nil :height 140 :family "WenQuanYi Micro Hei Mono")
 
 ;; --- all-the-icons
-(require 'all-the-icons)
-(require 'all-the-icons-dired)
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+(use-package all-the-icons)
+(use-package all-the-icons-dired
+  :hook ((dired-mode . all-the-icons-dired-mode)))
 
 ;; -- header line
 (set-face-attribute 'header-line nil
@@ -47,17 +47,19 @@
 
 
 ;; -- highlight-parentheses
-(require 'highlight-parentheses)
-(add-hook 'prog-mode-hook 'highlight-parentheses-mode)
-;; (add-hook 'minibuffer-setup-hook #'highlight-parentheses-minibuffer-setup)
+(use-package highlight-parentheses
+  :hook (prog-mode . highlight-parentheses-mode)
+  :config
+  (add-hook 'minibuffer-setup-hook #'highlight-parentheses-minibuffer-setup)
+  )
 
 ;; -- 丰富括号
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(use-package rainbow-delimiters
+  :hook (prog-mode-hook . rainbow-delimiters-mode))
 
 ;; --- rainbow
-(require 'rainbow-mode)
-(add-hook 'prog-mode-hook 'rainbow-mode)
-(add-hook 'org-mode-hook 'rainbow-mode)
+(use-package rainbow-mode
+  :defer t
+  :hook ((prog-mode org-mode) . rainbow-mode))
 
 (provide 'init-ui)

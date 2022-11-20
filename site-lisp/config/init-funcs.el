@@ -126,4 +126,11 @@ one, an error is signaled."
     new-window))
 (advice-add 'split-window :around #'split-window--select-window)
 
+(defun gcl/cleanup-gc ()
+  "Clean up gc."
+  (setq gc-cons-threshold  (* 1024 200)) ; 200MB
+  (setq gc-cons-percentage 0.5) ; 0.5s
+  (garbage-collect))
+
+
 (provide 'init-funcs)

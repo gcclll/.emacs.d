@@ -1,13 +1,18 @@
 
 ;; --- marginalia
-(require 'marginalia)
-(setq marginalia-max-relative-age 0)
-(setq marginalia-align 'right)
-(marginalia-mode)
+(use-package marginalia
+  :custom
+  (marginalia-max-relative-age 0)
+  (marginalia-align 'right)
+  :init
+  (marginalia-mode))
 
-(require 'all-the-icons-completion)
-(add-hook 'marginalia-mode-hook 'all-the-icons-completion-marginalia-setup)
-(all-the-icons-completion-mode)
+;; --- all-the-icons-completion
+(use-package all-the-icons-completion
+  :after (marginalia all-the-icons)
+  :hook (marginalia-mode . all-the-icons-completion-marginalia-setup)
+  :init
+  (all-the-icons-completion-mode))
 
 ;; --- vertico
 (require 'vertico)
@@ -19,33 +24,40 @@
 (vertico-mode)
 
 ;; --- embark
-(require 'embark)
-(general-define-key
- "C-." 'embark-act
- "C-;" 'embark-dwim
- "C-h B" 'embark-bindings)
+(use-package embark
+  :ensure t
 
-(setq prefix-help-command 'embark-prefix-help-command)
-(add-to-list 'display-buffer-alist
-             '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-               nil
-               (window-parameters (mode-line-format . none))))
+  :bind
+  (("C-." . embark-act)         ;; pick some comfortable binding
+   ("C-;" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
-(require 'embark-consult)
-(add-hook 'embark-collect-mode-hook 'consult-preview-at-point-mode)
+  :init
+
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :ensure t ; only need to install it, embark loads it after consult if found
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
 
 ;; --- orderless
-(require 'orderless)
-(setq completion-styles '(orderless-fast)
-      completion-category-defaults nil
-      completion-category-overrides '((file (styles . (partial-completion)))))
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(defun orderless-fast-dispatch (word index total)
-  (and (= index 0) (= total 1) (length< word 4)
-       `(orderless-regexp . ,(concat "^" (regexp-quote word)))))
 
-(orderless-define-completion-style orderless-fast
-  (orderless-style-dispatchers '(orderless-fast-dispatch))
-  (orderless-matching-styles '(orderless-literal orderless-regexp)))
 
 (provide 'init-buffer)

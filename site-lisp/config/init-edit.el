@@ -1,39 +1,46 @@
 
 ;; --- expand-region
-(require 'expand-region)
+(use-package expand-region)
 
 ;; --- smartparens
-(require 'smartparens)
-(general-def smartparens-mode-map
-  "C-M-f" 'sp-forward-sexp
-  "C-M-b" 'sp-backward-sexp
-  "C-M-k" 'sp-kill-sexp
-  "C-M-w" 'sp-copy-sexp
-  )
-
-(add-hook 'prog-mode-hook 'smartparens-mode)
-;; (add-hook 'smartparens-mode-hook #'smartparens-strict-mode)
-
-(require 'smartparens-config)
+(use-package smartparens
+  :diminish smartparens-mode
+  :bind
+  (:map smartparens-mode-map
+        ("C-M-f" . sp-forward-sexp)
+        ("C-M-b" . sp-backward-sexp)
+        ("C-M-k" . sp-kill-sexp)
+        ("C-M-w" . sp-copy-sexp)
+	:map smartparens-strict-mode-map
+        ("C-M-<backspace>" . sp-backward-unwrap-sexp)
+        ("C-M-d" . sp-unwrap-sexp))
+  :hook
+  ((prog-mode . smartparens-mode)
+   ;; (smartparens-mode . smartparens-strict-mode)
+   )
+  :config (require 'smartparens-config))
 
 ;; --- autorevert
-(require 'autorevert)
-(add-hook 'after-init-hook 'global-auto-revert-mode)
+(use-package autorevert
+  :diminish
+  :hook (after-init . global-auto-revert-mode))
 
 ;; --- hungry-delete
-(require 'hungry-delete)
-(add-hook 'after-init-hook 'global-hungry-delete-mode)
-(setq-default hungry-delete-chars-to-skip " \t\f\v")
+(use-package hungry-delete
+  :diminish
+  :hook (after-init . global-hungry-delete-mode)
+  :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
 
 ;; --- symbol-overlay
-(require 'symbol-overlay)
+(use-package symbol-overlay)
 
 ;; --- move-text
-(require 'move-text)
+(use-package move-text)
 
 ;; --- editorconfig
-(require 'editorconfig)
-(editorconfig-mode 1)
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
 
 ;; --- toggle-quotes-plus
 (require 'toggle-quotes-plus)

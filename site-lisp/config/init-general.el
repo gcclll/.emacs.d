@@ -1,4 +1,4 @@
-(require 'general)
+(use-package general)
 
 ;; --- fn
 (general-define-key

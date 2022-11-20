@@ -1,57 +1,56 @@
-
+(use-package nvm
+  :defer t)
 
 ;; --- crux
-(require 'crux)
+(use-package crux)
 
 ;; --- fanyi
-(require 'fanyi)
-(custom-set-variables
- '(fanyi-providers '(
-		     ;; 海词
-		     fanyi-haici-provider
-		     ;; 有道同义词词典
-                     fanyi-youdao-thesaurus-provider
-		     ;; Etymonline
-                     fanyi-etymon-provider
-                     fanyi-longman-provider
-		     ;; LibreTranslate
-                     ;; fanyi-libre-provider
-		     )))
-;; 不要自动选择翻译内容 buffer
-(setq fanyi-auto-select nil)
+  (use-package fanyi
+    :config
+    (custom-set-variables
+     '(fanyi-providers '(fanyi-haici-provider
+			 fanyi-youdao-thesaurus-provider
+			 fanyi-etymon-provider
+			 fanyi-longman-provider
+			 ;; fanyi-libre-provider
+			 )))
+
+    ;; 还要自动选择翻译内容 buffer
+    (setq fanyi-auto-select nil))
 
 ;; --- youdao
-(require 'youdao-dictionary)
+(use-package youdao-dictionary)
 
 ;; --- link-hint
-(require 'link-hint)
-(general-define-key
- "C-c l o" 'link-hint-open-link
- "C-c l c" 'link-hint-copy-link)
+(use-package link-hint
+  :ensure t
+  :bind
+  ("C-c l o" . link-hint-open-link)
+  ("C-c l c" . link-hint-copy-link))
 
 ;; --- math-at-point
 ;; Test: Result 6.23+(3.789/(5-4)) + 6.4*(2 - (5+3) *736.83 ) /2000
 (require 'math-at-point)
 
 ;; --- uuidgen
-(require 'uuidgen)
+(use-package uuidgen)
 
 ;; --- dash-at-point
-(require 'dash-at-point)
+(use-package dash-at-point)
 
 ;; --- app-launcher
-(require 'app-launcher)
+;; (require 'app-launcher)
 
 ;; --- devdocs
-(require 'devdocs)
+(use-package devdocs)
 
 ;; --- httprepl
-(require 'httprepl)
+(use-package httprepl)
 
 ;; --- dockfile
-(require 'dockerfile-mode)
+(use-package dockerfile-mode)
 
 ;; --- restclient
-(require 'restclient)
+(use-package restclient)
 
 (provide 'init-tools)

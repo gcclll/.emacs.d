@@ -1,5 +1,4 @@
-
-(require 'hydra)
+(use-package hydra)
 
 ;; --- org-roam
 (defhydra hydra-roam (:exit t :columns 3)

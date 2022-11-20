@@ -17,10 +17,11 @@
  package-enable-at-startup nil
  package--init-file-ensured t)
 
-;; (require 'exec-path-from-shell)
-;; (setq exec-path-from-shell-variables '("PATH" "MANPATH")
-      ;; exec-path-from-shell-arguments '("-l"))
-;; (exec-path-from-shell-initialize)
+(use-package exec-path-from-shell
+  :config
+  (setq exec-path-from-shell-variables '("PATH" "MANPATH")
+	exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-initialize))
 
 ;; 定义一些启动目录，方便下次迁移修改
 (defvar gcl-emacs-root-dir (file-truename "~/.emacs.d/site-lisp"))
@@ -42,39 +43,41 @@
   (require 'init-hacking)
   (require 'init-basic)
 
-  ;; (require 'init-ui)
-  ;; (require 'init-evil)
-  ;; (require 'init-general)
-  ;; (require 'init-buffer)
+  (require 'init-ui)
+  (require 'init-evil)
+  (require 'init-general)
+  (require 'init-buffer)
+  (require 'init-markdown)
 
   ;; --- development
-  ;; (require 'init-lsp-bridge)
-  ;; (require 'init-web)
-  ;; (require 'init-prog)
-  ;; (require 'init-golang)
+  (require 'init-lsp-bridge)
+  (require 'init-web)
+  (require 'init-prog)
 
   (setq-default bidi-display-reordering nil)
 
-  ;; (require 'init-modes)
+  (require 'init-modes)
   ;; (require 'init-window)
   ;; 可以延后加载的
   (run-with-idle-timer
    1 nil
    #'(lambda ()
        ;; TODO
-       ;; (require 'init-snippets)
-       ;; (require 'init-edit)
-       ;; (require 'init-hydra)
-       ;; (require 'init-tools)
-       ;; (require 'init-dired)
-       ;; (require 'init-markdown)
-       ;; (require 'init-indent)
-       ;; (require 'init-git)
-       ;; (require 'init-persp)
-       ;; (require 'init-treemacs)
-       ;; (require 'init-org)
-       ;; (require 'init-rime)
-       ;; (require 'init-vterm)
+       (require 'init-snippets)
+       (require 'init-edit)
+       (require 'init-hydra)
+       (require 'init-tools)
+       (require 'init-dired)
+       (require 'init-markdown)
+       (require 'init-indent)
+       (require 'init-git)
+       (require 'init-persp)
+       (require 'init-treemacs)
+       (require 'init-org)
+       (require 'init-rime)
+       (require 'init-vterm)
+       (require 'init-search)
+       (require 'init-consult)
        ))
   )
 
@@ -96,6 +99,7 @@
       (server-start))
   (error (message "Could not start server")))
 
+(run-with-idle-timer 4 nil #'gcl/cleanup-gc)
 
 (message "-> done, enjoy it !!!")
 

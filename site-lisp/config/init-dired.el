@@ -19,7 +19,7 @@
         ("\\.md\\'" "open")))
 
 ;; --- diredfl
-(require 'diredfl)
-(add-hook 'dired-mode-hook 'diredfl-mode)
+(use-package diredfl
+  :hook ((dired-mode . diredfl-mode)))
 
 (provide 'init-dired)
