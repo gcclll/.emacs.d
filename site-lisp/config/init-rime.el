@@ -58,7 +58,7 @@
   (define-key rime-mode-map (kbd "C-`") 'rime-send-keybinding)
 
   (setq rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-plus@29/29.0.50/include")
-  ;; (setq-default rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
+  (setq-default rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
   )
 
 (provide 'init-rime)
