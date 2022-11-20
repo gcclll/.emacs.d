@@ -4,23 +4,6 @@
 ;; --- crux
 (use-package crux)
 
-;; --- fanyi
-  (use-package fanyi
-    :config
-    (custom-set-variables
-     '(fanyi-providers '(fanyi-haici-provider
-			 fanyi-youdao-thesaurus-provider
-			 fanyi-etymon-provider
-			 fanyi-longman-provider
-			 ;; fanyi-libre-provider
-			 )))
-
-    ;; 还要自动选择翻译内容 buffer
-    (setq fanyi-auto-select nil))
-
-;; --- youdao
-(use-package youdao-dictionary)
-
 ;; --- link-hint
 (use-package link-hint
   :ensure t

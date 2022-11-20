@@ -194,6 +194,8 @@
  "C-c y r" 'yas-reload-all
  "C-c y v" 'yas-visit-snippet-file
  "C-c y V" 'consult-yasnippet-visit-snippet-file
+ "C-c y s" 'sdcv-search-pointer+
+ "C-c y i" 'sdcv-search-input+
  )
 
 ;; --- Command 组合键(s)

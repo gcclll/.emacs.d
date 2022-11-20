@@ -51,6 +51,7 @@
 
   ;; --- development
   (require 'init-snippets)
+  (require 'init-dict)
   (require 'init-lsp-bridge)
   (require 'init-web)
   (require 'init-prog)
