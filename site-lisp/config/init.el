@@ -41,16 +41,32 @@
   (require 'init-basic)
 
   (require 'init-ui)
-  (require 'init-buffer)
   (require 'init-evil)
+  (require 'init-general)
+  (require 'init-buffer)
+
+  ;; --- development
+  (require 'init-lsp-bridge)
+  (require 'init-web)
+  (require 'init-prog)
+  (require 'init-golang)
 
   (setq-default bidi-display-reordering nil)
 
+  (require 'init-modes)
   ;; 可以延后加载的
   (run-with-idle-timer
    1 nil
    #'(lambda ()
        ;; TODO
+       (require 'init-snippets)
+       (require 'init-edit)
+       (require 'init-hydra)
+       (require 'init-tools)
+       (require 'init-dired)
+       (require 'init-markdown)
+       (require 'init-indent)
+       (require 'init-git)
        ))
   )
 

@@ -1,34 +1,40 @@
 
+;; --- marginalia
 (require 'marginalia)
 (setq marginalia-max-relative-age 0)
 (setq marginalia-align 'right)
 (marginalia-mode)
 
 (require 'all-the-icons-completion)
-(add-hook 'marginalia-mode-hook #'all-the-icons-completion-marginalia-setup)
+(add-hook 'marginalia-mode-hook 'all-the-icons-completion-marginalia-setup)
 (all-the-icons-completion-mode)
 
+;; --- vertico
 (require 'vertico)
-(add-hook 'minibuffer-setup #'vertico-repeat-save)
+(require 'vertico-repeat)
+(add-hook 'minibuffer-setup-hook 'vertico-repeat-save)
 (setq vertico-count 13
       vertico-resize t
-      vertico-cycle nil
-      )
+      vertico-cycle nil)
 (vertico-mode)
 
+;; --- embark
 (require 'embark)
-(global-set-key (kbd "C-.") 'embark-act)
-(global-set-key (kbd "C-;") 'embark-dwim)
-(global-set-key (kbd "C-h B") 'embark-bindings)
-(setq prefix-help-command #'embark-prefix-help-command)
+(general-define-key
+ "C-." 'embark-act
+ "C-;" 'embark-dwim
+ "C-h B" 'embark-bindings)
+
+(setq prefix-help-command 'embark-prefix-help-command)
 (add-to-list 'display-buffer-alist
              '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
                nil
                (window-parameters (mode-line-format . none))))
 
 (require 'embark-consult)
-(add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
+(add-hook 'embark-collect-mode-hook 'consult-preview-at-point-mode)
 
+;; --- orderless
 (require 'orderless)
 (setq completion-styles '(orderless-fast)
       completion-category-defaults nil

@@ -116,4 +116,14 @@ one, an error is signaled."
     (select-frame-set-input-focus original-frame t)
     result))
 
+
+(defun split-window--select-window (orig-func &rest args)
+  "Switch to the other window after a `split-window'"
+  (let ((cur-window (selected-window))
+        (new-window (apply orig-func args)))
+    (when (equal (window-buffer cur-window) (window-buffer new-window))
+      (select-window new-window))
+    new-window))
+(advice-add 'split-window :around #'split-window--select-window)
+
 (provide 'init-funcs)

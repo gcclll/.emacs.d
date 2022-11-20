@@ -484,3 +484,45 @@
 [submodule "site-lisp/extensions/all-the-icons-completion"]
 	path = site-lisp/extensions/all-the-icons-completion
 	url = https://github.com/iyefrat/all-the-icons-completion.git
+[submodule "site-lisp/extensions/s.el"]
+	path = site-lisp/extensions/s.el
+	url = https://github.com/magnars/s.el.git
+[submodule "site-lisp/extensions/youdao-dictionary.el"]
+	path = site-lisp/extensions/youdao-dictionary.el
+	url = https://github.com/xuchunyang/youdao-dictionary.el.git
+[submodule "site-lisp/extensions/chinese-word-at-point.el"]
+	path = site-lisp/extensions/chinese-word-at-point.el
+	url = https://github.com/xuchunyang/chinese-word-at-point.el.git
+[submodule "site-lisp/extensions/pos-tip"]
+	path = site-lisp/extensions/pos-tip
+	url = https://github.com/syohex/pos-tip.git
+[submodule "site-lisp/extensions/names"]
+	path = site-lisp/extensions/names
+	url = https://github.com/Malabarba/names.git
+[submodule "site-lisp/extensions/app-launcher"]
+	path = site-lisp/extensions/app-launcher
+	url = https://github.com/SebastienWae/app-launcher.git
+[submodule "site-lisp/extensions/devdocs.el"]
+	path = site-lisp/extensions/devdocs.el
+	url = https://github.com/astoff/devdocs.el.git
+[submodule "site-lisp/extensions/httprepl.el"]
+	path = site-lisp/extensions/httprepl.el
+	url = https://github.com/gregsexton/httprepl.el.git
+[submodule "site-lisp/extensions/yaml-imenu.el"]
+	path = site-lisp/extensions/yaml-imenu.el
+	url = https://github.com/knu/yaml-imenu.el.git
+[submodule "site-lisp/extensions/python-mode"]
+	path = site-lisp/extensions/python-mode
+	url = https://github.com/emacsmirror/python-mode.git
+[submodule "site-lisp/extensions/php-mode"]
+	path = site-lisp/extensions/php-mode
+	url = https://github.com/emacs-php/php-mode.git
+[submodule "site-lisp/extensions/rust-mode"]
+	path = site-lisp/extensions/rust-mode
+	url = https://github.com/rust-lang/rust-mode.git
+[submodule "site-lisp/extensions/cargo.el"]
+	path = site-lisp/extensions/cargo.el
+	url = https://github.com/kwrooijen/cargo.el.git
+[submodule "site-lisp/extensions/rainbow-mode"]
+	path = site-lisp/extensions/rainbow-mode
+	url = https://github.com/ruediger/rainbow-mode.git

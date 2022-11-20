@@ -1,6 +1,12 @@
+
+;; --- posframe
+(require 'posframe)
+
+;; --- font
+(require 'font-lock+)
 (set-face-attribute 'default nil :height 140 :family "WenQuanYi Micro Hei Mono")
 
-(require 'font-lock+)
+;; --- all-the-icons
 (require 'all-the-icons)
 (require 'all-the-icons-dired)
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
@@ -48,5 +54,10 @@
 ;; -- 丰富括号
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+;; --- rainbow
+(require 'rainbow-mode)
+(add-hook 'prog-mode-hook 'rainbow-mode)
+(add-hook 'org-mode-hook 'rainbow-mode)
 
 (provide 'init-ui)

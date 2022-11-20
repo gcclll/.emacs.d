@@ -77,4 +77,11 @@
   ;; If you want to create a file, visit that file with C-x C-f,
   ;; then enter the text in that file's own buffer.")
 
+;; --- bookmark
+;; 有变化时自动保存
+(setq bookmark-save-flag 1)
+
+;; --- node evn varirable
+(setenv "NODE_PATH" "/usr/local/lib/node_modules")
+
 (provide 'init-basic)
