@@ -30,7 +30,7 @@
 ;; --- blamer
 (require 'blamer)
 (setq blamer-idle-time 0.3
-      blamer-min-offset 70
+      blamer-min-offset 30
       blamer-author-formatter " ✎ %s "
       blamer-datetime-formatter "[%s]"
       blamer-commit-formatter " ● %s"
@@ -38,10 +38,32 @@
 
 (custom-set-faces
  '(blamer-face ((t :foreground "#7a88cf"
-                      :background nil
-                      :height 120
-                      :italic t))))
+                   :background nil
+                   :height 120
+                   :italic t))))
 
 ;; (global-blamer-mode 1)
+
+;; --- gutter
+(require 'git-gutter)
+(add-hook 'prog-mode-hook 'git-gutter-mode)
+(setq git-gutter:update-interval 0.5)
+
+;; --- timemachine
+;; https://github.com/emacsmirror/git-timemachine
+(require 'git-timemachine)
+(evil-set-initial-state 'git-timemachine-mode 'emacs)
+
+;; --- modes
+(require 'git-modes)
+(add-to-list 'auto-mode-alist
+	           (cons "/.dockerignore\\'" 'gitignore-mode))
+(add-to-list 'auto-mode-alist
+	           (cons "/.gitignore\\'" 'gitignore-mode))
+(add-to-list 'auto-mode-alist
+             (cons "/.gitconfig\\'" 'gitconfig-mode))
+
+;; --- smerge
+(require 'smerge-mode)
 
 (provide 'init-git)

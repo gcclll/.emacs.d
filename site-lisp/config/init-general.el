@@ -173,7 +173,6 @@
  "C-c m" 'vr/mc-mark
  "C-c u" 'uuidgen
  "C-c f" 'devdocs-lookup
- "C-c t" 'treemacs
 
  ;; C-c i, insert
  "C-c i u" 'org-mac-link-get-link
@@ -184,6 +183,10 @@
 
  ;; C-c g, git
  ;; ...
+
+ ;; C-c t, toggle
+ "C-c t t" 'treemacs
+ "C-c t m" 'git-timemachine-toggle
 
  ;; yas & fanyi
  "C-c y y" 'fanyi-dwim2

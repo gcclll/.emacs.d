@@ -526,3 +526,21 @@
 [submodule "site-lisp/extensions/rainbow-mode"]
 	path = site-lisp/extensions/rainbow-mode
 	url = https://github.com/ruediger/rainbow-mode.git
+[submodule "site-lisp/extensions/git-timemachine"]
+	path = site-lisp/extensions/git-timemachine
+	url = https://github.com/emacsmirror/git-timemachine.git
+[submodule "site-lisp/extensions/git-modes"]
+	path = site-lisp/extensions/git-modes
+	url = https://github.com/magit/git-modes.git
+[submodule "site-lisp/extensions/treemacs"]
+	path = site-lisp/extensions/treemacs
+	url = https://github.com/Alexander-Miller/treemacs.git
+[submodule "site-lisp/extensions/emacs-winum"]
+	path = site-lisp/extensions/emacs-winum
+	url = https://github.com/deb0ch/emacs-winum.git
+[submodule "site-lisp/extensions/ht.el"]
+	path = site-lisp/extensions/ht.el
+	url = https://github.com/Wilfred/ht.el.git
+[submodule "site-lisp/extensions/pfuture"]
+	path = site-lisp/extensions/pfuture
+	url = https://github.com/Alexander-Miller/pfuture.git

@@ -6,6 +6,8 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (and (file-readable-p custom-file) (load custom-file))
 
+(require 'init-package)
+
 (setq
  ;; 不要缩放frame.
  frame-inhibit-implied-resize t
@@ -54,6 +56,7 @@
   (setq-default bidi-display-reordering nil)
 
   (require 'init-modes)
+  (require 'init-window)
   ;; 可以延后加载的
   (run-with-idle-timer
    1 nil
@@ -67,6 +70,8 @@
        (require 'init-markdown)
        (require 'init-indent)
        (require 'init-git)
+       (require 'init-persp)
+       (require 'init-treemacs)
        ))
   )
 
