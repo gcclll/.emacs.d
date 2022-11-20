@@ -37,7 +37,7 @@
   "," 'delete-window
   "." 'kill-this-buffer
   ";" 'kill-other-window-buffer
-  "x" 'switch-to-scratch-buffer
+  "x" 'scratch-buffer
   "`" 'multi-vterm-project
   )
 

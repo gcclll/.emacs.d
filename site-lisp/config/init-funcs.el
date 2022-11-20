@@ -132,5 +132,8 @@ one, an error is signaled."
   (setq gc-cons-percentage 0.5) ; 0.5s
   (garbage-collect))
 
+(defun switch-to-scratch-buffer ()
+  (interactive)
+  (switch-to-buffer (startup--get-buffer-create-scratch)))
 
 (provide 'init-funcs)
