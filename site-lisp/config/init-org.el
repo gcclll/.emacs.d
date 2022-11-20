@@ -360,22 +360,41 @@
   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   (setq org-roam-capture-templates
-        '(("m" "main" plain
-           "%?"
+        '(("m" "main" plain "%?"
            :if-new (file+head "main/${slug}.org"
                               "#+title: ${title}\n")
            :immediate-finish t
            :unnarrowed t)
-          ("r" "reference" plain "%?"
+          ("x" "reference" plain "%?"
            :if-new
            (file+head "reference/${title}.org" "#+title: ${title}\n")
            :immediate-finish t
            :unnarrowed t)
-          ("a" "article" plain "%?"
+          ("v" "vue" plain "%?"
            :if-new
-           (file+head "articles/${title}.org" "#+title: ${title}\n#+filetags: :article:\n")
+           (file+head "vue/${title}.org"
+                      "#+title: ${title}\n#+created: %U\n#+filetags: :vue:\n#+startup: overview hideblocks\n")
            :immediate-finish t
-           :unnarrowed t)))
+           :unnarrowed t)
+          ("r" "react" plain "%?"
+           :if-new
+           (file+head "react/${title}.org"
+                      "#+title: ${title}\n#+created: %U\n#+filetags: :react:\n#+startup: overview hideblocks")
+           :immediate-finish t
+           :unnarrowed t)
+          ("w" "web" plain "%?"
+           :if-new
+           (file+head "web/${title}.org"
+                      "#+title: ${title}\n#+created: %U\n#+filetags: :web:\n#+startup: overview hideblocks")
+           :immediate-finish t
+           :unnarrowed t)
+          ("e" "emacs" plain "%?"
+           :if-new
+           (file+head "emacs/${title}.org"
+                      "#+title: ${title}\n#+created: %U\n#+filetags: :emacs:\n#+startup: overview hideblocks")
+           :immediate-finish t
+           :unnarrowed t)
+          ))
 
   ;; If using org-roam-protocol
   (require 'org-roam-protocol)
@@ -394,8 +413,8 @@
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
         org-roam-ui-open-on-start nil
-	org-roam-ui-browser-function #'browse-url
-	))
+	      org-roam-ui-browser-function #'browse-url
+	      ))
 
 ;; --- org-roam bindings
 (general-define-key

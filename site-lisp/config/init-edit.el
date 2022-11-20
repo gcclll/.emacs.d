@@ -28,8 +28,10 @@
 ;; --- hungry-delete
 (use-package hungry-delete
   :diminish
-  :hook (after-init . global-hungry-delete-mode)
-  :config (setq-default hungry-delete-chars-to-skip " \t\f\v"))
+  :config
+  (setq-default hungry-delete-chars-to-skip " \t\f\v"))
+(global-hungry-delete-mode)
+
 
 ;; --- symbol-overlay
 (use-package symbol-overlay)
