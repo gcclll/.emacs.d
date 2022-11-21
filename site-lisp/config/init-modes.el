@@ -79,6 +79,7 @@ The test for presence of the car of ELT-CONS is done with `equal'."
                     ("\\.tsx$" . typescript-mode)
                     ("\\.ts$" . typescript-mode)
                     ("_gcl$" . sh-mode)
+                    ("\\.env\\.*" . sh-mode)
 		                ;; <-----------------------------
                     ("\\.lua$" . lua-mode)
                     ("\\.swift$" . swift-mode)
