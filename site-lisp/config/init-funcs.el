@@ -1,3 +1,11 @@
+
+;; --- system
+(defmacro with-system (type &rest body)
+  "Evaluate BODY if `system-type' equals TYPE."
+  (declare (indent defun))
+  `(when (eq system-type ',type)
+     ,@body))
+
 ;; time date
 (defun gcl/insert-standard-date ()
   "Inserts standard date time string."
