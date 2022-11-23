@@ -42,4 +42,7 @@
 
 (use-package visual-regexp-steroids)
 
+;; --- blink-search
+;; (require 'blink-search)
+
 (provide 'init-search)

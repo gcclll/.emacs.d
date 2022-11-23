@@ -15,7 +15,8 @@
 (global-leader
   ;; "c" 'blamer-show-posframe-commit-info
   "," 'hydra-smerge/body
-  "l" 'hydra-lsp/body
+  ;; "l" 'hydra-lsp-mode/body
+  "l" 'hydra-lsp-bridge/body
   "r" 'hydra-roam/body
   "t" 'treemacs
   )

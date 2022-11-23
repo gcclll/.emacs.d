@@ -18,7 +18,7 @@
   (setq evil-move-cursor-back nil)
   ;; 让回车，TAB，空格键保持原来的功能
   (with-eval-after-load 'evil-maps
-    (define-key evil-motion-state-map (kbd "RET") nil)
+    ;; (define-key evil-motion-state-map (kbd "RET") nil)
     (define-key evil-motion-state-map (kbd "TAB") nil)
     (define-key evil-motion-state-map (kbd "SPC") nil))
   (progn

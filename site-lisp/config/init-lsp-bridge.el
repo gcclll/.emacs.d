@@ -34,6 +34,7 @@
     (require 'dumb-jump)
     (dumb-jump-back))))
 
+;; --- deno
 (setq lsp-bridge-get-single-lang-server-by-project
       (lambda (project-path filepath)
         ;; If typescript first line include deno.land, then use Deno LSP server.

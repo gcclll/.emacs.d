@@ -24,7 +24,7 @@
   )
 
 ;; --- lsp
-(defhydra hydra-lsp (:exit t :hint nil)
+(defhydra hydra-lsp-mode (:exit t :hint nil)
   "
  Buffer^^               Server^^                   Symbol
 -------------------------------------------------------------------------------------
@@ -48,6 +48,36 @@
   ("M-r" lsp-restart-workspace)
   ("S" lsp-shutdown-workspace))
 
+;; --- lsp-bridge
+(defhydra hydra-lsp-bridge (:exit t :hint nil)
+  "
+ Find^^                            Diagnostic^^         Other
+-------------------------------------------------------------------------------------
+ [_d_] definition                  [_n_] next          [_._] restart
+ [_D_] definition window           [_p_] previous      [_,_] rename
+ [_b_] definition back             [_l_] list          [_h_] sdcv helper
+ [_i_] implementation              [_c_] copy
+ [_I_] implementation window       [_x_] ignore
+ [_r_] references
+"
+  ("d" lsp-bridge-find-def)
+  ("D" lsp-bridge-find-def-other-window)
+  ("b" lsp-bridge-find-def-return)
+  ("i" lsp-bridge-find-impl)
+  ("I" lsp-bridge-find-impl-other-window)
+  ("r" lsp-bridge-find-references)
+
+  ("n" lsp-bridge-diagnostic-jump-next)
+  ("p" lsp-bridge-diagnostic-jump-prev)
+  ("l" lsp-bridge-diagnostic-list)
+  ("c" lsp-bridge-diagnostic-copy)
+  ("x" lsp-bridge-diagnostic-ignore)
+
+  ("." lsp-bridge-restart-process)
+  ("," lsp-bridge-rename)
+  ("h" lsp-bridge-toggle-sdcv-helper)
+
+  ("q" nil "quit"))
 
 ;; --- smerge
 (defhydra hydra-smerge (:color red :hint nil)

@@ -40,3 +40,6 @@
 [submodule "site-lisp/extensions/sdcv"]
 	path = site-lisp/extensions/sdcv
 	url = https://github.com/manateelazycat/sdcv.git
+[submodule "site-lisp/extensions/blink-search"]
+	path = site-lisp/extensions/blink-search
+	url = https://github.com/manateelazycat/blink-search.git
