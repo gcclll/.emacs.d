@@ -18,6 +18,7 @@
   ;; "l" 'hydra-lsp-mode/body
   "l" 'hydra-lsp-bridge/body
   "r" 'hydra-roam/body
+  "s" 'hydra-search/body
   "t" 'treemacs
   )
 

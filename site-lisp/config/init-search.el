@@ -42,6 +42,9 @@
 
 (use-package visual-regexp-steroids)
 
+;; --- color-rg
+(require 'color-rg)
+
 ;; --- blink-search
 ;; (require 'blink-search)
 

@@ -104,4 +104,19 @@ _k_: down      _a_: combine       _q_: quit
   ("u" undo)
   ("q" nil :exit t))
 
+;; --- search
+(defhydra hydra-search (:exit t :hint nil)
+  "
+ color-rg^^                            Diagnostic^^         Other
+-------------------------------------------------------------------------------------
+ [_i_] Input Project
+ [_s_] Symbol Project
+ [_t_] File Extension
+"
+  ("i" color-rg-search-input-in-project)
+  ("s" color-rg-search-symbol-in-project)
+  ("t" color-rg-search-project-with-type)
+
+  ("q" nil "quit"))
+
 (provide 'init-hydra)
