@@ -92,5 +92,6 @@
 (evil-set-initial-state 'magit-mode 'emacs)
 (evil-set-initial-state 'dired-mode 'emacs)
 (evil-set-initial-state 'magit-branch-manager-mode 'emacs)
+(evil-set-initial-state 'color-rg-mode 'emacs)
 
 (provide 'init-evil)
