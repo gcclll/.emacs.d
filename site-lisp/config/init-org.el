@@ -370,6 +370,12 @@
            (file+head "reference/${title}.org" "#+title: ${title}\n")
            :immediate-finish t
            :unnarrowed t)
+          ("o" "others" plain "%?"
+           :if-new
+           (file+head "others/${title}.org"
+                      "#+title: ${title}\n#+created: %U\n#+filetags: :others:\n#+startup: overview hideblocks")
+           :immediate-finish t
+           :unnarrowed t)
           ("v" "vue" plain "%?"
            :if-new
            (file+head "vue/${title}.org"

@@ -58,6 +58,11 @@
  "C-9" 'lsp-bridge-find-references
  "C-0" 'lsp-bridge-rename)
 
-(evil-set-initial-state 'lsp-bridge-ref-mode 'emacs)
+(with-eval-after-load 'evil
+  (evil-global-set-key 'normal (kbd "gd") 'lsp-bridge-jump)
+  (evil-global-set-key 'normal (kbd "gb") 'lsp-bridge-jump-back)
+  (evil-global-set-key 'normal (kbd "gf") 'lsp-bridge-find-references)
+  (evil-set-initial-state 'lsp-bridge-ref-mode 'emacs)
+  )
 
 (provide 'init-lsp-bridge)

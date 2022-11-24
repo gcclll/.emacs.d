@@ -80,4 +80,12 @@
   ;; (add-to-list 'lsp-language-id-configuration '(web-mode . "vue"))
   )
 
+;; --- js-doc
+(use-package js-doc
+  :config
+  (setq js-doc-mail-address user-mail-address
+       js-doc-author (format "<%s> <%s>" user-full-name js-doc-mail-address)
+       js-doc-url user-blog-url
+       js-doc-license "MIT"))
+
 (provide 'init-web)

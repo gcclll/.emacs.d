@@ -42,7 +42,6 @@
   "`" 'multi-vterm-project
   )
 
-
 ;; 可以定制 SPC <key1> <key2> ...
 (defmacro +general-global-menu! (name infix-key &rest body)
   "Create a definer named +general-global-NAME wrapping global-definer.
@@ -181,6 +180,8 @@
  "C-c i y" 'consult-yasnippet
  "C-c i t" 'gcl/insert-current-time
  "C-c i d" 'gcl/insert-standard-date
+ "C-c i f" 'js-doc-insert-function-doc
+ "C-c i F" 'js-doc-insert-file-doc
 
  ;; C-c g, git
  ;; ...

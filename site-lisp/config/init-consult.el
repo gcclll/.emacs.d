@@ -86,4 +86,9 @@
 
 (use-package consult-yasnippet)
 
+(use-package consult-project-extra
+  :bind
+  (("C-c p ," . consult-project-extra-find)
+   ("C-c p ." . consult-project-extra-find-other-window)))
+
 (provide 'init-consult)

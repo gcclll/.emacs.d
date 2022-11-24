@@ -41,8 +41,6 @@
     (evil-global-set-key 'motion "+" 'org-increase-number-at-point)
 
     (evil-global-set-key 'normal (kbd "gm") 'magit)
-    (evil-global-set-key 'normal (kbd "gd") 'xref-find-definitions)
-    (evil-global-set-key 'normal (kbd "gb") 'xref-pop-marker-stack)
     (evil-global-set-key 'normal (kbd "gc") 'show-commit-and-preserve-window)
 
     (evil-global-set-key 'normal (kbd "cc") 'evilnc-copy-and-comment-lines)
