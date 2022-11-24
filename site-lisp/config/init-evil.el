@@ -84,7 +84,8 @@
                   (?t . evil-surround-read-tag)
                   (?< . evil-surround-read-tag)
                   (?f . evil-surround-function)))
-  (global-evil-surround-mode 1))
+  )
+(global-evil-surround-mode 1)
 
 (evil-set-initial-state 'multi-vterm-mode 'emacs)
 (evil-set-initial-state 'vterm-mode 'emacs)
