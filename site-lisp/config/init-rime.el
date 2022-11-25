@@ -48,7 +48,7 @@
           ))
 
 
-;;;  support shift-l, shift-r, control-l, control-r
+;;; support shift-l, shift-r, control-l, control-r
   (setq rime-inline-ascii-trigger 'shift-l)
   (setq rime-translate-keybindings
 	      '("C-`" "S-<delete>" "C-f" "C-b" "C-n" "C-p" "C-g" "<return>" "<left>" "<right>" "<up>" "<down>" "<prior>" "<next>" "<delete>"))
